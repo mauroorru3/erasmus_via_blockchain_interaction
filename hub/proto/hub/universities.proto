@@ -1,0 +1,11 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+
+message Universities {
+  string universityName = 1; 
+  string universitiesKey = 2; 
+  string universitiesCountry = 3;
+}
+

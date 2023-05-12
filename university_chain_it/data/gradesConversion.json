@@ -1,0 +1,121 @@
+
+{
+    "countryList" : [
+        {
+            "_comment": "https://guide.unibz.it/assets/2021-08-06-Tabella-di-conversione-voti.pdf",
+            "name": "Germany",
+            "grades": {
+                "4,0": "18",
+                "3,7": "19",
+                "3,3": "21", 
+                "3,0": "22", 
+                "2,7": "24", 
+                "2,3": "25", 
+                "2,0": "26", 
+                "1,7": "28", 
+                "1,3": "29",
+                "1,0": "30L"
+                }
+        },
+        {
+            "name": "Bulgaria",
+            "grades": {}
+        },
+        {
+            "name": "Czech Republic",
+            "grades": {}
+        },
+        {
+            "name": "Denmark",
+            "grades": {}
+        },
+        {
+            "name": "Estonia",
+            "grades": {}
+        },
+        {
+            "name": "Ireland",
+            "grades": {}
+        },
+        {
+            "name": "Greece",
+            "grades": {}
+        },
+        {
+            "name": "Spain",
+            "grades": {}
+        },
+        {
+            "name": "Belgium",
+            "grades": {}
+        },
+        {
+            "name": "France",
+            "grades": {}
+        },
+        {
+            "name": "Croatia",
+            "grades": {}
+        },
+        {
+            "name": "Cyprus",
+            "grades": {}
+        },
+        {
+            "name": "Latvia",
+            "grades": {}
+        },
+        {
+            "name": "Lithuania",
+            "grades": {}
+        },
+        {
+            "name": "Luxembourg",
+            "grades": {}
+        },
+        {
+            "name": "Hungary",
+            "grades": {}
+        },
+        {
+            "name": "Malta",
+            "grades": {}
+        },
+        {
+            "name": "Netherlands",
+            "grades": {}
+        },
+        {
+            "name": "Austria",
+            "grades": {}
+        },
+        {
+            "name": "Poland",
+            "grades": {}
+        },
+        {
+            "name": "Portugal",
+            "grades": {}
+        },
+        {
+            "name": "Romania",
+            "grades": {}
+        },
+        {
+            "name": "Slovenia",
+            "grades": {}
+        },
+        {
+            "name": "Slovakia",
+            "grades": {}
+        },
+        {
+            "name": "Finland",
+            "grades": {}
+        },
+        {
+            "name": "Sweden",
+            "grades": {}
+        }
+    ]
+}   

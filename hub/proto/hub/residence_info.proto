@@ -1,0 +1,15 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+
+message ResidenceInfo {
+  string country = 1; 
+  string province = 2; 
+  string town = 3; 
+  string postCode = 4; 
+  string address = 5; 
+  string houseNumber = 6; 
+  string homePhone = 7; 
+  
+}

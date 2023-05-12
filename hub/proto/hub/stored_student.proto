@@ -1,0 +1,24 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+import "hub/student_info.proto"; 
+import "hub/transcript_of_records.proto"; 
+import "hub/personal_info.proto"; 
+import "hub/residence_info.proto"; 
+import "hub/contact_info.proto"; 
+import "hub/taxes_info.proto"; 
+import "hub/erasmus_info.proto"; 
+
+message StoredStudent {
+  string index = 1; 
+  StudentInfo studentData = 2; 
+  TranscriptOfRecords transcriptData = 3; 
+  PersonalInfo personalData = 4; 
+  ResidenceInfo residenceData = 5; 
+  ContactInfo contactData = 6; 
+  TaxesInfo taxesData = 7; 
+  ErasmusInfo erasmusData = 8; 
+  
+}
+

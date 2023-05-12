@@ -1,0 +1,40 @@
+accounts:
+- name: Hub
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "network sunset track violin fossil version east adult deal swing summer inner piece wet elegant creek local squeeze horse soda bottom relief arctic south"
+- name: Admin Hub
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "festival vicious churn air remain section exotic quit attack expose host entry raven north repeat silk hire way draft era thumb boil orbit trust"
+- name: Chain IT
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "afraid kid engine kingdom neck still pave fragile wink vast clay close trim rotate morning cage mutual today defense tobacco issue knock earn result"
+- name: Unipi
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "fresh this trap call leaf already decide decline jacket hobby food goat visa caution torch long air social trigger lecture true cruise phrase scatter"
+- name: Uniroma1
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "stick desk umbrella ankle lift scene goat magic weekend mixed able visual potato chunk employ step amount slot number ozone offer earth relax unknown"
+- name: Chain DE
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "mule canyon gather wait void creek system fitness planet crazy awake prefer away rally hat orchard taste school treat slogan woman say boat vintage"
+- name: Admin Chain DE
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "alien domain theme wheel bleak summer harbor tip predict praise decrease various dilemma sniff stuff add volcano room burden dress divide toddler chalk garment"
+- name: TUM
+  coins: ["10000token", "100000000stake"]
+  mnemonic: "hurt cactus oblige soldier gold tilt left key primary feed day bamboo demand blade sight orphan merit game quality rhythm vote rich strike boy"
+- name: Humboldt University
+  coins: ["10000token", "100000000stake"]
+  mnemonic: "accident pioneer ensure poverty doll age lottery drill east morning copy fiber receive ethics local cupboard knee peanut suit tooth ridge million dizzy disorder"
+
+validator:
+  name: Hub
+  staked: "100000000stake"
+client:
+  openapi:
+    path: "docs/static/openapi.yml"
+  vuex:
+    path: "vue/src/store"
+faucet:
+  name: Chain IT
+  coins: ["5token", "100000stake"]

@@ -1,0 +1,15 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+message PersonalInfo {
+  string gender = 1; 
+  string dateOfBirth = 2; 
+  string primaryNationality = 3; 
+  string countryOfBirth = 4; 
+  string provinceOfBirth = 5; 
+  string townOfBirth = 6; 
+  string taxCode = 7; 
+  
+}

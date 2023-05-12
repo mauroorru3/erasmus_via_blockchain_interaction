@@ -1,0 +1,161 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+// this line is used by starport scaffolding # proto/tx/import
+import "universitychainit/stored_student.proto";
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc ConfigureChain(MsgConfigureChain) returns (MsgConfigureChainResponse);
+  rpc RegisterNewStudent(MsgRegisterNewStudent) returns (MsgRegisterNewStudentResponse);
+  rpc InsertStudentPersonalInfo(MsgInsertStudentPersonalInfo) returns (MsgInsertStudentPersonalInfoResponse);
+  rpc InsertStudentContactInfo(MsgInsertStudentContactInfo) returns (MsgInsertStudentContactInfoResponse);
+  rpc InsertStudentResidenceInfo(MsgInsertStudentResidenceInfo) returns (MsgInsertStudentResidenceInfoResponse);
+  rpc InsertExamGrade(MsgInsertExamGrade) returns (MsgInsertExamGradeResponse);
+  rpc PayTaxes(MsgPayTaxes) returns (MsgPayTaxesResponse);
+  rpc InsertErasmusRequest(MsgInsertErasmusRequest) returns (MsgInsertErasmusRequestResponse);
+  rpc InsertErasmusExam(MsgInsertErasmusExam) returns (MsgInsertErasmusExamResponse);
+  rpc StartErasmus(MsgStartErasmus) returns (MsgStartErasmusResponse);
+  rpc SendErasmusStudent(MsgSendErasmusStudent) returns (MsgSendErasmusStudentResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgConfigureChain {
+  string creator = 1;
+}
+
+message MsgConfigureChainResponse {
+  int32 status = 1;
+}
+
+message MsgRegisterNewStudent {
+  string creator = 1;
+  string university = 2;
+  string name = 3;
+  string surname = 4;
+  string courseType = 5;
+  string courseOfStudy = 6;
+  string departmentName = 7;
+}
+
+message MsgRegisterNewStudentResponse {
+  string studentIndex = 1;
+}
+
+message MsgInsertStudentPersonalInfo {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+  string gender = 4;
+  string dateOfBirth = 5;
+  string primaryNationality = 6;
+  string countryOfBirth = 7;
+  string provinceOfBirth = 8;
+  string townOfBirth = 9;
+  string taxCode = 10;
+  uint32 incomeBracket = 11;
+}
+
+message MsgInsertStudentPersonalInfoResponse {
+  int32 status = 1;
+}
+
+message MsgInsertStudentContactInfo {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+  string contactAddress = 4;
+  string email = 5;
+  string mobilePhone = 6;
+}
+
+message MsgInsertStudentContactInfoResponse {
+  int32 status = 1;
+}
+
+message MsgInsertStudentResidenceInfo {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+  string country = 4;
+  string province = 5;
+  string town = 6;
+  string postCode = 7;
+  string address = 8;
+  string houseNumber = 9;
+  string homePhone = 10;
+}
+
+message MsgInsertStudentResidenceInfoResponse {
+  int32 status = 1;
+}
+
+message MsgInsertExamGrade {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+  string examName = 4;
+  string grade = 5;
+}
+
+message MsgInsertExamGradeResponse {
+  int32 status = 1;
+}
+
+message MsgPayTaxes {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+}
+
+message MsgPayTaxesResponse {
+  int32 status = 1;
+}
+
+message MsgInsertErasmusRequest {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+  string durationInMonths = 4;
+  string foreignUniversityName = 5;
+  string erasmusType = 6;
+}
+
+message MsgInsertErasmusRequestResponse {
+  int32 status = 1;
+}
+
+message MsgInsertErasmusExam {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+  string examName = 4;
+}
+
+message MsgInsertErasmusExamResponse {
+  int32 status = 1;
+}
+
+message MsgStartErasmus {
+  string creator = 1;
+  string university = 2;
+  string studentIndex = 3;
+}
+
+message MsgStartErasmusResponse {
+  int32 status = 1;
+}
+
+message MsgSendErasmusStudent {
+  string creator = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  string index = 5;
+}
+
+message MsgSendErasmusStudentResponse {
+}
+// this line is used by starport scaffolding # proto/tx/message

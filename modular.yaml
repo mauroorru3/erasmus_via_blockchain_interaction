@@ -1,0 +1,45 @@
+# start with docker-compose -f modular.yml up -d
+
+version: '3'
+
+services:
+
+  hub:
+    container_name: hub
+    image: "hub"
+
+    ports:
+      - "26656:26657"
+      - "1316:1317"
+      - "4499:4500"
+    volumes:
+      - ./hub:/hub
+
+    networks:
+      - erasmusdemo
+
+  university_chain_it:
+    container_name: university_chain_it
+    image: "university_chain_it"
+
+    ports:
+      - "26657:26657"
+      - "1317:1317"
+      - "4500:4500"
+    volumes:
+      - ./university_chain_it:/university_chain_it
+
+    networks:
+      - erasmusdemo
+
+  relayer:
+    container_name: relayer
+    image: "relayer"
+    tty: true
+    stdin_open: true
+
+    networks:
+      - erasmusdemo
+
+networks:
+    erasmusdemo:

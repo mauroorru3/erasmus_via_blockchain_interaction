@@ -1,0 +1,13 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+
+message TranscriptOfRecords {
+  string examsData = 1; 
+  uint64 totalExams = 2; 
+  uint64 examsPassed = 3; 
+  uint64 totalCredits = 4; 
+  uint64 achievedCredits = 5; 
+  
+}

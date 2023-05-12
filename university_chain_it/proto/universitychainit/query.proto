@@ -1,0 +1,235 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "universitychainit/params.proto";
+import "universitychainit/chain_info.proto";
+import "universitychainit/foreign_universities.proto";
+import "universitychainit/university_info.proto";
+import "universitychainit/professors_exams.proto";
+import "universitychainit/stored_student.proto";
+// this line is used by starport scaffolding # 1
+import "universitychainit/erasmus_info.proto";
+import "universitychainit/taxes_info.proto";
+import "universitychainit/contact_info.proto";
+import "universitychainit/residence_info.proto";
+import "universitychainit/personal_info.proto";
+import "universitychainit/transcript_of_records.proto";
+import "universitychainit/student_info.proto";
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/university_chain_it/universitychainit/params";
+  }
+
+// Queries a StudentInfo by index.
+	rpc StudentInfo(QueryGetStudentInfoRequest) returns (QueryGetStudentInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/student_info";
+	}
+
+// Queries a TranscriptOfRecords by index.
+	rpc TranscriptOfRecords(QueryGetTranscriptOfRecordsRequest) returns (QueryGetTranscriptOfRecordsResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/transcript_of_records";
+	}
+// Queries a PersonalInfo by index.
+	rpc PersonalInfo(QueryGetPersonalInfoRequest) returns (QueryGetPersonalInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/personal_info";
+	}
+// Queries a ResidenceInfo by index.
+	rpc ResidenceInfo(QueryGetResidenceInfoRequest) returns (QueryGetResidenceInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/residence_info";
+	}
+// Queries a ContactInfo by index.
+	rpc ContactInfo(QueryGetContactInfoRequest) returns (QueryGetContactInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/contact_info";
+	}
+
+// Queries a TaxesInfo by index.
+	rpc TaxesInfo(QueryGetTaxesInfoRequest) returns (QueryGetTaxesInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/taxes_info";
+	}
+
+// Queries a ErasmusInfo by index.
+	rpc ErasmusInfo(QueryGetErasmusInfoRequest) returns (QueryGetErasmusInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/erasmus_info";
+	}
+
+// Queries a ChainInfo by index.
+	rpc ChainInfo(QueryGetChainInfoRequest) returns (QueryGetChainInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/chain_info";
+	}
+// Queries a ForeignUniversities by index.
+	rpc ForeignUniversities(QueryGetForeignUniversitiesRequest) returns (QueryGetForeignUniversitiesResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/foreign_universities/{universityName}";
+	}
+
+	// Queries a list of ForeignUniversities items.
+	rpc ForeignUniversitiesAll(QueryAllForeignUniversitiesRequest) returns (QueryAllForeignUniversitiesResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/foreign_universities";
+	}
+
+// Queries a UniversityInfo by index.
+	rpc UniversityInfo(QueryGetUniversityInfoRequest) returns (QueryGetUniversityInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/university_info/{universityName}";
+	}
+
+	// Queries a list of UniversityInfo items.
+	rpc UniversityInfoAll(QueryAllUniversityInfoRequest) returns (QueryAllUniversityInfoResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/university_info";
+	}
+
+// Queries a ProfessorsExams by index.
+	rpc ProfessorsExams(QueryGetProfessorsExamsRequest) returns (QueryGetProfessorsExamsResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/professors_exams/{examName}";
+	}
+
+	// Queries a list of ProfessorsExams items.
+	rpc ProfessorsExamsAll(QueryAllProfessorsExamsRequest) returns (QueryAllProfessorsExamsResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/professors_exams";
+	}
+
+// Queries a StoredStudent by index.
+	rpc StoredStudent(QueryGetStoredStudentRequest) returns (QueryGetStoredStudentResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/stored_student/{index}";
+	}
+
+	// Queries a list of StoredStudent items.
+	rpc StoredStudentAll(QueryAllStoredStudentRequest) returns (QueryAllStoredStudentResponse) {
+		option (google.api.http).get = "/university_chain_it/universitychainit/stored_student";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetStudentInfoRequest {}
+
+message QueryGetStudentInfoResponse {
+	StudentInfo StudentInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetTranscriptOfRecordsRequest {}
+
+message QueryGetTranscriptOfRecordsResponse {
+	TranscriptOfRecords TranscriptOfRecords = 1 [(gogoproto.nullable) = false];
+}
+message QueryGetPersonalInfoRequest {}
+
+message QueryGetPersonalInfoResponse {
+	PersonalInfo PersonalInfo = 1 [(gogoproto.nullable) = false];
+}
+message QueryGetResidenceInfoRequest {}
+
+message QueryGetResidenceInfoResponse {
+	ResidenceInfo ResidenceInfo = 1 [(gogoproto.nullable) = false];
+}
+message QueryGetContactInfoRequest {}
+
+message QueryGetContactInfoResponse {
+	ContactInfo ContactInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetTaxesInfoRequest {}
+
+message QueryGetTaxesInfoResponse {
+	TaxesInfo TaxesInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetErasmusInfoRequest {}
+
+message QueryGetErasmusInfoResponse {
+	ErasmusInfo ErasmusInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetChainInfoRequest {}
+
+message QueryGetChainInfoResponse {
+	ChainInfo ChainInfo = 1 [(gogoproto.nullable) = false];
+}
+message QueryGetForeignUniversitiesRequest {
+	  string universityName = 1;
+
+}
+
+message QueryGetForeignUniversitiesResponse {
+	ForeignUniversities foreignUniversities = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllForeignUniversitiesRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllForeignUniversitiesResponse {
+	repeated ForeignUniversities foreignUniversities = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetUniversityInfoRequest {
+	  string universityName = 1;
+
+}
+
+message QueryGetUniversityInfoResponse {
+	UniversityInfo universityInfo = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllUniversityInfoRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllUniversityInfoResponse {
+	repeated UniversityInfo universityInfo = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetProfessorsExamsRequest {
+	  string examName = 1;
+
+}
+
+message QueryGetProfessorsExamsResponse {
+	ProfessorsExams professorsExams = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllProfessorsExamsRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllProfessorsExamsResponse {
+	repeated ProfessorsExams professorsExams = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetStoredStudentRequest {
+	  string index = 1;
+
+}
+
+message QueryGetStoredStudentResponse {
+	StoredStudent storedStudent = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllStoredStudentRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllStoredStudentResponse {
+	repeated StoredStudent storedStudent = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

@@ -1,0 +1,15 @@
+
+{
+    "universitiesList" : [
+        {
+        "name": "tum",
+        "country": "Germany",
+        "address": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t"
+        },
+        {
+        "name": "humboldt_university",
+        "country": "Germany",
+        "address": "cosmos1qyxznuc44rp36se3thc9f5vuxhm73qmlna8l97"
+        }
+    ]
+}   

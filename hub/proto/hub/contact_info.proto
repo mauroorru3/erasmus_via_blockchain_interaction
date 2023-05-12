@@ -1,0 +1,11 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+
+message ContactInfo {
+  string contactAddress = 1; 
+  string email = 2; 
+  string mobilePhone = 3; 
+  
+}

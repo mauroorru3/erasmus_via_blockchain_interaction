@@ -1,0 +1,13 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+message TranscriptOfRecords {
+  string examsData = 1; 
+  uint32 totalExams = 2; 
+  uint32 examsPassed = 3; 
+  uint32 totalCredits = 4; 
+  uint32 achievedCredits = 5; 
+  
+}

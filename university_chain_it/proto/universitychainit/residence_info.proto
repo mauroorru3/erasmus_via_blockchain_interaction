@@ -1,0 +1,15 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+message ResidenceInfo {
+  string country = 1; 
+  string province = 2; 
+  string town = 3; 
+  string postCode = 4; 
+  string address = 5; 
+  string houseNumber = 6; 
+  string homePhone = 7; 
+  
+}

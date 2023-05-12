@@ -1,0 +1,11 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+message ContactInfo {
+  string contactAddress = 1; 
+  string email = 2; 
+  string mobilePhone = 3; 
+  
+}

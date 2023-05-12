@@ -1,0 +1,24 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+option go_package = "university_chain_it/x/universitychainit/types";
+import "universitychainit/student_info.proto"; 
+import "universitychainit/transcript_of_records.proto"; 
+import "universitychainit/personal_info.proto"; 
+import "universitychainit/residence_info.proto"; 
+import "universitychainit/contact_info.proto"; 
+import "universitychainit/taxes_info.proto"; 
+import "universitychainit/erasmus_info.proto"; 
+
+message StoredStudent {
+  string index = 1; 
+  StudentInfo studentData = 2; 
+  TranscriptOfRecords transcriptData = 3; 
+  PersonalInfo personalData = 4; 
+  ResidenceInfo residenceData = 5; 
+  ContactInfo contactData = 6; 
+  TaxesInfo taxesData = 7; 
+  ErasmusInfo erasmusData = 8; 
+  
+}
+

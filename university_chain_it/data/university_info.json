@@ -1,0 +1,210 @@
+
+{
+    "universitiesList" : [
+        {
+        "name": "unipi",
+        "country": "Italy",
+        "secretariat_key": "cosmos1sf3zdq9q7tzfk9l83g05padqky4v9tld2dhsur",
+        "university_key": "cosmos1mhmthq4cx8ltfexahqrhutqxu9d26zltwhh39n",
+        "deadline_taxes": "2023-12-31 12:00:00",
+        "deadline_erasmus": "2023-12-31 12:00:00",
+        "max_erasmus_exams": 3,
+        "taxes_brackets": {
+            "first": [6500, 0], 
+            "second": [28000,200],
+            "third": [60000,400],
+            "fourth": 800
+        },
+        "departmentList": 
+            [
+                { 
+                "name": "Computer Science",
+                "CAI": {
+                    "department": "Computer Science",
+                    "Name and Surname": "Graziella Sabatini",
+                    "address": "cosmos1zwf5j033nczy7t6vclckdlrlml2mqhnjfy9d66"
+                },
+                "courseTypeList": [
+                            {
+                                "name": "master",
+                                "courses": [
+                                    {
+                                    "courseOfStudy": "cs",
+                                    "exams": [
+                                                {
+                                                    "Name and Surname": "Domenico Asprucci",
+                                                    "Address": "cosmos1m0qq4aecd58j4pvjt042hmzpldzxl4s4njm03y",
+                                                    "examName": "Algorithm engineering",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Ermanno Naccari",
+                                                    "Address": "cosmos16amnmlz2e8tzlwxdd9nu3ugvau5ccnn0k2wac6",
+                                                    "examName": "Advanced databases",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Dino Torricelli",
+                                                    "Address": "cosmos15wfy4s39h7fwt3g344lnelz8khfghm8992fdzq",
+                                                    "examName": "Bioinformatics",
+                                                    "credits": 6,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Lucia Longhena",
+                                                    "Address": "cosmos1g0jqe0clngq9dz6rknqdzy2r9vxp8cmaq8hel8",
+                                                    "examName": "Information Retrieval",
+                                                    "credits": 6,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Tatiana Roncalli",
+                                                    "Address": "cosmos1uzk8jta4094ll7tng62w0qwjlwwk4sa5qq6vy3",
+                                                    "examName": "Parallel and Distributed Systems paradigms and models",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Graziella Vergerio",
+                                                    "Address": "cosmos1kdjwe98x39gzeq3k9dh4hxz6sexawfx2fhxhx3",
+                                                    "examName": "Data Mining",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Rosa Asprucci",
+                                                    "Address": "cosmos1p2aj6wmh3u2yqcxsx3j3cgl5duwwmdagqln0ye",
+                                                    "examName": "Data Mining",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Enrico Comboni",
+                                                    "Address": "cosmos1958ghdu4dwv657m2t7cv4cs8p69eaxspvs3lef",
+                                                    "examName": "Computational mathematics for learning and data analysis",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                }
+                                        ]
+                                        }
+                                        ]      
+                                        },
+                                        {
+                                            "name": "bachelor",
+                                            "courses": []
+                                        },
+                                        {
+                                            "name": "single_cycle_degree",
+                                            "courses": []
+                                        }
+                                        ]
+                }
+            ]
+            },
+            {
+                "name": "uniroma1",
+                "country": "Italy",
+                "secretariat_key": "cosmos15s2893pv9gxghpqjcuv5j02589005e0w2ss2pv",
+                "university_key": "cosmos13nrfelferv5a7dkd5rnt9r7ku7wgma9g52l0rf",
+                "deadline_taxes": "2023-12-31 12:00:00",
+                "deadline_erasmus": "2023-12-31 12:00:00",
+                "max_erasmus_exams": 3,
+                "taxes_brackets": {
+                    "first": [6500, 0], 
+                    "second": [28000,200],
+                    "third": [60000,400],
+                    "fourth": 800
+                },
+                "departmentList": 
+                    [
+                        { 
+                        "name": "Computer Science",
+                        "CAI": {
+                            "department": "Computer Science",
+                            "Name and Surname": "Graziella Sabatini",
+                            "address": "cosmos1zwf5j033nczy7t6vclckdlrlml2mqhnjfy9d66"
+                        },
+                        "courseTypeList": [
+                            {
+                                "name": "master",
+                                "courses": [
+                                    {
+                                    "courseOfStudy": "cs",
+                                    "exams": [
+                                                {
+                                                    "Name and Surname": "Domenico Asprucci",
+                                                    "Address": "cosmos1m0qq4aecd58j4pvjt042hmzpldzxl4s4njm03y",
+                                                    "examName": "Algorithm engineering",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Ermanno Naccari",
+                                                    "Address": "cosmos16amnmlz2e8tzlwxdd9nu3ugvau5ccnn0k2wac6",
+                                                    "examName": "Advanced databases",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Dino Torricelli",
+                                                    "Address": "cosmos15wfy4s39h7fwt3g344lnelz8khfghm8992fdzq",
+                                                    "examName": "Bioinformatics",
+                                                    "credits": 6,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Lucia Longhena",
+                                                    "Address": "cosmos1g0jqe0clngq9dz6rknqdzy2r9vxp8cmaq8hel8",
+                                                    "examName": "Information Retrieval",
+                                                    "credits": 6,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Tatiana Roncalli",
+                                                    "Address": "cosmos1uzk8jta4094ll7tng62w0qwjlwwk4sa5qq6vy3",
+                                                    "examName": "Parallel and Distributed Systems paradigms and models",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Graziella Vergerio",
+                                                    "Address": "cosmos1kdjwe98x39gzeq3k9dh4hxz6sexawfx2fhxhx3",
+                                                    "examName": "Data Mining",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Rosa Asprucci",
+                                                    "Address": "cosmos1p2aj6wmh3u2yqcxsx3j3cgl5duwwmdagqln0ye",
+                                                    "examName": "Data Mining",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Enrico Comboni",
+                                                    "Address": "cosmos1958ghdu4dwv657m2t7cv4cs8p69eaxspvs3lef",
+                                                    "examName": "Computational mathematics for learning and data analysis",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                }
+                                        ]
+                                        }
+                                        ]      
+                                        },
+                                        {
+                                            "name": "bachelor",
+                                            "courses": []
+                                        },
+                                        {
+                                            "name": "single_cycle_degree",
+                                            "courses": []
+                                        }
+                                        ]
+                }
+            ]
+            }
+            
+        ]
+}   

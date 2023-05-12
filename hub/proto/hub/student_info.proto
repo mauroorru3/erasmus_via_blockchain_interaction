@@ -1,0 +1,17 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+
+message StudentInfo {
+  string name = 1; 
+  string surname = 2; 
+  uint64 courseType = 3; 
+  string courseOfStudy = 4; 
+  uint64 status = 5; 
+  uint64 currentYearOfStudy = 6; 
+  bool outOfCourse = 7; 
+  uint64 numberOfYearsOutOfCourse = 8; 
+  string studentKey = 9; 
+  
+}

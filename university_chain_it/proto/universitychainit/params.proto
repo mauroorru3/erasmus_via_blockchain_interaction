@@ -1,0 +1,12 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

@@ -1,0 +1,25 @@
+
+{
+    "universitiesList" : [
+        {
+            "name": "unipi",
+            "country": "Italy",
+            "address": "cosmos1mhmthq4cx8ltfexahqrhutqxu9d26zltwhh39n"
+        },
+        {
+            "name": "uniroma1",
+            "country": "Italy",
+            "address": "cosmos15s2893pv9gxghpqjcuv5j02589005e0w2ss2pv"
+        },
+        {
+            "name": "tum",
+            "country": "Germany",
+            "address": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t"
+        },
+        {
+            "name": "humboldt_university",
+            "country": "Germany",
+            "address": "cosmos1qyxznuc44rp36se3thc9f5vuxhm73qmlna8l97"
+        }
+    ]
+}   

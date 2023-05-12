@@ -1,0 +1,18 @@
+syntax = "proto3";
+package hub.hub;
+
+option go_package = "hub/x/hub/types";
+
+message ErasmusInfo {
+  string erasmusStudent = 1; 
+  uint64 numberTimes = 2; 
+  uint64 numberMonths = 3; 
+  uint64 totalExams = 4; 
+  uint64 examsPassed = 5; 
+  uint64 totalCredits = 6; 
+  uint64 achievedCredits = 7; 
+  string career = 8; 
+  string previousStudentFifo = 9; 
+  string nextStudentFifo = 10; 
+  
+}
