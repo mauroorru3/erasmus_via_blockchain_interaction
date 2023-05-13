@@ -3,10 +3,11 @@ package keeper
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
+	"time"
 
 	"hub/x/hub/types"
+	"hub/x/hub/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -79,19 +80,48 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	// TODO: packet reception logic
 
-	f, err := os.Create("data/data.txt")
+	file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Could not open logs.txt - OnRecvErasmusStudentPacket")
+		return packetAck, nil
 	}
 
-	defer f.Close()
+	defer file.Close()
 
-	_, err2 := f.WriteString(data.String())
+	dt := time.Now()
+
+	_, err2 := file.WriteString("OnRecvErasmusStudentPacket " + utilfunc.FormatDate(dt) + "\n")
 
 	if err2 != nil {
-		log.Fatal(err2)
+		fmt.Println("Could not write text to logs.txt - OnRecvErasmusStudentPacket")
+
+	} else {
+		fmt.Println("Operation successful! Text has been appended to logs.txt - OnRecvErasmusStudentPacket")
 	}
+
+	//---------------------------------------
+
+	file, err = os.OpenFile("data/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		fmt.Println("Could not open logs.txt - OnRecvErasmusStudentPacket")
+		return packetAck, nil
+	}
+
+	defer file.Close()
+
+	file.WriteString(data.String())
+	_, err2 = file.WriteString("\n")
+
+	if err2 != nil {
+		fmt.Println("Could not write text to logs.txt - OnRecvErasmusStudentPacket")
+
+	} else {
+		fmt.Println("Operation successful! Text has been appended to logs.txt - OnRecvErasmusStudentPacket")
+	}
+
+	k.SetStoredStudent(ctx, *data.Student)
 
 	return packetAck, nil
 }
@@ -103,6 +133,27 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 	case *channeltypes.Acknowledgement_Error:
 
 		// TODO: failed acknowledgement logic
+
+		file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+		if err != nil {
+			fmt.Println("Could not open logs.txt - OnAcknowledgementErasmusStudentPacket")
+			return nil
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket error " + utilfunc.FormatDate(dt) + "\n")
+
+		if err2 != nil {
+			fmt.Println("Could not write text to logs.txt - OnAcknowledgementErasmusStudentPacket")
+
+		} else {
+			fmt.Println("Operation successful! Text has been appended to logs.txt - OnAcknowledgementErasmusStudentPacket")
+		}
+
 		_ = dispatchedAck.Error
 
 		return nil
@@ -116,6 +167,25 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 		}
 
 		// TODO: successful acknowledgement logic
+		file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+		if err != nil {
+			fmt.Println("Could not open logs.txt - OnAcknowledgementErasmusStudentPacket")
+			return nil
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket success " + utilfunc.FormatDate(dt) + "\n")
+
+		if err2 != nil {
+			fmt.Println("Could not write text to logs.txt - OnAcknowledgementErasmusStudentPacket")
+
+		} else {
+			fmt.Println("Operation successful! Text has been appended to logs.txt - OnAcknowledgementErasmusStudentPacket")
+		}
 
 		return nil
 	default:
@@ -138,7 +208,9 @@ func (k Keeper) OnTimeoutErasmusStudentPacket(ctx sdk.Context, packet channeltyp
 
 	defer file.Close()
 
-	_, err2 := file.WriteString("OnTimeoutErasmusStudentPacket\n")
+	dt := time.Now()
+
+	_, err2 := file.WriteString("OnTimeoutErasmusStudentPacket " + utilfunc.FormatDate(dt) + "\n")
 
 	if err2 != nil {
 		fmt.Println("Could not write text to logs.txt - OnTimeoutErasmusStudentPacket")

@@ -9,6 +9,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
+const timeoutTimestamp uint64 = 17999999999999999999 //1683974783938252484
+
 func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmus) (*types.MsgStartErasmusResponse, error) {
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
@@ -100,15 +102,19 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 													}, err
 												} else {
 
-													k.SendErasmusStudent(goCtx, types.NewMsgSendErasmusStudent(
-														msg.Creator, "", "", 100, msg.GetUniversity()+"_"+msg.GetStudentIndex()))
-
 													k.Keeper.SendToFifoTail(ctx, &searchedStudent, &uniInfo)
-													k.Keeper.SetStoredStudent(ctx, searchedStudent)
-													k.Keeper.SetUniversityInfo(ctx, uniInfo)
-													return &types.MsgStartErasmusResponse{
-														Status: 0,
-													}, nil
+
+													_, err = k.SendErasmusStudent(goCtx, types.NewMsgSendErasmusStudent(
+														msg.Creator, "hub", "channel-0", timeoutTimestamp, msg.GetUniversity()+"_"+msg.GetStudentIndex()))
+													if err != nil {
+														return nil, err
+													} else {
+														k.Keeper.SetStoredStudent(ctx, searchedStudent)
+														k.Keeper.SetUniversityInfo(ctx, uniInfo)
+														return &types.MsgStartErasmusResponse{
+															Status: 0,
+														}, nil
+													}
 												}
 											}
 

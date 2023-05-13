@@ -5,7 +5,7 @@ option go_package = "hub/x/hub/types";
 
 message TaxesInfo {
   bool status = 1; 
-  uint64 totalAmount = 2; 
+  uint32 totalAmount = 2; 
   string taxesHistory = 3; 
   
 }

@@ -20,7 +20,6 @@ message NoData {
 // ErasmusStudentPacketData defines a struct for the packet payload
 message ErasmusStudentPacketData {
   StoredStudent student = 1;
-  string index = 2;
 }
 
 // ErasmusStudentPacketAck defines a struct for the packet acknowledgment

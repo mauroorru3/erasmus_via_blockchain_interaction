@@ -3,7 +3,7 @@
       "chain-id":"university_chain_it",
       "port-id":"hub",
       "order":"unordered",
-      "version":"university_chain_it-1"
+      "version":"hub-1"
    },
    "dst":{
       "chain-id":"hub",

@@ -4,8 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"time"
 
 	"university_chain_it/x/universitychainit/types"
+	"university_chain_it/x/universitychainit/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -88,6 +90,27 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 	case *channeltypes.Acknowledgement_Error:
 
 		// TODO: failed acknowledgement logic
+
+		file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+		if err != nil {
+			fmt.Println("Could not open logs.txt - OnAcknowledgementErasmusStudentPacket")
+			return nil
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket error " + dispatchedAck.Error + " " + utilfunc.FormatDeadline(dt) + "\n")
+
+		if err2 != nil {
+			fmt.Println("Could not write text to logs.txt - OnAcknowledgementErasmusStudentPacket")
+
+		} else {
+			fmt.Println("Operation successful! Text has been appended to logs.txt - OnAcknowledgementErasmusStudentPacket")
+		}
+
 		_ = dispatchedAck.Error
 
 		return nil
@@ -110,7 +133,9 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		defer file.Close()
 
-		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket\n")
+		dt := time.Now()
+
+		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket success " + utilfunc.FormatDeadline(dt) + "\n")
 
 		if err2 != nil {
 			fmt.Println("Could not write text to logs.txt - OnAcknowledgementErasmusStudentPacket")
@@ -140,7 +165,9 @@ func (k Keeper) OnTimeoutErasmusStudentPacket(ctx sdk.Context, packet channeltyp
 
 	defer file.Close()
 
-	_, err2 := file.WriteString("OnTimeoutErasmusStudentPacket\n")
+	dt := time.Now()
+
+	_, err2 := file.WriteString("OnTimeoutErasmusStudentPacket " + utilfunc.FormatDeadline(dt) + "\n")
 
 	if err2 != nil {
 		fmt.Println("Could not write text to logs.txt - OnTimeoutErasmusStudentPacket")

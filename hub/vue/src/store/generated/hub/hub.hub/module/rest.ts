@@ -24,23 +24,23 @@ export interface HubContactInfo {
 export interface HubErasmusInfo {
   erasmusStudent?: string;
 
-  /** @format uint64 */
-  numberTimes?: string;
+  /** @format int64 */
+  numberTimes?: number;
 
-  /** @format uint64 */
-  numberMonths?: string;
+  /** @format int64 */
+  numberMonths?: number;
 
-  /** @format uint64 */
-  totalExams?: string;
+  /** @format int64 */
+  totalExams?: number;
 
-  /** @format uint64 */
-  examsPassed?: string;
+  /** @format int64 */
+  examsPassed?: number;
 
-  /** @format uint64 */
-  totalCredits?: string;
+  /** @format int64 */
+  totalCredits?: number;
 
-  /** @format uint64 */
-  achievedCredits?: string;
+  /** @format int64 */
+  achievedCredits?: number;
   career?: string;
   previousStudentFifo?: string;
   nextStudentFifo?: string;
@@ -59,7 +59,6 @@ export type HubMsgSendErasmusStudentResponse = object;
 export type HubParams = object;
 
 export interface HubPersonalInfo {
-  /** @format uint64 */
   gender?: string;
   dateOfBirth?: string;
   primaryNationality?: string;
@@ -171,45 +170,42 @@ export interface HubStoredStudent {
 export interface HubStudentInfo {
   name?: string;
   surname?: string;
-
-  /** @format uint64 */
   courseType?: string;
   courseOfStudy?: string;
-
-  /** @format uint64 */
   status?: string;
 
-  /** @format uint64 */
-  currentYearOfStudy?: string;
+  /** @format int64 */
+  currentYearOfStudy?: number;
   outOfCourse?: boolean;
 
-  /** @format uint64 */
-  numberOfYearsOutOfCourse?: string;
+  /** @format int64 */
+  numberOfYearsOutOfCourse?: number;
   studentKey?: string;
+  completeInformation?: number[];
 }
 
 export interface HubTaxesInfo {
   status?: boolean;
 
-  /** @format uint64 */
-  totalAmount?: string;
+  /** @format int64 */
+  totalAmount?: number;
   taxesHistory?: string;
 }
 
 export interface HubTranscriptOfRecords {
   examsData?: string;
 
-  /** @format uint64 */
-  totalExams?: string;
+  /** @format int64 */
+  totalExams?: number;
 
-  /** @format uint64 */
-  examsPassed?: string;
+  /** @format int64 */
+  examsPassed?: number;
 
-  /** @format uint64 */
-  totalCredits?: string;
+  /** @format int64 */
+  totalCredits?: number;
 
-  /** @format uint64 */
-  achievedCredits?: string;
+  /** @format int64 */
+  achievedCredits?: number;
 }
 
 export interface HubUniversities {

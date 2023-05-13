@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 )
 
 // UniversityKeys.json
@@ -19,6 +20,16 @@ type UniversityKeys struct {
 
 type UniListKey struct {
 	UniversityListKey []UniversityKeys `json:"universitiesList"`
+}
+
+const (
+	DateLayout = "2006-01-02 15:04:05"
+)
+
+func FormatDate(date time.Time) string {
+	loc, _ := time.LoadLocation("Europe/Rome")
+	newTime := date.In(loc)
+	return newTime.Format(DateLayout)
 }
 
 func ReadForeignUniversityInfo() (universityInfo []UniversityKeys, err error) {

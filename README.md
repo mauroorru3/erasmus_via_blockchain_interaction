@@ -31,6 +31,7 @@ cd ..
 # To allow scripts to be executed within containers:
 
 chmod +x allow_permissions.sh 
+./allow_permissions.sh 
 
 # To start the containers
 

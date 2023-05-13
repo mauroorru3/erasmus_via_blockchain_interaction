@@ -1,6 +1,5 @@
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
+import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "hub.hub";
 
@@ -29,16 +28,16 @@ export const TranscriptOfRecords = {
       writer.uint32(10).string(message.examsData);
     }
     if (message.totalExams !== 0) {
-      writer.uint32(16).uint64(message.totalExams);
+      writer.uint32(16).uint32(message.totalExams);
     }
     if (message.examsPassed !== 0) {
-      writer.uint32(24).uint64(message.examsPassed);
+      writer.uint32(24).uint32(message.examsPassed);
     }
     if (message.totalCredits !== 0) {
-      writer.uint32(32).uint64(message.totalCredits);
+      writer.uint32(32).uint32(message.totalCredits);
     }
     if (message.achievedCredits !== 0) {
-      writer.uint32(40).uint64(message.achievedCredits);
+      writer.uint32(40).uint32(message.achievedCredits);
     }
     return writer;
   },
@@ -54,16 +53,16 @@ export const TranscriptOfRecords = {
           message.examsData = reader.string();
           break;
         case 2:
-          message.totalExams = longToNumber(reader.uint64() as Long);
+          message.totalExams = reader.uint32();
           break;
         case 3:
-          message.examsPassed = longToNumber(reader.uint64() as Long);
+          message.examsPassed = reader.uint32();
           break;
         case 4:
-          message.totalCredits = longToNumber(reader.uint64() as Long);
+          message.totalCredits = reader.uint32();
           break;
         case 5:
-          message.achievedCredits = longToNumber(reader.uint64() as Long);
+          message.achievedCredits = reader.uint32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -153,16 +152,6 @@ export const TranscriptOfRecords = {
   },
 };
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin
   ? T
@@ -173,15 +162,3 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}

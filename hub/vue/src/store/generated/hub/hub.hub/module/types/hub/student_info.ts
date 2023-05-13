@@ -1,31 +1,32 @@
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
+import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "hub.hub";
 
 export interface StudentInfo {
   name: string;
   surname: string;
-  courseType: number;
+  courseType: string;
   courseOfStudy: string;
-  status: number;
+  status: string;
   currentYearOfStudy: number;
   outOfCourse: boolean;
   numberOfYearsOutOfCourse: number;
   studentKey: string;
+  completeInformation: number[];
 }
 
 const baseStudentInfo: object = {
   name: "",
   surname: "",
-  courseType: 0,
+  courseType: "",
   courseOfStudy: "",
-  status: 0,
+  status: "",
   currentYearOfStudy: 0,
   outOfCourse: false,
   numberOfYearsOutOfCourse: 0,
   studentKey: "",
+  completeInformation: 0,
 };
 
 export const StudentInfo = {
@@ -36,27 +37,32 @@ export const StudentInfo = {
     if (message.surname !== "") {
       writer.uint32(18).string(message.surname);
     }
-    if (message.courseType !== 0) {
-      writer.uint32(24).uint64(message.courseType);
+    if (message.courseType !== "") {
+      writer.uint32(26).string(message.courseType);
     }
     if (message.courseOfStudy !== "") {
       writer.uint32(34).string(message.courseOfStudy);
     }
-    if (message.status !== 0) {
-      writer.uint32(40).uint64(message.status);
+    if (message.status !== "") {
+      writer.uint32(42).string(message.status);
     }
     if (message.currentYearOfStudy !== 0) {
-      writer.uint32(48).uint64(message.currentYearOfStudy);
+      writer.uint32(48).uint32(message.currentYearOfStudy);
     }
     if (message.outOfCourse === true) {
       writer.uint32(56).bool(message.outOfCourse);
     }
     if (message.numberOfYearsOutOfCourse !== 0) {
-      writer.uint32(64).uint64(message.numberOfYearsOutOfCourse);
+      writer.uint32(64).uint32(message.numberOfYearsOutOfCourse);
     }
     if (message.studentKey !== "") {
       writer.uint32(74).string(message.studentKey);
     }
+    writer.uint32(82).fork();
+    for (const v of message.completeInformation) {
+      writer.int32(v);
+    }
+    writer.ldelim();
     return writer;
   },
 
@@ -64,6 +70,7 @@ export const StudentInfo = {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = { ...baseStudentInfo } as StudentInfo;
+    message.completeInformation = [];
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -74,27 +81,35 @@ export const StudentInfo = {
           message.surname = reader.string();
           break;
         case 3:
-          message.courseType = longToNumber(reader.uint64() as Long);
+          message.courseType = reader.string();
           break;
         case 4:
           message.courseOfStudy = reader.string();
           break;
         case 5:
-          message.status = longToNumber(reader.uint64() as Long);
+          message.status = reader.string();
           break;
         case 6:
-          message.currentYearOfStudy = longToNumber(reader.uint64() as Long);
+          message.currentYearOfStudy = reader.uint32();
           break;
         case 7:
           message.outOfCourse = reader.bool();
           break;
         case 8:
-          message.numberOfYearsOutOfCourse = longToNumber(
-            reader.uint64() as Long
-          );
+          message.numberOfYearsOutOfCourse = reader.uint32();
           break;
         case 9:
           message.studentKey = reader.string();
+          break;
+        case 10:
+          if ((tag & 7) === 2) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.completeInformation.push(reader.int32());
+            }
+          } else {
+            message.completeInformation.push(reader.int32());
+          }
           break;
         default:
           reader.skipType(tag & 7);
@@ -106,6 +121,7 @@ export const StudentInfo = {
 
   fromJSON(object: any): StudentInfo {
     const message = { ...baseStudentInfo } as StudentInfo;
+    message.completeInformation = [];
     if (object.name !== undefined && object.name !== null) {
       message.name = String(object.name);
     } else {
@@ -117,9 +133,9 @@ export const StudentInfo = {
       message.surname = "";
     }
     if (object.courseType !== undefined && object.courseType !== null) {
-      message.courseType = Number(object.courseType);
+      message.courseType = String(object.courseType);
     } else {
-      message.courseType = 0;
+      message.courseType = "";
     }
     if (object.courseOfStudy !== undefined && object.courseOfStudy !== null) {
       message.courseOfStudy = String(object.courseOfStudy);
@@ -127,9 +143,9 @@ export const StudentInfo = {
       message.courseOfStudy = "";
     }
     if (object.status !== undefined && object.status !== null) {
-      message.status = Number(object.status);
+      message.status = String(object.status);
     } else {
-      message.status = 0;
+      message.status = "";
     }
     if (
       object.currentYearOfStudy !== undefined &&
@@ -159,6 +175,14 @@ export const StudentInfo = {
     } else {
       message.studentKey = "";
     }
+    if (
+      object.completeInformation !== undefined &&
+      object.completeInformation !== null
+    ) {
+      for (const e of object.completeInformation) {
+        message.completeInformation.push(Number(e));
+      }
+    }
     return message;
   },
 
@@ -177,11 +201,17 @@ export const StudentInfo = {
     message.numberOfYearsOutOfCourse !== undefined &&
       (obj.numberOfYearsOutOfCourse = message.numberOfYearsOutOfCourse);
     message.studentKey !== undefined && (obj.studentKey = message.studentKey);
+    if (message.completeInformation) {
+      obj.completeInformation = message.completeInformation.map((e) => e);
+    } else {
+      obj.completeInformation = [];
+    }
     return obj;
   },
 
   fromPartial(object: DeepPartial<StudentInfo>): StudentInfo {
     const message = { ...baseStudentInfo } as StudentInfo;
+    message.completeInformation = [];
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name;
     } else {
@@ -195,7 +225,7 @@ export const StudentInfo = {
     if (object.courseType !== undefined && object.courseType !== null) {
       message.courseType = object.courseType;
     } else {
-      message.courseType = 0;
+      message.courseType = "";
     }
     if (object.courseOfStudy !== undefined && object.courseOfStudy !== null) {
       message.courseOfStudy = object.courseOfStudy;
@@ -205,7 +235,7 @@ export const StudentInfo = {
     if (object.status !== undefined && object.status !== null) {
       message.status = object.status;
     } else {
-      message.status = 0;
+      message.status = "";
     }
     if (
       object.currentYearOfStudy !== undefined &&
@@ -233,19 +263,17 @@ export const StudentInfo = {
     } else {
       message.studentKey = "";
     }
+    if (
+      object.completeInformation !== undefined &&
+      object.completeInformation !== null
+    ) {
+      for (const e of object.completeInformation) {
+        message.completeInformation.push(e);
+      }
+    }
     return message;
   },
 };
-
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
 
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin
@@ -257,15 +285,3 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}

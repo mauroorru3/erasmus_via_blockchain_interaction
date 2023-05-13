@@ -1,11 +1,10 @@
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
+import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "hub.hub";
 
 export interface PersonalInfo {
-  gender: number;
+  gender: string;
   dateOfBirth: string;
   primaryNationality: string;
   countryOfBirth: string;
@@ -15,7 +14,7 @@ export interface PersonalInfo {
 }
 
 const basePersonalInfo: object = {
-  gender: 0,
+  gender: "",
   dateOfBirth: "",
   primaryNationality: "",
   countryOfBirth: "",
@@ -26,8 +25,8 @@ const basePersonalInfo: object = {
 
 export const PersonalInfo = {
   encode(message: PersonalInfo, writer: Writer = Writer.create()): Writer {
-    if (message.gender !== 0) {
-      writer.uint32(8).uint64(message.gender);
+    if (message.gender !== "") {
+      writer.uint32(10).string(message.gender);
     }
     if (message.dateOfBirth !== "") {
       writer.uint32(18).string(message.dateOfBirth);
@@ -58,7 +57,7 @@ export const PersonalInfo = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.gender = longToNumber(reader.uint64() as Long);
+          message.gender = reader.string();
           break;
         case 2:
           message.dateOfBirth = reader.string();
@@ -89,9 +88,9 @@ export const PersonalInfo = {
   fromJSON(object: any): PersonalInfo {
     const message = { ...basePersonalInfo } as PersonalInfo;
     if (object.gender !== undefined && object.gender !== null) {
-      message.gender = Number(object.gender);
+      message.gender = String(object.gender);
     } else {
-      message.gender = 0;
+      message.gender = "";
     }
     if (object.dateOfBirth !== undefined && object.dateOfBirth !== null) {
       message.dateOfBirth = String(object.dateOfBirth);
@@ -154,7 +153,7 @@ export const PersonalInfo = {
     if (object.gender !== undefined && object.gender !== null) {
       message.gender = object.gender;
     } else {
-      message.gender = 0;
+      message.gender = "";
     }
     if (object.dateOfBirth !== undefined && object.dateOfBirth !== null) {
       message.dateOfBirth = object.dateOfBirth;
@@ -196,16 +195,6 @@ export const PersonalInfo = {
   },
 };
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin
   ? T
@@ -216,15 +205,3 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}

@@ -27,4 +27,4 @@ university_chain_itd tx universitychainit insert-erasmus-request unipi 1 6 tum s
 
 university_chain_itd tx universitychainit insert-erasmus-exam unipi 1 "Advanced databases" --from $Mario_Rossi --chain-id university_chain_it --yes
 
-#university_chain_itd tx universitychainit start-erasmus unipi 1 --from $Mario_Rossi --gas auto 
+university_chain_itd tx universitychainit start-erasmus unipi 1 --from $Mario_Rossi --chain-id university_chain_it --yes

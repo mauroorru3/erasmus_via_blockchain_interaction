@@ -1,6 +1,5 @@
 /* eslint-disable */
-import * as Long from "long";
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
+import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "hub.hub";
 
@@ -36,22 +35,22 @@ export const ErasmusInfo = {
       writer.uint32(10).string(message.erasmusStudent);
     }
     if (message.numberTimes !== 0) {
-      writer.uint32(16).uint64(message.numberTimes);
+      writer.uint32(16).uint32(message.numberTimes);
     }
     if (message.numberMonths !== 0) {
-      writer.uint32(24).uint64(message.numberMonths);
+      writer.uint32(24).uint32(message.numberMonths);
     }
     if (message.totalExams !== 0) {
-      writer.uint32(32).uint64(message.totalExams);
+      writer.uint32(32).uint32(message.totalExams);
     }
     if (message.examsPassed !== 0) {
-      writer.uint32(40).uint64(message.examsPassed);
+      writer.uint32(40).uint32(message.examsPassed);
     }
     if (message.totalCredits !== 0) {
-      writer.uint32(48).uint64(message.totalCredits);
+      writer.uint32(48).uint32(message.totalCredits);
     }
     if (message.achievedCredits !== 0) {
-      writer.uint32(56).uint64(message.achievedCredits);
+      writer.uint32(56).uint32(message.achievedCredits);
     }
     if (message.career !== "") {
       writer.uint32(66).string(message.career);
@@ -76,22 +75,22 @@ export const ErasmusInfo = {
           message.erasmusStudent = reader.string();
           break;
         case 2:
-          message.numberTimes = longToNumber(reader.uint64() as Long);
+          message.numberTimes = reader.uint32();
           break;
         case 3:
-          message.numberMonths = longToNumber(reader.uint64() as Long);
+          message.numberMonths = reader.uint32();
           break;
         case 4:
-          message.totalExams = longToNumber(reader.uint64() as Long);
+          message.totalExams = reader.uint32();
           break;
         case 5:
-          message.examsPassed = longToNumber(reader.uint64() as Long);
+          message.examsPassed = reader.uint32();
           break;
         case 6:
-          message.totalCredits = longToNumber(reader.uint64() as Long);
+          message.totalCredits = reader.uint32();
           break;
         case 7:
-          message.achievedCredits = longToNumber(reader.uint64() as Long);
+          message.achievedCredits = reader.uint32();
           break;
         case 8:
           message.career = reader.string();
@@ -262,16 +261,6 @@ export const ErasmusInfo = {
   },
 };
 
-declare var self: any | undefined;
-declare var window: any | undefined;
-var globalThis: any = (() => {
-  if (typeof globalThis !== "undefined") return globalThis;
-  if (typeof self !== "undefined") return self;
-  if (typeof window !== "undefined") return window;
-  if (typeof global !== "undefined") return global;
-  throw "Unable to locate global object";
-})();
-
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin
   ? T
@@ -282,15 +271,3 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
-
-function longToNumber(long: Long): number {
-  if (long.gt(Number.MAX_SAFE_INTEGER)) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  return long.toNumber();
-}
-
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}

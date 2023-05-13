@@ -18876,23 +18876,23 @@ paths:
                   erasmusStudent:
                     type: string
                   numberTimes:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   numberMonths:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   totalExams:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   examsPassed:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   totalCredits:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   achievedCredits:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   career:
                     type: string
                   previousStudentFifo:
@@ -18970,7 +18970,6 @@ paths:
                 properties:
                   gender:
                     type: string
-                    format: uint64
                   dateOfBirth:
                     type: string
                   primaryNationality:
@@ -19076,45 +19075,47 @@ paths:
                           type: string
                         courseType:
                           type: string
-                          format: uint64
                         courseOfStudy:
                           type: string
                         status:
                           type: string
-                          format: uint64
                         currentYearOfStudy:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         outOfCourse:
                           type: boolean
                         numberOfYearsOutOfCourse:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         studentKey:
                           type: string
+                        completeInformation:
+                          type: array
+                          items:
+                            type: integer
+                            format: int32
                     transcriptData:
                       type: object
                       properties:
                         examsData:
                           type: string
                         totalExams:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         examsPassed:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         totalCredits:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         achievedCredits:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                     personalData:
                       type: object
                       properties:
                         gender:
                           type: string
-                          format: uint64
                         dateOfBirth:
                           type: string
                         primaryNationality:
@@ -19159,8 +19160,8 @@ paths:
                         status:
                           type: boolean
                         totalAmount:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         taxesHistory:
                           type: string
                     erasmusData:
@@ -19169,23 +19170,23 @@ paths:
                         erasmusStudent:
                           type: string
                         numberTimes:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         numberMonths:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         totalExams:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         examsPassed:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         totalCredits:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         achievedCredits:
-                          type: string
-                          format: uint64
+                          type: integer
+                          format: int64
                         career:
                           type: string
                         previousStudentFifo:
@@ -19320,45 +19321,47 @@ paths:
                         type: string
                       courseType:
                         type: string
-                        format: uint64
                       courseOfStudy:
                         type: string
                       status:
                         type: string
-                        format: uint64
                       currentYearOfStudy:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       outOfCourse:
                         type: boolean
                       numberOfYearsOutOfCourse:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       studentKey:
                         type: string
+                      completeInformation:
+                        type: array
+                        items:
+                          type: integer
+                          format: int32
                   transcriptData:
                     type: object
                     properties:
                       examsData:
                         type: string
                       totalExams:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       examsPassed:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       totalCredits:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       achievedCredits:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                   personalData:
                     type: object
                     properties:
                       gender:
                         type: string
-                        format: uint64
                       dateOfBirth:
                         type: string
                       primaryNationality:
@@ -19403,8 +19406,8 @@ paths:
                       status:
                         type: boolean
                       totalAmount:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       taxesHistory:
                         type: string
                   erasmusData:
@@ -19413,23 +19416,23 @@ paths:
                       erasmusStudent:
                         type: string
                       numberTimes:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       numberMonths:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       totalExams:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       examsPassed:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       totalCredits:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       achievedCredits:
-                        type: string
-                        format: uint64
+                        type: integer
+                        format: int64
                       career:
                         type: string
                       previousStudentFifo:
@@ -19480,22 +19483,25 @@ paths:
                     type: string
                   courseType:
                     type: string
-                    format: uint64
                   courseOfStudy:
                     type: string
                   status:
                     type: string
-                    format: uint64
                   currentYearOfStudy:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   outOfCourse:
                     type: boolean
                   numberOfYearsOutOfCourse:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   studentKey:
                     type: string
+                  completeInformation:
+                    type: array
+                    items:
+                      type: integer
+                      format: int32
         default:
           description: An unexpected error response.
           schema:
@@ -19532,8 +19538,8 @@ paths:
                   status:
                     type: boolean
                   totalAmount:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   taxesHistory:
                     type: string
         default:
@@ -19572,17 +19578,17 @@ paths:
                   examsData:
                     type: string
                   totalExams:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   examsPassed:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   totalCredits:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
                   achievedCredits:
-                    type: string
-                    format: uint64
+                    type: integer
+                    format: int64
         default:
           description: An unexpected error response.
           schema:
@@ -45670,23 +45676,23 @@ definitions:
       erasmusStudent:
         type: string
       numberTimes:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       numberMonths:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       totalExams:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       examsPassed:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       totalCredits:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       achievedCredits:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       career:
         type: string
       previousStudentFifo:
@@ -45709,7 +45715,6 @@ definitions:
     properties:
       gender:
         type: string
-        format: uint64
       dateOfBirth:
         type: string
       primaryNationality:
@@ -45741,45 +45746,47 @@ definitions:
                   type: string
                 courseType:
                   type: string
-                  format: uint64
                 courseOfStudy:
                   type: string
                 status:
                   type: string
-                  format: uint64
                 currentYearOfStudy:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 outOfCourse:
                   type: boolean
                 numberOfYearsOutOfCourse:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 studentKey:
                   type: string
+                completeInformation:
+                  type: array
+                  items:
+                    type: integer
+                    format: int32
             transcriptData:
               type: object
               properties:
                 examsData:
                   type: string
                 totalExams:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 examsPassed:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 totalCredits:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 achievedCredits:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
             personalData:
               type: object
               properties:
                 gender:
                   type: string
-                  format: uint64
                 dateOfBirth:
                   type: string
                 primaryNationality:
@@ -45824,8 +45831,8 @@ definitions:
                 status:
                   type: boolean
                 totalAmount:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 taxesHistory:
                   type: string
             erasmusData:
@@ -45834,23 +45841,23 @@ definitions:
                 erasmusStudent:
                   type: string
                 numberTimes:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 numberMonths:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 totalExams:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 examsPassed:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 totalCredits:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 achievedCredits:
-                  type: string
-                  format: uint64
+                  type: integer
+                  format: int64
                 career:
                   type: string
                 previousStudentFifo:
@@ -45954,23 +45961,23 @@ definitions:
           erasmusStudent:
             type: string
           numberTimes:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           numberMonths:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           totalExams:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           examsPassed:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           totalCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           achievedCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           career:
             type: string
           previousStudentFifo:
@@ -45985,7 +45992,6 @@ definitions:
         properties:
           gender:
             type: string
-            format: uint64
           dateOfBirth:
             type: string
           primaryNationality:
@@ -46035,45 +46041,47 @@ definitions:
                 type: string
               courseType:
                 type: string
-                format: uint64
               courseOfStudy:
                 type: string
               status:
                 type: string
-                format: uint64
               currentYearOfStudy:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               outOfCourse:
                 type: boolean
               numberOfYearsOutOfCourse:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               studentKey:
                 type: string
+              completeInformation:
+                type: array
+                items:
+                  type: integer
+                  format: int32
           transcriptData:
             type: object
             properties:
               examsData:
                 type: string
               totalExams:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               examsPassed:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               totalCredits:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               achievedCredits:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
           personalData:
             type: object
             properties:
               gender:
                 type: string
-                format: uint64
               dateOfBirth:
                 type: string
               primaryNationality:
@@ -46118,8 +46126,8 @@ definitions:
               status:
                 type: boolean
               totalAmount:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               taxesHistory:
                 type: string
           erasmusData:
@@ -46128,23 +46136,23 @@ definitions:
               erasmusStudent:
                 type: string
               numberTimes:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               numberMonths:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               totalExams:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               examsPassed:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               totalCredits:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               achievedCredits:
-                type: string
-                format: uint64
+                type: integer
+                format: int64
               career:
                 type: string
               previousStudentFifo:
@@ -46163,22 +46171,25 @@ definitions:
             type: string
           courseType:
             type: string
-            format: uint64
           courseOfStudy:
             type: string
           status:
             type: string
-            format: uint64
           currentYearOfStudy:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           outOfCourse:
             type: boolean
           numberOfYearsOutOfCourse:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           studentKey:
             type: string
+          completeInformation:
+            type: array
+            items:
+              type: integer
+              format: int32
   hub.hub.QueryGetTaxesInfoResponse:
     type: object
     properties:
@@ -46188,8 +46199,8 @@ definitions:
           status:
             type: boolean
           totalAmount:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           taxesHistory:
             type: string
   hub.hub.QueryGetTranscriptOfRecordsResponse:
@@ -46201,17 +46212,17 @@ definitions:
           examsData:
             type: string
           totalExams:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           examsPassed:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           totalCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           achievedCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
   hub.hub.QueryGetUniversitiesResponse:
     type: object
     properties:
@@ -46262,45 +46273,47 @@ definitions:
             type: string
           courseType:
             type: string
-            format: uint64
           courseOfStudy:
             type: string
           status:
             type: string
-            format: uint64
           currentYearOfStudy:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           outOfCourse:
             type: boolean
           numberOfYearsOutOfCourse:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           studentKey:
             type: string
+          completeInformation:
+            type: array
+            items:
+              type: integer
+              format: int32
       transcriptData:
         type: object
         properties:
           examsData:
             type: string
           totalExams:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           examsPassed:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           totalCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           achievedCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
       personalData:
         type: object
         properties:
           gender:
             type: string
-            format: uint64
           dateOfBirth:
             type: string
           primaryNationality:
@@ -46345,8 +46358,8 @@ definitions:
           status:
             type: boolean
           totalAmount:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           taxesHistory:
             type: string
       erasmusData:
@@ -46355,23 +46368,23 @@ definitions:
           erasmusStudent:
             type: string
           numberTimes:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           numberMonths:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           totalExams:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           examsPassed:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           totalCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           achievedCredits:
-            type: string
-            format: uint64
+            type: integer
+            format: int64
           career:
             type: string
           previousStudentFifo:
@@ -46387,30 +46400,33 @@ definitions:
         type: string
       courseType:
         type: string
-        format: uint64
       courseOfStudy:
         type: string
       status:
         type: string
-        format: uint64
       currentYearOfStudy:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       outOfCourse:
         type: boolean
       numberOfYearsOutOfCourse:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       studentKey:
         type: string
+      completeInformation:
+        type: array
+        items:
+          type: integer
+          format: int32
   hub.hub.TaxesInfo:
     type: object
     properties:
       status:
         type: boolean
       totalAmount:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       taxesHistory:
         type: string
   hub.hub.TranscriptOfRecords:
@@ -46419,17 +46435,17 @@ definitions:
       examsData:
         type: string
       totalExams:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       examsPassed:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       totalCredits:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
       achievedCredits:
-        type: string
-        format: uint64
+        type: integer
+        format: int64
   hub.hub.Universities:
     type: object
     properties:

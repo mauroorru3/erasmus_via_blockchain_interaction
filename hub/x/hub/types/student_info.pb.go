@@ -23,15 +23,16 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type StudentInfo struct {
-	Name                     string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Surname                  string `protobuf:"bytes,2,opt,name=surname,proto3" json:"surname,omitempty"`
-	CourseType               uint64 `protobuf:"varint,3,opt,name=courseType,proto3" json:"courseType,omitempty"`
-	CourseOfStudy            string `protobuf:"bytes,4,opt,name=courseOfStudy,proto3" json:"courseOfStudy,omitempty"`
-	Status                   uint64 `protobuf:"varint,5,opt,name=status,proto3" json:"status,omitempty"`
-	CurrentYearOfStudy       uint64 `protobuf:"varint,6,opt,name=currentYearOfStudy,proto3" json:"currentYearOfStudy,omitempty"`
-	OutOfCourse              bool   `protobuf:"varint,7,opt,name=outOfCourse,proto3" json:"outOfCourse,omitempty"`
-	NumberOfYearsOutOfCourse uint64 `protobuf:"varint,8,opt,name=numberOfYearsOutOfCourse,proto3" json:"numberOfYearsOutOfCourse,omitempty"`
-	StudentKey               string `protobuf:"bytes,9,opt,name=studentKey,proto3" json:"studentKey,omitempty"`
+	Name                     string  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Surname                  string  `protobuf:"bytes,2,opt,name=surname,proto3" json:"surname,omitempty"`
+	CourseType               string  `protobuf:"bytes,3,opt,name=courseType,proto3" json:"courseType,omitempty"`
+	CourseOfStudy            string  `protobuf:"bytes,4,opt,name=courseOfStudy,proto3" json:"courseOfStudy,omitempty"`
+	Status                   string  `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	CurrentYearOfStudy       uint32  `protobuf:"varint,6,opt,name=currentYearOfStudy,proto3" json:"currentYearOfStudy,omitempty"`
+	OutOfCourse              bool    `protobuf:"varint,7,opt,name=outOfCourse,proto3" json:"outOfCourse,omitempty"`
+	NumberOfYearsOutOfCourse uint32  `protobuf:"varint,8,opt,name=numberOfYearsOutOfCourse,proto3" json:"numberOfYearsOutOfCourse,omitempty"`
+	StudentKey               string  `protobuf:"bytes,9,opt,name=studentKey,proto3" json:"studentKey,omitempty"`
+	CompleteInformation      []int32 `protobuf:"varint,10,rep,packed,name=completeInformation,proto3" json:"completeInformation,omitempty"`
 }
 
 func (m *StudentInfo) Reset()         { *m = StudentInfo{} }
@@ -81,11 +82,11 @@ func (m *StudentInfo) GetSurname() string {
 	return ""
 }
 
-func (m *StudentInfo) GetCourseType() uint64 {
+func (m *StudentInfo) GetCourseType() string {
 	if m != nil {
 		return m.CourseType
 	}
-	return 0
+	return ""
 }
 
 func (m *StudentInfo) GetCourseOfStudy() string {
@@ -95,14 +96,14 @@ func (m *StudentInfo) GetCourseOfStudy() string {
 	return ""
 }
 
-func (m *StudentInfo) GetStatus() uint64 {
+func (m *StudentInfo) GetStatus() string {
 	if m != nil {
 		return m.Status
 	}
-	return 0
+	return ""
 }
 
-func (m *StudentInfo) GetCurrentYearOfStudy() uint64 {
+func (m *StudentInfo) GetCurrentYearOfStudy() uint32 {
 	if m != nil {
 		return m.CurrentYearOfStudy
 	}
@@ -116,7 +117,7 @@ func (m *StudentInfo) GetOutOfCourse() bool {
 	return false
 }
 
-func (m *StudentInfo) GetNumberOfYearsOutOfCourse() uint64 {
+func (m *StudentInfo) GetNumberOfYearsOutOfCourse() uint32 {
 	if m != nil {
 		return m.NumberOfYearsOutOfCourse
 	}
@@ -130,6 +131,13 @@ func (m *StudentInfo) GetStudentKey() string {
 	return ""
 }
 
+func (m *StudentInfo) GetCompleteInformation() []int32 {
+	if m != nil {
+		return m.CompleteInformation
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*StudentInfo)(nil), "hub.hub.StudentInfo")
 }
@@ -137,25 +145,26 @@ func init() {
 func init() { proto.RegisterFile("hub/student_info.proto", fileDescriptor_0e2440aa1e2ca475) }
 
 var fileDescriptor_0e2440aa1e2ca475 = []byte{
-	// 279 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0xbf, 0x4a, 0xc4, 0x40,
-	0x10, 0xc6, 0x6f, 0xcf, 0x98, 0xdc, 0xcd, 0x21, 0xc2, 0x14, 0xc7, 0x56, 0x4b, 0x10, 0x8b, 0xd8,
-	0xe4, 0x0a, 0x3b, 0x4b, 0xad, 0xc4, 0x22, 0x10, 0x6d, 0xb4, 0x91, 0xe4, 0xdc, 0x10, 0x8b, 0xdb,
-	0x0d, 0xfb, 0x07, 0xcc, 0x5b, 0xf8, 0x56, 0x5a, 0x5e, 0x69, 0x29, 0xc9, 0x8b, 0x48, 0xe6, 0xee,
-	0x20, 0x82, 0x36, 0xcb, 0x7e, 0xbf, 0x6f, 0xe6, 0x5b, 0x66, 0x07, 0x96, 0xb5, 0x2f, 0x57, 0xd6,
-	0xf9, 0x17, 0xa9, 0xdc, 0xf3, 0xab, 0xaa, 0x74, 0xda, 0x18, 0xed, 0x34, 0x46, 0xb5, 0x2f, 0xd3,
-	0xda, 0x97, 0x67, 0x1f, 0x53, 0x58, 0xdc, 0xef, 0xfc, 0x5b, 0x55, 0x69, 0x44, 0x08, 0x54, 0xb1,
-	0x91, 0x9c, 0xc5, 0x2c, 0x99, 0xe7, 0x74, 0x47, 0x0e, 0x91, 0xf5, 0x86, 0xf0, 0x94, 0xf0, 0x41,
-	0xa2, 0x00, 0x58, 0x6b, 0x6f, 0xac, 0x7c, 0x68, 0x1b, 0xc9, 0x8f, 0x62, 0x96, 0x04, 0xf9, 0x88,
-	0xe0, 0x39, 0x9c, 0xec, 0x54, 0x56, 0x0d, 0x8f, 0xb4, 0x3c, 0xa0, 0xfe, 0xdf, 0x10, 0x97, 0x10,
-	0x5a, 0x57, 0x38, 0x6f, 0xf9, 0x31, 0x25, 0xec, 0x15, 0xa6, 0x80, 0x6b, 0x6f, 0x8c, 0x54, 0xee,
-	0x51, 0x16, 0xe6, 0x10, 0x11, 0x52, 0xcd, 0x1f, 0x0e, 0xc6, 0xb0, 0xd0, 0xde, 0x65, 0xd5, 0x0d,
-	0xa5, 0xf3, 0x28, 0x66, 0xc9, 0x2c, 0x1f, 0x23, 0xbc, 0x02, 0xae, 0xfc, 0xa6, 0x94, 0x26, 0xab,
-	0x86, 0x46, 0x9b, 0x8d, 0xca, 0x67, 0x94, 0xfb, 0xaf, 0x3f, 0xcc, 0xba, 0xff, 0xc8, 0x3b, 0xd9,
-	0xf2, 0x39, 0x0d, 0x32, 0x22, 0xd7, 0x17, 0x9f, 0x9d, 0x60, 0xdb, 0x4e, 0xb0, 0xef, 0x4e, 0xb0,
-	0xf7, 0x5e, 0x4c, 0xb6, 0xbd, 0x98, 0x7c, 0xf5, 0x62, 0xf2, 0x74, 0x3a, 0x2c, 0xe1, 0x6d, 0x35,
-	0x9c, 0xae, 0x6d, 0xa4, 0x2d, 0x43, 0x5a, 0xc2, 0xe5, 0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x7d,
-	0x31, 0x13, 0x00, 0x9e, 0x01, 0x00, 0x00,
+	// 303 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0x3d, 0x4b, 0xf4, 0x40,
+	0x10, 0x80, 0x6f, 0xef, 0xfb, 0xe6, 0x38, 0x5e, 0x98, 0x17, 0x8e, 0xad, 0x96, 0x20, 0x16, 0xb1,
+	0xb9, 0x13, 0xec, 0x2c, 0xb5, 0x12, 0x8b, 0x40, 0xb4, 0xd1, 0x46, 0x92, 0x73, 0x43, 0x0e, 0xcc,
+	0x6e, 0xd8, 0x0f, 0x30, 0xff, 0xc2, 0x9f, 0x65, 0x79, 0xa5, 0xa5, 0x24, 0xbf, 0xc2, 0x4e, 0x76,
+	0x73, 0x87, 0x11, 0xce, 0x66, 0xd9, 0x79, 0x9e, 0xd9, 0x59, 0x66, 0x06, 0x96, 0xb9, 0x4d, 0xd7,
+	0xda, 0xd8, 0x67, 0x2e, 0xcc, 0xd3, 0x56, 0x64, 0x72, 0x55, 0x2a, 0x69, 0x24, 0x4e, 0x72, 0x9b,
+	0xae, 0x72, 0x9b, 0x9e, 0x7c, 0xf5, 0x61, 0x7e, 0xd7, 0xfa, 0x1b, 0x91, 0x49, 0x44, 0x18, 0x8a,
+	0xa4, 0xe0, 0x94, 0x04, 0x24, 0x9c, 0xc5, 0xfe, 0x8e, 0x14, 0x26, 0xda, 0x2a, 0x8f, 0xfb, 0x1e,
+	0x1f, 0x42, 0x64, 0x00, 0x1b, 0x69, 0x95, 0xe6, 0xf7, 0x55, 0xc9, 0xe9, 0xc0, 0xcb, 0x0e, 0xc1,
+	0x53, 0x58, 0xb4, 0x51, 0x94, 0xb9, 0x4f, 0x2a, 0x3a, 0xf4, 0x29, 0xbf, 0x21, 0x2e, 0x61, 0xac,
+	0x4d, 0x62, 0xac, 0xa6, 0x23, 0xaf, 0xf7, 0x11, 0xae, 0x00, 0x37, 0x56, 0x29, 0x2e, 0xcc, 0x03,
+	0x4f, 0xd4, 0xa1, 0xc4, 0x38, 0x20, 0xe1, 0x22, 0x3e, 0x62, 0x30, 0x80, 0xb9, 0xb4, 0x26, 0xca,
+	0xae, 0x7d, 0x75, 0x3a, 0x09, 0x48, 0x38, 0x8d, 0xbb, 0x08, 0x2f, 0x81, 0x0a, 0x5b, 0xa4, 0x5c,
+	0x45, 0x99, 0x7b, 0xa8, 0xa3, 0x4e, 0xfa, 0xd4, 0xd7, 0xfd, 0xd3, 0xbb, 0x5e, 0xf7, 0x83, 0xbc,
+	0xe5, 0x15, 0x9d, 0xb5, 0xbd, 0xfe, 0x10, 0x3c, 0x87, 0xff, 0x1b, 0x59, 0x94, 0x2f, 0xdc, 0x70,
+	0x37, 0x49, 0x55, 0x24, 0x66, 0x2b, 0x05, 0x85, 0x60, 0x10, 0x8e, 0xe2, 0x63, 0xea, 0xea, 0xec,
+	0xbd, 0x66, 0x64, 0x57, 0x33, 0xf2, 0x59, 0x33, 0xf2, 0xd6, 0xb0, 0xde, 0xae, 0x61, 0xbd, 0x8f,
+	0x86, 0xf5, 0x1e, 0xff, 0xb9, 0xb5, 0xbd, 0xae, 0xdd, 0x69, 0xaa, 0x92, 0xeb, 0x74, 0xec, 0xd7,
+	0x76, 0xf1, 0x1d, 0x00, 0x00, 0xff, 0xff, 0x5f, 0x91, 0x0e, 0x84, 0xd0, 0x01, 0x00, 0x00,
 }
 
 func (m *StudentInfo) Marshal() (dAtA []byte, err error) {
@@ -178,6 +187,25 @@ func (m *StudentInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.CompleteInformation) > 0 {
+		dAtA2 := make([]byte, len(m.CompleteInformation)*10)
+		var j1 int
+		for _, num1 := range m.CompleteInformation {
+			num := uint64(num1)
+			for num >= 1<<7 {
+				dAtA2[j1] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j1++
+			}
+			dAtA2[j1] = uint8(num)
+			j1++
+		}
+		i -= j1
+		copy(dAtA[i:], dAtA2[:j1])
+		i = encodeVarintStudentInfo(dAtA, i, uint64(j1))
+		i--
+		dAtA[i] = 0x52
+	}
 	if len(m.StudentKey) > 0 {
 		i -= len(m.StudentKey)
 		copy(dAtA[i:], m.StudentKey)
@@ -205,10 +233,12 @@ func (m *StudentInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x30
 	}
-	if m.Status != 0 {
-		i = encodeVarintStudentInfo(dAtA, i, uint64(m.Status))
+	if len(m.Status) > 0 {
+		i -= len(m.Status)
+		copy(dAtA[i:], m.Status)
+		i = encodeVarintStudentInfo(dAtA, i, uint64(len(m.Status)))
 		i--
-		dAtA[i] = 0x28
+		dAtA[i] = 0x2a
 	}
 	if len(m.CourseOfStudy) > 0 {
 		i -= len(m.CourseOfStudy)
@@ -217,10 +247,12 @@ func (m *StudentInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x22
 	}
-	if m.CourseType != 0 {
-		i = encodeVarintStudentInfo(dAtA, i, uint64(m.CourseType))
+	if len(m.CourseType) > 0 {
+		i -= len(m.CourseType)
+		copy(dAtA[i:], m.CourseType)
+		i = encodeVarintStudentInfo(dAtA, i, uint64(len(m.CourseType)))
 		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x1a
 	}
 	if len(m.Surname) > 0 {
 		i -= len(m.Surname)
@@ -264,15 +296,17 @@ func (m *StudentInfo) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovStudentInfo(uint64(l))
 	}
-	if m.CourseType != 0 {
-		n += 1 + sovStudentInfo(uint64(m.CourseType))
+	l = len(m.CourseType)
+	if l > 0 {
+		n += 1 + l + sovStudentInfo(uint64(l))
 	}
 	l = len(m.CourseOfStudy)
 	if l > 0 {
 		n += 1 + l + sovStudentInfo(uint64(l))
 	}
-	if m.Status != 0 {
-		n += 1 + sovStudentInfo(uint64(m.Status))
+	l = len(m.Status)
+	if l > 0 {
+		n += 1 + l + sovStudentInfo(uint64(l))
 	}
 	if m.CurrentYearOfStudy != 0 {
 		n += 1 + sovStudentInfo(uint64(m.CurrentYearOfStudy))
@@ -286,6 +320,13 @@ func (m *StudentInfo) Size() (n int) {
 	l = len(m.StudentKey)
 	if l > 0 {
 		n += 1 + l + sovStudentInfo(uint64(l))
+	}
+	if len(m.CompleteInformation) > 0 {
+		l = 0
+		for _, e := range m.CompleteInformation {
+			l += sovStudentInfo(uint64(e))
+		}
+		n += 1 + sovStudentInfo(uint64(l)) + l
 	}
 	return n
 }
@@ -390,10 +431,10 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 			m.Surname = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
-			if wireType != 0 {
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CourseType", wireType)
 			}
-			m.CourseType = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowStudentInfo
@@ -403,11 +444,24 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.CourseType |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStudentInfo
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStudentInfo
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CourseType = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CourseOfStudy", wireType)
@@ -441,10 +495,10 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 			m.CourseOfStudy = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 5:
-			if wireType != 0 {
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
 			}
-			m.Status = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowStudentInfo
@@ -454,11 +508,24 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Status |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStudentInfo
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStudentInfo
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Status = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		case 6:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CurrentYearOfStudy", wireType)
@@ -473,7 +540,7 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.CurrentYearOfStudy |= uint64(b&0x7F) << shift
+				m.CurrentYearOfStudy |= uint32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -512,7 +579,7 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.NumberOfYearsOutOfCourse |= uint64(b&0x7F) << shift
+				m.NumberOfYearsOutOfCourse |= uint32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -549,6 +616,82 @@ func (m *StudentInfo) Unmarshal(dAtA []byte) error {
 			}
 			m.StudentKey = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 10:
+			if wireType == 0 {
+				var v int32
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowStudentInfo
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				m.CompleteInformation = append(m.CompleteInformation, v)
+			} else if wireType == 2 {
+				var packedLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowStudentInfo
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					packedLen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if packedLen < 0 {
+					return ErrInvalidLengthStudentInfo
+				}
+				postIndex := iNdEx + packedLen
+				if postIndex < 0 {
+					return ErrInvalidLengthStudentInfo
+				}
+				if postIndex > l {
+					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA[iNdEx:postIndex] {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.CompleteInformation) == 0 {
+					m.CompleteInformation = make([]int32, 0, elementCount)
+				}
+				for iNdEx < postIndex {
+					var v int32
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowStudentInfo
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						v |= int32(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					m.CompleteInformation = append(m.CompleteInformation, v)
+				}
+			} else {
+				return fmt.Errorf("proto: wrong wireType = %d for field CompleteInformation", wireType)
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipStudentInfo(dAtA[iNdEx:])

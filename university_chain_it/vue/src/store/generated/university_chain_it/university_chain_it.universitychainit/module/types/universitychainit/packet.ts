@@ -15,7 +15,6 @@ export interface NoData {}
 /** ErasmusStudentPacketData defines a struct for the packet payload */
 export interface ErasmusStudentPacketData {
   student: StoredStudent | undefined;
-  index: string;
 }
 
 /** ErasmusStudentPacketAck defines a struct for the packet acknowledgment */
@@ -165,7 +164,7 @@ export const NoData = {
   },
 };
 
-const baseErasmusStudentPacketData: object = { index: "" };
+const baseErasmusStudentPacketData: object = {};
 
 export const ErasmusStudentPacketData = {
   encode(
@@ -174,9 +173,6 @@ export const ErasmusStudentPacketData = {
   ): Writer {
     if (message.student !== undefined) {
       StoredStudent.encode(message.student, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.index !== "") {
-      writer.uint32(18).string(message.index);
     }
     return writer;
   },
@@ -196,9 +192,6 @@ export const ErasmusStudentPacketData = {
         case 1:
           message.student = StoredStudent.decode(reader, reader.uint32());
           break;
-        case 2:
-          message.index = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -216,11 +209,6 @@ export const ErasmusStudentPacketData = {
     } else {
       message.student = undefined;
     }
-    if (object.index !== undefined && object.index !== null) {
-      message.index = String(object.index);
-    } else {
-      message.index = "";
-    }
     return message;
   },
 
@@ -230,7 +218,6 @@ export const ErasmusStudentPacketData = {
       (obj.student = message.student
         ? StoredStudent.toJSON(message.student)
         : undefined);
-    message.index !== undefined && (obj.index = message.index);
     return obj;
   },
 
@@ -244,11 +231,6 @@ export const ErasmusStudentPacketData = {
       message.student = StoredStudent.fromPartial(object.student);
     } else {
       message.student = undefined;
-    }
-    if (object.index !== undefined && object.index !== null) {
-      message.index = object.index;
-    } else {
-      message.index = "";
     }
     return message;
   },

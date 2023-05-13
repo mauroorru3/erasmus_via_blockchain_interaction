@@ -157,5 +157,5 @@ message MsgSendErasmusStudent {
 }
 
 message MsgSendErasmusStudentResponse {
-}
+} 
 // this line is used by starport scaffolding # proto/tx/message

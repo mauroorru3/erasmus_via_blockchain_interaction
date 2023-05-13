@@ -4,7 +4,7 @@ package hub.hub;
 option go_package = "hub/x/hub/types";
 
 message PersonalInfo {
-  uint64 gender = 1; 
+  string gender = 1; 
   string dateOfBirth = 2; 
   string primaryNationality = 3; 
   string countryOfBirth = 4; 

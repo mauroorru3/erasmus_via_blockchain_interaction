@@ -18,9 +18,9 @@ func TestGenesis(t *testing.T) {
 		StudentInfo: &types.StudentInfo{
 			Name:                     "5",
 			Surname:                  "42",
-			CourseType:               36,
+			CourseType:               "36",
 			CourseOfStudy:            "52",
-			Status:                   32,
+			Status:                   "32",
 			CurrentYearOfStudy:       65,
 			OutOfCourse:              false,
 			NumberOfYearsOutOfCourse: 49,
@@ -34,7 +34,7 @@ func TestGenesis(t *testing.T) {
 			AchievedCredits: 92,
 		},
 		PersonalInfo: &types.PersonalInfo{
-			Gender:             76,
+			Gender:             "76",
 			DateOfBirth:        "35",
 			PrimaryNationality: "39",
 			CountryOfBirth:     "67",
