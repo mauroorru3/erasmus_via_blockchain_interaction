@@ -43,21 +43,7 @@ sudo docker exec relayer ./run-relayer.sh
 
 # To simulate the execution of the Italian Chain, thus the insertion of a student, the student's exams and so on:
 
-sudo docker exec -it university_chain_it bash 
-
-./test.sh 
-
-Ctrl-d to exit 
-
-# To test sending a package from the Italian Chain to the Hub:
-
-sudo docker exec -it university_chain_it bash 
-
-export chain_admin=$(university_chain_itd keys show "Admin Chain IT" -a) 
-
-university_chain_itd tx universitychainit send-erasmus-student hub channel-0 unipi_1 --from $chain_admin --gas auto 
-
-Ctrl-d to exit 
+sudo docker exec university_chain_it ./test.sh 
 
 # To end the execution of the containers:
 
