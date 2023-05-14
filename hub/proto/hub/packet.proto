@@ -24,5 +24,7 @@ message ErasmusStudentPacketData {
 
 // ErasmusStudentPacketAck defines a struct for the packet acknowledgment
 message ErasmusStudentPacketAck {
+  string index = 1;
+  string foreign_index = 2;
 	}
 // this line is used by starport scaffolding # ibc/packet/proto/message

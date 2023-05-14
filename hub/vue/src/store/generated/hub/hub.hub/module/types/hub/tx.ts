@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { Reader, util, configure, Writer } from "protobufjs/minimal";
 import * as Long from "long";
-import { StoredStudent } from "../hub/stored_student";
 
 export const protobufPackage = "hub.hub";
 
@@ -10,10 +9,12 @@ export interface MsgSendErasmusStudent {
   port: string;
   channelID: string;
   timeoutTimestamp: number;
-  student: StoredStudent | undefined;
+  index: string;
 }
 
-export interface MsgSendErasmusStudentResponse {}
+export interface MsgSendErasmusStudentResponse {
+  status: number;
+}
 
 export interface MsgConfigureChain {
   creator: string;
@@ -28,6 +29,7 @@ const baseMsgSendErasmusStudent: object = {
   port: "",
   channelID: "",
   timeoutTimestamp: 0,
+  index: "",
 };
 
 export const MsgSendErasmusStudent = {
@@ -47,8 +49,8 @@ export const MsgSendErasmusStudent = {
     if (message.timeoutTimestamp !== 0) {
       writer.uint32(32).uint64(message.timeoutTimestamp);
     }
-    if (message.student !== undefined) {
-      StoredStudent.encode(message.student, writer.uint32(42).fork()).ldelim();
+    if (message.index !== "") {
+      writer.uint32(42).string(message.index);
     }
     return writer;
   },
@@ -73,7 +75,7 @@ export const MsgSendErasmusStudent = {
           message.timeoutTimestamp = longToNumber(reader.uint64() as Long);
           break;
         case 5:
-          message.student = StoredStudent.decode(reader, reader.uint32());
+          message.index = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -108,10 +110,10 @@ export const MsgSendErasmusStudent = {
     } else {
       message.timeoutTimestamp = 0;
     }
-    if (object.student !== undefined && object.student !== null) {
-      message.student = StoredStudent.fromJSON(object.student);
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index);
     } else {
-      message.student = undefined;
+      message.index = "";
     }
     return message;
   },
@@ -123,10 +125,7 @@ export const MsgSendErasmusStudent = {
     message.channelID !== undefined && (obj.channelID = message.channelID);
     message.timeoutTimestamp !== undefined &&
       (obj.timeoutTimestamp = message.timeoutTimestamp);
-    message.student !== undefined &&
-      (obj.student = message.student
-        ? StoredStudent.toJSON(message.student)
-        : undefined);
+    message.index !== undefined && (obj.index = message.index);
     return obj;
   },
 
@@ -157,22 +156,25 @@ export const MsgSendErasmusStudent = {
     } else {
       message.timeoutTimestamp = 0;
     }
-    if (object.student !== undefined && object.student !== null) {
-      message.student = StoredStudent.fromPartial(object.student);
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index;
     } else {
-      message.student = undefined;
+      message.index = "";
     }
     return message;
   },
 };
 
-const baseMsgSendErasmusStudentResponse: object = {};
+const baseMsgSendErasmusStudentResponse: object = { status: 0 };
 
 export const MsgSendErasmusStudentResponse = {
   encode(
-    _: MsgSendErasmusStudentResponse,
+    message: MsgSendErasmusStudentResponse,
     writer: Writer = Writer.create()
   ): Writer {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
     return writer;
   },
 
@@ -188,6 +190,9 @@ export const MsgSendErasmusStudentResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.status = reader.int32();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -196,24 +201,35 @@ export const MsgSendErasmusStudentResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgSendErasmusStudentResponse {
+  fromJSON(object: any): MsgSendErasmusStudentResponse {
     const message = {
       ...baseMsgSendErasmusStudentResponse,
     } as MsgSendErasmusStudentResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = Number(object.status);
+    } else {
+      message.status = 0;
+    }
     return message;
   },
 
-  toJSON(_: MsgSendErasmusStudentResponse): unknown {
+  toJSON(message: MsgSendErasmusStudentResponse): unknown {
     const obj: any = {};
+    message.status !== undefined && (obj.status = message.status);
     return obj;
   },
 
   fromPartial(
-    _: DeepPartial<MsgSendErasmusStudentResponse>
+    object: DeepPartial<MsgSendErasmusStudentResponse>
   ): MsgSendErasmusStudentResponse {
     const message = {
       ...baseMsgSendErasmusStudentResponse,
     } as MsgSendErasmusStudentResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
     return message;
   },
 };

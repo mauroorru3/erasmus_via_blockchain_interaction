@@ -14,14 +14,12 @@ func NewMsgSendErasmusStudent(
 	port string,
 	channelID string,
 	timeoutTimestamp uint64,
-	student *StoredStudent,
 ) *MsgSendErasmusStudent {
 	return &MsgSendErasmusStudent{
 		Creator:          creator,
 		Port:             port,
 		ChannelID:        channelID,
 		TimeoutTimestamp: timeoutTimestamp,
-		Student:          student,
 	}
 }
 

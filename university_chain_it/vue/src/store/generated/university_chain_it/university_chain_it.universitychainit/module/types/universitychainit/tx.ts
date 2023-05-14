@@ -138,7 +138,9 @@ export interface MsgSendErasmusStudent {
   index: string;
 }
 
-export interface MsgSendErasmusStudentResponse {}
+export interface MsgSendErasmusStudentResponse {
+  status: number;
+}
 
 const baseMsgConfigureChain: object = { creator: "" };
 
@@ -2464,13 +2466,16 @@ export const MsgSendErasmusStudent = {
   },
 };
 
-const baseMsgSendErasmusStudentResponse: object = {};
+const baseMsgSendErasmusStudentResponse: object = { status: 0 };
 
 export const MsgSendErasmusStudentResponse = {
   encode(
-    _: MsgSendErasmusStudentResponse,
+    message: MsgSendErasmusStudentResponse,
     writer: Writer = Writer.create()
   ): Writer {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
     return writer;
   },
 
@@ -2486,6 +2491,9 @@ export const MsgSendErasmusStudentResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.status = reader.int32();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2494,24 +2502,35 @@ export const MsgSendErasmusStudentResponse = {
     return message;
   },
 
-  fromJSON(_: any): MsgSendErasmusStudentResponse {
+  fromJSON(object: any): MsgSendErasmusStudentResponse {
     const message = {
       ...baseMsgSendErasmusStudentResponse,
     } as MsgSendErasmusStudentResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = Number(object.status);
+    } else {
+      message.status = 0;
+    }
     return message;
   },
 
-  toJSON(_: MsgSendErasmusStudentResponse): unknown {
+  toJSON(message: MsgSendErasmusStudentResponse): unknown {
     const obj: any = {};
+    message.status !== undefined && (obj.status = message.status);
     return obj;
   },
 
   fromPartial(
-    _: DeepPartial<MsgSendErasmusStudentResponse>
+    object: DeepPartial<MsgSendErasmusStudentResponse>
   ): MsgSendErasmusStudentResponse {
     const message = {
       ...baseMsgSendErasmusStudentResponse,
     } as MsgSendErasmusStudentResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
     return message;
   },
 };

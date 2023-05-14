@@ -123,6 +123,9 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	k.SetStoredStudent(ctx, *data.Student)
 
+	packetAck.ForeignIndex = "-1"
+	packetAck.Index = data.Student.Index
+
 	return packetAck, nil
 }
 
@@ -178,7 +181,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		dt := time.Now()
 
-		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket success " + utilfunc.FormatDate(dt) + "\n")
+		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket success " + utilfunc.FormatDate(dt) + " "+packetAck.Index+" " + packetAck.ForeignIndex + "\n")
 
 		if err2 != nil {
 			fmt.Println("Could not write text to logs.txt - OnAcknowledgementErasmusStudentPacket")

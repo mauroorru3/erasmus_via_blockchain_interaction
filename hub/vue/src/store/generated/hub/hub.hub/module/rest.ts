@@ -51,7 +51,10 @@ export interface HubMsgConfigureChainResponse {
   status?: number;
 }
 
-export type HubMsgSendErasmusStudentResponse = object;
+export interface HubMsgSendErasmusStudentResponse {
+  /** @format int32 */
+  status?: number;
+}
 
 /**
  * Params defines the parameters for the module.

@@ -24,14 +24,14 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 	} else {
 		if !chainInfo.InitStatus {
 			return &types.MsgSendErasmusStudentResponse{
-				//Status: -1,
+				Status: -1,
 			}, types.ErrChainConfigurationNotDone
 		} else {
 
 			_, found := k.Keeper.GetUniversityInfo(ctx, strings.Split(msg.Index, "_")[0])
 			if !found {
 				return &types.MsgSendErasmusStudentResponse{
-					//Status: -1,
+					Status: -1,
 				}, types.ErrWrongNameUniversity
 			} else {
 
@@ -39,12 +39,12 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 				if !found {
 					return &types.MsgSendErasmusStudentResponse{
-						//Status: -1,
+						Status: -1,
 					}, types.ErrStudentNotPresent
 				} else {
 					if searchedStudent.GetStudentData().GetStudentKey() != msg.Creator {
 						return &types.MsgSendErasmusStudentResponse{
-							//Status: -1,
+							Status: -1,
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
 
@@ -52,7 +52,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 						if err != nil {
 							return &types.MsgSendErasmusStudentResponse{
-								//Status: -1,
+								Status: -1,
 							}, types.ErrIncompleteStudentInformation
 						} else {
 
@@ -60,32 +60,32 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 							if err != nil {
 								return &types.MsgSendErasmusStudentResponse{
-									//Status: -1,
+									Status: -1,
 								}, err
 							} else {
 								if !ok {
 									return &types.MsgSendErasmusStudentResponse{
-										//Status: -1,
+										Status: -1,
 									}, types.ErrUnpaidTaxes
 								} else {
 
 									res, err := utilfunc.CheckErasmusStatus(searchedStudent)
 									if err != nil {
 										return &types.MsgSendErasmusStudentResponse{
-											//Status: -1,
+											Status: -1,
 										}, err
 									} else {
 										if res == "" {
 											return &types.MsgSendErasmusStudentResponse{
-												//Status: -1,
+												Status: -1,
 											}, types.ErrNoErasmusRequest
 										} else if res == "in progress" {
 											return &types.MsgSendErasmusStudentResponse{
-												//Status: -1,
+												Status: -1,
 											}, types.ErrPreviousRequestInProgress
 										} else if res == "terminated" {
 											return &types.MsgSendErasmusStudentResponse{
-												//Status: -1,
+												Status: -1,
 											}, types.ErrPreviousRequestCompleted
 										} else {
 
@@ -128,7 +128,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 												return nil, err
 											} else {
 												return &types.MsgSendErasmusStudentResponse{
-													//Status: 0,
+													Status: 0,
 												}, nil
 											}
 										}

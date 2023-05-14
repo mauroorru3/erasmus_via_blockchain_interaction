@@ -3,22 +3,22 @@ package cli
 import (
 	"strconv"
 
-	"encoding/json"
+	"hub/x/hub/types"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	channelutils "github.com/cosmos/ibc-go/v3/modules/core/04-channel/client/utils"
 	"github.com/spf13/cobra"
-	"hub/x/hub/types"
 )
 
 var _ = strconv.Itoa(0)
 
 func CmdSendErasmusStudent() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "send-erasmus-student [src-port] [src-channel] [student]",
+		Use:   "send-erasmus-student [src-port] [src-channel]",
 		Short: "Send a erasmus_student over IBC",
-		Args:  cobra.ExactArgs(3),
+		Args:  cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -28,12 +28,6 @@ func CmdSendErasmusStudent() *cobra.Command {
 			creator := clientCtx.GetFromAddress().String()
 			srcPort := args[0]
 			srcChannel := args[1]
-
-			argStudent := new(types.StoredStudent)
-			err = json.Unmarshal([]byte(args[2]), argStudent)
-			if err != nil {
-				return err
-			}
 
 			// Get the relative timeout timestamp
 			timeoutTimestamp, err := cmd.Flags().GetUint64(flagPacketTimeoutTimestamp)
@@ -48,7 +42,7 @@ func CmdSendErasmusStudent() *cobra.Command {
 				timeoutTimestamp = consensusState.GetTimestamp() + timeoutTimestamp
 			}
 
-			msg := types.NewMsgSendErasmusStudent(creator, srcPort, srcChannel, timeoutTimestamp, argStudent)
+			msg := types.NewMsgSendErasmusStudent(creator, srcPort, srcChannel, timeoutTimestamp)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

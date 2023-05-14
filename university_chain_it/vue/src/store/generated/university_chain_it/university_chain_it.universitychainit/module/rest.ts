@@ -109,7 +109,10 @@ export interface UniversitychainitMsgRegisterNewStudentResponse {
   studentIndex?: string;
 }
 
-export type UniversitychainitMsgSendErasmusStudentResponse = object;
+export interface UniversitychainitMsgSendErasmusStudentResponse {
+  /** @format int32 */
+  status?: number;
+}
 
 export interface UniversitychainitMsgStartErasmusResponse {
   /** @format int32 */

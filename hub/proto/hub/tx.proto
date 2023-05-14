@@ -18,11 +18,13 @@ message MsgSendErasmusStudent {
   string port = 2;
   string channelID = 3;
   uint64 timeoutTimestamp = 4;
-  StoredStudent student = 5;
+  string index = 5;
 }
 
 message MsgSendErasmusStudentResponse {
+  int32 status = 1;
 }
+
 message MsgConfigureChain {
   string creator = 1;
 }
