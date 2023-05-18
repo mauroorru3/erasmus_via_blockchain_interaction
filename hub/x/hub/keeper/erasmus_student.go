@@ -16,6 +16,8 @@ import (
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 )
 
+const timeoutTimestamp uint64 = 17999999999999999999
+
 // TransmitErasmusStudentPacket transmits the packet over IBC with the specified source port and source channel
 func (k Keeper) TransmitErasmusStudentPacket(
 	ctx sdk.Context,
@@ -80,18 +82,18 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	// TODO: packet reception logic
 
-	file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file_log, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		fmt.Println("Could not open logs.txt - OnRecvErasmusStudentPacket")
 		return packetAck, nil
 	}
 
-	defer file.Close()
+	defer file_log.Close()
 
 	dt := time.Now()
 
-	_, err2 := file.WriteString("OnRecvErasmusStudentPacket " + utilfunc.FormatDate(dt) + "\n")
+	_, err2 := file_log.WriteString("OnRecvErasmusStudentPacket " + utilfunc.FormatDate(dt) + "\n")
 
 	if err2 != nil {
 		fmt.Println("Could not write text to logs.txt - OnRecvErasmusStudentPacket")
@@ -102,17 +104,17 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	//---------------------------------------
 
-	file, err = os.OpenFile("data/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file_data, err := os.OpenFile("data/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		fmt.Println("Could not open logs.txt - OnRecvErasmusStudentPacket")
 		return packetAck, nil
 	}
 
-	defer file.Close()
+	defer file_data.Close()
 
-	file.WriteString(data.String())
-	_, err2 = file.WriteString("\n")
+	file_data.WriteString(data.String())
+	_, err2 = file_data.WriteString("\n")
 
 	if err2 != nil {
 		fmt.Println("Could not write text to logs.txt - OnRecvErasmusStudentPacket")
@@ -121,12 +123,35 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 		fmt.Println("Operation successful! Text has been appended to logs.txt - OnRecvErasmusStudentPacket")
 	}
 
-	k.SetStoredStudent(ctx, *data.Student)
-
+	packetAck.StartingUniversityName = data.Student.StudentData.UniversityName
 	packetAck.ForeignIndex = "-1"
 	packetAck.Index = data.Student.Index
 
-	return packetAck, nil
+	foreignUni, err := utilfunc.GetForeignUniversityName(*data.Student)
+	if err != nil {
+		return packetAck, err
+	} else {
+
+		_, err2 = file_log.WriteString("OnRecvErasmusStudentPacket " + foreignUni + "\n")
+		uniInfo, found := k.GetUniversities(ctx, foreignUni)
+		if !found {
+			return packetAck, types.ErrWrongNameUniversity
+		} else {
+
+			var packet_to_send types.ErasmusStudentPacketData
+
+			packet_to_send.Student = data.Student
+
+			err := k.TransmitErasmusStudentPacket(ctx, packet_to_send, uniInfo.Port, uniInfo.ChannelID, clienttypes.ZeroHeight(), timeoutTimestamp)
+			if err != nil {
+				return packetAck, err
+			} else {
+
+				return packetAck, nil
+			}
+		}
+	}
+
 }
 
 // OnAcknowledgementErasmusStudentPacket responds to the the success or failure of a packet
@@ -181,7 +206,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		dt := time.Now()
 
-		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket success " + utilfunc.FormatDate(dt) + " "+packetAck.Index+" " + packetAck.ForeignIndex + "\n")
+		_, err2 := file.WriteString("OnAcknowledgementErasmusStudentPacket success " + utilfunc.FormatDate(dt) + " " + packetAck.Index + " " + packetAck.ForeignIndex + "\n")
 
 		if err2 != nil {
 			fmt.Println("Could not write text to logs.txt - OnAcknowledgementErasmusStudentPacket")
@@ -190,7 +215,25 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 			fmt.Println("Operation successful! Text has been appended to logs.txt - OnAcknowledgementErasmusStudentPacket")
 		}
 
-		return nil
+		uniInfo, found := k.GetUniversities(ctx, packetAck.StartingUniversityName)
+		if !found {
+			return types.ErrWrongNameUniversity
+		} else {
+
+			var packet_to_send types.ErasmusIndexPacketData
+
+			packet_to_send.Index = packetAck.Index
+			packet_to_send.ForeignIndex = packetAck.ForeignIndex
+
+			err := k.TransmitErasmusIndexPacket(ctx, packet_to_send, uniInfo.Port, uniInfo.ChannelID, clienttypes.ZeroHeight(), timeoutTimestamp)
+			if err != nil {
+				return err
+			} else {
+
+				return nil
+			}
+		}
+
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")

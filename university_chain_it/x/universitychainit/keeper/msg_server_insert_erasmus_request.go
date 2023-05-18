@@ -95,7 +95,7 @@ func (k msgServer) InsertErasmusRequest(goCtx context.Context, msg *types.MsgIns
 													}, err
 												} else {
 
-													err = utilfunc.CheckErasmusParams(msg.DurationInMonths, msg.ErasmusType, &searchedStudent, msg.ForeignUniversityName, foreignUni.ForeignUniversitiesCountry)
+													err = utilfunc.CheckErasmusParams(msg.DurationInMonths, msg.ErasmusType, &searchedStudent, msg.ForeignUniversityName, foreignUni.ForeignUniversitiesCountry, foreignUni.ChainName)
 													if err != nil {
 														return &types.MsgInsertErasmusRequestResponse{
 															Status: -1,

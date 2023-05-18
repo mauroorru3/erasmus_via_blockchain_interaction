@@ -31,6 +31,7 @@ func DefaultGenesis() *GenesisState {
 			ChainKey:              "cosmos1lw4azenln0hdr09q6ckmyg4vac46vdxpw9yrcc",
 			Country:               "Italy",
 			InitStatus:            false,
+			ChainName:             "university_chain_it",
 		},
 		ForeignUniversitiesList: []ForeignUniversities{},
 		UniversityInfoList:      []UniversityInfo{},

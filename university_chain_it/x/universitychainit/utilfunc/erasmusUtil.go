@@ -31,19 +31,6 @@ type ErasmusContributionStruct struct {
 	Date_of_payment string `json:"date_of_payment"`
 }
 
-type ErasmusExamsStruct struct {
-	Exam_label         string `json:"exam_label"`
-	Exam_date          string `json:"exam_date"`
-	Credits            uint8  `json:"credits"`
-	Marks              uint8  `json:"marks"`
-	Course_year        uint16 `json:"course_year"`
-	Status             bool   `json:"status"`
-	Attendance_year    uint16 `json:"attendance_year"`
-	Exam_type          string `json:"exam_type"`
-	Course_of_study    string `json:"course_of_study"`
-	Home_university_id string `json:"home_university_id"`
-}
-
 type ErasmusCareerStruct struct {
 	Duration_in_months            uint8                     `json:"duration_in_months"`
 	Start_date                    string                    `json:"start_date"`
@@ -55,6 +42,7 @@ type ErasmusCareerStruct struct {
 	Exams_passed                  uint8                     `json:"exams_passed"`
 	Foreign_university_name       string                    `json:"foreign_university_name"`
 	Foreign_university_country    string                    `json:"foreign_university_country"`
+	Foreign_chain_name            string                    `json:"foreign_chain_name "`
 	Foreign_university_student_id string                    `json:"foreign_university_student_id"`
 	Status                        string                    `json:"status"`
 	Contribution                  ErasmusContributionStruct `json:"contribution"`
@@ -138,6 +126,7 @@ func IntializeErasmusStruct(incomeBracket uint32) (erasmusJSON string, err error
 		Foreign_university_name:       "",
 		Foreign_university_country:    "",
 		Foreign_university_student_id: "",
+		Foreign_chain_name:            "",
 		Status:                        "",
 		Contribution: ErasmusContributionStruct{
 			Amount:          0,
@@ -172,7 +161,12 @@ func contains(s []string, e string) bool {
 	return false
 }
 
-func CheckErasmusParams(durationInMonths string, erasmusType string, student *types.StoredStudent, foreign_university_name string, foreign_university_country string) (err error) {
+func GetChainFromUniversity(university string) (chain string, err error) {
+
+	return chain, nil
+}
+
+func CheckErasmusParams(durationInMonths string, erasmusType string, student *types.StoredStudent, foreign_university_name string, foreign_university_country string, foreign_chain_name string) (err error) {
 
 	// Open our jsonFile
 	jsonFile, err := os.OpenFile("data/"+erasmusConfigJSON, os.O_RDONLY, 0444)
@@ -345,6 +339,7 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 		erasmusCareer[lenCareer-1].Erasmus_type = erasmusType
 		erasmusCareer[lenCareer-1].Foreign_university_name = foreign_university_name
 		erasmusCareer[lenCareer-1].Foreign_university_country = foreign_university_country
+		erasmusCareer[lenCareer-1].Foreign_chain_name = foreign_chain_name
 		erasmusCareer[lenCareer-1].Status = "to start" // to start, in progress or terminated
 		erasmusCareer[lenCareer-1].Contribution.Amount = contritbutionErasmus
 
@@ -361,6 +356,7 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 			Exams_passed:                  0,
 			Foreign_university_name:       foreign_university_name,
 			Foreign_university_country:    foreign_university_country,
+			Foreign_chain_name:            foreign_chain_name,
 			Foreign_university_student_id: "",
 			Status:                        "to start", // to start, in progress or terminated
 			Contribution: ErasmusContributionStruct{
@@ -593,6 +589,29 @@ func CloseErasmusPeriod(student *types.StoredStudent) (err error) {
 	student.ErasmusData.ErasmusStudent = "outgoing (completed)"
 
 	erasmusCareer[lenCareer-1].Status = "terminated"
+
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	student.ErasmusData.Career = string(resultByteJSON)
+
+	return err
+}
+
+func SetForeignIndex(student *types.StoredStudent, foreignIndex string) (err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	erasmusCareer[lenCareer-1].Foreign_university_student_id = foreignIndex
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {

@@ -13,6 +13,7 @@ export interface HubChainInfo {
   chainKey?: string;
   chainAdministratorKey?: string;
   initStatus?: boolean;
+  chainName?: string;
 }
 
 export interface HubContactInfo {
@@ -50,6 +51,8 @@ export interface HubMsgConfigureChainResponse {
   /** @format int32 */
   status?: number;
 }
+
+export type HubMsgSendErasmusIndexResponse = object;
 
 export interface HubMsgSendErasmusStudentResponse {
   /** @format int32 */
@@ -185,6 +188,8 @@ export interface HubStudentInfo {
   numberOfYearsOutOfCourse?: number;
   studentKey?: string;
   completeInformation?: number[];
+  universityName?: string;
+  chainName?: string;
 }
 
 export interface HubTaxesInfo {
@@ -215,6 +220,9 @@ export interface HubUniversities {
   universityName?: string;
   universitiesKey?: string;
   universitiesCountry?: string;
+  chainName?: string;
+  port?: string;
+  channelID?: string;
 }
 
 export interface ProtobufAny {

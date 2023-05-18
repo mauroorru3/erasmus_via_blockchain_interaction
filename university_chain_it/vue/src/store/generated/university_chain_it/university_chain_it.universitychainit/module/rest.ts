@@ -26,6 +26,7 @@ export interface UniversitychainitChainInfo {
   country?: string;
   chainAdministratorKey?: string;
   initStatus?: boolean;
+  chainName?: string;
 }
 
 export interface UniversitychainitContactInfo {
@@ -61,6 +62,7 @@ export interface UniversitychainitErasmusInfo {
 
 export interface UniversitychainitForeignUniversities {
   universityName?: string;
+  chainName?: string;
   foreignUniversitiesKey?: string;
   foreignUniversitiesCountry?: string;
 }
@@ -293,6 +295,8 @@ export interface UniversitychainitStudentInfo {
   numberOfYearsOutOfCourse?: number;
   studentKey?: string;
   completeInformation?: number[];
+  universityName?: string;
+  chainName?: string;
 }
 
 export interface UniversitychainitTaxesInfo {

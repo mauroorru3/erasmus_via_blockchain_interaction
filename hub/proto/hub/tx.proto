@@ -10,6 +10,7 @@ option go_package = "hub/x/hub/types";
 service Msg {
       rpc SendErasmusStudent(MsgSendErasmusStudent) returns (MsgSendErasmusStudentResponse);
   rpc ConfigureChain(MsgConfigureChain) returns (MsgConfigureChainResponse);
+  rpc SendErasmusIndex(MsgSendErasmusIndex) returns (MsgSendErasmusIndexResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -33,4 +34,16 @@ message MsgConfigureChainResponse {
   int32 status = 1;
 }
 
+message MsgSendErasmusIndex {
+  string creator = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  string chain = 5;
+  string index = 6;
+  string foreignIndex = 7;
+}
+
+message MsgSendErasmusIndexResponse {
+}
 // this line is used by starport scaffolding # proto/tx/message

@@ -14,9 +14,10 @@ import (
 const foreignUniversityInfoJSON string = "UniversityKeys.json"
 
 type UniversityKeys struct {
-	Name    string `json:"name"`
-	Country string `json:"country"`
-	Address string `json:"address"`
+	Name      string `json:"name"`
+	ChainName string `json:"chain_name"`
+	Country   string `json:"country"`
+	Address   string `json:"address"`
 }
 
 type UniListKey struct {

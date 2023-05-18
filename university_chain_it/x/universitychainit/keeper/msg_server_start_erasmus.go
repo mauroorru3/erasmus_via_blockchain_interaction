@@ -7,6 +7,7 @@ import (
 	"university_chain_it/x/universitychainit/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 )
 
 const timeoutTimestamp uint64 = 17999999999999999999 //1683974783938252484
@@ -104,8 +105,19 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 
 													k.Keeper.SendToFifoTail(ctx, &searchedStudent, &uniInfo)
 
-													_, err = k.SendErasmusStudent(goCtx, types.NewMsgSendErasmusStudent(
-														msg.Creator, "hub", "channel-0", timeoutTimestamp, msg.GetUniversity()+"_"+msg.GetStudentIndex()))
+													var packet types.ErasmusStudentPacketData
+
+													packet.Student = &searchedStudent
+
+													// Transmit the packet
+													err = k.TransmitErasmusStudentPacket(
+														ctx,
+														packet,
+														"hub",
+														"channel-0",
+														clienttypes.ZeroHeight(),
+														timeoutTimestamp,
+													)
 													if err != nil {
 														return nil, err
 													} else {

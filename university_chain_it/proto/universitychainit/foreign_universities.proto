@@ -5,7 +5,8 @@ option go_package = "university_chain_it/x/universitychainit/types";
 
 message ForeignUniversities {
   string universityName = 1; 
-  string foreignUniversitiesKey = 2; 
-  string foreignUniversitiesCountry = 3; 
+  string chainName = 2;
+  string foreignUniversitiesKey = 3; 
+  string foreignUniversitiesCountry = 4; 
 }
 

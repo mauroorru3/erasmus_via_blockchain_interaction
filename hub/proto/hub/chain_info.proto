@@ -7,5 +7,5 @@ message ChainInfo {
   string chainKey = 1; 
   string chainAdministratorKey = 2; 
   bool initStatus = 3; 
-  
+  string chainName = 4;
 }

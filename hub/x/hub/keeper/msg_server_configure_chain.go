@@ -48,6 +48,9 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 							UniversityName:      UniversitiesList[i].Name,
 							UniversitiesCountry: UniversitiesList[i].Country,
 							UniversitiesKey:     UniversitiesList[i].Address,
+							ChainName:           UniversitiesList[i].ChainName,
+							Port:                UniversitiesList[i].Port,
+							ChannelID:           UniversitiesList[i].Channel_ID,
 						}
 						err = foreignUniversity.Validate()
 						if err != nil {

@@ -29479,6 +29479,8 @@ paths:
                     type: string
                   initStatus:
                     type: boolean
+                  chainName:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -29614,6 +29616,8 @@ paths:
                   properties:
                     universityName:
                       type: string
+                    chainName:
+                      type: string
                     foreignUniversitiesKey:
                       type: string
                     foreignUniversitiesCountry:
@@ -29736,6 +29740,8 @@ paths:
                 type: object
                 properties:
                   universityName:
+                    type: string
+                  chainName:
                     type: string
                   foreignUniversitiesKey:
                     type: string
@@ -30114,6 +30120,10 @@ paths:
                           items:
                             type: integer
                             format: int32
+                        universityName:
+                          type: string
+                        chainName:
+                          type: string
                     transcriptData:
                       type: object
                       properties:
@@ -30360,6 +30370,10 @@ paths:
                         items:
                           type: integer
                           format: int32
+                      universityName:
+                        type: string
+                      chainName:
+                        type: string
                   transcriptData:
                     type: object
                     properties:
@@ -30522,6 +30536,10 @@ paths:
                     items:
                       type: integer
                       format: int32
+                  universityName:
+                    type: string
+                  chainName:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -50834,6 +50852,8 @@ definitions:
         type: string
       initStatus:
         type: boolean
+      chainName:
+        type: string
   university_chain_it.universitychainit.ContactInfo:
     type: object
     properties:
@@ -50876,6 +50896,8 @@ definitions:
     type: object
     properties:
       universityName:
+        type: string
+      chainName:
         type: string
       foreignUniversitiesKey:
         type: string
@@ -50987,6 +51009,8 @@ definitions:
           properties:
             universityName:
               type: string
+            chainName:
+              type: string
             foreignUniversitiesKey:
               type: string
             foreignUniversitiesCountry:
@@ -51095,6 +51119,10 @@ definitions:
                   items:
                     type: integer
                     format: int32
+                universityName:
+                  type: string
+                chainName:
+                  type: string
             transcriptData:
               type: object
               properties:
@@ -51292,6 +51320,8 @@ definitions:
             type: string
           initStatus:
             type: boolean
+          chainName:
+            type: string
   university_chain_it.universitychainit.QueryGetContactInfoResponse:
     type: object
     properties:
@@ -51343,6 +51373,8 @@ definitions:
         type: object
         properties:
           universityName:
+            type: string
+          chainName:
             type: string
           foreignUniversitiesKey:
             type: string
@@ -51438,6 +51470,10 @@ definitions:
                 items:
                   type: integer
                   format: int32
+              universityName:
+                type: string
+              chainName:
+                type: string
           transcriptData:
             type: object
             properties:
@@ -51568,6 +51604,10 @@ definitions:
             items:
               type: integer
               format: int32
+          universityName:
+            type: string
+          chainName:
+            type: string
   university_chain_it.universitychainit.QueryGetTaxesInfoResponse:
     type: object
     properties:
@@ -51688,6 +51728,10 @@ definitions:
             items:
               type: integer
               format: int32
+          universityName:
+            type: string
+          chainName:
+            type: string
       transcriptData:
         type: object
         properties:
@@ -51815,6 +51859,10 @@ definitions:
         items:
           type: integer
           format: int32
+      universityName:
+        type: string
+      chainName:
+        type: string
   university_chain_it.universitychainit.TaxesInfo:
     type: object
     properties:

@@ -14,6 +14,8 @@ export interface StudentInfo {
   numberOfYearsOutOfCourse: number;
   studentKey: string;
   completeInformation: number[];
+  universityName: string;
+  chainName: string;
 }
 
 const baseStudentInfo: object = {
@@ -27,6 +29,8 @@ const baseStudentInfo: object = {
   numberOfYearsOutOfCourse: 0,
   studentKey: "",
   completeInformation: 0,
+  universityName: "",
+  chainName: "",
 };
 
 export const StudentInfo = {
@@ -63,6 +67,12 @@ export const StudentInfo = {
       writer.int32(v);
     }
     writer.ldelim();
+    if (message.universityName !== "") {
+      writer.uint32(90).string(message.universityName);
+    }
+    if (message.chainName !== "") {
+      writer.uint32(98).string(message.chainName);
+    }
     return writer;
   },
 
@@ -110,6 +120,12 @@ export const StudentInfo = {
           } else {
             message.completeInformation.push(reader.int32());
           }
+          break;
+        case 11:
+          message.universityName = reader.string();
+          break;
+        case 12:
+          message.chainName = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -183,6 +199,16 @@ export const StudentInfo = {
         message.completeInformation.push(Number(e));
       }
     }
+    if (object.universityName !== undefined && object.universityName !== null) {
+      message.universityName = String(object.universityName);
+    } else {
+      message.universityName = "";
+    }
+    if (object.chainName !== undefined && object.chainName !== null) {
+      message.chainName = String(object.chainName);
+    } else {
+      message.chainName = "";
+    }
     return message;
   },
 
@@ -206,6 +232,9 @@ export const StudentInfo = {
     } else {
       obj.completeInformation = [];
     }
+    message.universityName !== undefined &&
+      (obj.universityName = message.universityName);
+    message.chainName !== undefined && (obj.chainName = message.chainName);
     return obj;
   },
 
@@ -270,6 +299,16 @@ export const StudentInfo = {
       for (const e of object.completeInformation) {
         message.completeInformation.push(e);
       }
+    }
+    if (object.universityName !== undefined && object.universityName !== null) {
+      message.universityName = object.universityName;
+    } else {
+      message.universityName = "";
+    }
+    if (object.chainName !== undefined && object.chainName !== null) {
+      message.chainName = object.chainName;
+    } else {
+      message.chainName = "";
     }
     return message;
   },

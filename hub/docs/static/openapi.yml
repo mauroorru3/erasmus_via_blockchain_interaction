@@ -18801,6 +18801,8 @@ paths:
                     type: string
                   initStatus:
                     type: boolean
+                  chainName:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -19094,6 +19096,10 @@ paths:
                           items:
                             type: integer
                             format: int32
+                        universityName:
+                          type: string
+                        chainName:
+                          type: string
                     transcriptData:
                       type: object
                       properties:
@@ -19340,6 +19346,10 @@ paths:
                         items:
                           type: integer
                           format: int32
+                      universityName:
+                        type: string
+                      chainName:
+                        type: string
                   transcriptData:
                     type: object
                     properties:
@@ -19502,6 +19512,10 @@ paths:
                     items:
                       type: integer
                       format: int32
+                  universityName:
+                    type: string
+                  chainName:
+                    type: string
         default:
           description: An unexpected error response.
           schema:
@@ -19630,6 +19644,12 @@ paths:
                       type: string
                     universitiesCountry:
                       type: string
+                    chainName:
+                      type: string
+                    port:
+                      type: string
+                    channelID:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -19752,6 +19772,12 @@ paths:
                   universitiesKey:
                     type: string
                   universitiesCountry:
+                    type: string
+                  chainName:
+                    type: string
+                  port:
+                    type: string
+                  channelID:
                     type: string
         default:
           description: An unexpected error response.
@@ -45661,6 +45687,8 @@ definitions:
         type: string
       initStatus:
         type: boolean
+      chainName:
+        type: string
   hub.hub.ContactInfo:
     type: object
     properties:
@@ -45705,6 +45733,8 @@ definitions:
       status:
         type: integer
         format: int32
+  hub.hub.MsgSendErasmusIndexResponse:
+    type: object
   hub.hub.MsgSendErasmusStudentResponse:
     type: object
     properties:
@@ -45769,6 +45799,10 @@ definitions:
                   items:
                     type: integer
                     format: int32
+                universityName:
+                  type: string
+                chainName:
+                  type: string
             transcriptData:
               type: object
               properties:
@@ -45907,6 +45941,12 @@ definitions:
               type: string
             universitiesCountry:
               type: string
+            chainName:
+              type: string
+            port:
+              type: string
+            channelID:
+              type: string
       pagination:
         type: object
         properties:
@@ -45944,6 +45984,8 @@ definitions:
             type: string
           initStatus:
             type: boolean
+          chainName:
+            type: string
   hub.hub.QueryGetContactInfoResponse:
     type: object
     properties:
@@ -46064,6 +46106,10 @@ definitions:
                 items:
                   type: integer
                   format: int32
+              universityName:
+                type: string
+              chainName:
+                type: string
           transcriptData:
             type: object
             properties:
@@ -46194,6 +46240,10 @@ definitions:
             items:
               type: integer
               format: int32
+          universityName:
+            type: string
+          chainName:
+            type: string
   hub.hub.QueryGetTaxesInfoResponse:
     type: object
     properties:
@@ -46238,6 +46288,12 @@ definitions:
           universitiesKey:
             type: string
           universitiesCountry:
+            type: string
+          chainName:
+            type: string
+          port:
+            type: string
+          channelID:
             type: string
   hub.hub.QueryParamsResponse:
     type: object
@@ -46296,6 +46352,10 @@ definitions:
             items:
               type: integer
               format: int32
+          universityName:
+            type: string
+          chainName:
+            type: string
       transcriptData:
         type: object
         properties:
@@ -46423,6 +46483,10 @@ definitions:
         items:
           type: integer
           format: int32
+      universityName:
+        type: string
+      chainName:
+        type: string
   hub.hub.TaxesInfo:
     type: object
     properties:
@@ -46458,6 +46522,12 @@ definitions:
       universitiesKey:
         type: string
       universitiesCountry:
+        type: string
+      chainName:
+        type: string
+      port:
+        type: string
+      channelID:
         type: string
   ibc.applications.interchain_accounts.controller.v1.Params:
     type: object

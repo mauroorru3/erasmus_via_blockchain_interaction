@@ -45,6 +45,7 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 
 						foreignUniversity := types.ForeignUniversities{
 							UniversityName:             foreignUniversitiesList[i].Name,
+							ChainName:                  foreignUniversitiesList[i].ChainName,
 							ForeignUniversitiesCountry: foreignUniversitiesList[i].Country,
 							ForeignUniversitiesKey:     foreignUniversitiesList[i].Address,
 						}

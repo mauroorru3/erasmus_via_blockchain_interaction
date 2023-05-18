@@ -63,6 +63,8 @@ func (k msgServer) RegisterNewStudent(goCtx context.Context, msg *types.MsgRegis
 						NumberOfYearsOutOfCourse: 0,
 						CompleteInformation:      []int32{0, 0, 0},
 						StudentKey:               msg.Creator,
+						ChainName:                "university_chain_it",
+						UniversityName:           msg.University,
 					}
 					err := newStudentInfo.Validate()
 					if err != nil {

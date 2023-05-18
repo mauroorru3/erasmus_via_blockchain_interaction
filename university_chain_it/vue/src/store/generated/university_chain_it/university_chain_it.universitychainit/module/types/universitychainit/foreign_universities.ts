@@ -5,12 +5,14 @@ export const protobufPackage = "university_chain_it.universitychainit";
 
 export interface ForeignUniversities {
   universityName: string;
+  chainName: string;
   foreignUniversitiesKey: string;
   foreignUniversitiesCountry: string;
 }
 
 const baseForeignUniversities: object = {
   universityName: "",
+  chainName: "",
   foreignUniversitiesKey: "",
   foreignUniversitiesCountry: "",
 };
@@ -23,11 +25,14 @@ export const ForeignUniversities = {
     if (message.universityName !== "") {
       writer.uint32(10).string(message.universityName);
     }
+    if (message.chainName !== "") {
+      writer.uint32(18).string(message.chainName);
+    }
     if (message.foreignUniversitiesKey !== "") {
-      writer.uint32(18).string(message.foreignUniversitiesKey);
+      writer.uint32(26).string(message.foreignUniversitiesKey);
     }
     if (message.foreignUniversitiesCountry !== "") {
-      writer.uint32(26).string(message.foreignUniversitiesCountry);
+      writer.uint32(34).string(message.foreignUniversitiesCountry);
     }
     return writer;
   },
@@ -43,9 +48,12 @@ export const ForeignUniversities = {
           message.universityName = reader.string();
           break;
         case 2:
-          message.foreignUniversitiesKey = reader.string();
+          message.chainName = reader.string();
           break;
         case 3:
+          message.foreignUniversitiesKey = reader.string();
+          break;
+        case 4:
           message.foreignUniversitiesCountry = reader.string();
           break;
         default:
@@ -62,6 +70,11 @@ export const ForeignUniversities = {
       message.universityName = String(object.universityName);
     } else {
       message.universityName = "";
+    }
+    if (object.chainName !== undefined && object.chainName !== null) {
+      message.chainName = String(object.chainName);
+    } else {
+      message.chainName = "";
     }
     if (
       object.foreignUniversitiesKey !== undefined &&
@@ -88,6 +101,7 @@ export const ForeignUniversities = {
     const obj: any = {};
     message.universityName !== undefined &&
       (obj.universityName = message.universityName);
+    message.chainName !== undefined && (obj.chainName = message.chainName);
     message.foreignUniversitiesKey !== undefined &&
       (obj.foreignUniversitiesKey = message.foreignUniversitiesKey);
     message.foreignUniversitiesCountry !== undefined &&
@@ -101,6 +115,11 @@ export const ForeignUniversities = {
       message.universityName = object.universityName;
     } else {
       message.universityName = "";
+    }
+    if (object.chainName !== undefined && object.chainName !== null) {
+      message.chainName = object.chainName;
+    } else {
+      message.chainName = "";
     }
     if (
       object.foreignUniversitiesKey !== undefined &&

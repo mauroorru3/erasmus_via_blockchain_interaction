@@ -25,6 +25,7 @@ func DefaultGenesis() *GenesisState {
 			ChainAdministratorKey: "cosmos1w68naxagtnzfs7jrldjaalgcgfrctrk06y2rep",
 			ChainKey:              "cosmos1nqg8gn5kdvs3na2psm9fp2sad7yka8tmh90dpd",
 			InitStatus:            false,
+			ChainName:             "hub",
 		},
 		UniversitiesList: []Universities{},
 		// this line is used by starport scaffolding # genesis/types/default

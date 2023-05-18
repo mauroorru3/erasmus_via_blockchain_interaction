@@ -235,38 +235,173 @@ func (m *MsgConfigureChainResponse) GetStatus() int32 {
 	return 0
 }
 
+type MsgSendErasmusIndex struct {
+	Creator          string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Port             string `protobuf:"bytes,2,opt,name=port,proto3" json:"port,omitempty"`
+	ChannelID        string `protobuf:"bytes,3,opt,name=channelID,proto3" json:"channelID,omitempty"`
+	TimeoutTimestamp uint64 `protobuf:"varint,4,opt,name=timeoutTimestamp,proto3" json:"timeoutTimestamp,omitempty"`
+	Chain            string `protobuf:"bytes,5,opt,name=chain,proto3" json:"chain,omitempty"`
+	Index            string `protobuf:"bytes,6,opt,name=index,proto3" json:"index,omitempty"`
+	ForeignIndex     string `protobuf:"bytes,7,opt,name=foreignIndex,proto3" json:"foreignIndex,omitempty"`
+}
+
+func (m *MsgSendErasmusIndex) Reset()         { *m = MsgSendErasmusIndex{} }
+func (m *MsgSendErasmusIndex) String() string { return proto.CompactTextString(m) }
+func (*MsgSendErasmusIndex) ProtoMessage()    {}
+func (*MsgSendErasmusIndex) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7b0dcb234192d0df, []int{4}
+}
+func (m *MsgSendErasmusIndex) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSendErasmusIndex) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSendErasmusIndex.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSendErasmusIndex) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSendErasmusIndex.Merge(m, src)
+}
+func (m *MsgSendErasmusIndex) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSendErasmusIndex) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSendErasmusIndex.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSendErasmusIndex proto.InternalMessageInfo
+
+func (m *MsgSendErasmusIndex) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgSendErasmusIndex) GetPort() string {
+	if m != nil {
+		return m.Port
+	}
+	return ""
+}
+
+func (m *MsgSendErasmusIndex) GetChannelID() string {
+	if m != nil {
+		return m.ChannelID
+	}
+	return ""
+}
+
+func (m *MsgSendErasmusIndex) GetTimeoutTimestamp() uint64 {
+	if m != nil {
+		return m.TimeoutTimestamp
+	}
+	return 0
+}
+
+func (m *MsgSendErasmusIndex) GetChain() string {
+	if m != nil {
+		return m.Chain
+	}
+	return ""
+}
+
+func (m *MsgSendErasmusIndex) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+func (m *MsgSendErasmusIndex) GetForeignIndex() string {
+	if m != nil {
+		return m.ForeignIndex
+	}
+	return ""
+}
+
+type MsgSendErasmusIndexResponse struct {
+}
+
+func (m *MsgSendErasmusIndexResponse) Reset()         { *m = MsgSendErasmusIndexResponse{} }
+func (m *MsgSendErasmusIndexResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgSendErasmusIndexResponse) ProtoMessage()    {}
+func (*MsgSendErasmusIndexResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7b0dcb234192d0df, []int{5}
+}
+func (m *MsgSendErasmusIndexResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgSendErasmusIndexResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgSendErasmusIndexResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgSendErasmusIndexResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgSendErasmusIndexResponse.Merge(m, src)
+}
+func (m *MsgSendErasmusIndexResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgSendErasmusIndexResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgSendErasmusIndexResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgSendErasmusIndexResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgSendErasmusStudent)(nil), "hub.hub.MsgSendErasmusStudent")
 	proto.RegisterType((*MsgSendErasmusStudentResponse)(nil), "hub.hub.MsgSendErasmusStudentResponse")
 	proto.RegisterType((*MsgConfigureChain)(nil), "hub.hub.MsgConfigureChain")
 	proto.RegisterType((*MsgConfigureChainResponse)(nil), "hub.hub.MsgConfigureChainResponse")
+	proto.RegisterType((*MsgSendErasmusIndex)(nil), "hub.hub.MsgSendErasmusIndex")
+	proto.RegisterType((*MsgSendErasmusIndexResponse)(nil), "hub.hub.MsgSendErasmusIndexResponse")
 }
 
 func init() { proto.RegisterFile("hub/tx.proto", fileDescriptor_7b0dcb234192d0df) }
 
 var fileDescriptor_7b0dcb234192d0df = []byte{
-	// 336 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x52, 0xcb, 0x4a, 0x03, 0x31,
-	0x14, 0x6d, 0xec, 0x8b, 0x5e, 0xc4, 0x47, 0x50, 0x89, 0x83, 0x86, 0x32, 0x0b, 0xa9, 0x82, 0x53,
-	0xb0, 0x0b, 0xf7, 0x56, 0x17, 0x2e, 0x0a, 0x32, 0x75, 0x25, 0x82, 0xcc, 0x74, 0xe2, 0xcc, 0x80,
-	0x93, 0x0c, 0x79, 0x40, 0xfd, 0x0b, 0x7f, 0xc2, 0x4f, 0xf0, 0x1f, 0x5c, 0x76, 0xe9, 0x52, 0xda,
-	0x1f, 0x91, 0xa6, 0xad, 0xaf, 0xb6, 0xba, 0xcb, 0x39, 0xe7, 0xe6, 0xde, 0x7b, 0x92, 0x03, 0xab,
-	0x89, 0x09, 0x9b, 0xba, 0xef, 0xe5, 0x52, 0x68, 0x81, 0xab, 0x89, 0x09, 0xbd, 0xc4, 0x84, 0x0e,
-	0x19, 0xd3, 0x4a, 0x0b, 0xc9, 0xa2, 0x3b, 0xa5, 0x4d, 0xc4, 0xb8, 0x9e, 0x94, 0xb8, 0xcf, 0x08,
-	0xb6, 0x3b, 0x2a, 0xee, 0x32, 0x1e, 0x5d, 0xc8, 0x40, 0x65, 0x46, 0x75, 0x27, 0x3a, 0x26, 0x50,
-	0xed, 0x49, 0x16, 0x68, 0x21, 0x09, 0xaa, 0xa3, 0x46, 0xcd, 0x9f, 0x41, 0x8c, 0xa1, 0x94, 0x0b,
-	0xa9, 0xc9, 0x8a, 0xa5, 0xed, 0x19, 0xef, 0x41, 0xad, 0x97, 0x04, 0x9c, 0xb3, 0x87, 0xcb, 0x73,
-	0x52, 0xb4, 0xc2, 0x17, 0x81, 0x8f, 0x60, 0x43, 0xa7, 0x19, 0x13, 0x46, 0x5f, 0xa7, 0x19, 0x53,
-	0x3a, 0xc8, 0x72, 0x52, 0xaa, 0xa3, 0x46, 0xc9, 0x9f, 0xe3, 0xf1, 0x16, 0x94, 0x53, 0x1e, 0xb1,
-	0x3e, 0x29, 0xdb, 0x2e, 0x13, 0xe0, 0x9e, 0xc2, 0xfe, 0xc2, 0x35, 0x7d, 0xa6, 0x72, 0xc1, 0x15,
-	0xc3, 0x3b, 0x50, 0x51, 0x3a, 0xd0, 0x46, 0xd9, 0x6d, 0xcb, 0xfe, 0x14, 0xb9, 0xc7, 0xb0, 0xd9,
-	0x51, 0x71, 0x5b, 0xf0, 0xfb, 0x34, 0x36, 0x92, 0xb5, 0x93, 0x20, 0xe5, 0xcb, 0xbd, 0xb9, 0x2d,
-	0xd8, 0x9d, 0x2b, 0xff, 0x6f, 0xc6, 0xc9, 0x0b, 0x82, 0x62, 0x47, 0xc5, 0xf8, 0x16, 0xf0, 0x82,
-	0x87, 0xa4, 0xde, 0xf4, 0x1b, 0xbc, 0x85, 0x0e, 0x9c, 0x83, 0xbf, 0xf5, 0xcf, 0xe9, 0x57, 0xb0,
-	0xf6, 0xcb, 0x86, 0xf3, 0xfd, 0xe6, 0x4f, 0xcd, 0x71, 0x97, 0x6b, 0xb3, 0x8e, 0x67, 0x87, 0xaf,
-	0x43, 0x8a, 0x06, 0x43, 0x8a, 0xde, 0x87, 0x14, 0x3d, 0x8d, 0x68, 0x61, 0x30, 0xa2, 0x85, 0xb7,
-	0x11, 0x2d, 0xdc, 0xac, 0x8f, 0x03, 0xd3, 0x6f, 0xda, 0x34, 0x3d, 0xe6, 0x4c, 0x85, 0x15, 0x1b,
-	0x97, 0xd6, 0x47, 0x00, 0x00, 0x00, 0xff, 0xff, 0x6e, 0xa1, 0xb5, 0x00, 0x61, 0x02, 0x00, 0x00,
+	// 403 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x53, 0xcd, 0xca, 0xd3, 0x40,
+	0x14, 0xed, 0x7c, 0xfd, 0xa3, 0x97, 0xa2, 0x75, 0xfc, 0x61, 0x8c, 0x6d, 0x28, 0x41, 0xa4, 0x0a,
+	0xa6, 0x60, 0x17, 0xee, 0xad, 0x2e, 0xba, 0x28, 0x48, 0x2a, 0x2e, 0x44, 0x90, 0xa4, 0x99, 0x26,
+	0x01, 0x33, 0x13, 0xe6, 0x07, 0xea, 0x43, 0x08, 0xbe, 0x84, 0xef, 0xe2, 0xb2, 0x4b, 0x37, 0x82,
+	0xb4, 0x2f, 0x22, 0x99, 0x36, 0xfd, 0xb1, 0x69, 0x5d, 0xba, 0xcb, 0x39, 0x67, 0x72, 0xe7, 0xcc,
+	0xb9, 0xf7, 0x42, 0x3b, 0xd6, 0xc1, 0x50, 0x2d, 0xdd, 0x4c, 0x70, 0xc5, 0x71, 0x33, 0xd6, 0x81,
+	0x1b, 0xeb, 0xc0, 0x22, 0x39, 0x2d, 0x15, 0x17, 0x34, 0xfc, 0x24, 0x95, 0x0e, 0x29, 0x53, 0xdb,
+	0x23, 0xce, 0x77, 0x04, 0xf7, 0xa7, 0x32, 0x9a, 0x51, 0x16, 0xbe, 0x11, 0xbe, 0x4c, 0xb5, 0x9c,
+	0x6d, 0x75, 0x4c, 0xa0, 0x39, 0x17, 0xd4, 0x57, 0x5c, 0x10, 0xd4, 0x47, 0x83, 0x96, 0x57, 0x40,
+	0x8c, 0xa1, 0x96, 0x71, 0xa1, 0xc8, 0x8d, 0xa1, 0xcd, 0x37, 0xee, 0x42, 0x6b, 0x1e, 0xfb, 0x8c,
+	0xd1, 0xcf, 0x93, 0xd7, 0xa4, 0x6a, 0x84, 0x03, 0x81, 0x9f, 0x41, 0x47, 0x25, 0x29, 0xe5, 0x5a,
+	0xbd, 0x4b, 0x52, 0x2a, 0x95, 0x9f, 0x66, 0xa4, 0xd6, 0x47, 0x83, 0x9a, 0x77, 0xc6, 0xe3, 0x7b,
+	0x50, 0x4f, 0x58, 0x48, 0x97, 0xa4, 0x6e, 0xaa, 0x6c, 0x81, 0xf3, 0x12, 0x7a, 0xa5, 0x36, 0x3d,
+	0x2a, 0x33, 0xce, 0x24, 0xc5, 0x0f, 0xa0, 0x21, 0x95, 0xaf, 0xb4, 0x34, 0x6e, 0xeb, 0xde, 0x0e,
+	0x39, 0xcf, 0xe1, 0xce, 0x54, 0x46, 0x63, 0xce, 0x16, 0x49, 0xa4, 0x05, 0x1d, 0xc7, 0x7e, 0xc2,
+	0x2e, 0xbf, 0xcd, 0x19, 0xc1, 0xc3, 0xb3, 0xe3, 0xff, 0xbc, 0xe3, 0x17, 0x82, 0xbb, 0xa7, 0xee,
+	0x26, 0xb9, 0xe9, 0xff, 0x19, 0xe1, 0x3c, 0x37, 0x5e, 0x44, 0x68, 0xc0, 0x21, 0xd8, 0xc6, 0x51,
+	0xb0, 0xd8, 0x81, 0xf6, 0x82, 0x0b, 0x9a, 0x44, 0xcc, 0x78, 0x26, 0x4d, 0x23, 0x9e, 0x70, 0x4e,
+	0x0f, 0x1e, 0x95, 0x3c, 0xaf, 0x88, 0xe5, 0xc5, 0xd7, 0x1b, 0xa8, 0x4e, 0x65, 0x84, 0x3f, 0x02,
+	0x2e, 0x99, 0x23, 0xdb, 0xdd, 0x4d, 0xa1, 0x5b, 0xda, 0x40, 0xeb, 0xc9, 0x75, 0x7d, 0x1f, 0xfe,
+	0x5b, 0xb8, 0xf5, 0x57, 0x17, 0xad, 0xe3, 0x3f, 0x4f, 0x35, 0xcb, 0xb9, 0xac, 0xed, 0x2b, 0xbe,
+	0x87, 0xce, 0x59, 0xcb, 0xba, 0x17, 0xdc, 0x18, 0xd5, 0x7a, 0x7c, 0x4d, 0x2d, 0xea, 0xbe, 0x7a,
+	0xfa, 0x63, 0x6d, 0xa3, 0xd5, 0xda, 0x46, 0xbf, 0xd7, 0x36, 0xfa, 0xb6, 0xb1, 0x2b, 0xab, 0x8d,
+	0x5d, 0xf9, 0xb9, 0xb1, 0x2b, 0x1f, 0x6e, 0xe7, 0x7b, 0xb8, 0x1c, 0x9a, 0x25, 0xfd, 0x92, 0x51,
+	0x19, 0x34, 0xcc, 0x16, 0x8e, 0xfe, 0x04, 0x00, 0x00, 0xff, 0xff, 0x4c, 0x5a, 0x24, 0x8d, 0xb8,
+	0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -283,6 +418,7 @@ const _ = grpc.SupportPackageIsVersion4
 type MsgClient interface {
 	SendErasmusStudent(ctx context.Context, in *MsgSendErasmusStudent, opts ...grpc.CallOption) (*MsgSendErasmusStudentResponse, error)
 	ConfigureChain(ctx context.Context, in *MsgConfigureChain, opts ...grpc.CallOption) (*MsgConfigureChainResponse, error)
+	SendErasmusIndex(ctx context.Context, in *MsgSendErasmusIndex, opts ...grpc.CallOption) (*MsgSendErasmusIndexResponse, error)
 }
 
 type msgClient struct {
@@ -311,10 +447,20 @@ func (c *msgClient) ConfigureChain(ctx context.Context, in *MsgConfigureChain, o
 	return out, nil
 }
 
+func (c *msgClient) SendErasmusIndex(ctx context.Context, in *MsgSendErasmusIndex, opts ...grpc.CallOption) (*MsgSendErasmusIndexResponse, error) {
+	out := new(MsgSendErasmusIndexResponse)
+	err := c.cc.Invoke(ctx, "/hub.hub.Msg/SendErasmusIndex", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	SendErasmusStudent(context.Context, *MsgSendErasmusStudent) (*MsgSendErasmusStudentResponse, error)
 	ConfigureChain(context.Context, *MsgConfigureChain) (*MsgConfigureChainResponse, error)
+	SendErasmusIndex(context.Context, *MsgSendErasmusIndex) (*MsgSendErasmusIndexResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -326,6 +472,9 @@ func (*UnimplementedMsgServer) SendErasmusStudent(ctx context.Context, req *MsgS
 }
 func (*UnimplementedMsgServer) ConfigureChain(ctx context.Context, req *MsgConfigureChain) (*MsgConfigureChainResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfigureChain not implemented")
+}
+func (*UnimplementedMsgServer) SendErasmusIndex(ctx context.Context, req *MsgSendErasmusIndex) (*MsgSendErasmusIndexResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendErasmusIndex not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -368,6 +517,24 @@ func _Msg_ConfigureChain_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SendErasmusIndex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSendErasmusIndex)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SendErasmusIndex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hub.hub.Msg/SendErasmusIndex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SendErasmusIndex(ctx, req.(*MsgSendErasmusIndex))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hub.hub.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -379,6 +546,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfigureChain",
 			Handler:    _Msg_ConfigureChain_Handler,
+		},
+		{
+			MethodName: "SendErasmusIndex",
+			Handler:    _Msg_SendErasmusIndex_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -527,6 +698,99 @@ func (m *MsgConfigureChainResponse) MarshalToSizedBuffer(dAtA []byte) (int, erro
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgSendErasmusIndex) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSendErasmusIndex) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSendErasmusIndex) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.ForeignIndex) > 0 {
+		i -= len(m.ForeignIndex)
+		copy(dAtA[i:], m.ForeignIndex)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ForeignIndex)))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Chain) > 0 {
+		i -= len(m.Chain)
+		copy(dAtA[i:], m.Chain)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Chain)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.TimeoutTimestamp != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.TimeoutTimestamp))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.ChannelID) > 0 {
+		i -= len(m.ChannelID)
+		copy(dAtA[i:], m.ChannelID)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ChannelID)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Port) > 0 {
+		i -= len(m.Port)
+		copy(dAtA[i:], m.Port)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Port)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgSendErasmusIndexResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgSendErasmusIndexResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgSendErasmusIndexResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -600,6 +864,51 @@ func (m *MsgConfigureChainResponse) Size() (n int) {
 	if m.Status != 0 {
 		n += 1 + sovTx(uint64(m.Status))
 	}
+	return n
+}
+
+func (m *MsgSendErasmusIndex) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Port)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ChannelID)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.TimeoutTimestamp != 0 {
+		n += 1 + sovTx(uint64(m.TimeoutTimestamp))
+	}
+	l = len(m.Chain)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.ForeignIndex)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgSendErasmusIndexResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -1005,6 +1314,317 @@ func (m *MsgConfigureChainResponse) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSendErasmusIndex) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSendErasmusIndex: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSendErasmusIndex: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Port = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ChannelID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ChannelID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field TimeoutTimestamp", wireType)
+			}
+			m.TimeoutTimestamp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.TimeoutTimestamp |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Chain", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Chain = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ForeignIndex", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ForeignIndex = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgSendErasmusIndexResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgSendErasmusIndexResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgSendErasmusIndexResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])

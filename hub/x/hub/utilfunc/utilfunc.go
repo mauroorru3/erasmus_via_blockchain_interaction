@@ -50,9 +50,12 @@ type TaxesStruct struct {
 const foreignUniversityInfoJSON string = "UniversityKeys.json"
 
 type UniversityKeys struct {
-	Name    string `json:"name"`
-	Country string `json:"country"`
-	Address string `json:"address"`
+	Name       string `json:"name"`
+	Country    string `json:"country"`
+	Address    string `json:"address"`
+	Port       string `json:"port"`
+	Channel_ID string `json:"channel_id"`
+	ChainName  string `json:"chain_name"`
 }
 
 type UniListKey struct {
@@ -143,4 +146,20 @@ func CheckErasmusStatus(student types.StoredStudent) (res string, err error) {
 
 	return res, err
 
+}
+
+func GetForeignUniversityName(student types.StoredStudent) (res string, err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return res, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	res = erasmusCareer[lenCareer-1].Foreign_university_name
+
+	return res, err
 }

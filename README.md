@@ -16,11 +16,15 @@ As above.
 
 # Create the image of the Italian chain:
 
+cd university_chain_it
 sudo docker build -f Dockerfile-university_chain_it . -t university_chain_it --no-cache 
+cd ..
 
 # Create the image of the Hub:
 
+cd hub
 sudo docker build -f Dockerfile-hub . -t hub --no-cache 
+cd ..
 
 # Create the image of the Relayer:
 
@@ -41,9 +45,9 @@ sudo docker compose -f modular.yaml up
 
 sudo docker exec relayer ./run-relayer.sh 
 
-# To simulate the execution of the Italian Chain, thus the insertion of a student, the student's exams and so on:
+# To simulate the execution of the Hub and the Italian Chain, thus the chains configuration, the insertion of a student, the student's exams and so on:
 
-sudo docker exec university_chain_it ./test.sh 
+./test.sh 
 
 # To end the execution of the containers:
 

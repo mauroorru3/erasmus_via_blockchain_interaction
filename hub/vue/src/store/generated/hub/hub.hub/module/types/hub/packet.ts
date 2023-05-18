@@ -7,6 +7,8 @@ export const protobufPackage = "hub.hub";
 export interface HubPacketData {
   noData: NoData | undefined;
   /** this line is used by starport scaffolding # ibc/packet/proto/field */
+  erasmusIndexPacket: ErasmusIndexPacketData | undefined;
+  /** this line is used by starport scaffolding # ibc/packet/proto/field/number */
   erasmusStudentPacket: ErasmusStudentPacketData | undefined;
 }
 
@@ -21,7 +23,17 @@ export interface ErasmusStudentPacketData {
 export interface ErasmusStudentPacketAck {
   index: string;
   foreign_index: string;
+  starting_university_name: string;
 }
+
+/** ErasmusIndexPacketData defines a struct for the packet payload */
+export interface ErasmusIndexPacketData {
+  index: string;
+  foreignIndex: string;
+}
+
+/** ErasmusIndexPacketAck defines a struct for the packet acknowledgment */
+export interface ErasmusIndexPacketAck {}
 
 const baseHubPacketData: object = {};
 
@@ -29,6 +41,12 @@ export const HubPacketData = {
   encode(message: HubPacketData, writer: Writer = Writer.create()): Writer {
     if (message.noData !== undefined) {
       NoData.encode(message.noData, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.erasmusIndexPacket !== undefined) {
+      ErasmusIndexPacketData.encode(
+        message.erasmusIndexPacket,
+        writer.uint32(26).fork()
+      ).ldelim();
     }
     if (message.erasmusStudentPacket !== undefined) {
       ErasmusStudentPacketData.encode(
@@ -48,6 +66,12 @@ export const HubPacketData = {
       switch (tag >>> 3) {
         case 1:
           message.noData = NoData.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.erasmusIndexPacket = ErasmusIndexPacketData.decode(
+            reader,
+            reader.uint32()
+          );
           break;
         case 2:
           message.erasmusStudentPacket = ErasmusStudentPacketData.decode(
@@ -71,6 +95,16 @@ export const HubPacketData = {
       message.noData = undefined;
     }
     if (
+      object.erasmusIndexPacket !== undefined &&
+      object.erasmusIndexPacket !== null
+    ) {
+      message.erasmusIndexPacket = ErasmusIndexPacketData.fromJSON(
+        object.erasmusIndexPacket
+      );
+    } else {
+      message.erasmusIndexPacket = undefined;
+    }
+    if (
       object.erasmusStudentPacket !== undefined &&
       object.erasmusStudentPacket !== null
     ) {
@@ -87,6 +121,10 @@ export const HubPacketData = {
     const obj: any = {};
     message.noData !== undefined &&
       (obj.noData = message.noData ? NoData.toJSON(message.noData) : undefined);
+    message.erasmusIndexPacket !== undefined &&
+      (obj.erasmusIndexPacket = message.erasmusIndexPacket
+        ? ErasmusIndexPacketData.toJSON(message.erasmusIndexPacket)
+        : undefined);
     message.erasmusStudentPacket !== undefined &&
       (obj.erasmusStudentPacket = message.erasmusStudentPacket
         ? ErasmusStudentPacketData.toJSON(message.erasmusStudentPacket)
@@ -100,6 +138,16 @@ export const HubPacketData = {
       message.noData = NoData.fromPartial(object.noData);
     } else {
       message.noData = undefined;
+    }
+    if (
+      object.erasmusIndexPacket !== undefined &&
+      object.erasmusIndexPacket !== null
+    ) {
+      message.erasmusIndexPacket = ErasmusIndexPacketData.fromPartial(
+        object.erasmusIndexPacket
+      );
+    } else {
+      message.erasmusIndexPacket = undefined;
     }
     if (
       object.erasmusStudentPacket !== undefined &&
@@ -225,7 +273,11 @@ export const ErasmusStudentPacketData = {
   },
 };
 
-const baseErasmusStudentPacketAck: object = { index: "", foreign_index: "" };
+const baseErasmusStudentPacketAck: object = {
+  index: "",
+  foreign_index: "",
+  starting_university_name: "",
+};
 
 export const ErasmusStudentPacketAck = {
   encode(
@@ -237,6 +289,9 @@ export const ErasmusStudentPacketAck = {
     }
     if (message.foreign_index !== "") {
       writer.uint32(18).string(message.foreign_index);
+    }
+    if (message.starting_university_name !== "") {
+      writer.uint32(26).string(message.starting_university_name);
     }
     return writer;
   },
@@ -255,6 +310,9 @@ export const ErasmusStudentPacketAck = {
           break;
         case 2:
           message.foreign_index = reader.string();
+          break;
+        case 3:
+          message.starting_university_name = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -278,6 +336,16 @@ export const ErasmusStudentPacketAck = {
     } else {
       message.foreign_index = "";
     }
+    if (
+      object.starting_university_name !== undefined &&
+      object.starting_university_name !== null
+    ) {
+      message.starting_university_name = String(
+        object.starting_university_name
+      );
+    } else {
+      message.starting_university_name = "";
+    }
     return message;
   },
 
@@ -286,6 +354,8 @@ export const ErasmusStudentPacketAck = {
     message.index !== undefined && (obj.index = message.index);
     message.foreign_index !== undefined &&
       (obj.foreign_index = message.foreign_index);
+    message.starting_university_name !== undefined &&
+      (obj.starting_university_name = message.starting_university_name);
     return obj;
   },
 
@@ -305,6 +375,130 @@ export const ErasmusStudentPacketAck = {
     } else {
       message.foreign_index = "";
     }
+    if (
+      object.starting_university_name !== undefined &&
+      object.starting_university_name !== null
+    ) {
+      message.starting_university_name = object.starting_university_name;
+    } else {
+      message.starting_university_name = "";
+    }
+    return message;
+  },
+};
+
+const baseErasmusIndexPacketData: object = { index: "", foreignIndex: "" };
+
+export const ErasmusIndexPacketData = {
+  encode(
+    message: ErasmusIndexPacketData,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.index !== "") {
+      writer.uint32(10).string(message.index);
+    }
+    if (message.foreignIndex !== "") {
+      writer.uint32(18).string(message.foreignIndex);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): ErasmusIndexPacketData {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseErasmusIndexPacketData } as ErasmusIndexPacketData;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.index = reader.string();
+          break;
+        case 2:
+          message.foreignIndex = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ErasmusIndexPacketData {
+    const message = { ...baseErasmusIndexPacketData } as ErasmusIndexPacketData;
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index);
+    } else {
+      message.index = "";
+    }
+    if (object.foreignIndex !== undefined && object.foreignIndex !== null) {
+      message.foreignIndex = String(object.foreignIndex);
+    } else {
+      message.foreignIndex = "";
+    }
+    return message;
+  },
+
+  toJSON(message: ErasmusIndexPacketData): unknown {
+    const obj: any = {};
+    message.index !== undefined && (obj.index = message.index);
+    message.foreignIndex !== undefined &&
+      (obj.foreignIndex = message.foreignIndex);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<ErasmusIndexPacketData>
+  ): ErasmusIndexPacketData {
+    const message = { ...baseErasmusIndexPacketData } as ErasmusIndexPacketData;
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index;
+    } else {
+      message.index = "";
+    }
+    if (object.foreignIndex !== undefined && object.foreignIndex !== null) {
+      message.foreignIndex = object.foreignIndex;
+    } else {
+      message.foreignIndex = "";
+    }
+    return message;
+  },
+};
+
+const baseErasmusIndexPacketAck: object = {};
+
+export const ErasmusIndexPacketAck = {
+  encode(_: ErasmusIndexPacketAck, writer: Writer = Writer.create()): Writer {
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): ErasmusIndexPacketAck {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseErasmusIndexPacketAck } as ErasmusIndexPacketAck;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(_: any): ErasmusIndexPacketAck {
+    const message = { ...baseErasmusIndexPacketAck } as ErasmusIndexPacketAck;
+    return message;
+  },
+
+  toJSON(_: ErasmusIndexPacketAck): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  fromPartial(_: DeepPartial<ErasmusIndexPacketAck>): ErasmusIndexPacketAck {
+    const message = { ...baseErasmusIndexPacketAck } as ErasmusIndexPacketAck;
     return message;
   },
 };

@@ -26,6 +26,9 @@ type Universities struct {
 	UniversityName      string `protobuf:"bytes,1,opt,name=universityName,proto3" json:"universityName,omitempty"`
 	UniversitiesKey     string `protobuf:"bytes,2,opt,name=universitiesKey,proto3" json:"universitiesKey,omitempty"`
 	UniversitiesCountry string `protobuf:"bytes,3,opt,name=universitiesCountry,proto3" json:"universitiesCountry,omitempty"`
+	ChainName           string `protobuf:"bytes,4,opt,name=chainName,proto3" json:"chainName,omitempty"`
+	Port                string `protobuf:"bytes,5,opt,name=port,proto3" json:"port,omitempty"`
+	ChannelID           string `protobuf:"bytes,6,opt,name=channelID,proto3" json:"channelID,omitempty"`
 }
 
 func (m *Universities) Reset()         { *m = Universities{} }
@@ -82,6 +85,27 @@ func (m *Universities) GetUniversitiesCountry() string {
 	return ""
 }
 
+func (m *Universities) GetChainName() string {
+	if m != nil {
+		return m.ChainName
+	}
+	return ""
+}
+
+func (m *Universities) GetPort() string {
+	if m != nil {
+		return m.Port
+	}
+	return ""
+}
+
+func (m *Universities) GetChannelID() string {
+	if m != nil {
+		return m.ChannelID
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Universities)(nil), "hub.hub.Universities")
 }
@@ -89,18 +113,21 @@ func init() {
 func init() { proto.RegisterFile("hub/universities.proto", fileDescriptor_493d367c49d2df6b) }
 
 var fileDescriptor_493d367c49d2df6b = []byte{
-	// 165 bytes of a gzipped FileDescriptorProto
+	// 209 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xcb, 0x28, 0x4d, 0xd2,
 	0x2f, 0xcd, 0xcb, 0x2c, 0x4b, 0x2d, 0x2a, 0xce, 0x2c, 0xc9, 0x4c, 0x2d, 0xd6, 0x2b, 0x28, 0xca,
-	0x2f, 0xc9, 0x17, 0x62, 0xcf, 0x28, 0x4d, 0xd2, 0xcb, 0x28, 0x4d, 0x52, 0x9a, 0xc4, 0xc8, 0xc5,
+	0x2f, 0xc9, 0x17, 0x62, 0xcf, 0x28, 0x4d, 0xd2, 0xcb, 0x28, 0x4d, 0x52, 0x7a, 0xc4, 0xc8, 0xc5,
 	0x13, 0x8a, 0x24, 0x2f, 0xa4, 0xc6, 0xc5, 0x07, 0x57, 0x5f, 0xe9, 0x97, 0x98, 0x9b, 0x2a, 0xc1,
 	0xa8, 0xc0, 0xa8, 0xc1, 0x19, 0x84, 0x26, 0x2a, 0xa4, 0xc1, 0xc5, 0x8f, 0x6c, 0xae, 0x77, 0x6a,
 	0xa5, 0x04, 0x13, 0x58, 0x21, 0xba, 0xb0, 0x90, 0x01, 0x97, 0x30, 0xb2, 0x90, 0x73, 0x7e, 0x69,
-	0x5e, 0x49, 0x51, 0xa5, 0x04, 0x33, 0x58, 0x35, 0x36, 0x29, 0x27, 0xcd, 0x13, 0x8f, 0xe4, 0x18,
-	0x2f, 0x3c, 0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5,
-	0x18, 0x6e, 0x3c, 0x96, 0x63, 0x88, 0xe2, 0x07, 0xf9, 0xa7, 0x42, 0x1f, 0x44, 0x96, 0x54, 0x16,
-	0xa4, 0x16, 0x27, 0xb1, 0x81, 0xfd, 0x63, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x00, 0xc2, 0x5a,
-	0x69, 0xe9, 0x00, 0x00, 0x00,
+	0x5e, 0x49, 0x51, 0xa5, 0x04, 0x33, 0x58, 0x35, 0x36, 0x29, 0x21, 0x19, 0x2e, 0xce, 0xe4, 0x8c,
+	0xc4, 0xcc, 0x3c, 0xb0, 0xf5, 0x2c, 0x60, 0x75, 0x08, 0x01, 0x21, 0x21, 0x2e, 0x96, 0x82, 0xfc,
+	0xa2, 0x12, 0x09, 0x56, 0xb0, 0x04, 0x98, 0x0d, 0xd5, 0x91, 0x97, 0x97, 0x9a, 0xe3, 0xe9, 0x22,
+	0xc1, 0x06, 0xd7, 0x01, 0x11, 0x70, 0xd2, 0x3c, 0xf1, 0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6,
+	0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8, 0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39,
+	0x86, 0x28, 0x7e, 0x50, 0xf8, 0x54, 0xe8, 0x83, 0xc8, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36,
+	0x70, 0xf8, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x2e, 0xaf, 0x80, 0x8d, 0x39, 0x01, 0x00,
+	0x00,
 }
 
 func (m *Universities) Marshal() (dAtA []byte, err error) {
@@ -123,6 +150,27 @@ func (m *Universities) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if len(m.ChannelID) > 0 {
+		i -= len(m.ChannelID)
+		copy(dAtA[i:], m.ChannelID)
+		i = encodeVarintUniversities(dAtA, i, uint64(len(m.ChannelID)))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Port) > 0 {
+		i -= len(m.Port)
+		copy(dAtA[i:], m.Port)
+		i = encodeVarintUniversities(dAtA, i, uint64(len(m.Port)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.ChainName) > 0 {
+		i -= len(m.ChainName)
+		copy(dAtA[i:], m.ChainName)
+		i = encodeVarintUniversities(dAtA, i, uint64(len(m.ChainName)))
+		i--
+		dAtA[i] = 0x22
+	}
 	if len(m.UniversitiesCountry) > 0 {
 		i -= len(m.UniversitiesCountry)
 		copy(dAtA[i:], m.UniversitiesCountry)
@@ -173,6 +221,18 @@ func (m *Universities) Size() (n int) {
 		n += 1 + l + sovUniversities(uint64(l))
 	}
 	l = len(m.UniversitiesCountry)
+	if l > 0 {
+		n += 1 + l + sovUniversities(uint64(l))
+	}
+	l = len(m.ChainName)
+	if l > 0 {
+		n += 1 + l + sovUniversities(uint64(l))
+	}
+	l = len(m.Port)
+	if l > 0 {
+		n += 1 + l + sovUniversities(uint64(l))
+	}
+	l = len(m.ChannelID)
 	if l > 0 {
 		n += 1 + l + sovUniversities(uint64(l))
 	}
@@ -309,6 +369,102 @@ func (m *Universities) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.UniversitiesCountry = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ChainName", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowUniversities
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthUniversities
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthUniversities
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ChainName = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowUniversities
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthUniversities
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthUniversities
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Port = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ChannelID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowUniversities
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthUniversities
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthUniversities
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ChannelID = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

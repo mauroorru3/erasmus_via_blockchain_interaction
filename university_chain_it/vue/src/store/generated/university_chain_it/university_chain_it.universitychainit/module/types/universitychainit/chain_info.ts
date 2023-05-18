@@ -9,6 +9,7 @@ export interface ChainInfo {
   country: string;
   chainAdministratorKey: string;
   initStatus: boolean;
+  chainName: string;
 }
 
 const baseChainInfo: object = {
@@ -17,6 +18,7 @@ const baseChainInfo: object = {
   country: "",
   chainAdministratorKey: "",
   initStatus: false,
+  chainName: "",
 };
 
 export const ChainInfo = {
@@ -35,6 +37,9 @@ export const ChainInfo = {
     }
     if (message.initStatus === true) {
       writer.uint32(40).bool(message.initStatus);
+    }
+    if (message.chainName !== "") {
+      writer.uint32(50).string(message.chainName);
     }
     return writer;
   },
@@ -60,6 +65,9 @@ export const ChainInfo = {
           break;
         case 5:
           message.initStatus = reader.bool();
+          break;
+        case 6:
+          message.chainName = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -99,6 +107,11 @@ export const ChainInfo = {
     } else {
       message.initStatus = false;
     }
+    if (object.chainName !== undefined && object.chainName !== null) {
+      message.chainName = String(object.chainName);
+    } else {
+      message.chainName = "";
+    }
     return message;
   },
 
@@ -110,6 +123,7 @@ export const ChainInfo = {
     message.chainAdministratorKey !== undefined &&
       (obj.chainAdministratorKey = message.chainAdministratorKey);
     message.initStatus !== undefined && (obj.initStatus = message.initStatus);
+    message.chainName !== undefined && (obj.chainName = message.chainName);
     return obj;
   },
 
@@ -142,6 +156,11 @@ export const ChainInfo = {
       message.initStatus = object.initStatus;
     } else {
       message.initStatus = false;
+    }
+    if (object.chainName !== undefined && object.chainName !== null) {
+      message.chainName = object.chainName;
+    } else {
+      message.chainName = "";
     }
     return message;
   },

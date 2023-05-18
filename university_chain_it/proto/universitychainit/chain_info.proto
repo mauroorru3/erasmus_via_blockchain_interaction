@@ -9,4 +9,5 @@ message ChainInfo {
   string country = 3; 
   string chainAdministratorKey = 4;
   bool initStatus = 5;
+  string chainName = 6;
 }
