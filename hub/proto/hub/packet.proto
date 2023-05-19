@@ -2,6 +2,7 @@ syntax = "proto3";
 package hub.hub;
 
 // this line is used by starport scaffolding # proto/packet/import
+import "hub/erasmus_info.proto";
 import "hub/stored_student.proto";
 
 option go_package = "hub/x/hub/types";
@@ -10,6 +11,7 @@ message HubPacketData {
     oneof packet {
         NoData noData = 1;
         // this line is used by starport scaffolding # ibc/packet/proto/field
+				EndErasmusPeriodRequestPacketData endErasmusPeriodRequestPacket = 4; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				ErasmusIndexPacketData erasmusIndexPacket = 3; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 	ErasmusStudentPacketData erasmusStudentPacket = 2; // this line is used by starport scaffolding # ibc/packet/proto/field/number
     }
@@ -38,4 +40,17 @@ message ErasmusIndexPacketData {
 // ErasmusIndexPacketAck defines a struct for the packet acknowledgment
 message ErasmusIndexPacketAck {
 	}
+// EndErasmusPeriodRequestPacketData defines a struct for the packet payload
+message EndErasmusPeriodRequestPacketData {
+  string startingUniversityName = 1;
+  string destinationUniversityName = 2;
+  string index = 3;
+  string foreignIndex = 4;
+  
+}
+
+// EndErasmusPeriodRequestPacketAck defines a struct for the packet acknowledgment
+message EndErasmusPeriodRequestPacketAck {
+	  ErasmusInfo erasmusData = 1;
+}
 // this line is used by starport scaffolding # ibc/packet/proto/message

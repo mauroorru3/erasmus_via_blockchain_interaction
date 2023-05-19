@@ -45733,6 +45733,12 @@ definitions:
       status:
         type: integer
         format: int32
+  hub.hub.MsgSendEndErasmusPeriodRequestResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
   hub.hub.MsgSendErasmusIndexResponse:
     type: object
   hub.hub.MsgSendErasmusStudentResponse:

@@ -111,6 +111,11 @@ export interface UniversitychainitMsgRegisterNewStudentResponse {
   studentIndex?: string;
 }
 
+export interface UniversitychainitMsgSendEndErasmusPeriodRequestResponse {
+  /** @format int32 */
+  status?: number;
+}
+
 export interface UniversitychainitMsgSendErasmusStudentResponse {
   /** @format int32 */
   status?: number;

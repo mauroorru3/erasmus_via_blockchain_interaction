@@ -4,31 +4,30 @@ import (
 	"context"
 	"strings"
 
-	"hub/x/hub/types"
-	"hub/x/hub/utilfunc"
+	"university_chain_it/x/universitychainit/types"
+	"university_chain_it/x/universitychainit/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 )
 
-func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendErasmusStudent) (*types.MsgSendErasmusStudentResponse, error) {
-	ctx := sdk.UnwrapSDKContext(goCtx)
+func (k msgServer) SendEndErasmusPeriodRequest(goCtx context.Context, msg *types.MsgSendEndErasmusPeriodRequest) (*types.MsgSendEndErasmusPeriodRequestResponse, error) {
 
-	// TODO: logic before transmitting the packet
+	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	chainInfo, found := k.Keeper.GetChainInfo(ctx)
 	if !found {
 		panic("ChainInfo not found")
 	} else {
 		if !chainInfo.InitStatus {
-			return &types.MsgSendErasmusStudentResponse{
+			return &types.MsgSendEndErasmusPeriodRequestResponse{
 				Status: -1,
 			}, types.ErrChainConfigurationNotDone
 		} else {
 
-			_, found := k.Keeper.GetUniversities(ctx, strings.Split(msg.Index, "_")[0])
+			_, found := k.Keeper.GetUniversityInfo(ctx, strings.Split(msg.Index, "_")[0])
 			if !found {
-				return &types.MsgSendErasmusStudentResponse{
+				return &types.MsgSendEndErasmusPeriodRequestResponse{
 					Status: -1,
 				}, types.ErrWrongNameUniversity
 			} else {
@@ -36,12 +35,12 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 				searchedStudent, found := k.Keeper.GetStoredStudent(ctx, msg.Index)
 
 				if !found {
-					return &types.MsgSendErasmusStudentResponse{
+					return &types.MsgSendEndErasmusPeriodRequestResponse{
 						Status: -1,
 					}, types.ErrStudentNotPresent
 				} else {
 					if searchedStudent.GetStudentData().GetStudentKey() != msg.Creator {
-						return &types.MsgSendErasmusStudentResponse{
+						return &types.MsgSendEndErasmusPeriodRequestResponse{
 							Status: -1,
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
@@ -49,7 +48,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 						err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 						if err != nil {
-							return &types.MsgSendErasmusStudentResponse{
+							return &types.MsgSendEndErasmusPeriodRequestResponse{
 								Status: -1,
 							}, types.ErrIncompleteStudentInformation
 						} else {
@@ -57,46 +56,49 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 							ok, err := utilfunc.CheckTaxPayment(searchedStudent)
 
 							if err != nil {
-								return &types.MsgSendErasmusStudentResponse{
+								return &types.MsgSendEndErasmusPeriodRequestResponse{
 									Status: -1,
 								}, err
 							} else {
 								if !ok {
-									return &types.MsgSendErasmusStudentResponse{
+									return &types.MsgSendEndErasmusPeriodRequestResponse{
 										Status: -1,
 									}, types.ErrUnpaidTaxes
 								} else {
 
 									res, err := utilfunc.CheckErasmusStatus(searchedStudent)
 									if err != nil {
-										return &types.MsgSendErasmusStudentResponse{
+										return &types.MsgSendEndErasmusPeriodRequestResponse{
 											Status: -1,
 										}, err
 									} else {
 										if res == "" {
-											return &types.MsgSendErasmusStudentResponse{
+											return &types.MsgSendEndErasmusPeriodRequestResponse{
 												Status: -1,
 											}, types.ErrNoErasmusRequest
-										} else if res == "to start" {
-											return &types.MsgSendErasmusStudentResponse{
+										} else if res == "in progress" {
+											return &types.MsgSendEndErasmusPeriodRequestResponse{
 												Status: -1,
 											}, types.ErrPreviousRequestInProgress
-										} else if res == "terminated" {
-											return &types.MsgSendErasmusStudentResponse{
+										} else if res == "to start" {
+											return &types.MsgSendEndErasmusPeriodRequestResponse{
 												Status: -1,
-											}, types.ErrPreviousRequestCompleted
+											}, types.ErrPreviousRequestStartup
 										} else {
 
 											// TODO: logic before transmitting the packet
 
-											utilfunc.PrintLogs("SendErasmusStudent")
+											utilfunc.PrintLogs("SendEndErasmusPeriodRequest")
 
-											var packet types.ErasmusStudentPacketData
+											var packet types.EndErasmusPeriodRequestPacketData
 
-											packet.Student = &searchedStudent
+											packet.StartingUniversityName = msg.StartingUniversityName
+											packet.DestinationUniversityName = msg.DestinationUniversityName
+											packet.Index = msg.Index
+											packet.ForeignIndex = msg.ForeignIndex
 
 											// Transmit the packet
-											err = k.TransmitErasmusStudentPacket(
+											err = k.TransmitEndErasmusPeriodRequestPacket(
 												ctx,
 												packet,
 												msg.Port,
@@ -106,11 +108,11 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 											)
 											if err != nil {
 												return nil, err
-											} else {
-												return &types.MsgSendErasmusStudentResponse{
-													Status: 0,
-												}, nil
 											}
+
+											return &types.MsgSendEndErasmusPeriodRequestResponse{
+												Status: 0,
+											}, nil
 										}
 									}
 								}

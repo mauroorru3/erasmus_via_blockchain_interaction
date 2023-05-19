@@ -11,80 +11,85 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 )
 
-func (k msgServer) SendErasmusIndex(goCtx context.Context, msg *types.MsgSendErasmusIndex) (*types.MsgSendErasmusIndexResponse, error) {
+func (k msgServer) SendEndErasmusPeriodRequest(goCtx context.Context, msg *types.MsgSendEndErasmusPeriodRequest) (*types.MsgSendEndErasmusPeriodRequestResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// TODO: logic before transmitting the packet
 
 	chainInfo, found := k.Keeper.GetChainInfo(ctx)
 	if !found {
 		panic("ChainInfo not found")
 	} else {
 		if !chainInfo.InitStatus {
-			return &types.MsgSendErasmusIndexResponse{},
+			return &types.MsgSendEndErasmusPeriodRequestResponse{},
 				types.ErrChainConfigurationNotDone
 		} else {
 
 			_, found := k.Keeper.GetUniversities(ctx, strings.Split(msg.Index, "_")[0])
 			if !found {
-				return &types.MsgSendErasmusIndexResponse{},
+				return &types.MsgSendEndErasmusPeriodRequestResponse{},
 					types.ErrWrongNameUniversity
 			} else {
 
 				searchedStudent, found := k.Keeper.GetStoredStudent(ctx, msg.Index)
 
 				if !found {
-					return &types.MsgSendErasmusIndexResponse{},
+					return &types.MsgSendEndErasmusPeriodRequestResponse{},
 						types.ErrStudentNotPresent
 				} else {
 					if searchedStudent.GetStudentData().GetStudentKey() != msg.Creator {
-						return &types.MsgSendErasmusIndexResponse{},
+						return &types.MsgSendEndErasmusPeriodRequestResponse{},
 							types.ErrKeyEnteredMismatchStudent
 					} else {
 
 						err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 						if err != nil {
-							return &types.MsgSendErasmusIndexResponse{},
+							return &types.MsgSendEndErasmusPeriodRequestResponse{},
 								types.ErrIncompleteStudentInformation
 						} else {
 
 							ok, err := utilfunc.CheckTaxPayment(searchedStudent)
 
 							if err != nil {
-								return &types.MsgSendErasmusIndexResponse{},
+								return &types.MsgSendEndErasmusPeriodRequestResponse{},
 									err
 							} else {
 								if !ok {
-									return &types.MsgSendErasmusIndexResponse{},
+									return &types.MsgSendEndErasmusPeriodRequestResponse{},
 										types.ErrUnpaidTaxes
 								} else {
 
 									res, err := utilfunc.CheckErasmusStatus(searchedStudent)
 									if err != nil {
-										return &types.MsgSendErasmusIndexResponse{},
+										return &types.MsgSendEndErasmusPeriodRequestResponse{},
 											err
 									} else {
 										if res == "" {
-											return &types.MsgSendErasmusIndexResponse{},
+											return &types.MsgSendEndErasmusPeriodRequestResponse{},
 												types.ErrNoErasmusRequest
 										} else if res == "to start" {
-											return &types.MsgSendErasmusIndexResponse{},
+											return &types.MsgSendEndErasmusPeriodRequestResponse{},
 												types.ErrPreviousRequestInProgress
 										} else if res == "terminated" {
-											return &types.MsgSendErasmusIndexResponse{},
+											return &types.MsgSendEndErasmusPeriodRequestResponse{},
 												types.ErrPreviousRequestCompleted
 										} else {
 
 											// TODO: logic before transmitting the packet
 
-											utilfunc.PrintLogs("SendErasmusIndex")
+											utilfunc.PrintLogs("SendEndErasmusPeriodRequest")
 
-											var packet types.ErasmusIndexPacketData
+											// Construct the packet
+											var packet types.EndErasmusPeriodRequestPacketData
 
+											packet.StartingUniversityName = msg.StartingUniversityName
+											packet.DestinationUniversityName = msg.DestinationUniversityName
 											packet.Index = msg.Index
 											packet.ForeignIndex = msg.ForeignIndex
 
 											// Transmit the packet
-											err := k.TransmitErasmusIndexPacket(
+											err := k.TransmitEndErasmusPeriodRequestPacket(
 												ctx,
 												packet,
 												msg.Port,
@@ -96,7 +101,7 @@ func (k msgServer) SendErasmusIndex(goCtx context.Context, msg *types.MsgSendEra
 												return nil, err
 											}
 
-											return &types.MsgSendErasmusIndexResponse{}, nil
+											return &types.MsgSendEndErasmusPeriodRequestResponse{}, nil
 										}
 									}
 								}

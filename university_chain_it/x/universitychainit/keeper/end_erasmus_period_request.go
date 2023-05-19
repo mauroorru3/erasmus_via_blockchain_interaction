@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"errors"
-	"strconv"
 
 	"university_chain_it/x/universitychainit/types"
 	"university_chain_it/x/universitychainit/utilfunc"
@@ -14,10 +13,10 @@ import (
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 )
 
-// TransmitErasmusStudentPacket transmits the packet over IBC with the specified source port and source channel
-func (k Keeper) TransmitErasmusStudentPacket(
+// TransmitEndErasmusPeriodRequestPacket transmits the packet over IBC with the specified source port and source channel
+func (k Keeper) TransmitEndErasmusPeriodRequestPacket(
 	ctx sdk.Context,
-	packetData types.ErasmusStudentPacketData,
+	packetData types.EndErasmusPeriodRequestPacketData,
 	sourcePort,
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
@@ -69,8 +68,8 @@ func (k Keeper) TransmitErasmusStudentPacket(
 	return nil
 }
 
-// OnRecvErasmusStudentPacket processes packet reception
-func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData) (packetAck types.ErasmusStudentPacketAck, err error) {
+// OnRecvEndErasmusPeriodRequestPacket processes packet reception
+func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData) (packetAck types.EndErasmusPeriodRequestPacketAck, err error) {
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
@@ -78,47 +77,36 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	// TODO: packet reception logic
 
-	destinationUni, err := utilfunc.GetForeignUniversityName(*data.Student)
-	if err != nil {
-		return packetAck, err
+	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket")
+
+	searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
+	if !found {
+		return packetAck, types.ErrStudentNotPresent
 	} else {
-
-		uniInfo, found := k.GetUniversityInfo(ctx, destinationUni)
-		if !found {
-			return packetAck, types.ErrWrongNameUniversity
-		} else {
-
-			packetAck.Index = data.Student.Index
-			packetAck.StartingUniversityName = data.Student.StudentData.UniversityName
-			data.Student.ErasmusData.ErasmusStudent = "incoming"
-			data.Student.Index = uniInfo.UniversityName + "_" + strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
-			packetAck.ForeignIndex = data.Student.Index
-
-			k.SetStoredStudent(ctx, *data.Student)
-
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
-
-			return packetAck, nil
-		}
+		searchedStudent.ErasmusData.ErasmusStudent = "Incoming completed"
+		k.SetStoredStudent(ctx, searchedStudent)
+		packetAck.HomeIndex = data.Index
+		packetAck.ErasmusData = searchedStudent.ErasmusData
+		return packetAck, nil
 	}
+
 }
 
-// OnAcknowledgementErasmusStudentPacket responds to the the success or failure of a packet
+// OnAcknowledgementEndErasmusPeriodRequestPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
-func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData, ack channeltypes.Acknowledgement) error {
+func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData, ack channeltypes.Acknowledgement) error {
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
 		// TODO: failed acknowledgement logic
-
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error" + dispatchedAck.Error)
-
 		_ = dispatchedAck.Error
+
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + dispatchedAck.Error)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
-		var packetAck types.ErasmusStudentPacketAck
+		var packetAck types.EndErasmusPeriodRequestPacketAck
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
@@ -127,7 +115,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success")
 
 		return nil
 	default:
@@ -136,12 +124,12 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 	}
 }
 
-// OnTimeoutErasmusStudentPacket responds to the case where a packet has not been transmitted because of a timeout
-func (k Keeper) OnTimeoutErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData) error {
+// OnTimeoutEndErasmusPeriodRequestPacket responds to the case where a packet has not been transmitted because of a timeout
+func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData) error {
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutErasmusStudentPacket")
+	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket")
 
 	return nil
 }

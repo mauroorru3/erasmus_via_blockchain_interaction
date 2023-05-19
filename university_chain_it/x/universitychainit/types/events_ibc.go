@@ -2,9 +2,10 @@ package types
 
 // IBC events
 const (
-	EventTypeTimeout              = "timeout"
-	EventTypeErasmusStudentPacket = "erasmusStudent_packet"
-	EventTypeErasmusIndexPacket   = "erasmusIndex_packet"
+	EventTypeTimeout                       = "timeout"
+	EventTypeErasmusStudentPacket          = "erasmusStudent_packet"
+	EventTypeErasmusIndexPacket            = "erasmusIndex_packet"
+	EventTypeEndErasmusPeriodRequestPacket = "endErasmusPeriodRequest_packet"
 	// this line is used by starport scaffolding # ibc/packet/event
 
 	AttributeKeyAckSuccess = "success"

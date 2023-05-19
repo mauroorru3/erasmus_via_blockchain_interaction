@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"hub/x/hub/types"
+	"hub/x/hub/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -74,6 +75,8 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 		return packetAck, err
 	}
 
+	utilfunc.PrintLogs("OnRecvErasmusIndexPacket")
+
 	// TODO: packet reception logic
 
 	return packetAck, nil
@@ -88,6 +91,8 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error " + dispatchedAck.Error)
+
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
@@ -100,6 +105,8 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 
 		// TODO: successful acknowledgement logic
 
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
+
 		return nil
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
@@ -111,6 +118,8 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) error {
 
 	// TODO: packet timeout logic
+
+	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket")
 
 	return nil
 }

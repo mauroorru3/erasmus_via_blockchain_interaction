@@ -50956,6 +50956,12 @@ definitions:
     properties:
       studentIndex:
         type: string
+  university_chain_it.universitychainit.MsgSendEndErasmusPeriodRequestResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
   university_chain_it.universitychainit.MsgSendErasmusStudentResponse:
     type: object
     properties:

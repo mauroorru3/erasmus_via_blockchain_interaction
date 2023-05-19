@@ -2,10 +2,7 @@ package keeper
 
 import (
 	"context"
-	"fmt"
-	"os"
 	"strings"
-	"time"
 
 	"university_chain_it/x/universitychainit/types"
 	"university_chain_it/x/universitychainit/utilfunc"
@@ -91,25 +88,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 											// TODO: logic before transmitting the packet
 
-											file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-
-											if err != nil {
-												fmt.Println("Could not open logs.txt - SendErasmusStudent")
-												return nil, err
-											}
-
-											defer file.Close()
-
-											dt := time.Now()
-
-											_, err2 := file.WriteString("SendErasmusStudent " + utilfunc.FormatDeadline(dt) + "\n")
-
-											if err2 != nil {
-												fmt.Println("Could not write text to logs.txt - SendErasmusStudent")
-
-											} else {
-												fmt.Println("Operation successful! Text has been appended to logs.txt - SendErasmusStudent")
-											}
+											utilfunc.PrintLogs("SendErasmusStudent")
 
 											var packet types.ErasmusStudentPacketData
 

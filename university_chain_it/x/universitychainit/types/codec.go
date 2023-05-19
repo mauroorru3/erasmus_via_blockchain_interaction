@@ -19,6 +19,7 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgInsertErasmusExam{}, "universitychainit/InsertErasmusExam", nil)
 	cdc.RegisterConcrete(&MsgStartErasmus{}, "universitychainit/StartErasmus", nil)
 	cdc.RegisterConcrete(&MsgSendErasmusStudent{}, "universitychainit/SendErasmusStudent", nil)
+	cdc.RegisterConcrete(&MsgSendEndErasmusPeriodRequest{}, "universitychainit/SendEndErasmusPeriodRequest", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -55,6 +56,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgSendErasmusStudent{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgSendEndErasmusPeriodRequest{},
 	)
 	// this line is used by starport scaffolding # 3
 

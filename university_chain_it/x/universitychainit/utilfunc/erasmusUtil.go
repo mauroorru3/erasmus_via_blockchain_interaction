@@ -586,9 +586,13 @@ func CloseErasmusPeriod(student *types.StoredStudent) (err error) {
 
 	lenCareer := len(erasmusCareer)
 
-	student.ErasmusData.ErasmusStudent = "outgoing (completed)"
+	//student.ErasmusData.ErasmusStudent = "outgoing completed"
 
-	erasmusCareer[lenCareer-1].Status = "terminated"
+	student.ErasmusData.ErasmusStudent = "waiting for updated data from the destination university"
+
+	//erasmusCareer[lenCareer-1].Status = "terminated"
+
+	erasmusCareer[lenCareer-1].Status = "waiting for updated data from the destination university"
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {
@@ -621,4 +625,37 @@ func SetForeignIndex(student *types.StoredStudent, foreignIndex string) (err err
 	student.ErasmusData.Career = string(resultByteJSON)
 
 	return err
+}
+
+func GetForeignIndex(student types.StoredStudent) (foreignIndex string, err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return foreignIndex, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	foreignIndex = erasmusCareer[lenCareer-1].Foreign_university_student_id
+
+	return foreignIndex, err
+
+}
+
+func GetForeignUniversityName(student types.StoredStudent) (res string, err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return res, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	res = erasmusCareer[lenCareer-1].Foreign_university_name
+
+	return res, err
 }

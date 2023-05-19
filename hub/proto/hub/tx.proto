@@ -11,6 +11,7 @@ service Msg {
       rpc SendErasmusStudent(MsgSendErasmusStudent) returns (MsgSendErasmusStudentResponse);
   rpc ConfigureChain(MsgConfigureChain) returns (MsgConfigureChainResponse);
   rpc SendErasmusIndex(MsgSendErasmusIndex) returns (MsgSendErasmusIndexResponse);
+  rpc SendEndErasmusPeriodRequest(MsgSendEndErasmusPeriodRequest) returns (MsgSendEndErasmusPeriodRequestResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -45,5 +46,19 @@ message MsgSendErasmusIndex {
 }
 
 message MsgSendErasmusIndexResponse {
+}
+message MsgSendEndErasmusPeriodRequest {
+  string creator = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  string startingUniversityName = 5;
+  string destinationUniversityName = 6;
+  string index = 7;
+  string foreignIndex = 8;
+}
+
+message MsgSendEndErasmusPeriodRequestResponse {
+  int32 status = 1;
 }
 // this line is used by starport scaffolding # proto/tx/message
