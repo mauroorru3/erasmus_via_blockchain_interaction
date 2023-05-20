@@ -12,6 +12,21 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
+// grade conversion structure
+
+const erasmusGradeConversionJSON string = "gradesConversion.json"
+
+type GradesInfo struct {
+	CountryName string   `json:"country_name"`
+	Grades      []string `json:"grades"`
+}
+
+type CountryGradesList struct {
+	Grades_data []GradesInfo `json:"countryList"`
+}
+
+//------------------------------------
+
 var erasmusTypeMap = map[string]int{
 	"study":       1,
 	"traineeship": 1,
@@ -658,4 +673,158 @@ func GetForeignUniversityName(student types.StoredStudent) (res string, err erro
 	res = erasmusCareer[lenCareer-1].Foreign_university_name
 
 	return res, err
+}
+
+func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusInfo) (err error) {
+
+	student.ErasmusData = erasmusInfo
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	student.ErasmusData.ErasmusStudent = "outgoing completed"
+
+	erasmusCareer[lenCareer-1].Status = "terminated"
+
+	// get the grade conversions structure
+
+	// grade conversion taken in https://guide.unibz.it/assets/2021-08-06-Tabella-di-conversione-voti.pdf
+
+	// Open our jsonFile
+	jsonFile, err := os.OpenFile("data/"+erasmusGradeConversionJSON, os.O_RDONLY, 0444)
+	// if we os.Open returns an error then handle it
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return err
+	}
+	fmt.Println("Successfully Opened " + erasmusGradeConversionJSON)
+	// defer the closing of our jsonFile so that we can parse it later on
+	defer jsonFile.Close()
+
+	byteValue, err := io.ReadAll(jsonFile)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return err
+	}
+
+	var erasmusGradesConversion CountryGradesList
+
+	err = json.Unmarshal([]byte(byteValue), &erasmusGradesConversion)
+	fmt.Println("Successfully Unmarshalled " + foreignUniversityInfoJSON)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return err
+	}
+
+	// get the map of exams done during the Erasmus period
+
+	mapExamsErasmus := make(map[string]ExamStruct)
+
+	err = json.Unmarshal([]byte(erasmusCareer[lenCareer-1].Exams_data), &mapExamsErasmus)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return err
+	}
+
+	keys := make([]string, 0, len(mapExamsErasmus))
+	values := make([]ExamStruct, 0, len(mapExamsErasmus))
+
+	for k, v := range mapExamsErasmus {
+		keys = append(keys, k)
+		values = append(values, v)
+	}
+
+	// get the map of global exams
+
+	mapExams := make(map[string]ExamStruct)
+
+	err = json.Unmarshal([]byte(student.TranscriptData.ExamsData), &mapExams)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return err
+	}
+
+	// convert the grades
+
+	found := false
+	i, j, k := 0, 0, 0
+
+	for i = 0; i < len(erasmusGradesConversion.Grades_data) && !found; i++ {
+
+		if erasmusGradesConversion.Grades_data[i].CountryName == erasmusCareer[lenCareer-1].Foreign_university_country {
+			found = true
+		}
+	}
+
+	if !found {
+		return types.ErrWrongForeignUniversity
+	} else {
+
+		for k = 0; k < len(values); k++ {
+			if values[k].Marks != "" {
+				found = false
+				for j = 0; j < len(erasmusGradesConversion.Grades_data[i].Grades) && !found; j += 2 {
+					if values[k].Marks == erasmusGradesConversion.Grades_data[i].Grades[j] {
+						found = true
+					}
+				}
+				if found {
+					val := mapExams[keys[k]]
+					val.Marks = erasmusGradesConversion.Grades_data[i].Grades[j+1]
+					val.Status = values[k].Status
+					val.Exam_date = values[k].Exam_date
+					mapExams[keys[k]] = val
+				}
+
+			}
+		}
+
+		// convert all the structure to string
+
+		// global exams
+
+		resultByteGlobalExamsJSON, err := json.Marshal(mapExams)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error "+err.Error())
+			return err
+		}
+
+		globalExamsJSON := string(resultByteGlobalExamsJSON)
+
+		student.TranscriptData.ExamsData = globalExamsJSON
+
+		//-----------------
+
+		// Erasmus exams
+
+		resultExamsByteJSON, err := json.Marshal(mapExamsErasmus)
+		if err != nil {
+			return err
+		}
+
+		examsErasmusJSON := string(resultExamsByteJSON)
+
+		erasmusCareer[lenCareer-1].Exams_data = examsErasmusJSON
+
+		//------------------------
+
+		// Erasmus career
+
+		resultByteCareerJSON, err := json.Marshal(erasmusCareer)
+		if err != nil {
+			return err
+		}
+
+		student.ErasmusData.Career = string(resultByteCareerJSON)
+
+		return err
+
+	}
+
 }

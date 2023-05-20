@@ -2,120 +2,117 @@
 {
     "countryList" : [
         {
-            "_comment": "https://guide.unibz.it/assets/2021-08-06-Tabella-di-conversione-voti.pdf",
-            "name": "Germany",
-            "grades": {
-                "4,0": "18",
-                "3,7": "19",
-                "3,3": "21", 
-                "3,0": "22", 
-                "2,7": "24", 
-                "2,3": "25", 
-                "2,0": "26", 
-                "1,7": "28", 
-                "1,3": "29",
-                "1,0": "30L"
-                }
+            "country_name": "Germany",
+            "grades": ["4,0","18",
+                "3,7", "19",
+                "3,3", "21", 
+                "3,0", "22", 
+                "2,7", "24", 
+                "2,3", "25", 
+                "2,0", "26", 
+                "1,7", "28", 
+                "1,3", "29",
+                "1,0", "30L"]
         },
         {
-            "name": "Bulgaria",
-            "grades": {}
+            "country_name": "Bulgaria",
+            "grades": []
         },
         {
-            "name": "Czech Republic",
-            "grades": {}
+            "country_name": "Czech Republic",
+            "grades": []
         },
         {
-            "name": "Denmark",
-            "grades": {}
+            "country_name": "Denmark",
+            "grades": []
         },
         {
-            "name": "Estonia",
-            "grades": {}
+            "country_name": "Estonia",
+            "grades": []
         },
         {
-            "name": "Ireland",
-            "grades": {}
+            "country_name": "Ireland",
+            "grades": []
         },
         {
-            "name": "Greece",
-            "grades": {}
+            "country_name": "Greece",
+            "grades": []
         },
         {
-            "name": "Spain",
-            "grades": {}
+            "country_name": "Spain",
+            "grades": []
         },
         {
-            "name": "Belgium",
-            "grades": {}
+            "country_name": "Belgium",
+            "grades": []
         },
         {
-            "name": "France",
-            "grades": {}
+            "country_name": "France",
+            "grades": []
         },
         {
-            "name": "Croatia",
-            "grades": {}
+            "country_name": "Croatia",
+            "grades": []
         },
         {
-            "name": "Cyprus",
-            "grades": {}
+            "country_name": "Cyprus",
+            "grades": []
         },
         {
-            "name": "Latvia",
-            "grades": {}
+            "country_name": "Latvia",
+            "grades": []
         },
         {
-            "name": "Lithuania",
-            "grades": {}
+            "country_name": "Lithuania",
+            "grades": []
         },
         {
-            "name": "Luxembourg",
-            "grades": {}
+            "country_name": "Luxembourg",
+            "grades": []
         },
         {
-            "name": "Hungary",
-            "grades": {}
+            "country_name": "Hungary",
+            "grades": []
         },
         {
-            "name": "Malta",
-            "grades": {}
+            "country_name": "Malta",
+            "grades": []
         },
         {
-            "name": "Netherlands",
-            "grades": {}
+            "country_name": "Netherlands",
+            "grades": []
         },
         {
-            "name": "Austria",
-            "grades": {}
+            "country_name": "Austria",
+            "grades": []
         },
         {
-            "name": "Poland",
-            "grades": {}
+            "country_name": "Poland",
+            "grades": []
         },
         {
-            "name": "Portugal",
-            "grades": {}
+            "country_name": "Portugal",
+            "grades": []
         },
         {
-            "name": "Romania",
-            "grades": {}
+            "country_name": "Romania",
+            "grades": []
         },
         {
-            "name": "Slovenia",
-            "grades": {}
+            "country_name": "Slovenia",
+            "grades": []
         },
         {
-            "name": "Slovakia",
-            "grades": {}
+            "country_name": "Slovakia",
+            "grades": []
         },
         {
-            "name": "Finland",
-            "grades": {}
+            "country_name": "Finland",
+            "grades": []
         },
         {
-            "name": "Sweden",
-            "grades": {}
+            "country_name": "Sweden",
+            "grades": []
         }
     ]
 }   

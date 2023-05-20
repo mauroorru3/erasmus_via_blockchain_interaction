@@ -151,7 +151,6 @@ export interface MsgSendEndErasmusPeriodRequest {
   destinationUniversityName: string;
   index: string;
   foreignIndex: string;
-  homeIndex: string;
 }
 
 export interface MsgSendEndErasmusPeriodRequestResponse {
@@ -2560,7 +2559,6 @@ const baseMsgSendEndErasmusPeriodRequest: object = {
   destinationUniversityName: "",
   index: "",
   foreignIndex: "",
-  homeIndex: "",
 };
 
 export const MsgSendEndErasmusPeriodRequest = {
@@ -2591,9 +2589,6 @@ export const MsgSendEndErasmusPeriodRequest = {
     }
     if (message.foreignIndex !== "") {
       writer.uint32(66).string(message.foreignIndex);
-    }
-    if (message.homeIndex !== "") {
-      writer.uint32(74).string(message.homeIndex);
     }
     return writer;
   },
@@ -2633,9 +2628,6 @@ export const MsgSendEndErasmusPeriodRequest = {
           break;
         case 8:
           message.foreignIndex = reader.string();
-          break;
-        case 9:
-          message.homeIndex = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -2700,11 +2692,6 @@ export const MsgSendEndErasmusPeriodRequest = {
     } else {
       message.foreignIndex = "";
     }
-    if (object.homeIndex !== undefined && object.homeIndex !== null) {
-      message.homeIndex = String(object.homeIndex);
-    } else {
-      message.homeIndex = "";
-    }
     return message;
   },
 
@@ -2722,7 +2709,6 @@ export const MsgSendEndErasmusPeriodRequest = {
     message.index !== undefined && (obj.index = message.index);
     message.foreignIndex !== undefined &&
       (obj.foreignIndex = message.foreignIndex);
-    message.homeIndex !== undefined && (obj.homeIndex = message.homeIndex);
     return obj;
   },
 
@@ -2780,11 +2766,6 @@ export const MsgSendEndErasmusPeriodRequest = {
       message.foreignIndex = object.foreignIndex;
     } else {
       message.foreignIndex = "";
-    }
-    if (object.homeIndex !== undefined && object.homeIndex !== null) {
-      message.homeIndex = object.homeIndex;
-    } else {
-      message.homeIndex = "";
     }
     return message;
   },

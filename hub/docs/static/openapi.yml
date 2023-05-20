@@ -45741,7 +45741,17 @@ definitions:
         format: int32
   hub.hub.MsgSendErasmusIndexResponse:
     type: object
+    properties:
+      status:
+        type: integer
+        format: int32
   hub.hub.MsgSendErasmusStudentResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+  hub.hub.MsgSendFinalErasmusDataResponse:
     type: object
     properties:
       status:

@@ -135,12 +135,12 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 			return types.ErrWrongNameUniversity
 		} else {
 
-			var packet_to_send types.ErasmusIndexPacketData
+			var packet_to_send types.FinalErasmusDataPacketData
 
-			//packet_to_send.Index = packetAck.Index
-			//packet_to_send.ForeignIndex = packetAck.ForeignIndex
+			packet_to_send.ErasmusData = packetAck.ErasmusData
+			packet_to_send.HomeIndex = data.Index
 
-			err := k.TransmitErasmusIndexPacket(ctx,
+			err := k.TransmitFinalErasmusDataPacket(ctx,
 				packet_to_send,
 				uniInfo.Port,
 				uniInfo.ChannelID,
@@ -155,7 +155,6 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 			}
 		}
 
-		return nil
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")

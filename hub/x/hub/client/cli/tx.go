@@ -34,6 +34,7 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(CmdConfigureChain())
 	cmd.AddCommand(CmdSendErasmusIndex())
 	cmd.AddCommand(CmdSendEndErasmusPeriodRequest())
+	cmd.AddCommand(CmdSendFinalErasmusData())
 	// this line is used by starport scaffolding # 1
 
 	return cmd

@@ -23,4 +23,5 @@ var (
 	ErrNoErasmusRequest              = sdkerrors.Register(ModuleName, 1110, "the Erasmus request is absent")
 	ErrPreviousRequestInProgress     = sdkerrors.Register(ModuleName, 1111, "previous Erasmus request in progress")
 	ErrPreviousRequestCompleted      = sdkerrors.Register(ModuleName, 1112, "previous Erasmus request completed")
+	ErrNonCallableFunction           = sdkerrors.Register(ModuleName, 1113, "this function cannot be called; the logic of the function is implemented within other functions")
 )

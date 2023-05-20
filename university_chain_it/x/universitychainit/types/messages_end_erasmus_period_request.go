@@ -18,7 +18,6 @@ func NewMsgSendEndErasmusPeriodRequest(
 	destinationUniversityName string,
 	index string,
 	foreignIndex string,
-	homeIndex string,
 ) *MsgSendEndErasmusPeriodRequest {
 	return &MsgSendEndErasmusPeriodRequest{
 		Creator:                   creator,
@@ -29,7 +28,6 @@ func NewMsgSendEndErasmusPeriodRequest(
 		DestinationUniversityName: destinationUniversityName,
 		Index:                     index,
 		ForeignIndex:              foreignIndex,
-		HomeIndex:                 homeIndex,
 	}
 }
 

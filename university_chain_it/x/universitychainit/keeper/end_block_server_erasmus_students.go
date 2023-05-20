@@ -21,7 +21,7 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 		studentIndex := uniList[i].FifoHeadErasmus
 		finish := false
-
+		count := 0
 		for !finish {
 			// Finished moving along
 			if studentIndex == "" {
@@ -39,11 +39,19 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 				s := utilfunc.FormatDeadline(ctx.BlockTime())
 				formattedStartDate, _ := time.Parse(utilfunc.DeadlineLayout, s)
+
+				utilfunc.PrintLogs("current time " + formattedStartDate.String())
+				utilfunc.PrintLogs("deadline " + deadline.String())
+
 				if deadline.Before(formattedStartDate) {
 					//if deadline.Before(ctx.BlockTime()) {
 
 					// Erasmus period is past deadline
+
+					utilfunc.PrintLogs("inside")
+
 					k.RemoveFromFifo(ctx, &storedStudent, &uniList[i])
+
 					k.SetStoredStudent(ctx, storedStudent)
 
 					var packet types.EndErasmusPeriodRequestPacketData
@@ -52,12 +60,14 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 					packet.Index = storedStudent.Index
 
 					foreignUniversityName, err := utilfunc.GetForeignUniversityName(storedStudent)
-					if err == nil {
+					if err != nil {
 						panic(err)
 					} else {
+
 						packet.DestinationUniversityName = foreignUniversityName
 						foreignIndex, err := utilfunc.GetForeignIndex(storedStudent)
-						if err == nil {
+
+						if err != nil {
 							panic(err)
 						} else {
 
@@ -75,8 +85,12 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 								panic(err)
 							}
 
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket")
+
 							// Move along FIFO
 							studentIndex = uniList[i].FifoHeadErasmus
+
+							count++
 						}
 					}
 
@@ -86,7 +100,9 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 			}
 		}
-		k.SetUniversityInfo(ctx, uniList[i])
+		if count > 0 {
+			k.SetUniversityInfo(ctx, uniList[i])
+		}
 
 	}
 

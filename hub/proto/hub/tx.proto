@@ -2,6 +2,7 @@ syntax = "proto3";
 package hub.hub;
 
 // this line is used by starport scaffolding # proto/tx/import
+import "hub/erasmus_info.proto";
 import "hub/stored_student.proto";
 
 option go_package = "hub/x/hub/types";
@@ -12,6 +13,7 @@ service Msg {
   rpc ConfigureChain(MsgConfigureChain) returns (MsgConfigureChainResponse);
   rpc SendErasmusIndex(MsgSendErasmusIndex) returns (MsgSendErasmusIndexResponse);
   rpc SendEndErasmusPeriodRequest(MsgSendEndErasmusPeriodRequest) returns (MsgSendEndErasmusPeriodRequestResponse);
+  rpc SendFinalErasmusData(MsgSendFinalErasmusData) returns (MsgSendFinalErasmusDataResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -46,6 +48,7 @@ message MsgSendErasmusIndex {
 }
 
 message MsgSendErasmusIndexResponse {
+  int32 status = 1;
 }
 message MsgSendEndErasmusPeriodRequest {
   string creator = 1;
@@ -59,6 +62,18 @@ message MsgSendEndErasmusPeriodRequest {
 }
 
 message MsgSendEndErasmusPeriodRequestResponse {
+  int32 status = 1;
+}
+message MsgSendFinalErasmusData {
+  string creator = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  ErasmusInfo erasmusData = 5;
+  string homeIndex = 6;
+}
+
+message MsgSendFinalErasmusDataResponse {
   int32 status = 1;
 }
 // this line is used by starport scaffolding # proto/tx/message

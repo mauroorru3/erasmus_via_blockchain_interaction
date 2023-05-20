@@ -11,6 +11,7 @@ message HubPacketData {
     oneof packet {
         NoData noData = 1;
         // this line is used by starport scaffolding # ibc/packet/proto/field
+				FinalErasmusDataPacketData finalErasmusDataPacket = 5; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				EndErasmusPeriodRequestPacketData endErasmusPeriodRequestPacket = 4; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				ErasmusIndexPacketData erasmusIndexPacket = 3; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 	ErasmusStudentPacketData erasmusStudentPacket = 2; // this line is used by starport scaffolding # ibc/packet/proto/field/number
@@ -27,9 +28,7 @@ message ErasmusStudentPacketData {
 
 // ErasmusStudentPacketAck defines a struct for the packet acknowledgment
 message ErasmusStudentPacketAck {
-  string index = 1;
-  string foreign_index = 2;
-  string starting_university_name = 3;
+  string foreign_index = 1;
 	}
 // ErasmusIndexPacketData defines a struct for the packet payload
 message ErasmusIndexPacketData {
@@ -53,4 +52,13 @@ message EndErasmusPeriodRequestPacketData {
 message EndErasmusPeriodRequestPacketAck {
 	  ErasmusInfo erasmusData = 1;
 }
+// FinalErasmusDataPacketData defines a struct for the packet payload
+message FinalErasmusDataPacketData {
+  ErasmusInfo erasmusData = 1;
+  string homeIndex = 2;
+}
+
+// FinalErasmusDataPacketAck defines a struct for the packet acknowledgment
+message FinalErasmusDataPacketAck {
+	}
 // this line is used by starport scaffolding # ibc/packet/proto/message

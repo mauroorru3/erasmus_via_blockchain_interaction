@@ -13,10 +13,10 @@ import (
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 )
 
-// TransmitEndErasmusPeriodRequestPacket transmits the packet over IBC with the specified source port and source channel
-func (k Keeper) TransmitEndErasmusPeriodRequestPacket(
+// TransmitFinalErasmusDataPacket transmits the packet over IBC with the specified source port and source channel
+func (k Keeper) TransmitFinalErasmusDataPacket(
 	ctx sdk.Context,
-	packetData types.EndErasmusPeriodRequestPacketData,
+	packetData types.FinalErasmusDataPacketData,
 	sourcePort,
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
@@ -68,44 +68,43 @@ func (k Keeper) TransmitEndErasmusPeriodRequestPacket(
 	return nil
 }
 
-// OnRecvEndErasmusPeriodRequestPacket processes packet reception
-func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData) (packetAck types.EndErasmusPeriodRequestPacketAck, err error) {
+// OnRecvFinalErasmusDataPacket processes packet reception
+func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData) (packetAck types.FinalErasmusDataPacketAck, err error) {
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
 	}
 
+	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket")
+
 	// TODO: packet reception logic
 
-	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket")
-
-	searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
+	searchedStudent, found := k.GetStoredStudent(ctx, data.HomeIndex)
 	if !found {
 		return packetAck, types.ErrStudentNotPresent
 	} else {
-		searchedStudent.ErasmusData.ErasmusStudent = "Incoming completed"
+		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusData)
 		k.SetStoredStudent(ctx, searchedStudent)
-		packetAck.ErasmusData = searchedStudent.ErasmusData
 		return packetAck, nil
 	}
 
 }
 
-// OnAcknowledgementEndErasmusPeriodRequestPacket responds to the the success or failure of a packet
+// OnAcknowledgementFinalErasmusDataPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
-func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData, ack channeltypes.Acknowledgement) error {
+func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData, ack channeltypes.Acknowledgement) error {
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error " + dispatchedAck.Error)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
-		var packetAck types.EndErasmusPeriodRequestPacketAck
+		var packetAck types.FinalErasmusDataPacketAck
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
@@ -114,7 +113,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success")
 
 		return nil
 	default:
@@ -123,12 +122,12 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 	}
 }
 
-// OnTimeoutEndErasmusPeriodRequestPacket responds to the case where a packet has not been transmitted because of a timeout
-func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData) error {
+// OnTimeoutFinalErasmusDataPacket responds to the case where a packet has not been transmitted because of a timeout
+func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData) error {
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket")
 
 	return nil
 }

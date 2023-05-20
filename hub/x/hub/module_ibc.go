@@ -195,6 +195,25 @@ func (am AppModule) OnRecvPacket(
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
 		)
+	case *types.HubPacketData_FinalErasmusDataPacket:
+		packetAck, err := am.keeper.OnRecvFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket)
+		if err != nil {
+			ack = channeltypes.NewErrorAcknowledgement(err.Error())
+		} else {
+			// Encode packet acknowledgment
+			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+			if err != nil {
+				return channeltypes.NewErrorAcknowledgement(sdkerrors.Wrap(sdkerrors.ErrJSONMarshal, err.Error()).Error())
+			}
+			ack = channeltypes.NewResultAcknowledgement(sdk.MustSortJSON(packetAckBytes))
+		}
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(
+				types.EventTypeFinalErasmusDataPacket,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
+			),
+		)
 		// this line is used by starport scaffolding # ibc/packet/module/recv
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -246,6 +265,12 @@ func (am AppModule) OnAcknowledgementPacket(
 			return err
 		}
 		eventType = types.EventTypeEndErasmusPeriodRequestPacket
+	case *types.HubPacketData_FinalErasmusDataPacket:
+		err := am.keeper.OnAcknowledgementFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket, ack)
+		if err != nil {
+			return err
+		}
+		eventType = types.EventTypeFinalErasmusDataPacket
 		// this line is used by starport scaffolding # ibc/packet/module/ack
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -305,6 +330,11 @@ func (am AppModule) OnTimeoutPacket(
 		}
 	case *types.HubPacketData_EndErasmusPeriodRequestPacket:
 		err := am.keeper.OnTimeoutEndErasmusPeriodRequestPacket(ctx, modulePacket, *packet.EndErasmusPeriodRequestPacket)
+		if err != nil {
+			return err
+		}
+	case *types.HubPacketData_FinalErasmusDataPacket:
+		err := am.keeper.OnTimeoutFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket)
 		if err != nil {
 			return err
 		}

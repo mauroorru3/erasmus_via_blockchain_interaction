@@ -9,5 +9,5 @@ rly keys restore university_chain_it admin_university_chain_it "wrestle rose dec
 rly keys restore hub admin_hub "festival vicious churn air remain section exotic quit attack expose host entry raven north repeat silk hire way draft era thumb boil orbit trust"
 
 
-rly tx link university_chain_it 
+rly tx link university_chain_it -d -t 3s --src-port hub --dst-port hub --version hub-1
 rly start university_chain_it  

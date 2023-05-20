@@ -57,4 +57,5 @@ var (
 	ErrCannotPayErasmusContribution    = sdkerrors.Register(ModuleName, 1144, "the bank module cannot transfer the Erasmus contribution")
 	ErrNoErasmusContributionToPay      = sdkerrors.Register(ModuleName, 1145, "the university does not have to pay Erasmus contribution")
 	ErrErasmusContributionAlreadyPayed = sdkerrors.Register(ModuleName, 1146, "the university has already paid the Erasmus contribution")
+	ErrNonCallableFunction             = sdkerrors.Register(ModuleName, 1147, "this function cannot be called; the logic of the function is implemented within other functions")
 )

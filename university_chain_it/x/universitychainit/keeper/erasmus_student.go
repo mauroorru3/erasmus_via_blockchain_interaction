@@ -88,13 +88,13 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 			return packetAck, types.ErrWrongNameUniversity
 		} else {
 
-			packetAck.Index = data.Student.Index
-			packetAck.StartingUniversityName = data.Student.StudentData.UniversityName
 			data.Student.ErasmusData.ErasmusStudent = "incoming"
 			data.Student.Index = uniInfo.UniversityName + "_" + strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
+			uniInfo.NextStudentId++
 			packetAck.ForeignIndex = data.Student.Index
 
 			k.SetStoredStudent(ctx, *data.Student)
+			k.SetUniversityInfo(ctx, uniInfo)
 
 			utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
 
@@ -111,7 +111,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		// TODO: failed acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error" + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error " + dispatchedAck.Error)
 
 		_ = dispatchedAck.Error
 

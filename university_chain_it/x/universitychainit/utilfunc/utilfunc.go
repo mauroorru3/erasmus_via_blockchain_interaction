@@ -389,5 +389,10 @@ func PrintLogs(text string) error {
 		return err2
 	}
 
+	err2 = file.Sync()
+	if err2 != nil {
+		return err2
+	}
+
 	return nil
 }

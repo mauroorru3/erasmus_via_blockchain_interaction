@@ -1,2 +1,0 @@
-OnAcknowledgementErasmusStudentPacket error port ID (university_chain_de) channel ID (channel-0): channel not found 2023-05-18 19:43:54
-OnAcknowledgementErasmusStudentPacket error port ID (university_chain_de) channel ID (channel-0): channel not found 2023-05-18 19:43:55
