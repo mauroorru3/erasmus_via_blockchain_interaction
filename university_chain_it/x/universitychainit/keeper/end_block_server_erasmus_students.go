@@ -7,7 +7,6 @@ import (
 	"university_chain_it/x/universitychainit/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 )
 
 func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
@@ -40,15 +39,15 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 				s := utilfunc.FormatDeadline(ctx.BlockTime())
 				formattedStartDate, _ := time.Parse(utilfunc.DeadlineLayout, s)
 
-				utilfunc.PrintLogs("current time " + formattedStartDate.String())
-				utilfunc.PrintLogs("deadline " + deadline.String())
+				//utilfunc.PrintLogs("current time " + formattedStartDate.String())
+				//utilfunc.PrintLogs("deadline " + deadline.String())
 
 				if deadline.Before(formattedStartDate) {
 					//if deadline.Before(ctx.BlockTime()) {
 
 					// Erasmus period is past deadline
 
-					utilfunc.PrintLogs("inside")
+					//utilfunc.PrintLogs("inside")
 
 					k.RemoveFromFifo(ctx, &storedStudent, &uniList[i])
 
@@ -73,24 +72,52 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							packet.ForeignIndex = foreignIndex
 
-							err = k.TransmitEndErasmusPeriodRequestPacket(
-								ctx,
-								packet,
-								"hub",
-								"channel-0",
-								clienttypes.ZeroHeight(),
-								timeoutTimestamp,
-							)
-							if err != nil {
-								panic(err)
-							}
+							/*
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket")
+								utilfunc.PrintLogs("prima di SendEndErasmusPeriodRequest")
+
+								_, err := msgServer.SendEndErasmusPeriodRequest(goCtx, &types.MsgSendEndErasmusPeriodRequest{
+									Creator:                   storedStudent.StudentData.StudentKey,
+									Port:                      "hub",
+									ChannelID:                 "channel-0",
+									TimeoutTimestamp:          timeoutTimestamp,
+									StartingUniversityName:    storedStudent.StudentData.UniversityName,
+									DestinationUniversityName: foreignUniversityName,
+									Index:                     storedStudent.Index,
+									ForeignIndex:              foreignIndex,
+								})
+
+								if err != nil {
+									utilfunc.PrintLogs("SendEndErasmusPeriodRequest " + err.Error())
+									panic(err)
+								} else {
+
+							*/
+
+							/*
+
+								err = k.TransmitEndErasmusPeriodRequestPacket(
+									ctx,
+									packet,
+									"hub",
+									"channel-0",
+									clienttypes.ZeroHeight(),
+									timeoutTimestamp,
+								)
+								if err != nil {
+									panic(err)
+								}
+
+
+
+								utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket")
+							*/
 
 							// Move along FIFO
 							studentIndex = uniList[i].FifoHeadErasmus
 
 							count++
+
 						}
 					}
 

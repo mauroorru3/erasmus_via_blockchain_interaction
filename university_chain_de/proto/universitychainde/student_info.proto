@@ -1,0 +1,19 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+message StudentInfo {
+  string name = 1; 
+  string surname = 2; 
+  string courseType = 3; 
+  string courseOfStudy = 4; 
+  string status = 5; 
+  uint32 currentYearOfStudy = 6; 
+  bool outOfCourse = 7; 
+  uint32 numberOfYearsOutOfCourse = 8; 
+  string studentKey = 9; 
+  repeated int32 completeInformation = 10; 
+  string universityName = 11;
+  string chainName = 12;
+}

@@ -1,0 +1,17 @@
+
+{
+    "universitiesList" : [
+        {
+        "name": "unipi",
+        "country": "Italy",
+        "chain_name": "university_chain_it",
+        "address": "cosmos1mhmthq4cx8ltfexahqrhutqxu9d26zltwhh39n"
+        },
+        {
+        "name": "uniroma1",
+        "country": "Italy",
+        "chain_name": "university_chain_it",
+        "address": "cosmos15s2893pv9gxghpqjcuv5j02589005e0w2ss2pv"
+        }
+    ]
+}   

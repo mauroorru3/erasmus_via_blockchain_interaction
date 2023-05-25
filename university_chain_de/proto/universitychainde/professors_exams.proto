@@ -1,0 +1,13 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+message ProfessorsExams {
+  string examName = 1; 
+  string professorName = 2; 
+  string professorId = 3; 
+  string professorKey = 4; 
+  
+}
+

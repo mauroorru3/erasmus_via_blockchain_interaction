@@ -7,7 +7,7 @@ import (
 
 var universities map[string]int = map[string]int{
 	"tum":                 1,
-	"humboldt_university": 1,
+	"humboldt university": 1,
 }
 
 func (foreignUniversity ForeignUniversities) GetForeignUniversityAddress() (address sdk.AccAddress, err error) {

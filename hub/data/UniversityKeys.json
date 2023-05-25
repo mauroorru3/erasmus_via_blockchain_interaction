@@ -6,7 +6,7 @@
             "country": "Italy",
             "chain_name": "university_chain_it",
             "address": "cosmos1mhmthq4cx8ltfexahqrhutqxu9d26zltwhh39n",
-            "port": "university_chain_it",
+            "port": "hub",
             "channel_id": "channel-0"
         },
         {
@@ -14,7 +14,7 @@
             "country": "Italy",
             "chain_name": "university_chain_it",
             "address": "cosmos15s2893pv9gxghpqjcuv5j02589005e0w2ss2pv",
-            "port": "university_chain_it",
+            "port": "hub",
             "channel_id": "channel-0"
         },
         {
@@ -22,7 +22,7 @@
             "country": "Germany",
             "chain_name": "university_chain_de",
             "address": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t",
-            "port": "university_chain_de",
+            "port": "hub",
             "channel_id": "channel-0"
         },
         {
@@ -30,7 +30,7 @@
             "country": "Germany",
             "chain_name": "university_chain_de",
             "address": "cosmos1qyxznuc44rp36se3thc9f5vuxhm73qmlna8l97",
-            "port": "university_chain_de",
+            "port": "hub",
             "channel_id": "channel-0"
         }
     ]

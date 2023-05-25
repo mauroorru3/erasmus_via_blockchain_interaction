@@ -20,17 +20,30 @@ cd university_chain_it
 sudo docker build -f Dockerfile-university_chain_it . -t university_chain_it --no-cache 
 cd ..
 
+# Create the image of the German chain:
+
+cd university_chain_de
+sudo docker build -f Dockerfile-university_chain_de . -t university_chain_de --no-cache 
+cd ..
+
 # Create the image of the Hub:
 
 cd hub
 sudo docker build -f Dockerfile-hub . -t hub --no-cache 
 cd ..
 
-# Create the image of the Relayer:
+# Create the image of the Relayer that connect the Italian chain and the hub:
 
-cd relayer 
-sudo docker build -f Dockerfile . -t relayer --no-cache 
+cd relayer_it_hub
+sudo docker build -f Dockerfile . -t relayer_it_hub --no-cache 
 cd .. 
+
+# Create the image of the Relayer that connect the German chain and the hub:
+
+cd relayer_de_hub
+sudo docker build -f Dockerfile . -t relayer_de_hub --no-cache 
+cd .. 
+
 
 # To allow scripts to be executed within containers:
 

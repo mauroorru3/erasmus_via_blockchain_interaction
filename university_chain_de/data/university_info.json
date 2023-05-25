@@ -1,0 +1,210 @@
+
+{
+    "universitiesList" : [
+        {
+        "name": "tum",
+        "country": "Germany",
+        "secretariat_key": "cosmos1lfamc5y86xs00g5pm46nzyxhe9ftc7tsssjywe",
+        "university_key": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t",
+        "deadline_taxes": "2023-12-31 12:00:00",
+        "deadline_erasmus": "2023-12-31 12:00:00",
+        "max_erasmus_exams": 3,
+        "taxes_brackets": {
+            "first": [6500, 0], 
+            "second": [28000,200],
+            "third": [60000,400],
+            "fourth": 800
+        },
+        "departmentList": 
+            [
+                { 
+                "name": "Computer Science",
+                "CAI": {
+                    "department": "Computer Science",
+                    "Name and Surname": "Franca Lehmann",
+                    "address": "cosmos1nuv9fala0aexzr09k9yupjsnm6qg6aj3w8mcuk"
+                },
+                "courseTypeList": [
+                            {
+                                "name": "master",
+                                "courses": [
+                                    {
+                                    "courseOfStudy": "cs",
+                                    "exams": [
+                                                {
+                                                    "Name and Surname": "Dogan Winkler",
+                                                    "Address": "cosmos1t89y0rpe7vttdxlzf5cmutcnjgsljwecjuqwqn",
+                                                    "examName": "Algorithm engineering",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Dogan Winkler",
+                                                    "Address": "cosmos1au6dnukmzxxg3yxwsq2suwexr4d2ty6qjt200m",
+                                                    "examName": "Advanced databases",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Christiane Reising",
+                                                    "Address": "cosmos1d0yghdzldrhc3w6ngs6zxw8d88cqwuud38zs4y",
+                                                    "examName": "Bioinformatics",
+                                                    "credits": 6,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Dan Lindner",
+                                                    "Address": "cosmos1uv6yywu00k85d8u94dmt6uhmuw88a9w7za74jp",
+                                                    "examName": "Information Retrieval",
+                                                    "credits": 6,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Salih Stolze",
+                                                    "Address": "cosmos1hapkgg0x8k05hn9m5pwzg7tlfwrg5tv6dqtn4h",
+                                                    "examName": "Parallel and Distributed Systems paradigms and models",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Eitel Schweitzer",
+                                                    "Address": "cosmos16n7m8skz0rc3crhc8ll33tfca8k675m66yf2q5",
+                                                    "examName": "Data Mining",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Antonie Barkholz",
+                                                    "Address": "cosmos15uyw0fuhx3z4awf479ces78e2vhfrue6yksyhf",
+                                                    "examName": "Data Mining",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                },
+                                                {
+                                                    "Name and Surname": "Gilbert Harloff",
+                                                    "Address": "cosmos1war0allwxamdsuqm99uaxtvpsnaut5xq5zejsg",
+                                                    "examName": "Computational mathematics for learning and data analysis",
+                                                    "credits": 9,
+                                                    "examType": ""
+                                                }
+                                        ]
+                                        }
+                                        ]      
+                                        },
+                                        {
+                                            "name": "bachelor",
+                                            "courses": []
+                                        },
+                                        {
+                                            "name": "single_cycle_degree",
+                                            "courses": []
+                                        }
+                                        ]
+                }
+            ]
+            },
+            {
+                "name": "humboldt university",
+                "country": "Germany",
+                "secretariat_key": "cosmos1nknwtn4cd975p8cktgmn985xm8tz0typtazcln",
+                "university_key": "cosmos1qyxznuc44rp36se3thc9f5vuxhm73qmlna8l97",
+                "deadline_taxes": "2023-12-31 12:00:00",
+                "deadline_erasmus": "2023-12-31 12:00:00",
+                "max_erasmus_exams": 3,
+                "taxes_brackets": {
+                    "first": [6500, 0], 
+                    "second": [28000,200],
+                    "third": [60000,400],
+                    "fourth": 800
+                },
+                "departmentList": 
+                    [
+                        { 
+                        "name": "Computer Science",
+                        "CAI": {
+                            "department": "Computer Science",
+                            "Name and Surname": "Franca Lehmann",
+                            "address": "cosmos1nuv9fala0aexzr09k9yupjsnm6qg6aj3w8mcuk"
+                        },
+                        "courseTypeList": [
+                            {
+                                "name": "master",
+                                "courses": [
+                                    {
+                                    "courseOfStudy": "cs",
+                                    "exams": [
+                                        {
+                                            "Name and Surname": "Dogan Winkler",
+                                            "Address": "cosmos1t89y0rpe7vttdxlzf5cmutcnjgsljwecjuqwqn",
+                                            "examName": "Algorithm engineering",
+                                            "credits": 9,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Dogan Winkler",
+                                            "Address": "cosmos1au6dnukmzxxg3yxwsq2suwexr4d2ty6qjt200m",
+                                            "examName": "Advanced databases",
+                                            "credits": 9,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Christiane Reising",
+                                            "Address": "cosmos1d0yghdzldrhc3w6ngs6zxw8d88cqwuud38zs4y",
+                                            "examName": "Bioinformatics",
+                                            "credits": 6,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Dan Lindner",
+                                            "Address": "cosmos1uv6yywu00k85d8u94dmt6uhmuw88a9w7za74jp",
+                                            "examName": "Information Retrieval",
+                                            "credits": 6,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Salih Stolze",
+                                            "Address": "cosmos1hapkgg0x8k05hn9m5pwzg7tlfwrg5tv6dqtn4h",
+                                            "examName": "Parallel and Distributed Systems paradigms and models",
+                                            "credits": 9,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Eitel Schweitzer",
+                                            "Address": "cosmos16n7m8skz0rc3crhc8ll33tfca8k675m66yf2q5",
+                                            "examName": "Data Mining",
+                                            "credits": 9,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Antonie Barkholz",
+                                            "Address": "cosmos15uyw0fuhx3z4awf479ces78e2vhfrue6yksyhf",
+                                            "examName": "Data Mining",
+                                            "credits": 9,
+                                            "examType": ""
+                                        },
+                                        {
+                                            "Name and Surname": "Gilbert Harloff",
+                                            "Address": "cosmos1war0allwxamdsuqm99uaxtvpsnaut5xq5zejsg",
+                                            "examName": "Computational mathematics for learning and data analysis",
+                                            "credits": 9,
+                                            "examType": ""
+                                        }
+                                ]
+                                }
+                                ]      
+                                },
+                                {
+                                    "name": "bachelor",
+                                    "courses": []
+                                },
+                                {
+                                    "name": "single_cycle_degree",
+                                    "courses": []
+                                }
+                                ]
+                }
+            ]
+            }
+            
+        ]
+}   

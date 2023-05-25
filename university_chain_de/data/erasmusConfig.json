@@ -1,0 +1,96 @@
+
+{
+    "minMonths": 2,
+    "maxMonths": 12,
+    "minCFU": 6,
+    "contributionGroups": 
+            {
+                "group1": {
+                    "countries": ["Denmark", "Finland", "Ireland", "Iceland", "Liechtenstein", "Luxembourg", "Norway", "Sweden"],
+                    "contribution_study": 350,
+                    "contribution_traineeship": 500
+                },
+                "group2": {
+                    "countries": ["Austria", "Belgium", "Cyprus", "France", "Italy", "Greece", "Malta", "Netherlands", "Portugal", "Spain"],
+                    "contribution_study": 300,
+                    "contribution_traineeship": 450
+                },
+                "group3": {
+                    "countries": ["Bulgaria", "Czech", "Republic", "Croatia", "Estonia", "Latvia", "Lithuania", "North Macedonia", "Poland", "Romania", "Serbia", "Slovakia", "Slovenia", "Turkey", "Hungary"],
+                    "contribution_study": 250,
+                    "contribution_traineeship": 400
+                }
+            },
+    "additionalContribution": 100,
+    "additionalContributionDuration": 3,
+    "MURContribution": {
+        "outOfCourse": 1,
+        "first": [13000, 400],
+        "second": [21000, 350],
+        "third": [26000, 300],
+        "fourth": [30000, 250],
+        "fifth": [40000, 200],
+        "sixth": [50000, 150],
+        "seventh": 0
+    },
+    "courseTypeList":  [
+                            {
+                                "name": "master",
+                                "courses": [
+                                    {
+                                        "courseOfStudy": "cs",
+                                        "availablePlaces": 20,
+                                        "erasmusTypelist": [
+                                            {
+                                                "name": "study",
+                                                "cfu_first_year": -1,
+                                                "cfu_other_years": -1,
+                                                "cfu_left": -1
+                                            },
+                                            {
+                                                "name": "traineeship",
+                                                "cfu_first_year": -1,
+                                                "cfu_other_years": -1,
+                                                "cfu_left": -1
+                                            }
+                                        ]
+                                        
+                                    }
+                                ]      
+                            },
+                            {
+                                "name": "bachelor",
+                                "courses": [
+                                    {
+                                        "courseOfStudy": "cs",
+                                        "availablePlaces": 20,
+                                        "erasmusTypelist": [
+                                            {
+                                                "name": "study",
+                                                "cfu_first_year": 9,
+                                                "cfu_other_years": 36,
+                                                "cfu_left": -1 
+                                            },
+                                            {
+                                                "name": "traineeship",
+                                                "cfu_first_year": -1,
+                                                "cfu_other_years": -1,
+                                                "cfu_left": 18
+                                            }
+                                        ]
+                                        
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "single_cycle_degree",
+                                "courses": []
+                            }
+                        ],
+    "universitiesPlacesList" : [
+        {
+        "name": "unipi",
+        "availablePlaces": 2
+        }
+    ]
+}   

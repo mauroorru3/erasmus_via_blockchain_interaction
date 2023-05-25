@@ -92,6 +92,8 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 		return packetAck, err
 	} else {
 
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket " + foreignUni)
+
 		uniInfo, found := k.GetUniversities(ctx, foreignUni)
 		if !found {
 			return packetAck, types.ErrWrongNameUniversity
@@ -110,9 +112,11 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 				timeoutTimestamp)
 
 			if err != nil {
+				utilfunc.PrintLogs("OnRecvErasmusStudentPacket " + err.Error())
 				return packetAck, err
 			} else {
 
+				utilfunc.PrintLogs("OnRecvErasmusStudentPacket packet sent")
 				return packetAck, nil
 			}
 		}
@@ -169,9 +173,11 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 					timeoutTimestamp)
 
 				if err != nil {
+					utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error " + err.Error())
 					return err
 				} else {
 
+					utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket packet sent")
 					return nil
 				}
 			}

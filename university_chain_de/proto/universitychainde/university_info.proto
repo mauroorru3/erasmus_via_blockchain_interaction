@@ -1,0 +1,19 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+message UniversityInfo {
+  string universityName = 1; 
+  uint32 nextStudentId = 2; 
+  string secretariatKey = 3; 
+  string universityKey = 4; 
+  string caiKey = 5; 
+  string fifoHeadErasmus = 6; 
+  string fifoTailErasmus = 7; 
+  string deadlineTaxes = 8; 
+  string deadlineErasmus = 9; 
+  string taxesBrackets = 10;
+  int32 maxErasmusExams = 11;
+}
+

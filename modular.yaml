@@ -32,9 +32,32 @@ services:
     networks:
       - erasmusdemo
 
-  relayer:
-    container_name: relayer
-    image: "relayer"
+  relayer_it_hub:
+    container_name: relayer_it_hub
+    image: "relayer_it_hub"
+    tty: true
+    stdin_open: true
+
+    networks:
+      - erasmusdemo
+      
+  university_chain_de:
+    container_name: university_chain_de
+    image: "university_chain_de"
+
+    ports:
+      - "26658:26657"
+      - "1318:1317"
+      - "4501:4500"
+    volumes:
+      - ./university_chain_de:/university_chain_de
+
+    networks:
+      - erasmusdemo
+
+  relayer_de_hub:
+    container_name: relayer_de_hub
+    image: "relayer_de_hub"
     tty: true
     stdin_open: true
 

@@ -78,6 +78,8 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	// TODO: packet reception logic
 
+	utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
+
 	destinationUni, err := utilfunc.GetForeignUniversityName(*data.Student)
 	if err != nil {
 		return packetAck, err
@@ -95,8 +97,6 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 			k.SetStoredStudent(ctx, *data.Student)
 			k.SetUniversityInfo(ctx, uniInfo)
-
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
 
 			return packetAck, nil
 		}

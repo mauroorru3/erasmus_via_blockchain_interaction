@@ -1,0 +1,18 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+message ErasmusInfo {
+  string erasmusStudent = 1; 
+  uint32 numberTimes = 2; 
+  uint32 numberMonths = 3; 
+  uint32 totalExams = 4; 
+  uint32 examsPassed = 5; 
+  uint32 totalCredits = 6; 
+  uint32 achievedCredits = 7; 
+  string career = 8; 
+  string previousStudentFifo = 9; 
+  string nextStudentFifo = 10; 
+  
+}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+import "gogoproto/gogo.proto";
+import "universitychainde/params.proto";
+import "universitychainde/student_info.proto";
+import "universitychainde/transcript_of_records.proto";
+import "universitychainde/personal_info.proto";
+import "universitychainde/residence_info.proto";
+import "universitychainde/contact_info.proto";
+import "universitychainde/taxes_info.proto";
+import "universitychainde/erasmus_info.proto";
+import "universitychainde/chain_info.proto";
+import "universitychainde/foreign_universities.proto";
+import "universitychainde/university_info.proto";
+import "universitychainde/professors_exams.proto";
+import "universitychainde/stored_student.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+// GenesisState defines the universitychainde module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  string port_id = 2;
+  StudentInfo studentInfo = 3;
+  TranscriptOfRecords transcriptOfRecords = 4;
+  PersonalInfo personalInfo = 5;
+  ResidenceInfo residenceInfo = 6;
+  ContactInfo contactInfo = 7;
+  TaxesInfo taxesInfo = 8;
+  ErasmusInfo erasmusInfo = 9;
+  ChainInfo chainInfo = 10 [(gogoproto.nullable) = false];
+  repeated ForeignUniversities foreignUniversitiesList = 11 [(gogoproto.nullable) = false];
+  repeated UniversityInfo universityInfoList = 12 [(gogoproto.nullable) = false];
+  repeated ProfessorsExams professorsExamsList = 13 [(gogoproto.nullable) = false];
+  repeated StoredStudent storedStudentList = 14 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

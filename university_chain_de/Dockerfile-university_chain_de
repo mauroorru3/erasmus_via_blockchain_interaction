@@ -1,0 +1,52 @@
+FROM --platform=linux ubuntu:22.04
+ARG BUILDARCH
+
+# Change your versions here
+ENV GO_VERSION=1.18.3
+ENV IGNITE_VERSION=0.22.1
+ENV NODE_VERSION=18.x
+ENV MOCKGEN_VERSION=1.6.0
+
+ENV LOCAL=/usr/local
+ENV GOROOT=$LOCAL/go
+ENV HOME=/root
+ENV GOPATH=$HOME/go
+ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+RUN mkdir -p $GOPATH/bin
+
+ENV PACKAGES curl gcc jq make
+RUN apt-get update
+RUN apt-get install -y $PACKAGES
+
+# Install Go
+RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-$BUILDARCH.tar.gz | tar -C $LOCAL -xzf -
+
+# Install Ignite
+RUN curl -L https://get.ignite.com/cli@v${IGNITE_VERSION}! | bash
+
+# Install Node
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash -
+RUN apt-get install -y nodejs
+
+# Install Mockgen
+RUN go install github.com/golang/mock/mockgen@v${MOCKGEN_VERSION}
+
+#WORKDIR /home/university_chain_de
+WORKDIR /university_chain_de
+
+# Copy local repository
+# ADD university_chain_de /home/university_chain_de
+
+# Copy serve script
+#COPY ./run-university_chain_de.sh /university_chain_de
+#RUN chmod +x ./run-university_chain_de.sh
+
+COPY go.mod /university_chain_de/go.mod
+RUN go mod download
+RUN rm /university_chain_de/go.mod
+
+ENTRYPOINT ["/bin/bash", "-c", "./run-university_chain_de.sh"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+
+EXPOSE 26657 1317 4500

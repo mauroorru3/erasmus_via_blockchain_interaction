@@ -1,0 +1,13 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+message ChainInfo {
+  string hubKey = 1; 
+  string chainKey = 2; 
+  string country = 3; 
+  string chainAdministratorKey = 4;
+  bool initStatus = 5;
+  string chainName = 6;
+}

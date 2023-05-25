@@ -1,0 +1,64 @@
+syntax = "proto3";
+package university_chain_de.universitychainde;
+
+// this line is used by starport scaffolding # proto/packet/import
+import "universitychainde/erasmus_info.proto";
+import "universitychainde/stored_student.proto";
+
+option go_package = "university_chain_de/x/universitychainde/types";
+
+message UniversitychainitPacketData {
+    oneof packet {
+        NoData noData = 1;
+        // this line is used by starport scaffolding # ibc/packet/proto/field
+				FinalErasmusDataPacketData finalErasmusDataPacket = 5; // this line is used by starport scaffolding # ibc/packet/proto/field/number
+				EndErasmusPeriodRequestPacketData endErasmusPeriodRequestPacket = 4; // this line is used by starport scaffolding # ibc/packet/proto/field/number
+				ErasmusIndexPacketData erasmusIndexPacket = 3; // this line is used by starport scaffolding # ibc/packet/proto/field/number
+				ErasmusStudentPacketData erasmusStudentPacket = 2; // this line is used by starport scaffolding # ibc/packet/proto/field/number
+    }
+}
+
+message NoData {
+}
+
+// ErasmusStudentPacketData defines a struct for the packet payload
+message ErasmusStudentPacketData {
+  StoredStudent student = 1;
+}
+
+// ErasmusStudentPacketAck defines a struct for the packet acknowledgment
+message ErasmusStudentPacketAck {
+  string foreignIndex = 1;
+	}
+// ErasmusIndexPacketData defines a struct for the packet payload
+message ErasmusIndexPacketData {
+  string index = 1;
+  string foreignIndex = 2;
+}
+
+// ErasmusIndexPacketAck defines a struct for the packet acknowledgment
+message ErasmusIndexPacketAck {
+	}
+// EndErasmusPeriodRequestPacketData defines a struct for the packet payload
+message EndErasmusPeriodRequestPacketData {
+  string startingUniversityName = 1;
+  string destinationUniversityName = 2;
+  string index = 3;
+  string foreignIndex = 4;
+  
+}
+
+// EndErasmusPeriodRequestPacketAck defines a struct for the packet acknowledgment
+message EndErasmusPeriodRequestPacketAck {
+	  ErasmusInfo erasmusData = 1;
+}
+// FinalErasmusDataPacketData defines a struct for the packet payload
+message FinalErasmusDataPacketData {
+  ErasmusInfo erasmusData = 1;
+  string homeIndex = 2;
+}
+
+// FinalErasmusDataPacketAck defines a struct for the packet acknowledgment
+message FinalErasmusDataPacketAck {
+	}
+// this line is used by starport scaffolding # ibc/packet/proto/message
