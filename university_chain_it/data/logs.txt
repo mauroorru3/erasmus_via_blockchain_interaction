@@ -1,1 +1,1 @@
-TransmitErasmusStudentPacket port ID (universitychainit) channel ID (channel-0): channel not found 2023-05-30 21:15:41
+TransmitErasmusStudentPacket packet sent 2023-05-31 00:15:47
