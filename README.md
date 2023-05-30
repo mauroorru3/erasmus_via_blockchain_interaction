@@ -72,6 +72,8 @@ sudo docker compose -f modular.yaml --profile hermes up
 sudo docker compose -f modular.yaml --profile go up 
 
 # To start the hermes relayer process:
+# Remember that the order of execution is important. 
+# First the relayer related to the Chain IT and the Hub must be started, and then the relayer related to the Chain DE and the Hub.
 
 sudo docker exec -it hermes_relayer_it_hub bash
 ./run-relayer.sh
