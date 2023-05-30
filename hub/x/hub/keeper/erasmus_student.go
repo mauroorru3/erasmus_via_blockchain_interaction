@@ -81,14 +81,12 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
 
-	//---------------------------------------
-
 	utilfunc.PrintData(data.String())
-
-	packetAck.ForeignIndex = "-1"
 
 	foreignUni, err := utilfunc.GetForeignUniversityName(*data.Student)
 	if err != nil {
+
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket " + err.Error())
 		return packetAck, err
 	} else {
 
@@ -96,12 +94,16 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 		uniInfo, found := k.GetUniversities(ctx, foreignUni)
 		if !found {
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket " + types.ErrWrongNameUniversity.Error())
 			return packetAck, types.ErrWrongNameUniversity
 		} else {
 
 			var packet_to_send types.ErasmusStudentPacketData
 
 			packet_to_send.Student = data.Student
+
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket port " + uniInfo.Port)
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket channel " + uniInfo.ChannelID)
 
 			err := k.TransmitErasmusStudentPacket(
 				ctx,
@@ -143,43 +145,44 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment")
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket")
 
-		foreignUni, err := utilfunc.GetForeignUniversityName(*data.Student)
-		if err != nil {
-			return err
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket " + data.Student.StudentData.UniversityName)
+
+		uniInfo, found := k.GetUniversities(ctx, data.Student.StudentData.UniversityName)
+		if !found {
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket " + types.ErrWrongNameUniversity.Error())
+			return types.ErrWrongNameUniversity
 		} else {
 
-			uniInfo, found := k.GetUniversities(ctx, foreignUni)
-			if !found {
-				return types.ErrWrongNameUniversity
+			var packet_to_send types.ErasmusIndexPacketData
+
+			packet_to_send.Index = data.Student.Index
+			packet_to_send.ForeignIndex = packetAck.ForeignIndex
+
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket port " + uniInfo.Port)
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket channel " + uniInfo.ChannelID)
+
+			err := k.TransmitErasmusIndexPacket(ctx,
+				packet_to_send,
+				uniInfo.Port,
+				uniInfo.ChannelID,
+				clienttypes.ZeroHeight(),
+				timeoutTimestamp)
+
+			if err != nil {
+				utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error " + err.Error())
+				return err
 			} else {
 
-				var packet_to_send types.ErasmusIndexPacketData
-
-				packet_to_send.Index = data.Student.Index
-				packet_to_send.ForeignIndex = packetAck.ForeignIndex
-
-				err := k.TransmitErasmusIndexPacket(ctx,
-					packet_to_send,
-					uniInfo.Port,
-					uniInfo.ChannelID,
-					clienttypes.ZeroHeight(),
-					timeoutTimestamp)
-
-				if err != nil {
-					utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error " + err.Error())
-					return err
-				} else {
-
-					utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket packet sent")
-					return nil
-				}
+				utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket packet sent")
+				return nil
 			}
 		}
 

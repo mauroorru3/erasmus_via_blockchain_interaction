@@ -26,7 +26,7 @@ export interface ErasmusStudentPacketData {
 
 /** ErasmusStudentPacketAck defines a struct for the packet acknowledgment */
 export interface ErasmusStudentPacketAck {
-  foreign_index: string;
+  foreignIndex: string;
 }
 
 /** ErasmusIndexPacketData defines a struct for the packet payload */
@@ -372,15 +372,15 @@ export const ErasmusStudentPacketData = {
   },
 };
 
-const baseErasmusStudentPacketAck: object = { foreign_index: "" };
+const baseErasmusStudentPacketAck: object = { foreignIndex: "" };
 
 export const ErasmusStudentPacketAck = {
   encode(
     message: ErasmusStudentPacketAck,
     writer: Writer = Writer.create()
   ): Writer {
-    if (message.foreign_index !== "") {
-      writer.uint32(10).string(message.foreign_index);
+    if (message.foreignIndex !== "") {
+      writer.uint32(10).string(message.foreignIndex);
     }
     return writer;
   },
@@ -395,7 +395,7 @@ export const ErasmusStudentPacketAck = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.foreign_index = reader.string();
+          message.foreignIndex = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -409,18 +409,18 @@ export const ErasmusStudentPacketAck = {
     const message = {
       ...baseErasmusStudentPacketAck,
     } as ErasmusStudentPacketAck;
-    if (object.foreign_index !== undefined && object.foreign_index !== null) {
-      message.foreign_index = String(object.foreign_index);
+    if (object.foreignIndex !== undefined && object.foreignIndex !== null) {
+      message.foreignIndex = String(object.foreignIndex);
     } else {
-      message.foreign_index = "";
+      message.foreignIndex = "";
     }
     return message;
   },
 
   toJSON(message: ErasmusStudentPacketAck): unknown {
     const obj: any = {};
-    message.foreign_index !== undefined &&
-      (obj.foreign_index = message.foreign_index);
+    message.foreignIndex !== undefined &&
+      (obj.foreignIndex = message.foreignIndex);
     return obj;
   },
 
@@ -430,10 +430,10 @@ export const ErasmusStudentPacketAck = {
     const message = {
       ...baseErasmusStudentPacketAck,
     } as ErasmusStudentPacketAck;
-    if (object.foreign_index !== undefined && object.foreign_index !== null) {
-      message.foreign_index = object.foreign_index;
+    if (object.foreignIndex !== undefined && object.foreignIndex !== null) {
+      message.foreignIndex = object.foreignIndex;
     } else {
-      message.foreign_index = "";
+      message.foreignIndex = "";
     }
     return message;
   },

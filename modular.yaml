@@ -14,7 +14,6 @@ services:
       - "4499:4500"
     volumes:
       - ./hub:/hub
-
     networks:
       - erasmusdemo
 
@@ -28,16 +27,30 @@ services:
       - "4500:4500"
     volumes:
       - ./university_chain_it:/university_chain_it
-
     networks:
       - erasmusdemo
 
-  relayer_it_hub:
-    container_name: relayer_it_hub
-    image: "relayer_it_hub"
+  go_relayer_it_hub:
+    profiles: ["go"]
+    container_name: go_relayer_it_hub
+    image: "go_relayer_it_hub"
     tty: true
     stdin_open: true
+    volumes:
+      - ./go_relayer_it_hub:/go_relayer_it_hub
+    networks:
+      - erasmusdemo
 
+      
+
+  hermes_relayer_it_hub:
+    profiles: ["hermes"]
+    container_name: hermes_relayer_it_hub
+    image: "hermes_relayer_it_hub"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./hermes_relayer_it_hub:/hermes_relayer_it_hub
     networks:
       - erasmusdemo
       
@@ -51,16 +64,28 @@ services:
       - "4501:4500"
     volumes:
       - ./university_chain_de:/university_chain_de
-
     networks:
       - erasmusdemo
 
-  relayer_de_hub:
-    container_name: relayer_de_hub
-    image: "relayer_de_hub"
+  go_relayer_de_hub:
+    profiles: ["go"]
+    container_name: go_relayer_de_hub
+    image: "go_relayer_de_hub"
     tty: true
     stdin_open: true
+    volumes:
+      - ./go_relayer_de_hub:/go_relayer_de_hub
+    networks:
+      - erasmusdemo
 
+  hermes_relayer_de_hub:
+    profiles: ["hermes"]
+    container_name: hermes_relayer_de_hub
+    image: "hermes_relayer_de_hub"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./hermes_relayer_de_hub:/hermes_relayer_de_hub
     networks:
       - erasmusdemo
 

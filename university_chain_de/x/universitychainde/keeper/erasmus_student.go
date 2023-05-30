@@ -76,7 +76,6 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 		return packetAck, err
 	}
 
-
 	utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
 
 	// TODO: packet reception logic
@@ -123,6 +122,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment")
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 

@@ -113,14 +113,16 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 													err = k.TransmitErasmusStudentPacket(
 														ctx,
 														packet,
-														"hub",
+														"universitychainit",
 														"channel-0",
 														clienttypes.ZeroHeight(),
 														timeoutTimestamp,
 													)
 													if err != nil {
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
 														return nil, err
 													} else {
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
 														k.Keeper.SetStoredStudent(ctx, searchedStudent)
 														k.Keeper.SetUniversityInfo(ctx, uniInfo)
 														return &types.MsgStartErasmusResponse{

@@ -1,0 +1,18 @@
+{
+   "src":{
+      "chain-id":"university_chain_de",
+      "port-id":"universitychainde",
+      "order":"unordered",
+      "version":"hub-1"
+      
+   },
+   "dst":{
+      "chain-id":"hub",
+      "port-id":"hub",
+      "order":"unordered",
+      "version":"hub-1"
+   },
+   "strategy":{
+      "type":"naive"
+   }
+}

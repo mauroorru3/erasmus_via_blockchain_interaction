@@ -20,7 +20,7 @@ const (
 	Version = "hub-1"
 
 	// PortID is the default port id that module binds to
-	PortID = "hub"
+	PortID = "universitychainit"
 )
 
 var (

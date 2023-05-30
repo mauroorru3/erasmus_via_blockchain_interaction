@@ -23,7 +23,7 @@
             "chain_name": "university_chain_de",
             "address": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t",
             "port": "hub",
-            "channel_id": "channel-0"
+            "channel_id": "channel-1"
         },
         {
             "name": "humboldt_university",
@@ -31,7 +31,7 @@
             "chain_name": "university_chain_de",
             "address": "cosmos1qyxznuc44rp36se3thc9f5vuxhm73qmlna8l97",
             "port": "hub",
-            "channel_id": "channel-0"
+            "channel_id": "channel-1"
         }
     ]
 }   

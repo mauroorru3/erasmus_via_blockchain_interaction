@@ -33,38 +33,70 @@ sudo docker build -f Dockerfile-hub . -t hub --no-cache
 cd ..
 
 # Create the image of the Relayer that connect the Italian chain and the hub:
+# Go relayer:
 
-cd relayer_it_hub
-sudo docker build -f Dockerfile . -t relayer_it_hub --no-cache 
+cd go_relayer_it_hub
+sudo docker build -f Dockerfile . -t go_relayer_it_hub --no-cache 
+cd .. 
+
+# Hermes relayer:
+
+cd hermes_relayer_it_hub
+sudo docker build -f Dockerfile . -t hermes_relayer_it_hub --no-cache 
 cd .. 
 
 # Create the image of the Relayer that connect the German chain and the hub:
+# Go relayer:
 
-cd relayer_de_hub
-sudo docker build -f Dockerfile . -t relayer_de_hub --no-cache 
+cd go_relayer_de_hub
+sudo docker build -f Dockerfile . -t go_relayer_de_hub --no-cache 
 cd .. 
 
+# Hermes relayer:
+
+cd hermes_relayer_de_hub
+sudo docker build -f Dockerfile . -t hermes_relayer_de_hub --no-cache 
+cd .. 
 
 # To allow scripts to be executed within containers:
 
 chmod +x allow_permissions.sh 
 ./allow_permissions.sh 
 
-# To start the containers
+# To start the containers with hermes relayers:
 
-sudo docker compose -f modular.yaml up 
+sudo docker compose -f modular.yaml --profile hermes up 
 
-# To start the relayer process:
+# To start the containers with go relayers:
 
-sudo docker exec relayer ./run-relayer.sh 
+sudo docker compose -f modular.yaml --profile go up 
+
+# To start the hermes relayer process:
+
+sudo docker exec -it hermes_relayer_it_hub bash
+./run-relayer.sh
+
+sudo docker exec -it hermes_relayer_de_hub bash
+./run-relayer.sh
+
+# To start the go relayer process:
+
+sudo docker exec go_relayer_it_hub ./run-relayer_it_hub.sh
+
+sudo docker exec go_relayer_de_hub ./run-relayer_de_hub.sh
+
 
 # To simulate the execution of the Hub and the Italian Chain, thus the chains configuration, the insertion of a student, the student's exams and so on:
 
 ./test.sh 
 
-# To end the execution of the containers:
+# To end the execution of the containers with hermes relayers:
 
-sudo docker compose -f modular.yaml --profile go down 
+sudo docker compose -f modular.yaml --profile hermes down
+
+# To end the execution of the containers with go relayers:
+
+sudo docker compose -f modular.yaml --profile go down
 
 
 

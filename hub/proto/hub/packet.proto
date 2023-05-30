@@ -28,7 +28,7 @@ message ErasmusStudentPacketData {
 
 // ErasmusStudentPacketAck defines a struct for the packet acknowledgment
 message ErasmusStudentPacketAck {
-  string foreign_index = 1;
+  string foreignIndex = 1;
 	}
 // ErasmusIndexPacketData defines a struct for the packet payload
 message ErasmusIndexPacketData {

@@ -79,12 +79,13 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 
 		// TODO: packet reception logic
 
-		utilfunc.PrintLogs("OnRecvErasmusIndexPacket")
-
 		searchedStudent, found := k.GetStoredStudent(ctx, data.Index)
 		if !found {
+			utilfunc.PrintLogs("OnRecvErasmusIndexPacket " + types.ErrStudentNotPresent.Error())
 			return packetAck, types.ErrStudentNotPresent
 		} else {
+
+			utilfunc.PrintLogs("OnRecvErasmusIndexPacket success")
 
 			utilfunc.SetForeignIndex(&searchedStudent, data.ForeignIndex)
 
@@ -113,6 +114,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
+			utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket cannot unmarshal acknowledgment")
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 

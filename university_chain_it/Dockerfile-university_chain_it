@@ -32,21 +32,15 @@ RUN apt-get install -y nodejs
 # Install Mockgen
 RUN go install github.com/golang/mock/mockgen@v${MOCKGEN_VERSION}
 
-#WORKDIR /home/university_chain_it
+
 WORKDIR /university_chain_it
 
-# Copy local repository
-# ADD university_chain_it /home/university_chain_it
-
-# Copy serve script
-#COPY ./run-university_chain_it.sh /university_chain_it
-#RUN chmod +x ./run-university_chain_it.sh
 
 COPY go.mod /university_chain_it/go.mod
 RUN go mod download
 RUN rm /university_chain_it/go.mod
 
 ENTRYPOINT ["/bin/bash", "-c", "./run-university_chain_it.sh"]
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
+
 
 EXPOSE 26657 1317 4500

@@ -122,6 +122,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment " + err.Error())
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
