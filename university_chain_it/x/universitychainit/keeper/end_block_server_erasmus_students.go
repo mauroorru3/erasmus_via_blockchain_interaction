@@ -7,6 +7,7 @@ import (
 	"university_chain_it/x/universitychainit/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 )
 
 func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
@@ -94,24 +95,22 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							*/
 
-							/*
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.ForeignIndex)
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.DestinationUniversityName)
 
-								err = k.TransmitEndErasmusPeriodRequestPacket(
-									ctx,
-									packet,
-									"hub",
-									"channel-0",
-									clienttypes.ZeroHeight(),
-									timeoutTimestamp,
-								)
-								if err != nil {
-									panic(err)
-								}
+							err = k.TransmitEndErasmusPeriodRequestPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+							)
+							if err != nil {
+								panic(err)
+							}
 
-
-
-								utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket")
-							*/
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent")
 
 							// Move along FIFO
 							studentIndex = uniList[i].FifoHeadErasmus
