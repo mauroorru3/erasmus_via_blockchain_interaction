@@ -19,18 +19,4 @@ COPY ./config.toml /root/.hermes/config.toml
 # Validate the config file during image building
 RUN hermes config validate
 
-# Copy mnemonic files
-# COPY ./university_chain_it_keys.json /home/hermes/university_chain_it_keys.json
-# COPY ./hub_keys.json /home/hermes/hub_keys.json
 
-# Copy entrypoint script
-# COPY ./run-relayer.sh /home/hermes/
-
-# Set permission
-# RUN chmod +x ./run-relayer.sh
-
-# Run entrypoint script
-# ENTRYPOINT ["/bin/bash", "-c", "/home/hermes/run-relayer.sh"]
-
-# build with
-# docker build -f Dockerfile . -t relayer_hermes

@@ -107,17 +107,19 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 
 													var packet types.ErasmusStudentPacketData
 
-													//packet.Student = &searchedStudent
+													/*
 
-													val := types.StoredStudent{
-														Index: searchedStudent.Index,
-														StudentData: &types.StudentInfo{
-															UniversityName: "unipi",
-														},
-														ErasmusData: searchedStudent.ErasmusData,
-													}
 
-													packet.Student = &val
+
+														//packet.Student = &searchedStudent
+
+														val := types.StoredStudent{
+															Index:        searchedStudent.Index,
+															PersonalData: searchedStudent.PersonalData,
+														}
+
+													*/
+													packet.Student = &searchedStudent
 
 													// Transmit the packet
 													err = k.TransmitErasmusStudentPacket(

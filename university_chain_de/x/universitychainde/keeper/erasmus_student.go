@@ -80,25 +80,43 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	// TODO: packet reception logic
 
-	destinationUni, err := utilfunc.GetForeignUniversityName(*data.Student)
-	if err != nil {
-		return packetAck, err
+	allStudents := k.GetAllStoredStudent(ctx)
+	found := false
+	i := 0
+	for i < len(allStudents) && !found {
+		if allStudents[i].StudentData.Name == data.Student.StudentData.Name &&
+			allStudents[i].StudentData.Surname == data.Student.StudentData.Surname &&
+			allStudents[i].StudentData.CourseOfStudy == data.Student.StudentData.CourseOfStudy &&
+			allStudents[i].StudentData.CourseType == data.Student.StudentData.CourseType {
+			found = true
+		} else {
+			i++
+		}
+	}
+	if found {
+		return packetAck, types.ErrStudentAlreadyPresent
 	} else {
 
-		uniInfo, found := k.GetUniversityInfo(ctx, destinationUni)
-		if !found {
-			return packetAck, types.ErrWrongNameUniversity
+		destinationUni, err := utilfunc.GetForeignUniversityName(*data.Student)
+		if err != nil {
+			return packetAck, err
 		} else {
 
-			data.Student.ErasmusData.ErasmusStudent = "incoming"
-			data.Student.Index = uniInfo.UniversityName + "_" + strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
-			uniInfo.NextStudentId++
-			packetAck.ForeignIndex = data.Student.Index
+			uniInfo, found := k.GetUniversityInfo(ctx, destinationUni)
+			if !found {
+				return packetAck, types.ErrWrongNameUniversity
+			} else {
 
-			k.SetStoredStudent(ctx, *data.Student)
-			k.SetUniversityInfo(ctx, uniInfo)
+				data.Student.ErasmusData.ErasmusStudent = "incoming"
+				data.Student.Index = uniInfo.UniversityName + "_" + strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
+				uniInfo.NextStudentId++
+				packetAck.ForeignIndex = data.Student.Index
 
-			return packetAck, nil
+				k.SetStoredStudent(ctx, *data.Student)
+				k.SetUniversityInfo(ctx, uniInfo)
+
+				return packetAck, nil
+			}
 		}
 	}
 }

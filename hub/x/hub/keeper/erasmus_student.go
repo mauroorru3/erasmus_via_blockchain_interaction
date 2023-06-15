@@ -90,8 +90,6 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 		return packetAck, err
 	} else {
 
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket " + foreignUni)
-
 		uniInfo, found := k.GetUniversities(ctx, foreignUni)
 		if !found {
 			utilfunc.PrintLogs("OnRecvErasmusStudentPacket " + types.ErrWrongNameUniversity.Error())
@@ -101,9 +99,6 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 			var packet_to_send types.ErasmusStudentPacketData
 
 			packet_to_send.Student = data.Student
-
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket port " + uniInfo.Port)
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket channel " + uniInfo.ChannelID)
 
 			err := k.TransmitErasmusStudentPacket(
 				ctx,
@@ -153,8 +148,6 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket")
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket " + data.Student.StudentData.UniversityName)
-
 		uniInfo, found := k.GetUniversities(ctx, data.Student.StudentData.UniversityName)
 		if !found {
 			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket " + types.ErrWrongNameUniversity.Error())
@@ -165,9 +158,6 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 			packet_to_send.Index = data.Student.Index
 			packet_to_send.ForeignIndex = packetAck.ForeignIndex
-
-			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket port " + uniInfo.Port)
-			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket channel " + uniInfo.ChannelID)
 
 			err := k.TransmitErasmusIndexPacket(ctx,
 				packet_to_send,

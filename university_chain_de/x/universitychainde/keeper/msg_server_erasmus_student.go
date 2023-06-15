@@ -12,31 +12,51 @@ import (
 
 func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendErasmusStudent) (*types.MsgSendErasmusStudentResponse, error) {
 
-	utilfunc.PrintLogs("SendErasmusStudent")
-
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	var packet types.ErasmusStudentPacketData
 
-	packet.Student = nil
-
-	// Transmit the packet
-	err := k.TransmitErasmusStudentPacket(
-		ctx,
-		packet,
-		msg.Port,
-		msg.ChannelID,
-		clienttypes.ZeroHeight(),
-		timeoutTimestamp,
-	)
-	if err != nil {
-		return nil, err
-	} else {
+	stu, found := k.GetStoredStudent(ctx, msg.Index)
+	if !found {
 		return &types.MsgSendErasmusStudentResponse{
-			Status: 0,
-		}, nil
-	}
+			Status: -1,
+		}, types.ErrStudentNotPresent
+	} else {
 
+		val := types.StoredStudent{
+			Index: stu.Index,
+			StudentData: &types.StudentInfo{
+				UniversityName: "tum",
+			},
+			ErasmusData: stu.ErasmusData,
+		}
+
+		//packet.Student = &stu
+
+		packet.Student = &val
+
+		// Transmit the packet
+		err := k.TransmitErasmusStudentPacket(
+			ctx,
+			packet,
+			msg.Port,
+			"channel-0",
+			clienttypes.ZeroHeight(),
+			timeoutTimestamp,
+		)
+
+		if err != nil {
+			utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+			return &types.MsgSendErasmusStudentResponse{
+				Status: -1,
+			}, err
+		} else {
+			utilfunc.PrintLogs("SendErasmusStudent packet sent")
+			return &types.MsgSendErasmusStudentResponse{
+				Status: -1,
+			}, nil
+		}
+	}
 	/*
 
 		utilfunc.PrintLogs("SendErasmusStudent")
