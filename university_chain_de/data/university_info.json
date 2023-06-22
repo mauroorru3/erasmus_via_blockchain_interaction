@@ -4,8 +4,8 @@
         {
         "name": "tum",
         "country": "Germany",
-        "secretariat_key": "cosmos1lfamc5y86xs00g5pm46nzyxhe9ftc7tsssjywe",
-        "university_key": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t",
+        "secretariat_key": "cosmos10nc5zkj9lhk3xn4rfjdkfrceae8ln5zxkm8r3y",
+        "university_key": "cosmos1lfamc5y86xs00g5pm46nzyxhe9ftc7tsssjywe",
         "deadline_taxes": "2023-12-31 12:00:00",
         "deadline_erasmus": "2023-12-31 12:00:00",
         "max_erasmus_exams": 3,
@@ -32,22 +32,22 @@
                                     "courseOfStudy": "cs",
                                     "exams": [
                                                 {
-                                                    "Name and Surname": "Dogan Winkler",
-                                                    "Address": "cosmos1t89y0rpe7vttdxlzf5cmutcnjgsljwecjuqwqn",
+                                                    "Name and Surname": "Friedrich Mayer",
+                                                    "Address": "cosmos1ea3q4lwulyfgekhg09tyuwf0s2q7773ezrgu32",
                                                     "examName": "Algorithm engineering",
                                                     "credits": 9,
                                                     "examType": ""
                                                 },
                                                 {
-                                                    "Name and Surname": "Dogan Winkler",
-                                                    "Address": "cosmos1au6dnukmzxxg3yxwsq2suwexr4d2ty6qjt200m",
+                                                    "Name and Surname": "Gustav Fischer",
+                                                    "Address": "cosmos1vxj0cdwqv8vh238aq0tg9vpxt5lfcvk2xjfu43",
                                                     "examName": "Advanced databases",
                                                     "credits": 9,
                                                     "examType": ""
                                                 },
                                                 {
-                                                    "Name and Surname": "Christiane Reising",
-                                                    "Address": "cosmos1d0yghdzldrhc3w6ngs6zxw8d88cqwuud38zs4y",
+                                                    "Name and Surname": "Dogan Winkler",
+                                                    "Address": "cosmos1t89y0rpe7vttdxlzf5cmutcnjgsljwecjuqwqn",
                                                     "examName": "Bioinformatics",
                                                     "credits": 6,
                                                     "examType": ""
@@ -141,15 +141,15 @@
                                             "examType": ""
                                         },
                                         {
-                                            "Name and Surname": "Dogan Winkler",
-                                            "Address": "cosmos1au6dnukmzxxg3yxwsq2suwexr4d2ty6qjt200m",
+                                            "Name and Surname": "Gustav Fischer",
+                                            "Address": "cosmos1vxj0cdwqv8vh238aq0tg9vpxt5lfcvk2xjfu43",
                                             "examName": "Advanced databases",
                                             "credits": 9,
                                             "examType": ""
                                         },
                                         {
-                                            "Name and Surname": "Christiane Reising",
-                                            "Address": "cosmos1d0yghdzldrhc3w6ngs6zxw8d88cqwuud38zs4y",
+                                            "Name and Surname": "Friedrich Mayer",
+                                            "Address": "cosmos1ea3q4lwulyfgekhg09tyuwf0s2q7773ezrgu32",
                                             "examName": "Bioinformatics",
                                             "credits": 6,
                                             "examType": ""

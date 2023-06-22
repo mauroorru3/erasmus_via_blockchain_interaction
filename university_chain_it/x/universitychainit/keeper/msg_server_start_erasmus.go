@@ -69,83 +69,69 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 									}, types.ErrUnpaidTaxes
 								} else {
 
-									res, err := utilfunc.CheckErasmusStatus(searchedStudent)
+									err := utilfunc.CheckErasmusStatus(searchedStudent, "start erasmus")
 									if err != nil {
 										return &types.MsgStartErasmusResponse{
 											Status: -1,
 										}, err
 									} else {
-										if res == "" {
+
+										err := utilfunc.StartErasmus(ctx, &searchedStudent, &uniInfo)
+										if err != nil {
 											return &types.MsgStartErasmusResponse{
 												Status: -1,
-											}, types.ErrNoErasmusRequest
-										} else if res == "in progress" {
-											return &types.MsgStartErasmusResponse{
-												Status: -1,
-											}, types.ErrPreviousRequestInProgress
-										} else if res == "terminated" {
-											return &types.MsgStartErasmusResponse{
-												Status: -1,
-											}, types.ErrPreviousRequestCompleted
+											}, err
 										} else {
 
-											err := utilfunc.StartErasmus(ctx, &searchedStudent, &uniInfo)
+											err := k.Keeper.CollectAndSendErasmusContribution(ctx, &searchedStudent, uniInfo.UniversityKey)
 											if err != nil {
 												return &types.MsgStartErasmusResponse{
 													Status: -1,
 												}, err
 											} else {
 
-												err := k.Keeper.CollectAndSendErasmusContribution(ctx, &searchedStudent, uniInfo.UniversityKey)
-												if err != nil {
-													return &types.MsgStartErasmusResponse{
-														Status: -1,
-													}, err
-												} else {
+												k.Keeper.SendToFifoTail(ctx, &searchedStudent, &uniInfo)
 
-													k.Keeper.SendToFifoTail(ctx, &searchedStudent, &uniInfo)
+												var packet types.ErasmusStudentPacketData
 
-													var packet types.ErasmusStudentPacketData
-
-													/*
+												/*
 
 
 
-														//packet.Student = &searchedStudent
+													//packet.Student = &searchedStudent
 
-														val := types.StoredStudent{
-															Index:        searchedStudent.Index,
-															PersonalData: searchedStudent.PersonalData,
-														}
-
-													*/
-													packet.Student = &searchedStudent
-
-													// Transmit the packet
-													err = k.TransmitErasmusStudentPacket(
-														ctx,
-														packet,
-														"universitychainit",
-														"channel-0",
-														clienttypes.ZeroHeight(),
-														timeoutTimestamp,
-													)
-													if err != nil {
-														utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
-														return nil, err
-													} else {
-														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
-														k.Keeper.SetStoredStudent(ctx, searchedStudent)
-														k.Keeper.SetUniversityInfo(ctx, uniInfo)
-														return &types.MsgStartErasmusResponse{
-															Status: 0,
-														}, nil
+													val := types.StoredStudent{
+														Index:        searchedStudent.Index,
+														PersonalData: searchedStudent.PersonalData,
 													}
+
+												*/
+												packet.Student = &searchedStudent
+
+												// Transmit the packet
+												err = k.TransmitErasmusStudentPacket(
+													ctx,
+													packet,
+													"universitychainit",
+													"channel-0",
+													clienttypes.ZeroHeight(),
+													timeoutTimestamp,
+												)
+												if err != nil {
+													utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
+													return nil, err
+												} else {
+													utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
+													k.Keeper.SetStoredStudent(ctx, searchedStudent)
+													k.Keeper.SetUniversityInfo(ctx, uniInfo)
+													return &types.MsgStartErasmusResponse{
+														Status: 0,
+													}, nil
 												}
 											}
-
 										}
 									}
+
 								}
 							}
 						}

@@ -84,9 +84,14 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 		return packetAck, types.ErrStudentNotPresent
 	} else {
 		searchedStudent.ErasmusData.ErasmusStudent = "Incoming completed"
-		k.SetStoredStudent(ctx, searchedStudent)
-		packetAck.ErasmusData = searchedStudent.ErasmusData
-		return packetAck, nil
+		err = utilfunc.ConcludeErasmusFlag(&searchedStudent)
+		if err != nil {
+			return packetAck, err
+		} else {
+			k.SetStoredStudent(ctx, searchedStudent)
+			packetAck.ErasmusData = searchedStudent.ErasmusData
+			return packetAck, nil
+		}
 	}
 
 }

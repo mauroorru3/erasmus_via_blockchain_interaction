@@ -1,57 +1,60 @@
 accounts:
 - name: Chain DE
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "mule canyon gather wait void creek system fitness planet crazy awake prefer away rally hat orchard taste school treat slogan woman say boat vintage"
 - name: Admin Chain DE
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "alien domain theme wheel bleak summer harbor tip predict praise decrease various dilemma sniff stuff add volcano room burden dress divide toddler chalk garment"
 - name: Hub
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "network sunset track violin fossil version east adult deal swing summer inner piece wet elegant creek local squeeze horse soda bottom relief arctic south"
 - name: TUM
-  coins: ["10000token", "100000000stake"]
-  mnemonic: "hurt cactus oblige soldier gold tilt left key primary feed day bamboo demand blade sight orphan merit game quality rhythm vote rich strike boy"
-- name: Secretariat TUM
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "solar toy memory foster song sheriff angry base eyebrow view melody clog marble renew deputy retreat turtle gown hurry east inject noble retreat tackle"
+- name: Secretariat TUM
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "bubble nothing pulp fever wine sock unit proud during awful jewel matter rule thrive grid village relief topic judge victory shield repair rich document"
 - name: Humboldt University
-  coins: ["10000token", "100000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "accident pioneer ensure poverty doll age lottery drill east morning copy fiber receive ethics local cupboard knee peanut suit tooth ridge million dizzy disorder"
 - name: Secretariat Humboldt University
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "topple stairs stamp power another chat flat garden fish diary mad room slam saddle learn treat absorb invest roast buyer fence deposit usage pet"
 - name: Karl Schmidt
-  coins: ["10000token", "100000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "guide gentle scorpion regret sort want mistake rely turkey hospital luggage utility oak battle poverty thrive air ethics match two deal merge nephew relax"
 - name: Paul Becker
-  coins: ["10000token", "100000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "snap thought exercise habit someone south opinion thunder whisper range myth run urge tragic order clock train dutch machine canal item relief soon check"
+- name: Mario Rossi
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "pond sport hold enter develop turkey home close debris noodle kick orbit layer habit win love monster foil woman town govern truly effort gesture"
 - name: CAI_CS
-  coins: ["10000token", "100000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "hood essence shallow essence weasel shop actual enough boy pledge wrong witness section hero mistake lecture orbit outside input angle hour apple rough media"
 - name: Prof. Friedrich Mayer
-  coins: ["10000token", "100000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "circle trumpet drop spice puzzle slot say surprise shuffle front ketchup observe ten laptop certain thank into frown end liar vast expose dismiss benefit"
 - name: Prof. Gustav Fischer
-  coins: ["10000token", "100000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "degree bunker chalk culture brain alert report table deal elite drip neutral rice latin arrest pizza silly doll faint voice segment core fix alarm"
 - name: Chain IT
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "afraid kid engine kingdom neck still pave fragile wink vast clay close trim rotate morning cage mutual today defense tobacco issue knock earn result"
 - name: Admin Chain IT
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "wrestle rose decorate desert pony tail bulb elder jazz direct law steak cinnamon wife virtual space patient extra segment exile accident flee draw deal"
 - name: Unipi
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "fresh this trap call leaf already decide decline jacket hobby food goat visa caution torch long air social trigger lecture true cruise phrase scatter"
 - name: Secretariat Unipi
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "item accident rough glance frost other reform only right crawl bacon cloud solid mean museum surface blush kitchen innocent victory cattle dial trip point"
 - name: Uniroma1
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "stick desk umbrella ankle lift scene goat magic weekend mixed able visual potato chunk employ step amount slot number ozone offer earth relax unknown"
 - name: Secretariat Uniroma1
-  coins: ["20000token", "200000000stake"]
+  coins: ["200000000token", "200000000stake"]
   mnemonic: "super direct tunnel bulb chef inhale multiply front vote camera suffer east stick abuse mansion wide fragile put negative solar sadness total churn rough"
 
 

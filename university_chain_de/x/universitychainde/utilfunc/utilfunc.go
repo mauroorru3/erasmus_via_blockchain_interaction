@@ -322,6 +322,68 @@ func GetJSONFromTaxesBrackets(taxesBrackets Taxes_struct) (taxesJSON string, err
 	return taxesJSON, err
 }
 
+func SetErasmusExamGrade(student *types.StoredStudent, examName string, grade string) (credits uint8, err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return credits, err
+	}
+	lenCareer := len(erasmusCareer)
+
+	mapExamsErasmus := make(map[string]ExamStruct)
+
+	err = json.Unmarshal([]byte(erasmusCareer[lenCareer-1].Exams_data), &mapExamsErasmus)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return credits, err
+	}
+
+	val, ok := mapExamsErasmus[examName]
+	if ok {
+		if val.Marks == "" {
+			credits = val.Credits
+			val.Attendance_year = uint16(time.Now().Year())
+			val.Exam_date = FormatDeadline(time.Now())
+			val.Status = true
+			val.Marks = grade
+			mapExamsErasmus[examName] = val
+		} else {
+			return credits, types.ErrGradeAlreadyAssigned
+		}
+	} else {
+		return credits, types.ErrWrongExamName
+	}
+
+	resultExamsByteJSON, err := json.Marshal(mapExamsErasmus)
+	if err != nil {
+		return credits, err
+	}
+
+	examsErasmusJSON := string(resultExamsByteJSON)
+
+	erasmusCareer[lenCareer-1].Exams_data = examsErasmusJSON
+
+	//------------------------
+
+	// Erasmus career
+
+	erasmusCareer[lenCareer-1].Achieved_credits += credits
+	erasmusCareer[lenCareer-1].Exams_passed += 1
+
+	resultByteCareerJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return credits, err
+	}
+
+	student.ErasmusData.Career = string(resultByteCareerJSON)
+	student.ErasmusData.AchievedCredits += uint32(credits)
+	student.ErasmusData.ExamsPassed += 1
+
+	return credits, err
+}
+
 func SetExamGrade(examsString string, examName string, grade string) (examsJSON string, credits uint8, err error) {
 
 	mapExams := make(map[string]ExamStruct)
@@ -337,7 +399,7 @@ func SetExamGrade(examsString string, examName string, grade string) (examsJSON 
 		if val.Marks == "" {
 			credits = val.Credits
 			val.Attendance_year = uint16(time.Now().Year())
-			val.Exam_date = time.Now().Format("01-02-2006")
+			val.Exam_date = FormatDeadline(time.Now())
 			val.Status = true
 			val.Marks = grade
 			mapExams[examName] = val

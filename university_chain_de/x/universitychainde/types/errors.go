@@ -58,4 +58,7 @@ var (
 	ErrNoErasmusContributionToPay      = sdkerrors.Register(ModuleName, 1145, "the university does not have to pay Erasmus contribution")
 	ErrErasmusContributionAlreadyPayed = sdkerrors.Register(ModuleName, 1146, "the university has already paid the Erasmus contribution")
 	ErrNonCallableFunction             = sdkerrors.Register(ModuleName, 1147, "this function cannot be called; the logic of the function is implemented within other functions")
+	ErrOutgoingPeriod                  = sdkerrors.Register(ModuleName, 1148, "the student is currently doing the period abroad")
+	ErrCompletedIncomingPeriod         = sdkerrors.Register(ModuleName, 1149, "the incoming Erasmus period is completed")
+	ErrIncomingPeriod                  = sdkerrors.Register(ModuleName, 1150, "it is not possible to perform this operation in the destination university")
 )

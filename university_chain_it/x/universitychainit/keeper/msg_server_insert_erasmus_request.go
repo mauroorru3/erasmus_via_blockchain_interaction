@@ -72,53 +72,41 @@ func (k msgServer) InsertErasmusRequest(goCtx context.Context, msg *types.MsgIns
 										}, types.ErrWrongForeignUniversity
 									} else {
 
-										res, err := utilfunc.CheckErasmusStatus(searchedStudent)
+										err := utilfunc.CheckErasmusStatus(searchedStudent, "erasmus request")
 										if err != nil {
 											return &types.MsgInsertErasmusRequestResponse{
 												Status: -1,
 											}, err
 										} else {
-											if res == "in progress" {
+
+											err := utilfunc.CheckErasmusDeadline(ctx, uniInfo.DeadlineErasmus)
+											if err != nil {
 												return &types.MsgInsertErasmusRequestResponse{
 													Status: -1,
-												}, types.ErrPreviousRequestInProgress
-											} else if res == "to start" {
-												return &types.MsgInsertErasmusRequestResponse{
-													Status: -1,
-												}, types.ErrPreviousRequestStartup
+												}, err
 											} else {
 
-												err := utilfunc.CheckErasmusDeadline(ctx, uniInfo.DeadlineErasmus)
+												err = utilfunc.CheckErasmusParams(msg.DurationInMonths, msg.ErasmusType, &searchedStudent, msg.ForeignUniversityName, foreignUni.ForeignUniversitiesCountry, foreignUni.ChainName)
 												if err != nil {
 													return &types.MsgInsertErasmusRequestResponse{
 														Status: -1,
 													}, err
 												} else {
-
-													err = utilfunc.CheckErasmusParams(msg.DurationInMonths, msg.ErasmusType, &searchedStudent, msg.ForeignUniversityName, foreignUni.ForeignUniversitiesCountry, foreignUni.ChainName)
-													if err != nil {
-														return &types.MsgInsertErasmusRequestResponse{
-															Status: -1,
-														}, err
-													} else {
-														k.Keeper.SetStoredStudent(ctx, searchedStudent)
-														return &types.MsgInsertErasmusRequestResponse{
-															Status: 0,
-														}, nil
-													}
-
+													k.Keeper.SetStoredStudent(ctx, searchedStudent)
+													return &types.MsgInsertErasmusRequestResponse{
+														Status: 0,
+													}, nil
 												}
-
 											}
 										}
 									}
 								}
 							}
+
 						}
 					}
 				}
 			}
 		}
 	}
-
 }

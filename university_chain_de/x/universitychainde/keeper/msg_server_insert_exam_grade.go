@@ -71,51 +71,77 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 										}, types.ErrUnpaidTaxes
 									} else {
 
-										extendedGrade := strings.Split(msg.Grade, ",")
-										if len(extendedGrade) > 1 {
-											if len(extendedGrade[1]) > 1 {
-												return &types.MsgInsertExamGradeResponse{
-													Status: -1,
-												}, types.ErrWrongExamGrade
-											}
-										}
-										extendedGrade = strings.Split(msg.Grade, ".")
-										if len(extendedGrade) > 1 {
-											if len(extendedGrade[1]) > 1 {
-												return &types.MsgInsertExamGradeResponse{
-													Status: -1,
-												}, types.ErrWrongExamGrade
-											}
-										}
-
-										gradeNum, err := strconv.ParseFloat(msg.Grade, 32)
-										if err != nil {
+										if searchedStudent.ErasmusData.ErasmusStudent == "Outgoing" {
 											return &types.MsgInsertExamGradeResponse{
 												Status: -1,
-											}, types.ErrWrongExamGrade
-
+											}, types.ErrOutgoingPeriod
+										} else if searchedStudent.ErasmusData.ErasmusStudent == "Incoming completed" {
+											return &types.MsgInsertExamGradeResponse{
+												Status: -1,
+											}, types.ErrCompletedIncomingPeriod
 										} else {
-											if gradeNum > 4 || gradeNum < 1 {
+
+											extendedGrade := strings.Split(msg.Grade, ",")
+											if len(extendedGrade) > 1 {
+												if len(extendedGrade[1]) > 1 {
+													return &types.MsgInsertExamGradeResponse{
+														Status: -1,
+													}, types.ErrWrongExamGrade
+												}
+											}
+											extendedGrade = strings.Split(msg.Grade, ".")
+											if len(extendedGrade) > 1 {
+												if len(extendedGrade[1]) > 1 {
+													return &types.MsgInsertExamGradeResponse{
+														Status: -1,
+													}, types.ErrWrongExamGrade
+												}
+											}
+
+											gradeNum, err := strconv.ParseFloat(msg.Grade, 32)
+											if err != nil {
 												return &types.MsgInsertExamGradeResponse{
 													Status: -1,
 												}, types.ErrWrongExamGrade
-											}
-										}
 
-										JSONExams, credits, err := utilfunc.SetExamGrade(searchedStudent.TranscriptData.ExamsData, msg.ExamName, msg.Grade)
-										if err != nil {
-											return &types.MsgInsertExamGradeResponse{
-												Status: -1,
-											}, err
-										} else {
-											searchedStudent.TranscriptData.ExamsData = JSONExams
+											} else {
+												if gradeNum > 4 || gradeNum < 1 {
+													return &types.MsgInsertExamGradeResponse{
+														Status: -1,
+													}, types.ErrWrongExamGrade
+												}
+											}
+
+											var credits uint8 = 0
+											var JSONExams string = ""
+											if searchedStudent.ErasmusData.ErasmusStudent == "Outgoing completed" || searchedStudent.ErasmusData.ErasmusStudent == "No" {
+
+												JSONExams, credits, err = utilfunc.SetExamGrade(searchedStudent.TranscriptData.ExamsData, msg.ExamName, strconv.FormatFloat(gradeNum, 'f', 1, 64))
+												if err != nil {
+													return &types.MsgInsertExamGradeResponse{
+														Status: -1,
+													}, err
+												} else {
+													searchedStudent.TranscriptData.ExamsData = JSONExams
+
+												}
+											} else { // Incoming
+												credits, err = utilfunc.SetErasmusExamGrade(&searchedStudent, msg.ExamName, strconv.FormatFloat(gradeNum, 'f', 1, 64))
+												if err != nil {
+													return &types.MsgInsertExamGradeResponse{
+														Status: -1,
+													}, err
+												}
+											}
 											searchedStudent.TranscriptData.AchievedCredits += uint32(credits)
 											searchedStudent.TranscriptData.ExamsPassed += 1
+
 											k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
 											return &types.MsgInsertExamGradeResponse{
 												Status: 0,
 											}, nil
+
 										}
 									}
 								}

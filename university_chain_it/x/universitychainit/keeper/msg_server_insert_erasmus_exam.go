@@ -66,42 +66,28 @@ func (k msgServer) InsertErasmusExam(goCtx context.Context, msg *types.MsgInsert
 									}, types.ErrUnpaidTaxes
 								} else {
 
-									res, err := utilfunc.CheckErasmusStatus(searchedStudent)
+									err := utilfunc.CheckErasmusStatus(searchedStudent, "insert erasmus exam")
 									if err != nil {
 										return &types.MsgInsertErasmusExamResponse{
 											Status: -1,
 										}, err
 									} else {
-										if res == "" {
+
+										err := utilfunc.InsertErasmusExam(&searchedStudent, msg.ExamName, uni.MaxErasmusExams)
+										if err != nil {
 											return &types.MsgInsertErasmusExamResponse{
 												Status: -1,
-											}, types.ErrNoErasmusRequest
-										} else if res == "in progress" {
-											return &types.MsgInsertErasmusExamResponse{
-												Status: -1,
-											}, types.ErrPreviousRequestInProgress
-										} else if res == "terminated" {
-											return &types.MsgInsertErasmusExamResponse{
-												Status: -1,
-											}, types.ErrPreviousRequestCompleted
+											}, err
 										} else {
-
-											err := utilfunc.InsertErasmusExam(&searchedStudent, msg.ExamName, uni.MaxErasmusExams)
-											if err != nil {
-												return &types.MsgInsertErasmusExamResponse{
-													Status: -1,
-												}, err
-											} else {
-												k.Keeper.SetStoredStudent(ctx, searchedStudent)
-												return &types.MsgInsertErasmusExamResponse{
-													Status: 0,
-												}, nil
-											}
+											k.Keeper.SetStoredStudent(ctx, searchedStudent)
+											return &types.MsgInsertErasmusExamResponse{
+												Status: 0,
+											}, nil
 										}
-
 									}
 								}
 							}
+
 						}
 					}
 				}

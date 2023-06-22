@@ -293,8 +293,6 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 
 	student.ErasmusData.NumberMonths += uint32(erasmusDuration)
 
-	student.ErasmusData.ErasmusStudent = "No"
-
 	student.ErasmusData.NumberTimes++
 
 	var erasmusCareer []ErasmusCareerStruct
@@ -355,7 +353,7 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 		erasmusCareer[lenCareer-1].Foreign_university_name = foreign_university_name
 		erasmusCareer[lenCareer-1].Foreign_university_country = foreign_university_country
 		erasmusCareer[lenCareer-1].Foreign_chain_name = foreign_chain_name
-		erasmusCareer[lenCareer-1].Status = "to start" // to start, in progress or terminated
+		erasmusCareer[lenCareer-1].Status = "To start" // "", To start, In progress, Waiting for updated data from the destination university or Terminated
 		erasmusCareer[lenCareer-1].Contribution.Amount = contritbutionErasmus
 
 	} else {
@@ -373,7 +371,7 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 			Foreign_university_country:    foreign_university_country,
 			Foreign_chain_name:            foreign_chain_name,
 			Foreign_university_student_id: "",
-			Status:                        "to start", // to start, in progress or terminated
+			Status:                        "To start", // "", To start, In progress, Waiting for updated data from the destination university or Terminated
 			Contribution: ErasmusContributionStruct{
 				Amount:          contritbutionErasmus,
 				Income_bracket:  erasmusCareer[lenCareer-1].Contribution.Income_bracket,
@@ -402,20 +400,59 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 	return err
 }
 
-func CheckErasmusStatus(student types.StoredStudent) (res string, err error) {
+func CheckErasmusStatus(student types.StoredStudent, typeCheck string) (err error) {
 
 	var erasmusCareer []ErasmusCareerStruct
 
 	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
 	if err != nil {
-		return res, err
+		return err
 	}
 
 	lenCareer := len(erasmusCareer)
 
-	res = erasmusCareer[lenCareer-1].Status
+	res := erasmusCareer[lenCareer-1].Status
 
-	return res, err
+	switch typeCheck {
+	case "start erasmus", "insert erasmus exam":
+
+		if student.ErasmusData.ErasmusStudent == "Incoming completed" {
+			return types.ErrIncomingPeriod
+		} else if student.ErasmusData.ErasmusStudent == "Incoming" {
+			return types.ErrIncomingPeriod
+		}
+		if res == "" {
+			return types.ErrNoErasmusRequest
+		} else if res == "In progress" {
+			return types.ErrPreviousRequestInProgress
+		} else if res == "Terminated" {
+			return types.ErrPreviousRequestCompleted
+		} else if res == "Waiting for updated data from the destination university" {
+			return types.ErrPreviousRequestInProgress
+		}
+	case "erasmus request":
+		if student.ErasmusData.ErasmusStudent == "Incoming completed" {
+			return types.ErrIncomingPeriod
+		} else if student.ErasmusData.ErasmusStudent == "Incoming" {
+			return types.ErrIncomingPeriod
+		}
+		if res == "In progress" {
+			return types.ErrPreviousRequestInProgress
+		} else if res == "To start" {
+			return types.ErrPreviousRequestCompleted
+		} else if res == "Waiting for updated data from the destination university" {
+			return types.ErrPreviousRequestInProgress
+		}
+	case "insert exam grade":
+
+		if student.ErasmusData.ErasmusStudent == "Outgoing" {
+			return types.ErrOutgoingPeriod
+		} else if student.ErasmusData.ErasmusStudent == "Incoming completed" {
+			return types.ErrCompletedIncomingPeriod
+		}
+	}
+
+	return err
 
 }
 
@@ -538,20 +575,20 @@ func StartErasmus(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.
 		endDate := startDate.AddDate(0, int(erasmusCareer[lenCareer-1].Duration_in_months), 0)
 		erasmusCareer[lenCareer-1].Start_date = startDate.Format("2006-01-02")
 		erasmusCareer[lenCareer-1].End_date = endDate.Format("2006-01-02")
-		erasmusCareer[lenCareer-1].Status = "in progress"
-		student.ErasmusData.ErasmusStudent = "outgoing"
+		erasmusCareer[lenCareer-1].Status = "In progress"
+		student.ErasmusData.ErasmusStudent = "Outgoing"
 	*/
 
 	// I will enter just 30 seconds to see if the end the Erasmus period works.
 
 	startDate := ctx.BlockTime()
 
-	endDate := ctx.BlockTime().Add(time.Duration(30 * time.Second))
+	endDate := ctx.BlockTime().Add(time.Duration(240 * time.Second))
 	//endDate := ctx.BlockTime().Add(time.Duration(-1))
 	erasmusCareer[lenCareer-1].Start_date = FormatDeadline(startDate)
 	erasmusCareer[lenCareer-1].End_date = FormatDeadline(endDate)
-	erasmusCareer[lenCareer-1].Status = "in progress"
-	student.ErasmusData.ErasmusStudent = "outgoing"
+	erasmusCareer[lenCareer-1].Status = "In progress"
+	student.ErasmusData.ErasmusStudent = "Outgoing"
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {
@@ -601,13 +638,13 @@ func CloseErasmusPeriod(student *types.StoredStudent) (err error) {
 
 	lenCareer := len(erasmusCareer)
 
-	//student.ErasmusData.ErasmusStudent = "outgoing completed"
+	//student.ErasmusData.ErasmusStudent = "Outgoing completed"
 
-	student.ErasmusData.ErasmusStudent = "waiting for updated data from the destination university"
+	student.ErasmusData.ErasmusStudent = "Waiting for updated data from the destination university"
 
-	//erasmusCareer[lenCareer-1].Status = "terminated"
+	//erasmusCareer[lenCareer-1].Status = "Terminated"
 
-	erasmusCareer[lenCareer-1].Status = "waiting for updated data from the destination university"
+	erasmusCareer[lenCareer-1].Status = "Waiting for updated data from the destination university"
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {
@@ -675,9 +712,7 @@ func GetForeignUniversityName(student types.StoredStudent) (res string, err erro
 	return res, err
 }
 
-func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusInfo) (err error) {
-
-	student.ErasmusData = erasmusInfo
+func ConcludeErasmusFlag(student *types.StoredStudent) (err error) {
 
 	var erasmusCareer []ErasmusCareerStruct
 
@@ -688,13 +723,49 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 
 	lenCareer := len(erasmusCareer)
 
-	student.ErasmusData.ErasmusStudent = "outgoing completed"
+	erasmusCareer[lenCareer-1].Status = "Terminated"
 
-	erasmusCareer[lenCareer-1].Status = "terminated"
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	student.ErasmusData.Career = string(resultByteJSON)
+
+	return err
+}
+
+func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusInfo) (err error) {
+
+	PrintLogs("UpdateErasmusData")
+
+	foreignIndex, err := GetForeignIndex(*student)
+	if err != nil {
+		return err
+	}
+	student.ErasmusData = erasmusInfo
+
+	SetForeignIndex(student, foreignIndex)
+	if err != nil {
+		return err
+	}
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	student.ErasmusData.ErasmusStudent = "Outgoing completed"
+
+	erasmusCareer[lenCareer-1].Status = "Terminated"
 
 	// get the grade conversions structure
 
-	// grade conversion taken in https://guide.unibz.it/assets/2021-08-06-Tabella-di-conversione-voti.pdf
+	// grade conversion taken in https://www.economia.unifi.it/upload/sub/relazioni-internazionali/TABELLA%20PER%20PAESE%20UE%20(1).pdf
 
 	// Open our jsonFile
 	jsonFile, err := os.OpenFile("data/"+erasmusGradeConversionJSON, os.O_RDONLY, 0444)
@@ -755,23 +826,25 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 	found := false
 	i, j, k := 0, 0, 0
 
-	for i = 0; i < len(erasmusGradesConversion.Grades_data) && !found; i++ {
-
+	for i = 0; i < len(erasmusGradesConversion.Grades_data) && !found; {
 		if erasmusGradesConversion.Grades_data[i].CountryName == erasmusCareer[lenCareer-1].Foreign_university_country {
 			found = true
+		} else {
+			i++
 		}
 	}
 
 	if !found {
 		return types.ErrWrongForeignUniversity
 	} else {
-
 		for k = 0; k < len(values); k++ {
 			if values[k].Marks != "" {
 				found = false
-				for j = 0; j < len(erasmusGradesConversion.Grades_data[i].Grades) && !found; j += 2 {
+				for j = 0; j < len(erasmusGradesConversion.Grades_data[i].Grades) && !found; {
 					if values[k].Marks == erasmusGradesConversion.Grades_data[i].Grades[j] {
 						found = true
+					} else {
+						j += 2
 					}
 				}
 				if found {
@@ -779,7 +852,10 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 					val.Marks = erasmusGradesConversion.Grades_data[i].Grades[j+1]
 					val.Status = values[k].Status
 					val.Exam_date = values[k].Exam_date
+					val.Attendance_year = values[k].Attendance_year
 					mapExams[keys[k]] = val
+					student.TranscriptData.AchievedCredits += uint32(val.Credits)
+					student.TranscriptData.ExamsPassed += 1
 				}
 
 			}

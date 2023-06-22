@@ -48,7 +48,7 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 					// Erasmus period is past deadline
 
-					utilfunc.PrintLogs("inside")
+					//utilfunc.PrintLogs("inside")
 
 					k.RemoveFromFifo(ctx, &storedStudent, &uniList[i])
 
@@ -101,7 +101,7 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 							err = k.TransmitEndErasmusPeriodRequestPacket(
 								ctx,
 								packet,
-								"hub",
+								"universitychainde",
 								"channel-0",
 								clienttypes.ZeroHeight(),
 								timeoutTimestamp,

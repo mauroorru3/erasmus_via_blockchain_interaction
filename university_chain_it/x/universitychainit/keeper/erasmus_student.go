@@ -107,15 +107,20 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 				return packetAck, types.ErrWrongNameUniversity
 			} else {
 
-				data.Student.ErasmusData.ErasmusStudent = "incoming"
-				data.Student.Index = uniInfo.UniversityName + "_" + strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
-				uniInfo.NextStudentId++
-				packetAck.ForeignIndex = data.Student.Index
+				data.Student.ErasmusData.ErasmusStudent = "Incoming"
+				err = utilfunc.SetForeignIndex(data.Student, data.Student.Index)
+				if err != nil {
+					return packetAck, err
+				} else {
+					data.Student.Index = uniInfo.UniversityName + "_" + strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
+					uniInfo.NextStudentId++
+					packetAck.ForeignIndex = data.Student.Index
+					k.SetStoredStudent(ctx, *data.Student)
+					k.SetUniversityInfo(ctx, uniInfo)
 
-				k.SetStoredStudent(ctx, *data.Student)
-				k.SetUniversityInfo(ctx, uniInfo)
+					return packetAck, nil
+				}
 
-				return packetAck, nil
 			}
 		}
 	}
