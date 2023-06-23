@@ -105,7 +105,6 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 										for w = 0; w < len(universityInfoList[i].DepartmentList[j].CoursesTypeList[q].Courses); w++ {
 											z := 0
 											for z = 0; z < len(universityInfoList[i].DepartmentList[j].CoursesTypeList[q].Courses[w].Exams); z++ {
-
 												k.Keeper.SetProfessorsExams(ctx, types.ProfessorsExams{
 													ExamName:      universityInfoList[i].Name + "_" + universityInfoList[i].DepartmentList[j].CoursesTypeList[q].Courses[w].Exams[z].ExamName,
 													ProfessorName: universityInfoList[i].DepartmentList[j].CoursesTypeList[q].Courses[w].Exams[z].ProfessorName,

@@ -101,12 +101,10 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 		if err != nil {
 			return packetAck, err
 		} else {
-
 			uniInfo, found := k.GetUniversityInfo(ctx, destinationUni)
 			if !found {
 				return packetAck, types.ErrWrongNameUniversity
 			} else {
-
 				data.Student.ErasmusData.ErasmusStudent = "Incoming"
 				err = utilfunc.SetForeignIndex(data.Student, data.Student.Index)
 				if err != nil {
@@ -117,7 +115,6 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 					packetAck.ForeignIndex = data.Student.Index
 					k.SetStoredStudent(ctx, *data.Student)
 					k.SetUniversityInfo(ctx, uniInfo)
-
 					return packetAck, nil
 				}
 

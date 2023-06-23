@@ -7,7 +7,7 @@ import (
 
 var universities map[string]int = map[string]int{
 	"tum":                 1,
-	"humboldt_university": 1,
+	"humboldt university": 1,
 	"unipi":               1,
 	"uniroma1":            1,
 }

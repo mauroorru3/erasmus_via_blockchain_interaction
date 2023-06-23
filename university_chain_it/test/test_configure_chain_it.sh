@@ -6,6 +6,6 @@ echo ""
 echo "Command:"
 echo "university_chain_itd tx universitychainit configure-chain --from $chain_admin --chain-id university_chain_it --yes"
 echo ""
-university_chain_itd tx universitychainit configure-chain --from $chain_admin --chain-id university_chain_it --yes
+university_chain_itd tx universitychainit configure-chain --from "$chain_admin" --chain-id university_chain_it --yes
 
 

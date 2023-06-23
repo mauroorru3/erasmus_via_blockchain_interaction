@@ -134,8 +134,8 @@
                                     "courseOfStudy": "cs",
                                     "exams": [
                                         {
-                                            "Name and Surname": "Dogan Winkler",
-                                            "Address": "cosmos1t89y0rpe7vttdxlzf5cmutcnjgsljwecjuqwqn",
+                                            "Name and Surname": "Friedrich Mayer",
+                                            "Address": "cosmos1ea3q4lwulyfgekhg09tyuwf0s2q7773ezrgu32",
                                             "examName": "Algorithm engineering",
                                             "credits": 9,
                                             "examType": ""
@@ -148,8 +148,8 @@
                                             "examType": ""
                                         },
                                         {
-                                            "Name and Surname": "Friedrich Mayer",
-                                            "Address": "cosmos1ea3q4lwulyfgekhg09tyuwf0s2q7773ezrgu32",
+                                            "Name and Surname": "Dogan Winkler",
+                                            "Address": "cosmos1t89y0rpe7vttdxlzf5cmutcnjgsljwecjuqwqn",
                                             "examName": "Bioinformatics",
                                             "credits": 6,
                                             "examType": ""

@@ -71,14 +71,11 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 										}, types.ErrUnpaidTaxes
 									} else {
 
-										if searchedStudent.ErasmusData.ErasmusStudent == "Outgoing" {
+										err := utilfunc.CheckErasmusStatus(searchedStudent, "insert exam grade")
+										if err != nil {
 											return &types.MsgInsertExamGradeResponse{
 												Status: -1,
-											}, types.ErrOutgoingPeriod
-										} else if searchedStudent.ErasmusData.ErasmusStudent == "Incoming completed" {
-											return &types.MsgInsertExamGradeResponse{
-												Status: -1,
-											}, types.ErrCompletedIncomingPeriod
+											}, err
 										} else {
 
 											extendedGrade := strings.Split(msg.Grade, ",")
