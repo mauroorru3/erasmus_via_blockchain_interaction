@@ -1,0 +1,60 @@
+InsertInTheErasmusFIFOQueue 2023-06-24 11:51:43
+InsertInTheErasmusFIFOQueue qui 1 2023-06-24 11:51:43
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:51:43
+InsertInTheErasmusFIFOQueue 2023-06-24 11:51:44
+InsertInTheErasmusFIFOQueue qui 1 2023-06-24 11:51:44
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:51:44
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:51:47
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:51:48
+InsertInTheErasmusFIFOQueue 2023-06-24 11:51:52
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:51:52
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:51:52
+OnRecvErasmusIndexPacket success 2023-06-24 11:51:52
+InsertInTheErasmusFIFOQueue 2023-06-24 11:51:53
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:51:53
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:51:53
+OnRecvErasmusIndexPacket success 2023-06-24 11:51:53
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:51:56
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:51:57
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:00
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:01
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:01
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:01
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:01
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:02
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:02
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:02
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:06
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:07
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:10
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:10
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:11
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:11
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:11
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:12
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:12
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:12
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:15
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:16
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:19
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:20
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:20
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:20
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:20
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:21
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:21
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:21
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:24
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:25
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:28
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:29
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:29
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:29
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:29
+InsertInTheErasmusFIFOQueue 2023-06-24 11:52:30
+InsertInTheErasmusFIFOQueue qui 4 2023-06-24 11:52:30
+TransmitErasmusStudentPacket packet sent 2023-06-24 11:52:30
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:33
+OnAcknowledgementErasmusStudentPacket success 2023-06-24 11:52:34
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:37
+OnRecvErasmusIndexPacket success 2023-06-24 11:52:38

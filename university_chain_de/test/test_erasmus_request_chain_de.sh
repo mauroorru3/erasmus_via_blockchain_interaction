@@ -15,6 +15,6 @@ export Karl_Schmidt=$(university_chain_ded keys show "Karl Schmidt" -a)
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-erasmus-request $1 1 6 $2 study --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-erasmus-request $1 1 6 $2 study --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes

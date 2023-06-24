@@ -90,7 +90,7 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 												}, err
 											} else {
 
-												k.Keeper.SendToFifoTail(ctx, &searchedStudent, &uniInfo)
+												k.Keeper.InsertInTheErasmusFIFOQueue(ctx, &searchedStudent, &uniInfo)
 
 												var packet types.ErasmusStudentPacketData
 

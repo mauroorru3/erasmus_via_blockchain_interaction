@@ -37,7 +37,7 @@ then
 		exit 1
 	fi
 else
-	echo "The first argument is not equl to it or de. Usage example: ./test_chain.sh it unipi tum"
+	echo "The first argument is not equal to it or de. Usage example: ./test_chain.sh it unipi tum"
 fi
 
 

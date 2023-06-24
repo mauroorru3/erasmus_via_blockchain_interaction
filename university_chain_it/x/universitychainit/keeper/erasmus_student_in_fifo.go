@@ -1,6 +1,8 @@
 package keeper
 
 import (
+	"encoding/json"
+	"time"
 	"university_chain_it/x/universitychainit/types"
 	"university_chain_it/x/universitychainit/utilfunc"
 
@@ -48,20 +50,132 @@ func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, un
 	}
 }
 
-func (k Keeper) SendToFifoTail(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
+func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
 
+	utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue")
+	finish := false
 	if uniInfo.FifoHeadErasmus == "" && uniInfo.FifoTailErasmus == "" {
 		uniInfo.FifoHeadErasmus = student.Index
 		uniInfo.FifoTailErasmus = student.Index
+		student.ErasmusData.PreviousStudentFifo = ""
+		student.ErasmusData.NextStudentFifo = ""
+		utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 1")
 	} else {
 		currentTail, found := k.GetStoredStudent(ctx, uniInfo.FifoTailErasmus)
 		if !found {
 			panic("Current Fifo tail was not found")
 		}
-		currentTail.ErasmusData.NextStudentFifo = student.Index
-		k.SetStoredStudent(ctx, currentTail)
+		goOn, err := CheckRemainingTime(currentTail, *student)
+		if err != nil {
+			panic(err)
+		}
+		if goOn {
+			if currentTail.ErasmusData.PreviousStudentFifo != "" {
+				utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 2")
+				currentTail, found = k.GetStoredStudent(ctx, currentTail.ErasmusData.PreviousStudentFifo)
+				if !found {
+					panic("Previous student was not found")
+				}
+			} else {
+				utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 3")
+				uniInfo.FifoHeadErasmus = student.Index
+				student.ErasmusData.PreviousStudentFifo = ""
+				student.ErasmusData.NextStudentFifo = currentTail.Index
+				currentTail.ErasmusData.PreviousStudentFifo = student.Index
+				k.SetStoredStudent(ctx, currentTail)
+				finish = true
 
-		student.ErasmusData.PreviousStudentFifo = currentTail.Index
-		uniInfo.FifoTailErasmus = student.Index
+			}
+		} else {
+			utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 4")
+			currentTail.ErasmusData.NextStudentFifo = student.Index
+			k.SetStoredStudent(ctx, currentTail)
+			student.ErasmusData.PreviousStudentFifo = currentTail.Index
+			uniInfo.FifoTailErasmus = student.Index
+			finish = true
+		}
+		for !finish {
+			goOn, err := CheckRemainingTime(currentTail, *student)
+			if err != nil {
+				panic(err)
+			}
+			if goOn {
+				if currentTail.ErasmusData.PreviousStudentFifo != "" {
+					currentTail, found = k.GetStoredStudent(ctx, currentTail.ErasmusData.PreviousStudentFifo)
+					if !found {
+						panic("Previous student was not found")
+					}
+				} else {
+					uniInfo.FifoHeadErasmus = student.Index
+					student.ErasmusData.PreviousStudentFifo = ""
+					student.ErasmusData.NextStudentFifo = currentTail.Index
+					currentTail.ErasmusData.PreviousStudentFifo = student.Index
+					k.SetStoredStudent(ctx, currentTail)
+					finish = true
+
+				}
+			} else {
+				student.ErasmusData.NextStudentFifo = currentTail.ErasmusData.NextStudentFifo
+				student.ErasmusData.PreviousStudentFifo = currentTail.Index
+				currentTail.ErasmusData.NextStudentFifo = student.Index
+				k.SetStoredStudent(ctx, currentTail)
+				finish = true
+			}
+		}
 	}
+
+}
+
+func CheckRemainingTime(tail types.StoredStudent, student types.StoredStudent) (ok bool, err error) {
+
+	var erasmusCareerTail []utilfunc.ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(tail.ErasmusData.Career), &erasmusCareerTail)
+	if err != nil {
+		return ok, err
+	}
+
+	lenCareer := len(erasmusCareerTail)
+
+	finishDate, err := time.Parse(utilfunc.DeadlineLayout, erasmusCareerTail[lenCareer-1].End_date)
+	if err != nil {
+		return ok, err
+	}
+
+	startDate, err := time.Parse(utilfunc.DeadlineLayout, erasmusCareerTail[lenCareer-1].Start_date)
+	if err != nil {
+		return ok, err
+	}
+
+	differenceTail := finishDate.Sub(startDate)
+
+	//--------------------
+
+	var erasmusCareerStudent []utilfunc.ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareerStudent)
+	if err != nil {
+		return ok, err
+	}
+
+	lenCareerStudent := len(erasmusCareerStudent)
+
+	finishDate, err = time.Parse(utilfunc.DeadlineLayout, erasmusCareerStudent[lenCareerStudent-1].End_date)
+	if err != nil {
+		return ok, err
+	}
+
+	startDate, err = time.Parse(utilfunc.DeadlineLayout, erasmusCareerStudent[lenCareerStudent-1].Start_date)
+	if err != nil {
+		return ok, err
+	}
+
+	differenceStudent := finishDate.Sub(startDate)
+
+	if differenceTail.Seconds() > differenceStudent.Seconds() {
+		return true, err
+	} else {
+		return false, err
+	}
+
 }

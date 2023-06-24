@@ -17,6 +17,6 @@ export prof_advanced_databases=$(university_chain_itd keys show "Prof. Ermanno N
 
 echo ""
 echo "Command:"
-echo "university_chain_itd tx universitychainit insert-exam-grade $1 1 "Advanced databases" 25 --from $prof_advanced_databases --chain-id university_chain_it --yes"
+echo "university_chain_itd tx universitychainit insert-exam-grade $1 1 "Advanced databases" 25 --from $prof_advanced_databases --gas auto --chain-id university_chain_it --yes"
 echo ""
-university_chain_itd tx universitychainit insert-exam-grade "$1" 1 "Advanced databases" 25 --from "$prof_advanced_databases" --chain-id university_chain_it --yes
+university_chain_itd tx universitychainit insert-exam-grade "$1" 1 "Advanced databases" 25 --from "$prof_advanced_databases" --gas auto --chain-id university_chain_it --yes

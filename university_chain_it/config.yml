@@ -23,6 +23,21 @@ accounts:
 - name: Mario Rossi
   coins: ["200000000token", "200000000stake"]
   mnemonic: "pond sport hold enter develop turkey home close debris noodle kick orbit layer habit win love monster foil woman town govern truly effort gesture"
+- name: Tamara Genovesi
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "caught slot potato follow aerobic over differ buddy destroy major puzzle kid board barrel parade group vendor into swim type kit normal unfold pipe"
+- name: Franca Ferrari
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "beach laptop convince column crowd grain maple marble believe brisk net claim powder hamster myth drill goat tackle tired desert fee humble toast diet"
+- name: Luigi Lena
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "soul tackle daring glory camp sport unable law never brave soldier illegal leaf monitor aisle horn code antique concert shiver dream pear clarify clown"
+- name: Gianpiero Serafino
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "text orphan slush valid shed across dice fix duty already butter practice open celery badge square direct own stick mobile today seven retreat make"
+- name: Antonella Marino
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "crystal journey brain rural toss say divide shoe fiber empty fade update oak comfort electric flavor reason interest key girl govern caution combine artwork"
 - name: Karl Schmidt
   coins: ["200000000token", "200000000stake"]
   mnemonic: "guide gentle scorpion regret sort want mistake rely turkey hospital luggage utility oak battle poverty thrive air ethics match two deal merge nephew relax"

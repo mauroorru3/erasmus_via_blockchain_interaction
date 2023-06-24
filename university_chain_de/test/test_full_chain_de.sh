@@ -31,63 +31,63 @@ export prof_ae=$(university_chain_ded keys show "Prof. Friedrich Mayer" -a)
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde configure-chain --from $chain_admin --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde configure-chain --from $chain_admin --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde configure-chain --from "$chain_admin" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde configure-chain --from "$chain_admin" --gas auto --chain-id university_chain_de --yes
 
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde register-new-student $1 Karl Schmidt master cs "Computer Science" --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde register-new-student $1 Karl Schmidt master cs "Computer Science" --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde register-new-student "$1" Karl Schmidt master cs "Computer Science" --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde register-new-student "$1" Karl Schmidt master cs "Computer Science" --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
 
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-student-personal-info $1 1 male 1998-04-02 German Germany Munich Munich 1111111111111111 20000 --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-student-personal-info $1 1 male 1998-04-02 German Germany Munich Munich 1111111111111111 20000 --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-student-personal-info "$1" 1 male 1998-04-02 German Germany Munich Munich 1111111111111111 20000 --from "$Karl_Schmidt" --chain-id university_chain_de --yes 
+university_chain_ded tx universitychainde insert-student-personal-info "$1" 1 male 1998-04-02 German Germany Munich Munich 1111111111111111 20000 --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes 
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-student-contact-info $1 1 "Ludwig Street" karl.schmidt@example.it 0000000000 --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-student-contact-info $1 1 "Ludwig Street" karl.schmidt@example.it 0000000000 --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-student-contact-info "$1" 1 "Ludwig Street" karl.schmidt@example.it 0000000000 --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde insert-student-contact-info "$1" 1 "Ludwig Street" karl.schmidt@example.it 0000000000 --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-student-residence-info $1 1 germany MU Munich 80331 "Ludwig Street" 3 0000000000 --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-student-residence-info $1 1 germany MU Munich 80331 "Ludwig Street" 3 0000000000 --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-student-residence-info "$1" 1 germany MU Munich 80331 "Ludwig Street" 3 0000000000 --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde insert-student-residence-info "$1" 1 germany MU Munich 80331 "Ludwig Street" 3 0000000000 --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde pay-taxes $1 1 --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde pay-taxes $1 1 --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde pay-taxes "$1" 1 --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde pay-taxes "$1" 1 --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-exam-grade $1 1 "Algorithm engineering" 1.5 --from $prof_ae --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-exam-grade $1 1 "Algorithm engineering" 1.5 --from $prof_ae --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-exam-grade "$1" 1 "Algorithm engineering" 1.5 --from "$prof_ae" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde insert-exam-grade "$1" 1 "Algorithm engineering" 1.5 --from "$prof_ae" --gas auto --chain-id university_chain_de --yes
 
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-erasmus-request $1 1 6 $2 study --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-erasmus-request $1 1 6 $2 study --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-erasmus-exam $1 1 "Advanced databases" --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde insert-erasmus-exam $1 1 "Advanced databases" --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde insert-erasmus-exam "$1" 1 "Advanced databases" --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde insert-erasmus-exam "$1" 1 "Advanced databases" --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde start-erasmus $1 1 --from $Karl_Schmidt --chain-id university_chain_de --yes"
+echo "university_chain_ded tx universitychainde start-erasmus $1 1 --from $Karl_Schmidt --gas auto --chain-id university_chain_de --yes"
 echo ""
-university_chain_ded tx universitychainde start-erasmus "$1" 1 --from "$Karl_Schmidt" --chain-id university_chain_de --yes
+university_chain_ded tx universitychainde start-erasmus "$1" 1 --from "$Karl_Schmidt" --gas auto --chain-id university_chain_de --yes
