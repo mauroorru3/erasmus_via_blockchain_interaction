@@ -4,19 +4,19 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
+import { MsgSendErasmusStudent } from "./types/hub/tx";
 import { MsgSendErasmusIndex } from "./types/hub/tx";
-import { MsgSendEndErasmusPeriodRequest } from "./types/hub/tx";
 import { MsgConfigureChain } from "./types/hub/tx";
 import { MsgSendFinalErasmusData } from "./types/hub/tx";
-import { MsgSendErasmusStudent } from "./types/hub/tx";
+import { MsgSendEndErasmusPeriodRequest } from "./types/hub/tx";
 
 
 const types = [
+  ["/hub.hub.MsgSendErasmusStudent", MsgSendErasmusStudent],
   ["/hub.hub.MsgSendErasmusIndex", MsgSendErasmusIndex],
-  ["/hub.hub.MsgSendEndErasmusPeriodRequest", MsgSendEndErasmusPeriodRequest],
   ["/hub.hub.MsgConfigureChain", MsgConfigureChain],
   ["/hub.hub.MsgSendFinalErasmusData", MsgSendFinalErasmusData],
-  ["/hub.hub.MsgSendErasmusStudent", MsgSendErasmusStudent],
+  ["/hub.hub.MsgSendEndErasmusPeriodRequest", MsgSendEndErasmusPeriodRequest],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -49,11 +49,11 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    msgSendErasmusStudent: (data: MsgSendErasmusStudent): EncodeObject => ({ typeUrl: "/hub.hub.MsgSendErasmusStudent", value: MsgSendErasmusStudent.fromPartial( data ) }),
     msgSendErasmusIndex: (data: MsgSendErasmusIndex): EncodeObject => ({ typeUrl: "/hub.hub.MsgSendErasmusIndex", value: MsgSendErasmusIndex.fromPartial( data ) }),
-    msgSendEndErasmusPeriodRequest: (data: MsgSendEndErasmusPeriodRequest): EncodeObject => ({ typeUrl: "/hub.hub.MsgSendEndErasmusPeriodRequest", value: MsgSendEndErasmusPeriodRequest.fromPartial( data ) }),
     msgConfigureChain: (data: MsgConfigureChain): EncodeObject => ({ typeUrl: "/hub.hub.MsgConfigureChain", value: MsgConfigureChain.fromPartial( data ) }),
     msgSendFinalErasmusData: (data: MsgSendFinalErasmusData): EncodeObject => ({ typeUrl: "/hub.hub.MsgSendFinalErasmusData", value: MsgSendFinalErasmusData.fromPartial( data ) }),
-    msgSendErasmusStudent: (data: MsgSendErasmusStudent): EncodeObject => ({ typeUrl: "/hub.hub.MsgSendErasmusStudent", value: MsgSendErasmusStudent.fromPartial( data ) }),
+    msgSendEndErasmusPeriodRequest: (data: MsgSendEndErasmusPeriodRequest): EncodeObject => ({ typeUrl: "/hub.hub.MsgSendEndErasmusPeriodRequest", value: MsgSendEndErasmusPeriodRequest.fromPartial( data ) }),
     
   };
 };

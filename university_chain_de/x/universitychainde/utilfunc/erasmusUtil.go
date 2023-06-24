@@ -450,6 +450,23 @@ func CheckErasmusStatus(student types.StoredStudent, typeCheck string) (err erro
 		} else if student.ErasmusData.ErasmusStudent == "Incoming completed" {
 			return types.ErrCompletedIncomingPeriod
 		}
+	case "end erasmus before deadline":
+		if student.ErasmusData.ErasmusStudent == "Incoming completed" {
+			return types.ErrCompletedIncomingPeriod
+		} else if student.ErasmusData.ErasmusStudent == "Incoming" {
+			return types.ErrIncomingPeriod
+		} else if student.ErasmusData.ErasmusStudent == "Outgoing completed" {
+			return types.ErrCompletedOutgoingPeriod
+		}
+		if res == "" {
+			return types.ErrNoErasmusRequest
+		} else if res == "To start" {
+			return types.ErrPreviousRequestInProgress
+		} else if res == "Terminated" {
+			return types.ErrPreviousRequestCompleted
+		} else if res == "Waiting for updated data from the destination university" {
+			return types.ErrPreviousRequestInProgress
+		}
 	}
 
 	return err
@@ -627,7 +644,7 @@ func GetErasmusDeadline(student types.StoredStudent) (date time.Time, err error)
 	return finishDate, err
 }
 
-func CloseErasmusPeriod(student *types.StoredStudent) (err error) {
+func CloseErasmusPeriod(ctx sdk.Context, student *types.StoredStudent) (err error) {
 
 	var erasmusCareer []ErasmusCareerStruct
 
@@ -645,6 +662,21 @@ func CloseErasmusPeriod(student *types.StoredStudent) (err error) {
 	//erasmusCareer[lenCareer-1].Status = "Terminated"
 
 	erasmusCareer[lenCareer-1].Status = "Waiting for updated data from the destination university"
+
+	finishDate, err := time.Parse(DeadlineLayout, erasmusCareer[lenCareer-1].End_date)
+	if err != nil {
+		return err
+	}
+
+	startDate, err := time.Parse(DeadlineLayout, erasmusCareer[lenCareer-1].Start_date)
+	if err != nil {
+		return err
+	}
+
+	if finishDate.Sub(ctx.BlockTime()) > 0 {
+		erasmusCareer[lenCareer-1].End_date = FormatDeadline(ctx.BlockTime())
+		erasmusCareer[lenCareer-1].Duration_in_months = uint8(finishDate.Sub(startDate).Hours() / 24 / 30)
+	}
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {
@@ -712,7 +744,7 @@ func GetForeignUniversityName(student types.StoredStudent) (res string, err erro
 	return res, err
 }
 
-func ConcludeErasmusFlag(student *types.StoredStudent) (err error) {
+func ConcludeErasmusFlag(ctx sdk.Context, student *types.StoredStudent) (err error) {
 
 	var erasmusCareer []ErasmusCareerStruct
 
@@ -724,6 +756,21 @@ func ConcludeErasmusFlag(student *types.StoredStudent) (err error) {
 	lenCareer := len(erasmusCareer)
 
 	erasmusCareer[lenCareer-1].Status = "Terminated"
+
+	finishDate, err := time.Parse(DeadlineLayout, erasmusCareer[lenCareer-1].End_date)
+	if err != nil {
+		return err
+	}
+
+	startDate, err := time.Parse(DeadlineLayout, erasmusCareer[lenCareer-1].Start_date)
+	if err != nil {
+		return err
+	}
+
+	if finishDate.Sub(ctx.BlockTime()) > 0 {
+		erasmusCareer[lenCareer-1].End_date = FormatDeadline(ctx.BlockTime())
+		erasmusCareer[lenCareer-1].Duration_in_months = uint8(finishDate.Sub(startDate).Hours() / 24 / 30)
+	}
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {
@@ -760,6 +807,8 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 	lenCareer := len(erasmusCareer)
 
 	student.ErasmusData.ErasmusStudent = "Outgoing completed"
+	student.ErasmusData.NextStudentFifo = ""
+	student.ErasmusData.PreviousStudentFifo = ""
 
 	erasmusCareer[lenCareer-1].Status = "Terminated"
 

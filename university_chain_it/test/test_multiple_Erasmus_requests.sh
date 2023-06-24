@@ -104,5 +104,13 @@ do
 
 done
 
+echo ""
+echo "Command:"
+echo "university_chain_itd tx universitychainit end-erasmus-before-deadline $1 3 --from $(university_chain_itd keys show "Franca Ferrari" -a) --gas auto --chain-id university_chain_it --yes"
+echo ""
+university_chain_itd tx universitychainit end-erasmus-before-deadline "$1" 3 --from "$(university_chain_itd keys show "Franca Ferrari" -a)"  --gas auto --chain-id university_chain_it --yes
+
+
+
 
 

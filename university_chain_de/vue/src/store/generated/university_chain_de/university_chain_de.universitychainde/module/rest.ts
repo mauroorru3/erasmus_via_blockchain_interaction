@@ -72,6 +72,11 @@ export interface UniversitychaindeMsgConfigureChainResponse {
   status?: number;
 }
 
+export interface UniversitychaindeMsgEndErasmusBeforeDeadlineResponse {
+  /** @format int32 */
+  status?: number;
+}
+
 export interface UniversitychaindeMsgInsertErasmusExamResponse {
   /** @format int32 */
   status?: number;

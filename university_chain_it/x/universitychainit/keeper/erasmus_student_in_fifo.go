@@ -10,7 +10,6 @@ import (
 )
 
 func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
-	// Does it have a predecessor?
 
 	if student.ErasmusData.PreviousStudentFifo != "" {
 		beforeElement, found := k.GetStoredStudent(ctx, student.ErasmusData.PreviousStudentFifo)
@@ -22,7 +21,7 @@ func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, un
 		if student.ErasmusData.NextStudentFifo == "" {
 			uniInfo.FifoTailErasmus = beforeElement.Index
 		}
-		// Is it at the FIFO head?
+
 	} else if uniInfo.FifoHeadErasmus == student.Index {
 		uniInfo.FifoHeadErasmus = student.ErasmusData.NextStudentFifo
 	}
@@ -41,10 +40,11 @@ func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, un
 	} else if uniInfo.FifoTailErasmus == student.Index {
 		uniInfo.FifoTailErasmus = student.ErasmusData.PreviousStudentFifo
 	}
+
 	student.ErasmusData.PreviousStudentFifo = ""
 	student.ErasmusData.NextStudentFifo = ""
 
-	err := utilfunc.CloseErasmusPeriod(student)
+	err := utilfunc.CloseErasmusPeriod(ctx, student)
 	if err != nil {
 		panic("Error in CloseErasmusPeriod function")
 	}
