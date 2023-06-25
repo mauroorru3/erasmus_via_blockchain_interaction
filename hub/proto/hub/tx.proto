@@ -14,6 +14,7 @@ service Msg {
   rpc SendErasmusIndex(MsgSendErasmusIndex) returns (MsgSendErasmusIndexResponse);
   rpc SendEndErasmusPeriodRequest(MsgSendEndErasmusPeriodRequest) returns (MsgSendEndErasmusPeriodRequestResponse);
   rpc SendFinalErasmusData(MsgSendFinalErasmusData) returns (MsgSendFinalErasmusDataResponse);
+  rpc SendExtendErasmusPeriod(MsgSendExtendErasmusPeriod) returns (MsgSendExtendErasmusPeriodResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -75,5 +76,18 @@ message MsgSendFinalErasmusData {
 
 message MsgSendFinalErasmusDataResponse {
   int32 status = 1;
+}
+message MsgSendExtendErasmusPeriod {
+  string creator = 1;
+  string port = 2;
+  string channelID = 3;
+  uint64 timeoutTimestamp = 4;
+  uint64 durationInMonths = 5;
+  string destinationUniversityName = 6;
+  string foreignIndex = 7;
+  string finalDate = 8;
+}
+
+message MsgSendExtendErasmusPeriodResponse {
 }
 // this line is used by starport scaffolding # proto/tx/message

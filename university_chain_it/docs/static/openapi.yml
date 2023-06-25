@@ -50915,6 +50915,12 @@ definitions:
       status:
         type: integer
         format: int32
+  university_chain_it.universitychainit.MsgExtendErasmusResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
   university_chain_it.universitychainit.MsgInsertErasmusExamResponse:
     type: object
     properties:
@@ -50969,6 +50975,12 @@ definitions:
         type: integer
         format: int32
   university_chain_it.universitychainit.MsgSendErasmusStudentResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+        format: int32
+  university_chain_it.universitychainit.MsgSendExtendErasmusPeriodResponse:
     type: object
     properties:
       status:

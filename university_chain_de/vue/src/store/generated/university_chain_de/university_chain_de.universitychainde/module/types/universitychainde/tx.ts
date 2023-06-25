@@ -167,6 +167,32 @@ export interface MsgEndErasmusBeforeDeadlineResponse {
   status: number;
 }
 
+export interface MsgExtendErasmus {
+  creator: string;
+  university: string;
+  studentIndex: string;
+  durationInMonths: string;
+}
+
+export interface MsgExtendErasmusResponse {
+  status: number;
+}
+
+export interface MsgSendExtendErasmusPeriod {
+  creator: string;
+  port: string;
+  channelID: string;
+  timeoutTimestamp: number;
+  durationInMonths: number;
+  destinationUniversityName: string;
+  foreignIndex: string;
+  finalDate: string;
+}
+
+export interface MsgSendExtendErasmusPeriodResponse {
+  status: number;
+}
+
 const baseMsgConfigureChain: object = { creator: "" };
 
 export const MsgConfigureChain = {
@@ -3027,6 +3053,484 @@ export const MsgEndErasmusBeforeDeadlineResponse = {
   },
 };
 
+const baseMsgExtendErasmus: object = {
+  creator: "",
+  university: "",
+  studentIndex: "",
+  durationInMonths: "",
+};
+
+export const MsgExtendErasmus = {
+  encode(message: MsgExtendErasmus, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.university !== "") {
+      writer.uint32(18).string(message.university);
+    }
+    if (message.studentIndex !== "") {
+      writer.uint32(26).string(message.studentIndex);
+    }
+    if (message.durationInMonths !== "") {
+      writer.uint32(34).string(message.durationInMonths);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgExtendErasmus {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgExtendErasmus } as MsgExtendErasmus;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.university = reader.string();
+          break;
+        case 3:
+          message.studentIndex = reader.string();
+          break;
+        case 4:
+          message.durationInMonths = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgExtendErasmus {
+    const message = { ...baseMsgExtendErasmus } as MsgExtendErasmus;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.university !== undefined && object.university !== null) {
+      message.university = String(object.university);
+    } else {
+      message.university = "";
+    }
+    if (object.studentIndex !== undefined && object.studentIndex !== null) {
+      message.studentIndex = String(object.studentIndex);
+    } else {
+      message.studentIndex = "";
+    }
+    if (
+      object.durationInMonths !== undefined &&
+      object.durationInMonths !== null
+    ) {
+      message.durationInMonths = String(object.durationInMonths);
+    } else {
+      message.durationInMonths = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgExtendErasmus): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.university !== undefined && (obj.university = message.university);
+    message.studentIndex !== undefined &&
+      (obj.studentIndex = message.studentIndex);
+    message.durationInMonths !== undefined &&
+      (obj.durationInMonths = message.durationInMonths);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgExtendErasmus>): MsgExtendErasmus {
+    const message = { ...baseMsgExtendErasmus } as MsgExtendErasmus;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.university !== undefined && object.university !== null) {
+      message.university = object.university;
+    } else {
+      message.university = "";
+    }
+    if (object.studentIndex !== undefined && object.studentIndex !== null) {
+      message.studentIndex = object.studentIndex;
+    } else {
+      message.studentIndex = "";
+    }
+    if (
+      object.durationInMonths !== undefined &&
+      object.durationInMonths !== null
+    ) {
+      message.durationInMonths = object.durationInMonths;
+    } else {
+      message.durationInMonths = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgExtendErasmusResponse: object = { status: 0 };
+
+export const MsgExtendErasmusResponse = {
+  encode(
+    message: MsgExtendErasmusResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgExtendErasmusResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgExtendErasmusResponse,
+    } as MsgExtendErasmusResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgExtendErasmusResponse {
+    const message = {
+      ...baseMsgExtendErasmusResponse,
+    } as MsgExtendErasmusResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = Number(object.status);
+    } else {
+      message.status = 0;
+    }
+    return message;
+  },
+
+  toJSON(message: MsgExtendErasmusResponse): unknown {
+    const obj: any = {};
+    message.status !== undefined && (obj.status = message.status);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgExtendErasmusResponse>
+  ): MsgExtendErasmusResponse {
+    const message = {
+      ...baseMsgExtendErasmusResponse,
+    } as MsgExtendErasmusResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
+    return message;
+  },
+};
+
+const baseMsgSendExtendErasmusPeriod: object = {
+  creator: "",
+  port: "",
+  channelID: "",
+  timeoutTimestamp: 0,
+  durationInMonths: 0,
+  destinationUniversityName: "",
+  foreignIndex: "",
+  finalDate: "",
+};
+
+export const MsgSendExtendErasmusPeriod = {
+  encode(
+    message: MsgSendExtendErasmusPeriod,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.port !== "") {
+      writer.uint32(18).string(message.port);
+    }
+    if (message.channelID !== "") {
+      writer.uint32(26).string(message.channelID);
+    }
+    if (message.timeoutTimestamp !== 0) {
+      writer.uint32(32).uint64(message.timeoutTimestamp);
+    }
+    if (message.durationInMonths !== 0) {
+      writer.uint32(40).uint32(message.durationInMonths);
+    }
+    if (message.destinationUniversityName !== "") {
+      writer.uint32(50).string(message.destinationUniversityName);
+    }
+    if (message.foreignIndex !== "") {
+      writer.uint32(58).string(message.foreignIndex);
+    }
+    if (message.finalDate !== "") {
+      writer.uint32(66).string(message.finalDate);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgSendExtendErasmusPeriod {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgSendExtendErasmusPeriod,
+    } as MsgSendExtendErasmusPeriod;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.port = reader.string();
+          break;
+        case 3:
+          message.channelID = reader.string();
+          break;
+        case 4:
+          message.timeoutTimestamp = longToNumber(reader.uint64() as Long);
+          break;
+        case 5:
+          message.durationInMonths = reader.uint32();
+          break;
+        case 6:
+          message.destinationUniversityName = reader.string();
+          break;
+        case 7:
+          message.foreignIndex = reader.string();
+          break;
+        case 8:
+          message.finalDate = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSendExtendErasmusPeriod {
+    const message = {
+      ...baseMsgSendExtendErasmusPeriod,
+    } as MsgSendExtendErasmusPeriod;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.port !== undefined && object.port !== null) {
+      message.port = String(object.port);
+    } else {
+      message.port = "";
+    }
+    if (object.channelID !== undefined && object.channelID !== null) {
+      message.channelID = String(object.channelID);
+    } else {
+      message.channelID = "";
+    }
+    if (
+      object.timeoutTimestamp !== undefined &&
+      object.timeoutTimestamp !== null
+    ) {
+      message.timeoutTimestamp = Number(object.timeoutTimestamp);
+    } else {
+      message.timeoutTimestamp = 0;
+    }
+    if (
+      object.durationInMonths !== undefined &&
+      object.durationInMonths !== null
+    ) {
+      message.durationInMonths = Number(object.durationInMonths);
+    } else {
+      message.durationInMonths = 0;
+    }
+    if (
+      object.destinationUniversityName !== undefined &&
+      object.destinationUniversityName !== null
+    ) {
+      message.destinationUniversityName = String(
+        object.destinationUniversityName
+      );
+    } else {
+      message.destinationUniversityName = "";
+    }
+    if (object.foreignIndex !== undefined && object.foreignIndex !== null) {
+      message.foreignIndex = String(object.foreignIndex);
+    } else {
+      message.foreignIndex = "";
+    }
+    if (object.finalDate !== undefined && object.finalDate !== null) {
+      message.finalDate = String(object.finalDate);
+    } else {
+      message.finalDate = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgSendExtendErasmusPeriod): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.port !== undefined && (obj.port = message.port);
+    message.channelID !== undefined && (obj.channelID = message.channelID);
+    message.timeoutTimestamp !== undefined &&
+      (obj.timeoutTimestamp = message.timeoutTimestamp);
+    message.durationInMonths !== undefined &&
+      (obj.durationInMonths = message.durationInMonths);
+    message.destinationUniversityName !== undefined &&
+      (obj.destinationUniversityName = message.destinationUniversityName);
+    message.foreignIndex !== undefined &&
+      (obj.foreignIndex = message.foreignIndex);
+    message.finalDate !== undefined && (obj.finalDate = message.finalDate);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgSendExtendErasmusPeriod>
+  ): MsgSendExtendErasmusPeriod {
+    const message = {
+      ...baseMsgSendExtendErasmusPeriod,
+    } as MsgSendExtendErasmusPeriod;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.port !== undefined && object.port !== null) {
+      message.port = object.port;
+    } else {
+      message.port = "";
+    }
+    if (object.channelID !== undefined && object.channelID !== null) {
+      message.channelID = object.channelID;
+    } else {
+      message.channelID = "";
+    }
+    if (
+      object.timeoutTimestamp !== undefined &&
+      object.timeoutTimestamp !== null
+    ) {
+      message.timeoutTimestamp = object.timeoutTimestamp;
+    } else {
+      message.timeoutTimestamp = 0;
+    }
+    if (
+      object.durationInMonths !== undefined &&
+      object.durationInMonths !== null
+    ) {
+      message.durationInMonths = object.durationInMonths;
+    } else {
+      message.durationInMonths = 0;
+    }
+    if (
+      object.destinationUniversityName !== undefined &&
+      object.destinationUniversityName !== null
+    ) {
+      message.destinationUniversityName = object.destinationUniversityName;
+    } else {
+      message.destinationUniversityName = "";
+    }
+    if (object.foreignIndex !== undefined && object.foreignIndex !== null) {
+      message.foreignIndex = object.foreignIndex;
+    } else {
+      message.foreignIndex = "";
+    }
+    if (object.finalDate !== undefined && object.finalDate !== null) {
+      message.finalDate = object.finalDate;
+    } else {
+      message.finalDate = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgSendExtendErasmusPeriodResponse: object = { status: 0 };
+
+export const MsgSendExtendErasmusPeriodResponse = {
+  encode(
+    message: MsgSendExtendErasmusPeriodResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgSendExtendErasmusPeriodResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgSendExtendErasmusPeriodResponse,
+    } as MsgSendExtendErasmusPeriodResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSendExtendErasmusPeriodResponse {
+    const message = {
+      ...baseMsgSendExtendErasmusPeriodResponse,
+    } as MsgSendExtendErasmusPeriodResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = Number(object.status);
+    } else {
+      message.status = 0;
+    }
+    return message;
+  },
+
+  toJSON(message: MsgSendExtendErasmusPeriodResponse): unknown {
+    const obj: any = {};
+    message.status !== undefined && (obj.status = message.status);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgSendExtendErasmusPeriodResponse>
+  ): MsgSendExtendErasmusPeriodResponse {
+    const message = {
+      ...baseMsgSendExtendErasmusPeriodResponse,
+    } as MsgSendExtendErasmusPeriodResponse;
+    if (object.status !== undefined && object.status !== null) {
+      message.status = object.status;
+    } else {
+      message.status = 0;
+    }
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   ConfigureChain(
@@ -3061,10 +3565,14 @@ export interface Msg {
   SendEndErasmusPeriodRequest(
     request: MsgSendEndErasmusPeriodRequest
   ): Promise<MsgSendEndErasmusPeriodRequestResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   EndErasmusBeforeDeadline(
     request: MsgEndErasmusBeforeDeadline
   ): Promise<MsgEndErasmusBeforeDeadlineResponse>;
+  ExtendErasmus(request: MsgExtendErasmus): Promise<MsgExtendErasmusResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  SendExtendErasmusPeriod(
+    request: MsgSendExtendErasmusPeriod
+  ): Promise<MsgSendExtendErasmusPeriodResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -3245,6 +3753,32 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgEndErasmusBeforeDeadlineResponse.decode(new Reader(data))
+    );
+  }
+
+  ExtendErasmus(request: MsgExtendErasmus): Promise<MsgExtendErasmusResponse> {
+    const data = MsgExtendErasmus.encode(request).finish();
+    const promise = this.rpc.request(
+      "university_chain_de.universitychainde.Msg",
+      "ExtendErasmus",
+      data
+    );
+    return promise.then((data) =>
+      MsgExtendErasmusResponse.decode(new Reader(data))
+    );
+  }
+
+  SendExtendErasmusPeriod(
+    request: MsgSendExtendErasmusPeriod
+  ): Promise<MsgSendExtendErasmusPeriodResponse> {
+    const data = MsgSendExtendErasmusPeriod.encode(request).finish();
+    const promise = this.rpc.request(
+      "university_chain_de.universitychainde.Msg",
+      "SendExtendErasmusPeriod",
+      data
+    );
+    return promise.then((data) =>
+      MsgSendExtendErasmusPeriodResponse.decode(new Reader(data))
     );
   }
 }

@@ -21,12 +21,12 @@ import (
 	tmdb "github.com/tendermint/tm-db"
 )
 
-func UniversitychainitKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
+func UniversitychaindeKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 
-	return UniversitychainitWithMocks(t, nil)
+	return UniversitychaindeWithMocks(t, nil)
 }
 
-func UniversitychainitWithMocks(t testing.TB, bank *testutil.MockBankKeeperComplete) (*keeper.Keeper, sdk.Context) {
+func UniversitychaindeWithMocks(t testing.TB, bank *testutil.MockBankKeeperComplete) (*keeper.Keeper, sdk.Context) {
 	logger := log.NewNopLogger()
 
 	storeKey := sdk.NewKVStoreKey(types.StoreKey)
@@ -46,7 +46,7 @@ func UniversitychainitWithMocks(t testing.TB, bank *testutil.MockBankKeeperCompl
 		types.Amino,
 		storeKey,
 		memStoreKey,
-		"UniversitychainitSubSpace",
+		"UniversitychaindeSubSpace",
 	)
 	IBCKeeper := ibckeeper.NewKeeper(
 		appCodec,
@@ -54,14 +54,14 @@ func UniversitychainitWithMocks(t testing.TB, bank *testutil.MockBankKeeperCompl
 		ss,
 		nil,
 		nil,
-		capabilityKeeper.ScopeToModule("UniversitychainitIBCKeeper"),
+		capabilityKeeper.ScopeToModule("UniversitychaindeIBCKeeper"),
 	)
 
 	paramsSubspace := typesparams.NewSubspace(appCodec,
 		types.Amino,
 		storeKey,
 		memStoreKey,
-		"UniversitychainitParams",
+		"UniversitychaindeParams",
 	)
 	k := keeper.NewKeeper(
 		bank,
@@ -71,7 +71,7 @@ func UniversitychainitWithMocks(t testing.TB, bank *testutil.MockBankKeeperCompl
 		paramsSubspace,
 		IBCKeeper.ChannelKeeper,
 		&IBCKeeper.PortKeeper,
-		capabilityKeeper.ScopeToModule("UniversitychainitScopedKeeper"),
+		capabilityKeeper.ScopeToModule("UniversitychaindeScopedKeeper"),
 	)
 
 	ctx := sdk.NewContext(stateStore, tmproto.Header{}, false, logger)

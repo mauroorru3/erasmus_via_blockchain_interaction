@@ -19,7 +19,7 @@ import (
 var _ = strconv.IntSize
 
 func TestStoredStudentQuerySingle(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	wctx := sdk.WrapSDKContext(ctx)
 	msgs := createNStoredStudent(keeper, ctx, 2)
 	for _, tc := range []struct {
@@ -70,7 +70,7 @@ func TestStoredStudentQuerySingle(t *testing.T) {
 }
 
 func TestStoredStudentQueryPaginated(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	wctx := sdk.WrapSDKContext(ctx)
 	msgs := createNStoredStudent(keeper, ctx, 5)
 

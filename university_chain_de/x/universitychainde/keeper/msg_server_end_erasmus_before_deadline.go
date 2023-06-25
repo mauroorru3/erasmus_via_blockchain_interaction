@@ -103,7 +103,7 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 												err = k.TransmitEndErasmusPeriodRequestPacket(
 													ctx,
 													packet,
-													"universitychainit",
+													"universitychainde",
 													"channel-0",
 													clienttypes.ZeroHeight(),
 													timeoutTimestamp,

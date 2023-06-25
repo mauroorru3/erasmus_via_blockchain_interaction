@@ -19,7 +19,7 @@ func createTestErasmusInfo(keeper *keeper.Keeper, ctx sdk.Context) types.Erasmus
 }
 
 func TestErasmusInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestErasmusInfo(keeper, ctx)
 	rst, found := keeper.GetErasmusInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestErasmusInfoGet(t *testing.T) {
 }
 
 func TestErasmusInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestErasmusInfo(keeper, ctx)
 	keeper.RemoveErasmusInfo(ctx)
 	_, found := keeper.GetErasmusInfo(ctx)

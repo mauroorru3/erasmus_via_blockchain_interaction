@@ -19,7 +19,7 @@ func createTestResidenceInfo(keeper *keeper.Keeper, ctx sdk.Context) types.Resid
 }
 
 func TestResidenceInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestResidenceInfo(keeper, ctx)
 	rst, found := keeper.GetResidenceInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestResidenceInfoGet(t *testing.T) {
 }
 
 func TestResidenceInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestResidenceInfo(keeper, ctx)
 	keeper.RemoveResidenceInfo(ctx)
 	_, found := keeper.GetResidenceInfo(ctx)

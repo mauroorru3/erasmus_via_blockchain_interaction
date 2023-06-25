@@ -5,7 +5,7 @@ import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "university_chain_de.universitychainde";
 
-export interface UniversitychainitPacketData {
+export interface UniversitychaindePacketData {
   noData: NoData | undefined;
   /** this line is used by starport scaffolding # ibc/packet/proto/field */
   finalErasmusDataPacket: FinalErasmusDataPacketData | undefined;
@@ -60,11 +60,11 @@ export interface FinalErasmusDataPacketData {
 /** FinalErasmusDataPacketAck defines a struct for the packet acknowledgment */
 export interface FinalErasmusDataPacketAck {}
 
-const baseUniversitychainitPacketData: object = {};
+const baseUniversitychaindePacketData: object = {};
 
-export const UniversitychainitPacketData = {
+export const UniversitychaindePacketData = {
   encode(
-    message: UniversitychainitPacketData,
+    message: UniversitychaindePacketData,
     writer: Writer = Writer.create()
   ): Writer {
     if (message.noData !== undefined) {
@@ -100,12 +100,12 @@ export const UniversitychainitPacketData = {
   decode(
     input: Reader | Uint8Array,
     length?: number
-  ): UniversitychainitPacketData {
+  ): UniversitychaindePacketData {
     const reader = input instanceof Uint8Array ? new Reader(input) : input;
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = {
-      ...baseUniversitychainitPacketData,
-    } as UniversitychainitPacketData;
+      ...baseUniversitychaindePacketData,
+    } as UniversitychaindePacketData;
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -144,10 +144,10 @@ export const UniversitychainitPacketData = {
     return message;
   },
 
-  fromJSON(object: any): UniversitychainitPacketData {
+  fromJSON(object: any): UniversitychaindePacketData {
     const message = {
-      ...baseUniversitychainitPacketData,
-    } as UniversitychainitPacketData;
+      ...baseUniversitychaindePacketData,
+    } as UniversitychaindePacketData;
     if (object.noData !== undefined && object.noData !== null) {
       message.noData = NoData.fromJSON(object.noData);
     } else {
@@ -196,7 +196,7 @@ export const UniversitychainitPacketData = {
     return message;
   },
 
-  toJSON(message: UniversitychainitPacketData): unknown {
+  toJSON(message: UniversitychaindePacketData): unknown {
     const obj: any = {};
     message.noData !== undefined &&
       (obj.noData = message.noData ? NoData.toJSON(message.noData) : undefined);
@@ -222,11 +222,11 @@ export const UniversitychainitPacketData = {
   },
 
   fromPartial(
-    object: DeepPartial<UniversitychainitPacketData>
-  ): UniversitychainitPacketData {
+    object: DeepPartial<UniversitychaindePacketData>
+  ): UniversitychaindePacketData {
     const message = {
-      ...baseUniversitychainitPacketData,
-    } as UniversitychainitPacketData;
+      ...baseUniversitychaindePacketData,
+    } as UniversitychaindePacketData;
     if (object.noData !== undefined && object.noData !== null) {
       message.noData = NoData.fromPartial(object.noData);
     } else {

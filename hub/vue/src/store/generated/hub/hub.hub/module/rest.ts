@@ -67,6 +67,8 @@ export interface HubMsgSendErasmusStudentResponse {
   status?: number;
 }
 
+export type HubMsgSendExtendErasmusPeriodResponse = object;
+
 export interface HubMsgSendFinalErasmusDataResponse {
   /** @format int32 */
   status?: number;

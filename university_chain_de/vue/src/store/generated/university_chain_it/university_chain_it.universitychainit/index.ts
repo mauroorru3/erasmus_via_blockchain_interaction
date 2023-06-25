@@ -4,7 +4,7 @@ import { ChainInfo } from "./module/types/universitychainde/chain_info"
 import { ContactInfo } from "./module/types/universitychainde/contact_info"
 import { ErasmusInfo } from "./module/types/universitychainde/erasmus_info"
 import { ForeignUniversities } from "./module/types/universitychainde/foreign_universities"
-import { UniversitychainitPacketData } from "./module/types/universitychainde/packet"
+import { UniversitychaindePacketData } from "./module/types/universitychainde/packet"
 import { NoData } from "./module/types/universitychainde/packet"
 import { ErasmusStudentPacketData } from "./module/types/universitychainde/packet"
 import { ErasmusStudentPacketAck } from "./module/types/universitychainde/packet"
@@ -25,7 +25,7 @@ import { TranscriptOfRecords } from "./module/types/universitychainde/transcript
 import { UniversityInfo } from "./module/types/universitychainde/university_info"
 
 
-export { ChainInfo, ContactInfo, ErasmusInfo, ForeignUniversities, UniversitychainitPacketData, NoData, ErasmusStudentPacketData, ErasmusStudentPacketAck, ErasmusIndexPacketData, ErasmusIndexPacketAck, EndErasmusPeriodRequestPacketData, EndErasmusPeriodRequestPacketAck, FinalErasmusDataPacketData, FinalErasmusDataPacketAck, Params, PersonalInfo, ProfessorsExams, ResidenceInfo, StoredStudent, StudentInfo, TaxesInfo, TranscriptOfRecords, UniversityInfo };
+export { ChainInfo, ContactInfo, ErasmusInfo, ForeignUniversities, UniversitychaindePacketData, NoData, ErasmusStudentPacketData, ErasmusStudentPacketAck, ErasmusIndexPacketData, ErasmusIndexPacketAck, EndErasmusPeriodRequestPacketData, EndErasmusPeriodRequestPacketAck, FinalErasmusDataPacketData, FinalErasmusDataPacketAck, Params, PersonalInfo, ProfessorsExams, ResidenceInfo, StoredStudent, StudentInfo, TaxesInfo, TranscriptOfRecords, UniversityInfo };
 
 async function initTxClient(vuexGetters) {
 	return await txClient(vuexGetters['common/wallet/signer'], {
@@ -86,7 +86,7 @@ const getDefaultState = () => {
 						ContactInfo: getStructure(ContactInfo.fromPartial({})),
 						ErasmusInfo: getStructure(ErasmusInfo.fromPartial({})),
 						ForeignUniversities: getStructure(ForeignUniversities.fromPartial({})),
-						UniversitychainitPacketData: getStructure(UniversitychainitPacketData.fromPartial({})),
+						UniversitychaindePacketData: getStructure(UniversitychaindePacketData.fromPartial({})),
 						NoData: getStructure(NoData.fromPartial({})),
 						ErasmusStudentPacketData: getStructure(ErasmusStudentPacketData.fromPartial({})),
 						ErasmusStudentPacketAck: getStructure(ErasmusStudentPacketAck.fromPartial({})),

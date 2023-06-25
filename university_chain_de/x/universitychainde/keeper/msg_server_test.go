@@ -11,6 +11,6 @@ import (
 )
 
 func setupMsgServer(t testing.TB) (types.MsgServer, context.Context) {
-	k, ctx := keepertest.UniversitychainitKeeper(t)
+	k, ctx := keepertest.UniversitychaindeKeeper(t)
 	return keeper.NewMsgServerImpl(*k), sdk.WrapSDKContext(ctx)
 }

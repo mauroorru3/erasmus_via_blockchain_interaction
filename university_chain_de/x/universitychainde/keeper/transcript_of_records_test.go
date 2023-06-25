@@ -19,7 +19,7 @@ func createTestTranscriptOfRecords(keeper *keeper.Keeper, ctx sdk.Context) types
 }
 
 func TestTranscriptOfRecordsGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestTranscriptOfRecords(keeper, ctx)
 	rst, found := keeper.GetTranscriptOfRecords(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestTranscriptOfRecordsGet(t *testing.T) {
 }
 
 func TestTranscriptOfRecordsRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestTranscriptOfRecords(keeper, ctx)
 	keeper.RemoveTranscriptOfRecords(ctx)
 	_, found := keeper.GetTranscriptOfRecords(ctx)

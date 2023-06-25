@@ -428,7 +428,7 @@ func CheckErasmusStatus(student types.StoredStudent, typeCheck string) (err erro
 		} else if res == "Terminated" {
 			return types.ErrPreviousRequestCompleted
 		} else if res == "Waiting for updated data from the destination university" {
-			return types.ErrPreviousRequestInProgress
+			return types.ErrFinishingErasmusPeriod
 		}
 	case "erasmus request":
 		if student.ErasmusData.ErasmusStudent == "Incoming completed" {
@@ -441,7 +441,7 @@ func CheckErasmusStatus(student types.StoredStudent, typeCheck string) (err erro
 		} else if res == "To start" {
 			return types.ErrPreviousRequestCompleted
 		} else if res == "Waiting for updated data from the destination university" {
-			return types.ErrPreviousRequestInProgress
+			return types.ErrFinishingErasmusPeriod
 		}
 	case "insert exam grade":
 
@@ -450,7 +450,7 @@ func CheckErasmusStatus(student types.StoredStudent, typeCheck string) (err erro
 		} else if student.ErasmusData.ErasmusStudent == "Incoming completed" {
 			return types.ErrCompletedIncomingPeriod
 		}
-	case "end erasmus before deadline":
+	case "end erasmus before deadline", "extend erasmus":
 		if student.ErasmusData.ErasmusStudent == "Incoming completed" {
 			return types.ErrCompletedIncomingPeriod
 		} else if student.ErasmusData.ErasmusStudent == "Incoming" {
@@ -465,7 +465,7 @@ func CheckErasmusStatus(student types.StoredStudent, typeCheck string) (err erro
 		} else if res == "Terminated" {
 			return types.ErrPreviousRequestCompleted
 		} else if res == "Waiting for updated data from the destination university" {
-			return types.ErrPreviousRequestInProgress
+			return types.ErrFinishingErasmusPeriod
 		}
 	}
 
@@ -600,8 +600,8 @@ func StartErasmus(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.
 
 	startDate := ctx.BlockTime()
 
-	endDate := ctx.BlockTime().Add(time.Duration(1000 * time.Second))
-	//endDate := ctx.BlockTime().Add(time.Duration(-1))
+	//endDate := startDate.AddDate(0, int(erasmusCareer[lenCareer-1].Duration_in_months), 0)
+	endDate := startDate.Add(time.Duration(1000 * time.Second))
 	erasmusCareer[lenCareer-1].Start_date = FormatDeadline(startDate)
 	erasmusCareer[lenCareer-1].End_date = FormatDeadline(endDate)
 	erasmusCareer[lenCareer-1].Status = "In progress"
@@ -952,4 +952,108 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 
 	}
 
+}
+
+func ExtendErasmus(ctx sdk.Context, durationInMonths string, student *types.StoredStudent) (additionalDuration uint8, finalDate string, err error) {
+
+	// Open our jsonFile
+	jsonFile, err := os.OpenFile("data/"+erasmusConfigJSON, os.O_RDONLY, 0444)
+	// if we os.Open returns an error then handle it
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return additionalDuration, finalDate, err
+	}
+	fmt.Println("Successfully Opened " + erasmusConfigJSON)
+	// defer the closing of our jsonFile so that we can parse it later on
+	defer jsonFile.Close()
+
+	byteValue, err := io.ReadAll(jsonFile)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return additionalDuration, finalDate, err
+	}
+
+	var erasmusConfig ErasmusConfigStruct
+
+	err = json.Unmarshal([]byte(byteValue), &erasmusConfig)
+	fmt.Println("Successfully Unmarshalled " + foreignUniversityInfoJSON)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return additionalDuration, finalDate, err
+	}
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return additionalDuration, finalDate, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	additionalErasmusDuration, err := strconv.ParseInt(durationInMonths, 10, 8)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return additionalDuration, finalDate, err
+	}
+
+	if int8(additionalErasmusDuration) > erasmusConfig.MaxMonths {
+		return additionalDuration, finalDate, types.ErrWrongErasmusDuration
+	}
+
+	if student.ErasmusData.NumberMonths > 0 {
+		if student.ErasmusData.NumberMonths+uint32(additionalErasmusDuration) > uint32(erasmusConfig.MaxMonths) {
+			return additionalDuration, finalDate, types.ErrLimitErasmusMonthsExceeded
+		}
+	}
+
+	erasmusCareer[lenCareer-1].Duration_in_months = uint8(erasmusCareer[lenCareer-1].Duration_in_months) + uint8(additionalErasmusDuration)
+	student.ErasmusData.NumberMonths += uint32(additionalErasmusDuration)
+
+	startDate, err := time.Parse(DeadlineLayout, erasmusCareer[lenCareer-1].Start_date)
+	if err != nil {
+		return additionalDuration, finalDate, err
+	}
+
+	//endDate := startDate.AddDate(0, int(erasmusCareer[lenCareer-1].Duration_in_months), 0)
+	endDate := startDate.Add(time.Duration(1500 * time.Second))
+	erasmusCareer[lenCareer-1].End_date = endDate.Format(DeadlineLayout)
+
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return additionalDuration, finalDate, err
+	}
+
+	student.ErasmusData.Career = string(resultByteJSON)
+
+	additionalDuration = uint8(additionalErasmusDuration)
+	finalDate = erasmusCareer[lenCareer-1].End_date
+
+	return additionalDuration, finalDate, err
+}
+
+func ExtendErasmusForeignStudent(ctx sdk.Context, durationInMonths uint32, finalDate string, student *types.StoredStudent) (err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	erasmusCareer[lenCareer-1].Duration_in_months += uint8(durationInMonths)
+	student.ErasmusData.NumberMonths += durationInMonths
+
+	erasmusCareer[lenCareer-1].End_date = finalDate
+
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	student.ErasmusData.Career = string(resultByteJSON)
+
+	return err
 }

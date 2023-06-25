@@ -14,7 +14,7 @@ import (
 )
 
 func TestPersonalInfoQuery(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	wctx := sdk.WrapSDKContext(ctx)
 	item := createTestPersonalInfo(keeper, ctx)
 	for _, tc := range []struct {

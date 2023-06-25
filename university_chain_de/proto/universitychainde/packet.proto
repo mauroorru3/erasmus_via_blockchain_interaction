@@ -7,10 +7,11 @@ import "universitychainde/stored_student.proto";
 
 option go_package = "university_chain_de/x/universitychainde/types";
 
-message UniversitychainitPacketData {
+message UniversitychaindePacketData {
     oneof packet {
         NoData noData = 1;
         // this line is used by starport scaffolding # ibc/packet/proto/field
+				ExtendErasmusPeriodPacketData extendErasmusPeriodPacket = 6; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				FinalErasmusDataPacketData finalErasmusDataPacket = 5; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				EndErasmusPeriodRequestPacketData endErasmusPeriodRequestPacket = 4; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				ErasmusIndexPacketData erasmusIndexPacket = 3; // this line is used by starport scaffolding # ibc/packet/proto/field/number
@@ -60,5 +61,16 @@ message FinalErasmusDataPacketData {
 
 // FinalErasmusDataPacketAck defines a struct for the packet acknowledgment
 message FinalErasmusDataPacketAck {
+	}
+// ExtendErasmusPeriodPacketData defines a struct for the packet payload
+message ExtendErasmusPeriodPacketData {
+  uint32 durationInMonths = 1;
+  string destinationUniversityName = 2;
+  string foreignIndex = 3;
+  string finalDate = 4;
+}
+
+// ExtendErasmusPeriodPacketAck defines a struct for the packet acknowledgment
+message ExtendErasmusPeriodPacketAck {
 	}
 // this line is used by starport scaffolding # ibc/packet/proto/message

@@ -26,7 +26,7 @@ func createNStoredStudent(keeper *keeper.Keeper, ctx sdk.Context, n int) []types
 }
 
 func TestStoredStudentGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNStoredStudent(keeper, ctx, 10)
 	for _, item := range items {
 		rst, found := keeper.GetStoredStudent(ctx,
@@ -40,7 +40,7 @@ func TestStoredStudentGet(t *testing.T) {
 	}
 }
 func TestStoredStudentRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNStoredStudent(keeper, ctx, 10)
 	for _, item := range items {
 		keeper.RemoveStoredStudent(ctx,
@@ -54,7 +54,7 @@ func TestStoredStudentRemove(t *testing.T) {
 }
 
 func TestStoredStudentGetAll(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNStoredStudent(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),

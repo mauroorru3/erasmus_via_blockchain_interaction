@@ -14,6 +14,8 @@ import { EndErasmusPeriodRequestPacketData } from "./module/types/universitychai
 import { EndErasmusPeriodRequestPacketAck } from "./module/types/universitychainit/packet"
 import { FinalErasmusDataPacketData } from "./module/types/universitychainit/packet"
 import { FinalErasmusDataPacketAck } from "./module/types/universitychainit/packet"
+import { ExtendErasmusPeriodPacketData } from "./module/types/universitychainit/packet"
+import { ExtendErasmusPeriodPacketAck } from "./module/types/universitychainit/packet"
 import { Params } from "./module/types/universitychainit/params"
 import { PersonalInfo } from "./module/types/universitychainit/personal_info"
 import { ProfessorsExams } from "./module/types/universitychainit/professors_exams"
@@ -25,7 +27,7 @@ import { TranscriptOfRecords } from "./module/types/universitychainit/transcript
 import { UniversityInfo } from "./module/types/universitychainit/university_info"
 
 
-export { ChainInfo, ContactInfo, ErasmusInfo, ForeignUniversities, UniversitychainitPacketData, NoData, ErasmusStudentPacketData, ErasmusStudentPacketAck, ErasmusIndexPacketData, ErasmusIndexPacketAck, EndErasmusPeriodRequestPacketData, EndErasmusPeriodRequestPacketAck, FinalErasmusDataPacketData, FinalErasmusDataPacketAck, Params, PersonalInfo, ProfessorsExams, ResidenceInfo, StoredStudent, StudentInfo, TaxesInfo, TranscriptOfRecords, UniversityInfo };
+export { ChainInfo, ContactInfo, ErasmusInfo, ForeignUniversities, UniversitychainitPacketData, NoData, ErasmusStudentPacketData, ErasmusStudentPacketAck, ErasmusIndexPacketData, ErasmusIndexPacketAck, EndErasmusPeriodRequestPacketData, EndErasmusPeriodRequestPacketAck, FinalErasmusDataPacketData, FinalErasmusDataPacketAck, ExtendErasmusPeriodPacketData, ExtendErasmusPeriodPacketAck, Params, PersonalInfo, ProfessorsExams, ResidenceInfo, StoredStudent, StudentInfo, TaxesInfo, TranscriptOfRecords, UniversityInfo };
 
 async function initTxClient(vuexGetters) {
 	return await txClient(vuexGetters['common/wallet/signer'], {
@@ -96,6 +98,8 @@ const getDefaultState = () => {
 						EndErasmusPeriodRequestPacketAck: getStructure(EndErasmusPeriodRequestPacketAck.fromPartial({})),
 						FinalErasmusDataPacketData: getStructure(FinalErasmusDataPacketData.fromPartial({})),
 						FinalErasmusDataPacketAck: getStructure(FinalErasmusDataPacketAck.fromPartial({})),
+						ExtendErasmusPeriodPacketData: getStructure(ExtendErasmusPeriodPacketData.fromPartial({})),
+						ExtendErasmusPeriodPacketAck: getStructure(ExtendErasmusPeriodPacketAck.fromPartial({})),
 						Params: getStructure(Params.fromPartial({})),
 						PersonalInfo: getStructure(PersonalInfo.fromPartial({})),
 						ProfessorsExams: getStructure(ProfessorsExams.fromPartial({})),
@@ -659,33 +663,108 @@ export default {
 		},
 		
 		
-		async sendMsgConfigureChain({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgSendExtendErasmusPeriod({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgConfigureChain(value)
+				const msg = await txClient.msgSendExtendErasmusPeriod(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgConfigureChain:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgSendExtendErasmusPeriod:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgConfigureChain:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgSendExtendErasmusPeriod:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async sendMsgInsertErasmusExam({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgInsertStudentPersonalInfo({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgInsertErasmusExam(value)
+				const msg = await txClient.msgInsertStudentPersonalInfo(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgInsertErasmusExam:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgInsertErasmusExam:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgInsertStudentResidenceInfo({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgInsertStudentResidenceInfo(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgSendEndErasmusPeriodRequest({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSendEndErasmusPeriodRequest(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgEndErasmusBeforeDeadline({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgEndErasmusBeforeDeadline(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgStartErasmus({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgStartErasmus(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgStartErasmus:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgStartErasmus:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgSendErasmusStudent({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSendErasmusStudent(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSendErasmusStudent:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgSendErasmusStudent:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -704,18 +783,18 @@ export default {
 				}
 			}
 		},
-		async sendMsgInsertStudentPersonalInfo({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgExtendErasmus({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgInsertStudentPersonalInfo(value)
+				const msg = await txClient.msgExtendErasmus(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgExtendErasmus:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgExtendErasmus:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -749,78 +828,33 @@ export default {
 				}
 			}
 		},
-		async sendMsgInsertStudentResidenceInfo({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgConfigureChain({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgInsertStudentResidenceInfo(value)
+				const msg = await txClient.msgConfigureChain(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgConfigureChain:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgConfigureChain:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async sendMsgSendErasmusStudent({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgInsertErasmusExam({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgSendErasmusStudent(value)
+				const msg = await txClient.msgInsertErasmusExam(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgSendErasmusStudent:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgInsertErasmusExam:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgSendErasmusStudent:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgEndErasmusBeforeDeadline({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgEndErasmusBeforeDeadline(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgPayTaxes({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgPayTaxes(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgPayTaxes:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgPayTaxes:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgSendEndErasmusPeriodRequest({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgSendEndErasmusPeriodRequest(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgInsertErasmusExam:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -839,45 +873,110 @@ export default {
 				}
 			}
 		},
-		async sendMsgStartErasmus({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgPayTaxes({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgStartErasmus(value)
+				const msg = await txClient.msgPayTaxes(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgStartErasmus:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgPayTaxes:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgStartErasmus:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgPayTaxes:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
 		
-		async MsgConfigureChain({ rootGetters }, { value }) {
+		async MsgSendExtendErasmusPeriod({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgConfigureChain(value)
+				const msg = await txClient.msgSendExtendErasmusPeriod(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgConfigureChain:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgSendExtendErasmusPeriod:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgConfigureChain:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgSendExtendErasmusPeriod:Create Could not create message: ' + e.message)
 				}
 			}
 		},
-		async MsgInsertErasmusExam({ rootGetters }, { value }) {
+		async MsgInsertStudentPersonalInfo({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgInsertErasmusExam(value)
+				const msg = await txClient.msgInsertStudentPersonalInfo(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgInsertErasmusExam:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgInsertErasmusExam:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgInsertStudentResidenceInfo({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgInsertStudentResidenceInfo(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgSendEndErasmusPeriodRequest({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSendEndErasmusPeriodRequest(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgEndErasmusBeforeDeadline({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgEndErasmusBeforeDeadline(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgStartErasmus({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgStartErasmus(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgStartErasmus:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgStartErasmus:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgSendErasmusStudent({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSendErasmusStudent(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSendErasmusStudent:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgSendErasmusStudent:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -894,16 +993,16 @@ export default {
 				}
 			}
 		},
-		async MsgInsertStudentPersonalInfo({ rootGetters }, { value }) {
+		async MsgExtendErasmus({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgInsertStudentPersonalInfo(value)
+				const msg = await txClient.msgExtendErasmus(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgExtendErasmus:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgInsertStudentPersonalInfo:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgExtendErasmus:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -933,68 +1032,29 @@ export default {
 				}
 			}
 		},
-		async MsgInsertStudentResidenceInfo({ rootGetters }, { value }) {
+		async MsgConfigureChain({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgInsertStudentResidenceInfo(value)
+				const msg = await txClient.msgConfigureChain(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgConfigureChain:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgInsertStudentResidenceInfo:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgConfigureChain:Create Could not create message: ' + e.message)
 				}
 			}
 		},
-		async MsgSendErasmusStudent({ rootGetters }, { value }) {
+		async MsgInsertErasmusExam({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgSendErasmusStudent(value)
+				const msg = await txClient.msgInsertErasmusExam(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgSendErasmusStudent:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgInsertErasmusExam:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgSendErasmusStudent:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgEndErasmusBeforeDeadline({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgEndErasmusBeforeDeadline(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgEndErasmusBeforeDeadline:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgPayTaxes({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgPayTaxes(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgPayTaxes:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgPayTaxes:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgSendEndErasmusPeriodRequest({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgSendEndErasmusPeriodRequest(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgSendEndErasmusPeriodRequest:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgInsertErasmusExam:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1011,16 +1071,16 @@ export default {
 				}
 			}
 		},
-		async MsgStartErasmus({ rootGetters }, { value }) {
+		async MsgPayTaxes({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgStartErasmus(value)
+				const msg = await txClient.msgPayTaxes(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgStartErasmus:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgPayTaxes:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgStartErasmus:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgPayTaxes:Create Could not create message: ' + e.message)
 				}
 			}
 		},

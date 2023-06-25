@@ -214,6 +214,25 @@ func (am AppModule) OnRecvPacket(
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
 		)
+	case *types.UniversitychainitPacketData_ExtendErasmusPeriodPacket:
+		packetAck, err := am.keeper.OnRecvExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket)
+		if err != nil {
+			ack = channeltypes.NewErrorAcknowledgement(err.Error())
+		} else {
+			// Encode packet acknowledgment
+			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+			if err != nil {
+				return channeltypes.NewErrorAcknowledgement(sdkerrors.Wrap(sdkerrors.ErrJSONMarshal, err.Error()).Error())
+			}
+			ack = channeltypes.NewResultAcknowledgement(sdk.MustSortJSON(packetAckBytes))
+		}
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(
+				types.EventTypeExtendErasmusPeriodPacket,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
+			),
+		)
 		// this line is used by starport scaffolding # ibc/packet/module/recv
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -271,6 +290,12 @@ func (am AppModule) OnAcknowledgementPacket(
 			return err
 		}
 		eventType = types.EventTypeFinalErasmusDataPacket
+	case *types.UniversitychainitPacketData_ExtendErasmusPeriodPacket:
+		err := am.keeper.OnAcknowledgementExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket, ack)
+		if err != nil {
+			return err
+		}
+		eventType = types.EventTypeExtendErasmusPeriodPacket
 		// this line is used by starport scaffolding # ibc/packet/module/ack
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -335,6 +360,11 @@ func (am AppModule) OnTimeoutPacket(
 		}
 	case *types.UniversitychainitPacketData_FinalErasmusDataPacket:
 		err := am.keeper.OnTimeoutFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket)
+		if err != nil {
+			return err
+		}
+	case *types.UniversitychainitPacketData_ExtendErasmusPeriodPacket:
+		err := am.keeper.OnTimeoutExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket)
 		if err != nil {
 			return err
 		}

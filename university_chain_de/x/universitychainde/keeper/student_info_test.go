@@ -19,7 +19,7 @@ func createTestStudentInfo(keeper *keeper.Keeper, ctx sdk.Context) types.Student
 }
 
 func TestStudentInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestStudentInfo(keeper, ctx)
 	rst, found := keeper.GetStudentInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestStudentInfoGet(t *testing.T) {
 }
 
 func TestStudentInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestStudentInfo(keeper, ctx)
 	keeper.RemoveStudentInfo(ctx)
 	_, found := keeper.GetStudentInfo(ctx)

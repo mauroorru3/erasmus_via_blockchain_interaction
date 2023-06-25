@@ -230,8 +230,8 @@ type App struct {
 	ScopedTransferKeeper   capabilitykeeper.ScopedKeeper
 	ScopedMonitoringKeeper capabilitykeeper.ScopedKeeper
 
-	ScopedUniversitychainitKeeper capabilitykeeper.ScopedKeeper
-	UniversitychainitKeeper       universitychaindemodulekeeper.Keeper
+	ScopedUniversitychaindeKeeper capabilitykeeper.ScopedKeeper
+	UniversitychaindeKeeper       universitychaindemodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// mm is the module manager
@@ -390,9 +390,9 @@ func New(
 	)
 	monitoringModule := monitoringp.NewAppModule(appCodec, app.MonitoringKeeper)
 
-	scopedUniversitychainitKeeper := app.CapabilityKeeper.ScopeToModule(universitychaindemoduletypes.ModuleName)
-	app.ScopedUniversitychainitKeeper = scopedUniversitychainitKeeper
-	app.UniversitychainitKeeper = *universitychaindemodulekeeper.NewKeeper(
+	scopedUniversitychaindeKeeper := app.CapabilityKeeper.ScopeToModule(universitychaindemoduletypes.ModuleName)
+	app.ScopedUniversitychaindeKeeper = scopedUniversitychaindeKeeper
+	app.UniversitychaindeKeeper = *universitychaindemodulekeeper.NewKeeper(
 		app.BankKeeper,
 		appCodec,
 		keys[universitychaindemoduletypes.StoreKey],
@@ -400,9 +400,9 @@ func New(
 		app.GetSubspace(universitychaindemoduletypes.ModuleName),
 		app.IBCKeeper.ChannelKeeper,
 		&app.IBCKeeper.PortKeeper,
-		scopedUniversitychainitKeeper,
+		scopedUniversitychaindeKeeper,
 	)
-	universitychaindeModule := universitychaindemodule.NewAppModule(appCodec, app.UniversitychainitKeeper, app.AccountKeeper, app.BankKeeper)
+	universitychaindeModule := universitychaindemodule.NewAppModule(appCodec, app.UniversitychaindeKeeper, app.AccountKeeper, app.BankKeeper)
 
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 

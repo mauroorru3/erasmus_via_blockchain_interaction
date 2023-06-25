@@ -10,9 +10,9 @@ func (p EndErasmusPeriodRequestPacketData) ValidateBasic() error {
 
 // GetBytes is a helper for serialising
 func (p EndErasmusPeriodRequestPacketData) GetBytes() ([]byte, error) {
-	var modulePacket UniversitychainitPacketData
+	var modulePacket UniversitychaindePacketData
 
-	modulePacket.Packet = &UniversitychainitPacketData_EndErasmusPeriodRequestPacket{&p}
+	modulePacket.Packet = &UniversitychaindePacketData_EndErasmusPeriodRequestPacket{&p}
 
 	return modulePacket.Marshal()
 }

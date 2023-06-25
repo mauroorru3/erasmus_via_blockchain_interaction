@@ -113,7 +113,7 @@ func TestGenesis(t *testing.T) {
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
-	k, ctx := keepertest.UniversitychainitKeeper(t)
+	k, ctx := keepertest.UniversitychaindeKeeper(t)
 	universitychainde.InitGenesis(ctx, *k, genesisState)
 	got := universitychainde.ExportGenesis(ctx, *k)
 	require.NotNil(t, got)

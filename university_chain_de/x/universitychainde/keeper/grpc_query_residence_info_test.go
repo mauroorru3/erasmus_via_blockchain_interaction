@@ -14,7 +14,7 @@ import (
 )
 
 func TestResidenceInfoQuery(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	wctx := sdk.WrapSDKContext(ctx)
 	item := createTestResidenceInfo(keeper, ctx)
 	for _, tc := range []struct {

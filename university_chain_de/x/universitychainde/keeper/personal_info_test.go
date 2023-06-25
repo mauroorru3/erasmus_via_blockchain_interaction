@@ -19,7 +19,7 @@ func createTestPersonalInfo(keeper *keeper.Keeper, ctx sdk.Context) types.Person
 }
 
 func TestPersonalInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestPersonalInfo(keeper, ctx)
 	rst, found := keeper.GetPersonalInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestPersonalInfoGet(t *testing.T) {
 }
 
 func TestPersonalInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestPersonalInfo(keeper, ctx)
 	keeper.RemovePersonalInfo(ctx)
 	_, found := keeper.GetPersonalInfo(ctx)

@@ -62,4 +62,5 @@ var (
 	ErrCompletedIncomingPeriod         = sdkerrors.Register(ModuleName, 1149, "the incoming Erasmus period is completed")
 	ErrCompletedOutgoingPeriod         = sdkerrors.Register(ModuleName, 1150, "the outgoing Erasmus period is completed")
 	ErrIncomingPeriod                  = sdkerrors.Register(ModuleName, 1151, "it is not possible to perform this operation in the destination university")
+	ErrFinishingErasmusPeriod          = sdkerrors.Register(ModuleName, 1152, "data transfer for termination of Erasmus in progress")
 )

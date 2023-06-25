@@ -77,6 +77,11 @@ export interface UniversitychaindeMsgEndErasmusBeforeDeadlineResponse {
   status?: number;
 }
 
+export interface UniversitychaindeMsgExtendErasmusResponse {
+  /** @format int32 */
+  status?: number;
+}
+
 export interface UniversitychaindeMsgInsertErasmusExamResponse {
   /** @format int32 */
   status?: number;
@@ -122,6 +127,11 @@ export interface UniversitychaindeMsgSendEndErasmusPeriodRequestResponse {
 }
 
 export interface UniversitychaindeMsgSendErasmusStudentResponse {
+  /** @format int32 */
+  status?: number;
+}
+
+export interface UniversitychaindeMsgSendExtendErasmusPeriodResponse {
   /** @format int32 */
   status?: number;
 }

@@ -20,7 +20,7 @@ export interface RpcStatus {
   details?: ProtobufAny[];
 }
 
-export interface UniversitychainitChainInfo {
+export interface UniversitychaindeChainInfo {
   hubKey?: string;
   chainKey?: string;
   country?: string;
@@ -29,13 +29,13 @@ export interface UniversitychainitChainInfo {
   chainName?: string;
 }
 
-export interface UniversitychainitContactInfo {
+export interface UniversitychaindeContactInfo {
   contactAddress?: string;
   email?: string;
   mobilePhone?: string;
 }
 
-export interface UniversitychainitErasmusInfo {
+export interface UniversitychaindeErasmusInfo {
   erasmusStudent?: string;
 
   /** @format int64 */
@@ -60,68 +60,68 @@ export interface UniversitychainitErasmusInfo {
   nextStudentFifo?: string;
 }
 
-export interface UniversitychainitForeignUniversities {
+export interface UniversitychaindeForeignUniversities {
   universityName?: string;
   chainName?: string;
   foreignUniversitiesKey?: string;
   foreignUniversitiesCountry?: string;
 }
 
-export interface UniversitychainitMsgConfigureChainResponse {
+export interface UniversitychaindeMsgConfigureChainResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgInsertErasmusExamResponse {
+export interface UniversitychaindeMsgInsertErasmusExamResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgInsertErasmusRequestResponse {
+export interface UniversitychaindeMsgInsertErasmusRequestResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgInsertExamGradeResponse {
+export interface UniversitychaindeMsgInsertExamGradeResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgInsertStudentContactInfoResponse {
+export interface UniversitychaindeMsgInsertStudentContactInfoResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgInsertStudentPersonalInfoResponse {
+export interface UniversitychaindeMsgInsertStudentPersonalInfoResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgInsertStudentResidenceInfoResponse {
+export interface UniversitychaindeMsgInsertStudentResidenceInfoResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgPayTaxesResponse {
+export interface UniversitychaindeMsgPayTaxesResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgRegisterNewStudentResponse {
+export interface UniversitychaindeMsgRegisterNewStudentResponse {
   studentIndex?: string;
 }
 
-export interface UniversitychainitMsgSendEndErasmusPeriodRequestResponse {
+export interface UniversitychaindeMsgSendEndErasmusPeriodRequestResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgSendErasmusStudentResponse {
+export interface UniversitychaindeMsgSendErasmusStudentResponse {
   /** @format int32 */
   status?: number;
 }
 
-export interface UniversitychainitMsgStartErasmusResponse {
+export interface UniversitychaindeMsgStartErasmusResponse {
   /** @format int32 */
   status?: number;
 }
@@ -129,9 +129,9 @@ export interface UniversitychainitMsgStartErasmusResponse {
 /**
  * Params defines the parameters for the module.
  */
-export type UniversitychainitParams = object;
+export type UniversitychaindeParams = object;
 
-export interface UniversitychainitPersonalInfo {
+export interface UniversitychaindePersonalInfo {
   gender?: string;
   dateOfBirth?: string;
   primaryNationality?: string;
@@ -141,15 +141,15 @@ export interface UniversitychainitPersonalInfo {
   taxCode?: string;
 }
 
-export interface UniversitychainitProfessorsExams {
+export interface UniversitychaindeProfessorsExams {
   examName?: string;
   professorName?: string;
   professorId?: string;
   professorKey?: string;
 }
 
-export interface UniversitychainitQueryAllForeignUniversitiesResponse {
-  foreignUniversities?: UniversitychainitForeignUniversities[];
+export interface UniversitychaindeQueryAllForeignUniversitiesResponse {
+  foreignUniversities?: UniversitychaindeForeignUniversities[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -163,8 +163,8 @@ export interface UniversitychainitQueryAllForeignUniversitiesResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface UniversitychainitQueryAllProfessorsExamsResponse {
-  professorsExams?: UniversitychainitProfessorsExams[];
+export interface UniversitychaindeQueryAllProfessorsExamsResponse {
+  professorsExams?: UniversitychaindeProfessorsExams[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -178,8 +178,8 @@ export interface UniversitychainitQueryAllProfessorsExamsResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface UniversitychainitQueryAllStoredStudentResponse {
-  storedStudent?: UniversitychainitStoredStudent[];
+export interface UniversitychaindeQueryAllStoredStudentResponse {
+  storedStudent?: UniversitychaindeStoredStudent[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -193,8 +193,8 @@ export interface UniversitychainitQueryAllStoredStudentResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface UniversitychainitQueryAllUniversityInfoResponse {
-  universityInfo?: UniversitychainitUniversityInfo[];
+export interface UniversitychaindeQueryAllUniversityInfoResponse {
+  universityInfo?: UniversitychaindeUniversityInfo[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -208,63 +208,63 @@ export interface UniversitychainitQueryAllUniversityInfoResponse {
   pagination?: V1Beta1PageResponse;
 }
 
-export interface UniversitychainitQueryGetChainInfoResponse {
-  ChainInfo?: UniversitychainitChainInfo;
+export interface UniversitychaindeQueryGetChainInfoResponse {
+  ChainInfo?: UniversitychaindeChainInfo;
 }
 
-export interface UniversitychainitQueryGetContactInfoResponse {
-  ContactInfo?: UniversitychainitContactInfo;
+export interface UniversitychaindeQueryGetContactInfoResponse {
+  ContactInfo?: UniversitychaindeContactInfo;
 }
 
-export interface UniversitychainitQueryGetErasmusInfoResponse {
-  ErasmusInfo?: UniversitychainitErasmusInfo;
+export interface UniversitychaindeQueryGetErasmusInfoResponse {
+  ErasmusInfo?: UniversitychaindeErasmusInfo;
 }
 
-export interface UniversitychainitQueryGetForeignUniversitiesResponse {
-  foreignUniversities?: UniversitychainitForeignUniversities;
+export interface UniversitychaindeQueryGetForeignUniversitiesResponse {
+  foreignUniversities?: UniversitychaindeForeignUniversities;
 }
 
-export interface UniversitychainitQueryGetPersonalInfoResponse {
-  PersonalInfo?: UniversitychainitPersonalInfo;
+export interface UniversitychaindeQueryGetPersonalInfoResponse {
+  PersonalInfo?: UniversitychaindePersonalInfo;
 }
 
-export interface UniversitychainitQueryGetProfessorsExamsResponse {
-  professorsExams?: UniversitychainitProfessorsExams;
+export interface UniversitychaindeQueryGetProfessorsExamsResponse {
+  professorsExams?: UniversitychaindeProfessorsExams;
 }
 
-export interface UniversitychainitQueryGetResidenceInfoResponse {
-  ResidenceInfo?: UniversitychainitResidenceInfo;
+export interface UniversitychaindeQueryGetResidenceInfoResponse {
+  ResidenceInfo?: UniversitychaindeResidenceInfo;
 }
 
-export interface UniversitychainitQueryGetStoredStudentResponse {
-  storedStudent?: UniversitychainitStoredStudent;
+export interface UniversitychaindeQueryGetStoredStudentResponse {
+  storedStudent?: UniversitychaindeStoredStudent;
 }
 
-export interface UniversitychainitQueryGetStudentInfoResponse {
-  StudentInfo?: UniversitychainitStudentInfo;
+export interface UniversitychaindeQueryGetStudentInfoResponse {
+  StudentInfo?: UniversitychaindeStudentInfo;
 }
 
-export interface UniversitychainitQueryGetTaxesInfoResponse {
-  TaxesInfo?: UniversitychainitTaxesInfo;
+export interface UniversitychaindeQueryGetTaxesInfoResponse {
+  TaxesInfo?: UniversitychaindeTaxesInfo;
 }
 
-export interface UniversitychainitQueryGetTranscriptOfRecordsResponse {
-  TranscriptOfRecords?: UniversitychainitTranscriptOfRecords;
+export interface UniversitychaindeQueryGetTranscriptOfRecordsResponse {
+  TranscriptOfRecords?: UniversitychaindeTranscriptOfRecords;
 }
 
-export interface UniversitychainitQueryGetUniversityInfoResponse {
-  universityInfo?: UniversitychainitUniversityInfo;
+export interface UniversitychaindeQueryGetUniversityInfoResponse {
+  universityInfo?: UniversitychaindeUniversityInfo;
 }
 
 /**
  * QueryParamsResponse is response type for the Query/Params RPC method.
  */
-export interface UniversitychainitQueryParamsResponse {
+export interface UniversitychaindeQueryParamsResponse {
   /** params holds all the parameters of this module. */
-  params?: UniversitychainitParams;
+  params?: UniversitychaindeParams;
 }
 
-export interface UniversitychainitResidenceInfo {
+export interface UniversitychaindeResidenceInfo {
   country?: string;
   province?: string;
   town?: string;
@@ -274,18 +274,18 @@ export interface UniversitychainitResidenceInfo {
   homePhone?: string;
 }
 
-export interface UniversitychainitStoredStudent {
+export interface UniversitychaindeStoredStudent {
   index?: string;
-  studentData?: UniversitychainitStudentInfo;
-  transcriptData?: UniversitychainitTranscriptOfRecords;
-  personalData?: UniversitychainitPersonalInfo;
-  residenceData?: UniversitychainitResidenceInfo;
-  contactData?: UniversitychainitContactInfo;
-  taxesData?: UniversitychainitTaxesInfo;
-  erasmusData?: UniversitychainitErasmusInfo;
+  studentData?: UniversitychaindeStudentInfo;
+  transcriptData?: UniversitychaindeTranscriptOfRecords;
+  personalData?: UniversitychaindePersonalInfo;
+  residenceData?: UniversitychaindeResidenceInfo;
+  contactData?: UniversitychaindeContactInfo;
+  taxesData?: UniversitychaindeTaxesInfo;
+  erasmusData?: UniversitychaindeErasmusInfo;
 }
 
-export interface UniversitychainitStudentInfo {
+export interface UniversitychaindeStudentInfo {
   name?: string;
   surname?: string;
   courseType?: string;
@@ -304,7 +304,7 @@ export interface UniversitychainitStudentInfo {
   chainName?: string;
 }
 
-export interface UniversitychainitTaxesInfo {
+export interface UniversitychaindeTaxesInfo {
   status?: boolean;
 
   /** @format int64 */
@@ -312,7 +312,7 @@ export interface UniversitychainitTaxesInfo {
   taxesHistory?: string;
 }
 
-export interface UniversitychainitTranscriptOfRecords {
+export interface UniversitychaindeTranscriptOfRecords {
   examsData?: string;
 
   /** @format int64 */
@@ -328,7 +328,7 @@ export interface UniversitychainitTranscriptOfRecords {
   achievedCredits?: number;
 }
 
-export interface UniversitychainitUniversityInfo {
+export interface UniversitychaindeUniversityInfo {
   universityName?: string;
 
   /** @format int64 */
@@ -614,7 +614,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/chain_info
    */
   queryChainInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetChainInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetChainInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/chain_info`,
       method: "GET",
       format: "json",
@@ -630,7 +630,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/contact_info
    */
   queryContactInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetContactInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetContactInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/contact_info`,
       method: "GET",
       format: "json",
@@ -646,7 +646,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/erasmus_info
    */
   queryErasmusInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetErasmusInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetErasmusInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/erasmus_info`,
       method: "GET",
       format: "json",
@@ -671,7 +671,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<UniversitychainitQueryAllForeignUniversitiesResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryAllForeignUniversitiesResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/foreign_universities`,
       method: "GET",
       query: query,
@@ -688,7 +688,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/foreign_universities/{universityName}
    */
   queryForeignUniversities = (universityName: string, params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetForeignUniversitiesResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetForeignUniversitiesResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/foreign_universities/${universityName}`,
       method: "GET",
       format: "json",
@@ -704,7 +704,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/params
    */
   queryParams = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryParamsResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryParamsResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/params`,
       method: "GET",
       format: "json",
@@ -720,7 +720,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/personal_info
    */
   queryPersonalInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetPersonalInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetPersonalInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/personal_info`,
       method: "GET",
       format: "json",
@@ -745,7 +745,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<UniversitychainitQueryAllProfessorsExamsResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryAllProfessorsExamsResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/professors_exams`,
       method: "GET",
       query: query,
@@ -762,7 +762,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/professors_exams/{examName}
    */
   queryProfessorsExams = (examName: string, params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetProfessorsExamsResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetProfessorsExamsResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/professors_exams/${examName}`,
       method: "GET",
       format: "json",
@@ -778,7 +778,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/residence_info
    */
   queryResidenceInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetResidenceInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetResidenceInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/residence_info`,
       method: "GET",
       format: "json",
@@ -803,7 +803,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<UniversitychainitQueryAllStoredStudentResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryAllStoredStudentResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/stored_student`,
       method: "GET",
       query: query,
@@ -820,7 +820,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/stored_student/{index}
    */
   queryStoredStudent = (index: string, params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetStoredStudentResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetStoredStudentResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/stored_student/${index}`,
       method: "GET",
       format: "json",
@@ -836,7 +836,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/student_info
    */
   queryStudentInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetStudentInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetStudentInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/student_info`,
       method: "GET",
       format: "json",
@@ -852,7 +852,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/taxes_info
    */
   queryTaxesInfo = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetTaxesInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetTaxesInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/taxes_info`,
       method: "GET",
       format: "json",
@@ -868,7 +868,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/transcript_of_records
    */
   queryTranscriptOfRecords = (params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetTranscriptOfRecordsResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetTranscriptOfRecordsResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/transcript_of_records`,
       method: "GET",
       format: "json",
@@ -893,7 +893,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     },
     params: RequestParams = {},
   ) =>
-    this.request<UniversitychainitQueryAllUniversityInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryAllUniversityInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/university_info`,
       method: "GET",
       query: query,
@@ -910,7 +910,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @request GET:/university_chain_de/universitychainde/university_info/{universityName}
    */
   queryUniversityInfo = (universityName: string, params: RequestParams = {}) =>
-    this.request<UniversitychainitQueryGetUniversityInfoResponse, RpcStatus>({
+    this.request<UniversitychaindeQueryGetUniversityInfoResponse, RpcStatus>({
       path: `/university_chain_de/universitychainde/university_info/${universityName}`,
       method: "GET",
       format: "json",

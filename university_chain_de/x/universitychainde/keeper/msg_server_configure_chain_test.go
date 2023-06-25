@@ -19,7 +19,7 @@ import (
 func setupMsgServerConfigureChain(t testing.TB) (types.MsgServer, keeper.Keeper, context.Context, *gomock.Controller, *testutil.MockBankKeeperComplete) {
 	ctrl := gomock.NewController(t)
 	bankMock := testutil.NewMockBankKeeperComplete(ctrl)
-	k, ctx := keepertest.UniversitychainitWithMocks(t, bankMock)
+	k, ctx := keepertest.UniversitychaindeWithMocks(t, bankMock)
 	universitychainde.InitGenesis(ctx, *k, *types.DefaultGenesis())
 	server := keeper.NewMsgServerImpl(*k)
 	context := sdk.WrapSDKContext(ctx)

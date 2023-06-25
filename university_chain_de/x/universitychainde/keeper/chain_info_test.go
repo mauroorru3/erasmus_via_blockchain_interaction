@@ -19,7 +19,7 @@ func createTestChainInfo(keeper *keeper.Keeper, ctx sdk.Context) types.ChainInfo
 }
 
 func TestChainInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestChainInfo(keeper, ctx)
 	rst, found := keeper.GetChainInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestChainInfoGet(t *testing.T) {
 }
 
 func TestChainInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestChainInfo(keeper, ctx)
 	keeper.RemoveChainInfo(ctx)
 	_, found := keeper.GetChainInfo(ctx)

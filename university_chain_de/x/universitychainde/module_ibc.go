@@ -3,6 +3,8 @@ package universitychainde
 import (
 	"fmt"
 
+	"university_chain_de/x/universitychainde/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
@@ -10,7 +12,6 @@ import (
 	porttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibcexported "github.com/cosmos/ibc-go/v3/modules/core/exported"
-	"university_chain_de/x/universitychainde/types"
 )
 
 // OnChanOpenInit implements the IBCModule interface
@@ -131,14 +132,14 @@ func (am AppModule) OnRecvPacket(
 
 	// this line is used by starport scaffolding # oracle/packet/module/recv
 
-	var modulePacketData types.UniversitychainitPacketData
+	var modulePacketData types.UniversitychaindePacketData
 	if err := modulePacketData.Unmarshal(modulePacket.GetData()); err != nil {
 		return channeltypes.NewErrorAcknowledgement(sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "cannot unmarshal packet data: %s", err.Error()).Error())
 	}
 
 	// Dispatch packet
 	switch packet := modulePacketData.Packet.(type) {
-	case *types.UniversitychainitPacketData_ErasmusStudentPacket:
+	case *types.UniversitychaindePacketData_ErasmusStudentPacket:
 		packetAck, err := am.keeper.OnRecvErasmusStudentPacket(ctx, modulePacket, *packet.ErasmusStudentPacket)
 		if err != nil {
 			ack = channeltypes.NewErrorAcknowledgement(err.Error())
@@ -157,7 +158,7 @@ func (am AppModule) OnRecvPacket(
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
 		)
-	case *types.UniversitychainitPacketData_ErasmusIndexPacket:
+	case *types.UniversitychaindePacketData_ErasmusIndexPacket:
 		packetAck, err := am.keeper.OnRecvErasmusIndexPacket(ctx, modulePacket, *packet.ErasmusIndexPacket)
 		if err != nil {
 			ack = channeltypes.NewErrorAcknowledgement(err.Error())
@@ -176,7 +177,7 @@ func (am AppModule) OnRecvPacket(
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
 		)
-	case *types.UniversitychainitPacketData_EndErasmusPeriodRequestPacket:
+	case *types.UniversitychaindePacketData_EndErasmusPeriodRequestPacket:
 		packetAck, err := am.keeper.OnRecvEndErasmusPeriodRequestPacket(ctx, modulePacket, *packet.EndErasmusPeriodRequestPacket)
 		if err != nil {
 			ack = channeltypes.NewErrorAcknowledgement(err.Error())
@@ -195,7 +196,7 @@ func (am AppModule) OnRecvPacket(
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
 		)
-	case *types.UniversitychainitPacketData_FinalErasmusDataPacket:
+	case *types.UniversitychaindePacketData_FinalErasmusDataPacket:
 		packetAck, err := am.keeper.OnRecvFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket)
 		if err != nil {
 			ack = channeltypes.NewErrorAcknowledgement(err.Error())
@@ -210,6 +211,25 @@ func (am AppModule) OnRecvPacket(
 		ctx.EventManager().EmitEvent(
 			sdk.NewEvent(
 				types.EventTypeFinalErasmusDataPacket,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
+			),
+		)
+	case *types.UniversitychaindePacketData_ExtendErasmusPeriodPacket:
+		packetAck, err := am.keeper.OnRecvExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket)
+		if err != nil {
+			ack = channeltypes.NewErrorAcknowledgement(err.Error())
+		} else {
+			// Encode packet acknowledgment
+			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+			if err != nil {
+				return channeltypes.NewErrorAcknowledgement(sdkerrors.Wrap(sdkerrors.ErrJSONMarshal, err.Error()).Error())
+			}
+			ack = channeltypes.NewResultAcknowledgement(sdk.MustSortJSON(packetAckBytes))
+		}
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(
+				types.EventTypeExtendErasmusPeriodPacket,
 				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
@@ -238,7 +258,7 @@ func (am AppModule) OnAcknowledgementPacket(
 
 	// this line is used by starport scaffolding # oracle/packet/module/ack
 
-	var modulePacketData types.UniversitychainitPacketData
+	var modulePacketData types.UniversitychaindePacketData
 	if err := modulePacketData.Unmarshal(modulePacket.GetData()); err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "cannot unmarshal packet data: %s", err.Error())
 	}
@@ -247,30 +267,36 @@ func (am AppModule) OnAcknowledgementPacket(
 
 	// Dispatch packet
 	switch packet := modulePacketData.Packet.(type) {
-	case *types.UniversitychainitPacketData_ErasmusStudentPacket:
+	case *types.UniversitychaindePacketData_ErasmusStudentPacket:
 		err := am.keeper.OnAcknowledgementErasmusStudentPacket(ctx, modulePacket, *packet.ErasmusStudentPacket, ack)
 		if err != nil {
 			return err
 		}
 		eventType = types.EventTypeErasmusStudentPacket
-	case *types.UniversitychainitPacketData_ErasmusIndexPacket:
+	case *types.UniversitychaindePacketData_ErasmusIndexPacket:
 		err := am.keeper.OnAcknowledgementErasmusIndexPacket(ctx, modulePacket, *packet.ErasmusIndexPacket, ack)
 		if err != nil {
 			return err
 		}
 		eventType = types.EventTypeErasmusIndexPacket
-	case *types.UniversitychainitPacketData_EndErasmusPeriodRequestPacket:
+	case *types.UniversitychaindePacketData_EndErasmusPeriodRequestPacket:
 		err := am.keeper.OnAcknowledgementEndErasmusPeriodRequestPacket(ctx, modulePacket, *packet.EndErasmusPeriodRequestPacket, ack)
 		if err != nil {
 			return err
 		}
 		eventType = types.EventTypeEndErasmusPeriodRequestPacket
-	case *types.UniversitychainitPacketData_FinalErasmusDataPacket:
+	case *types.UniversitychaindePacketData_FinalErasmusDataPacket:
 		err := am.keeper.OnAcknowledgementFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket, ack)
 		if err != nil {
 			return err
 		}
 		eventType = types.EventTypeFinalErasmusDataPacket
+	case *types.UniversitychaindePacketData_ExtendErasmusPeriodPacket:
+		err := am.keeper.OnAcknowledgementExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket, ack)
+		if err != nil {
+			return err
+		}
+		eventType = types.EventTypeExtendErasmusPeriodPacket
 		// this line is used by starport scaffolding # ibc/packet/module/ack
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -311,30 +337,35 @@ func (am AppModule) OnTimeoutPacket(
 	modulePacket channeltypes.Packet,
 	relayer sdk.AccAddress,
 ) error {
-	var modulePacketData types.UniversitychainitPacketData
+	var modulePacketData types.UniversitychaindePacketData
 	if err := modulePacketData.Unmarshal(modulePacket.GetData()); err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "cannot unmarshal packet data: %s", err.Error())
 	}
 
 	// Dispatch packet
 	switch packet := modulePacketData.Packet.(type) {
-	case *types.UniversitychainitPacketData_ErasmusStudentPacket:
+	case *types.UniversitychaindePacketData_ErasmusStudentPacket:
 		err := am.keeper.OnTimeoutErasmusStudentPacket(ctx, modulePacket, *packet.ErasmusStudentPacket)
 		if err != nil {
 			return err
 		}
-	case *types.UniversitychainitPacketData_ErasmusIndexPacket:
+	case *types.UniversitychaindePacketData_ErasmusIndexPacket:
 		err := am.keeper.OnTimeoutErasmusIndexPacket(ctx, modulePacket, *packet.ErasmusIndexPacket)
 		if err != nil {
 			return err
 		}
-	case *types.UniversitychainitPacketData_EndErasmusPeriodRequestPacket:
+	case *types.UniversitychaindePacketData_EndErasmusPeriodRequestPacket:
 		err := am.keeper.OnTimeoutEndErasmusPeriodRequestPacket(ctx, modulePacket, *packet.EndErasmusPeriodRequestPacket)
 		if err != nil {
 			return err
 		}
-	case *types.UniversitychainitPacketData_FinalErasmusDataPacket:
+	case *types.UniversitychaindePacketData_FinalErasmusDataPacket:
 		err := am.keeper.OnTimeoutFinalErasmusDataPacket(ctx, modulePacket, *packet.FinalErasmusDataPacket)
+		if err != nil {
+			return err
+		}
+	case *types.UniversitychaindePacketData_ExtendErasmusPeriodPacket:
+		err := am.keeper.OnTimeoutExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket)
 		if err != nil {
 			return err
 		}

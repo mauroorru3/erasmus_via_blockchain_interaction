@@ -14,7 +14,7 @@ import (
 )
 
 func TestContactInfoQuery(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	wctx := sdk.WrapSDKContext(ctx)
 	item := createTestContactInfo(keeper, ctx)
 	for _, tc := range []struct {

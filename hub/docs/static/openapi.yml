@@ -45751,6 +45751,8 @@ definitions:
       status:
         type: integer
         format: int32
+  hub.hub.MsgSendExtendErasmusPeriodResponse:
+    type: object
   hub.hub.MsgSendFinalErasmusDataResponse:
     type: object
     properties:

@@ -26,7 +26,7 @@ func createNForeignUniversities(keeper *keeper.Keeper, ctx sdk.Context, n int) [
 }
 
 func TestForeignUniversitiesGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNForeignUniversities(keeper, ctx, 10)
 	for _, item := range items {
 		rst, found := keeper.GetForeignUniversities(ctx,
@@ -40,7 +40,7 @@ func TestForeignUniversitiesGet(t *testing.T) {
 	}
 }
 func TestForeignUniversitiesRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNForeignUniversities(keeper, ctx, 10)
 	for _, item := range items {
 		keeper.RemoveForeignUniversities(ctx,
@@ -54,7 +54,7 @@ func TestForeignUniversitiesRemove(t *testing.T) {
 }
 
 func TestForeignUniversitiesGetAll(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNForeignUniversities(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),

@@ -52,14 +52,12 @@ func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, un
 
 func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
 
-	utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue")
 	finish := false
 	if uniInfo.FifoHeadErasmus == "" && uniInfo.FifoTailErasmus == "" {
 		uniInfo.FifoHeadErasmus = student.Index
 		uniInfo.FifoTailErasmus = student.Index
 		student.ErasmusData.PreviousStudentFifo = ""
 		student.ErasmusData.NextStudentFifo = ""
-		utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 1")
 	} else {
 		currentTail, found := k.GetStoredStudent(ctx, uniInfo.FifoTailErasmus)
 		if !found {
@@ -71,13 +69,11 @@ func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.Stor
 		}
 		if goOn {
 			if currentTail.ErasmusData.PreviousStudentFifo != "" {
-				utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 2")
 				currentTail, found = k.GetStoredStudent(ctx, currentTail.ErasmusData.PreviousStudentFifo)
 				if !found {
 					panic("Previous student was not found")
 				}
 			} else {
-				utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 3")
 				uniInfo.FifoHeadErasmus = student.Index
 				student.ErasmusData.PreviousStudentFifo = ""
 				student.ErasmusData.NextStudentFifo = currentTail.Index
@@ -87,7 +83,6 @@ func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.Stor
 
 			}
 		} else {
-			utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue qui 4")
 			currentTail.ErasmusData.NextStudentFifo = student.Index
 			k.SetStoredStudent(ctx, currentTail)
 			student.ErasmusData.PreviousStudentFifo = currentTail.Index
@@ -119,6 +114,123 @@ func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.Stor
 				student.ErasmusData.PreviousStudentFifo = currentTail.Index
 				currentTail.ErasmusData.NextStudentFifo = student.Index
 				k.SetStoredStudent(ctx, currentTail)
+				finish = true
+			}
+		}
+	}
+
+}
+
+func (k Keeper) CheckAndInCaseMoveStutent(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
+
+	if student.ErasmusData.NextStudentFifo != "" {
+		nextElem, found := k.GetStoredStudent(ctx, student.ErasmusData.NextStudentFifo)
+		if !found {
+			panic("Element after was not found")
+		}
+		count := 0
+		finish := false
+		for !finish {
+			goOn, err := CheckRemainingTime(nextElem, *student)
+			if err != nil {
+				panic(err)
+			}
+			if !goOn { //-> next element has less remaining time
+				if nextElem.ErasmusData.NextStudentFifo != "" {
+					nextElem, found = k.GetStoredStudent(ctx, nextElem.ErasmusData.NextStudentFifo)
+					if !found {
+						panic("Previous student was not found")
+					}
+					count++
+				} else { // NextStudentFifo="" so last element
+					if student.ErasmusData.PreviousStudentFifo == "" { // PreviousStudentFifo="" originar position was head
+						uniInfo.FifoHeadErasmus = student.ErasmusData.NextStudentFifo
+						rightElem, found := k.GetStoredStudent(ctx, student.ErasmusData.NextStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						rightElem.ErasmusData.PreviousStudentFifo = ""
+						k.SetStoredStudent(ctx, rightElem)
+						uniInfo.FifoTailErasmus = student.Index
+						student.ErasmusData.NextStudentFifo = ""
+						student.ErasmusData.PreviousStudentFifo = nextElem.Index
+						nextElem.ErasmusData.NextStudentFifo = student.Index
+						k.SetStoredStudent(ctx, nextElem)
+					} else {
+						// update previous element pointer
+						previousElem, found := k.GetStoredStudent(ctx, student.ErasmusData.PreviousStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						previousElem.ErasmusData.NextStudentFifo = student.ErasmusData.NextStudentFifo
+						k.SetStoredStudent(ctx, previousElem)
+						// update next element pointer
+						rightElem, found := k.GetStoredStudent(ctx, student.ErasmusData.NextStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						rightElem.ErasmusData.PreviousStudentFifo = student.ErasmusData.PreviousStudentFifo
+						k.SetStoredStudent(ctx, rightElem)
+						// update new positions
+						uniInfo.FifoTailErasmus = student.Index
+						student.ErasmusData.NextStudentFifo = ""
+						student.ErasmusData.PreviousStudentFifo = nextElem.Index
+						nextElem.ErasmusData.NextStudentFifo = student.Index
+						k.SetStoredStudent(ctx, nextElem)
+					}
+
+					finish = true
+
+				}
+			} else { //-> next element has longer remaining time
+				if count > 0 {
+					if student.ErasmusData.PreviousStudentFifo == "" { // PreviousStudentFifo="" originar position was head
+						uniInfo.FifoHeadErasmus = student.ErasmusData.NextStudentFifo
+						rightElem, found := k.GetStoredStudent(ctx, student.ErasmusData.NextStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						rightElem.ErasmusData.PreviousStudentFifo = ""
+						k.SetStoredStudent(ctx, rightElem)
+						student.ErasmusData.NextStudentFifo = nextElem.Index
+						student.ErasmusData.PreviousStudentFifo = nextElem.ErasmusData.PreviousStudentFifo
+						nextElem.ErasmusData.PreviousStudentFifo = student.Index
+						k.SetStoredStudent(ctx, nextElem)
+						leftElem, found := k.GetStoredStudent(ctx, nextElem.ErasmusData.PreviousStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						leftElem.ErasmusData.NextStudentFifo = student.Index
+						k.SetStoredStudent(ctx, leftElem)
+					} else {
+						// update previous element pointer
+						previousElem, found := k.GetStoredStudent(ctx, student.ErasmusData.PreviousStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						previousElem.ErasmusData.NextStudentFifo = student.ErasmusData.NextStudentFifo
+						k.SetStoredStudent(ctx, previousElem)
+						// update next element pointer
+						rightElem, found := k.GetStoredStudent(ctx, student.ErasmusData.NextStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						rightElem.ErasmusData.PreviousStudentFifo = student.ErasmusData.PreviousStudentFifo
+						k.SetStoredStudent(ctx, rightElem)
+						// update new positions
+						student.ErasmusData.NextStudentFifo = nextElem.Index
+						student.ErasmusData.PreviousStudentFifo = nextElem.ErasmusData.PreviousStudentFifo
+						nextElem.ErasmusData.PreviousStudentFifo = student.Index
+						k.SetStoredStudent(ctx, nextElem)
+						leftElem, found := k.GetStoredStudent(ctx, nextElem.ErasmusData.PreviousStudentFifo)
+						if !found {
+							panic("Element after was not found")
+						}
+						leftElem.ErasmusData.NextStudentFifo = student.Index
+						k.SetStoredStudent(ctx, leftElem)
+					}
+
+				}
 				finish = true
 			}
 		}

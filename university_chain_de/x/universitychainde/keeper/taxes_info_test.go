@@ -19,7 +19,7 @@ func createTestTaxesInfo(keeper *keeper.Keeper, ctx sdk.Context) types.TaxesInfo
 }
 
 func TestTaxesInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestTaxesInfo(keeper, ctx)
 	rst, found := keeper.GetTaxesInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestTaxesInfoGet(t *testing.T) {
 }
 
 func TestTaxesInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestTaxesInfo(keeper, ctx)
 	keeper.RemoveTaxesInfo(ctx)
 	_, found := keeper.GetTaxesInfo(ctx)

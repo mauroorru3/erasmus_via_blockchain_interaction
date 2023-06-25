@@ -19,7 +19,7 @@ func createTestContactInfo(keeper *keeper.Keeper, ctx sdk.Context) types.Contact
 }
 
 func TestContactInfoGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	item := createTestContactInfo(keeper, ctx)
 	rst, found := keeper.GetContactInfo(ctx)
 	require.True(t, found)
@@ -30,7 +30,7 @@ func TestContactInfoGet(t *testing.T) {
 }
 
 func TestContactInfoRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	createTestContactInfo(keeper, ctx)
 	keeper.RemoveContactInfo(ctx)
 	_, found := keeper.GetContactInfo(ctx)

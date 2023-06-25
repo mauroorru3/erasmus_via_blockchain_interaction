@@ -9,7 +9,7 @@ import (
 )
 
 func TestGetParams(t *testing.T) {
-	k, ctx := testkeeper.UniversitychainitKeeper(t)
+	k, ctx := testkeeper.UniversitychaindeKeeper(t)
 	params := types.DefaultParams()
 
 	k.SetParams(ctx, params)

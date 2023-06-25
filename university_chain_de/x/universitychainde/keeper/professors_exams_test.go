@@ -26,7 +26,7 @@ func createNProfessorsExams(keeper *keeper.Keeper, ctx sdk.Context, n int) []typ
 }
 
 func TestProfessorsExamsGet(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNProfessorsExams(keeper, ctx, 10)
 	for _, item := range items {
 		rst, found := keeper.GetProfessorsExams(ctx,
@@ -40,7 +40,7 @@ func TestProfessorsExamsGet(t *testing.T) {
 	}
 }
 func TestProfessorsExamsRemove(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNProfessorsExams(keeper, ctx, 10)
 	for _, item := range items {
 		keeper.RemoveProfessorsExams(ctx,
@@ -54,7 +54,7 @@ func TestProfessorsExamsRemove(t *testing.T) {
 }
 
 func TestProfessorsExamsGetAll(t *testing.T) {
-	keeper, ctx := keepertest.UniversitychainitKeeper(t)
+	keeper, ctx := keepertest.UniversitychaindeKeeper(t)
 	items := createNProfessorsExams(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),
