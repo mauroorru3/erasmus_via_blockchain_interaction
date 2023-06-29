@@ -4,39 +4,39 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
+import { MsgSendExtendErasmusPeriod } from "./types/universitychainde/tx";
+import { MsgSendEndErasmusPeriodRequest } from "./types/universitychainde/tx";
 import { MsgRegisterNewStudent } from "./types/universitychainde/tx";
-import { MsgInsertExamGrade } from "./types/universitychainde/tx";
+import { MsgPayTaxes } from "./types/universitychainde/tx";
+import { MsgInsertErasmusExam } from "./types/universitychainde/tx";
+import { MsgStartErasmus } from "./types/universitychainde/tx";
+import { MsgInsertStudentResidenceInfo } from "./types/universitychainde/tx";
 import { MsgExtendErasmus } from "./types/universitychainde/tx";
+import { MsgInsertErasmusRequest } from "./types/universitychainde/tx";
+import { MsgInsertStudentPersonalInfo } from "./types/universitychainde/tx";
 import { MsgConfigureChain } from "./types/universitychainde/tx";
 import { MsgSendErasmusStudent } from "./types/universitychainde/tx";
-import { MsgInsertStudentContactInfo } from "./types/universitychainde/tx";
-import { MsgSendEndErasmusPeriodRequest } from "./types/universitychainde/tx";
-import { MsgPayTaxes } from "./types/universitychainde/tx";
-import { MsgInsertStudentResidenceInfo } from "./types/universitychainde/tx";
-import { MsgStartErasmus } from "./types/universitychainde/tx";
-import { MsgInsertStudentPersonalInfo } from "./types/universitychainde/tx";
-import { MsgSendExtendErasmusPeriod } from "./types/universitychainde/tx";
-import { MsgInsertErasmusRequest } from "./types/universitychainde/tx";
-import { MsgInsertErasmusExam } from "./types/universitychainde/tx";
 import { MsgEndErasmusBeforeDeadline } from "./types/universitychainde/tx";
+import { MsgInsertStudentContactInfo } from "./types/universitychainde/tx";
+import { MsgInsertExamGrade } from "./types/universitychainde/tx";
 
 
 const types = [
+  ["/university_chain_de.universitychainde.MsgSendExtendErasmusPeriod", MsgSendExtendErasmusPeriod],
+  ["/university_chain_de.universitychainde.MsgSendEndErasmusPeriodRequest", MsgSendEndErasmusPeriodRequest],
   ["/university_chain_de.universitychainde.MsgRegisterNewStudent", MsgRegisterNewStudent],
-  ["/university_chain_de.universitychainde.MsgInsertExamGrade", MsgInsertExamGrade],
+  ["/university_chain_de.universitychainde.MsgPayTaxes", MsgPayTaxes],
+  ["/university_chain_de.universitychainde.MsgInsertErasmusExam", MsgInsertErasmusExam],
+  ["/university_chain_de.universitychainde.MsgStartErasmus", MsgStartErasmus],
+  ["/university_chain_de.universitychainde.MsgInsertStudentResidenceInfo", MsgInsertStudentResidenceInfo],
   ["/university_chain_de.universitychainde.MsgExtendErasmus", MsgExtendErasmus],
+  ["/university_chain_de.universitychainde.MsgInsertErasmusRequest", MsgInsertErasmusRequest],
+  ["/university_chain_de.universitychainde.MsgInsertStudentPersonalInfo", MsgInsertStudentPersonalInfo],
   ["/university_chain_de.universitychainde.MsgConfigureChain", MsgConfigureChain],
   ["/university_chain_de.universitychainde.MsgSendErasmusStudent", MsgSendErasmusStudent],
-  ["/university_chain_de.universitychainde.MsgInsertStudentContactInfo", MsgInsertStudentContactInfo],
-  ["/university_chain_de.universitychainde.MsgSendEndErasmusPeriodRequest", MsgSendEndErasmusPeriodRequest],
-  ["/university_chain_de.universitychainde.MsgPayTaxes", MsgPayTaxes],
-  ["/university_chain_de.universitychainde.MsgInsertStudentResidenceInfo", MsgInsertStudentResidenceInfo],
-  ["/university_chain_de.universitychainde.MsgStartErasmus", MsgStartErasmus],
-  ["/university_chain_de.universitychainde.MsgInsertStudentPersonalInfo", MsgInsertStudentPersonalInfo],
-  ["/university_chain_de.universitychainde.MsgSendExtendErasmusPeriod", MsgSendExtendErasmusPeriod],
-  ["/university_chain_de.universitychainde.MsgInsertErasmusRequest", MsgInsertErasmusRequest],
-  ["/university_chain_de.universitychainde.MsgInsertErasmusExam", MsgInsertErasmusExam],
   ["/university_chain_de.universitychainde.MsgEndErasmusBeforeDeadline", MsgEndErasmusBeforeDeadline],
+  ["/university_chain_de.universitychainde.MsgInsertStudentContactInfo", MsgInsertStudentContactInfo],
+  ["/university_chain_de.universitychainde.MsgInsertExamGrade", MsgInsertExamGrade],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -69,21 +69,21 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
+    msgSendExtendErasmusPeriod: (data: MsgSendExtendErasmusPeriod): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgSendExtendErasmusPeriod", value: MsgSendExtendErasmusPeriod.fromPartial( data ) }),
+    msgSendEndErasmusPeriodRequest: (data: MsgSendEndErasmusPeriodRequest): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgSendEndErasmusPeriodRequest", value: MsgSendEndErasmusPeriodRequest.fromPartial( data ) }),
     msgRegisterNewStudent: (data: MsgRegisterNewStudent): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgRegisterNewStudent", value: MsgRegisterNewStudent.fromPartial( data ) }),
-    msgInsertExamGrade: (data: MsgInsertExamGrade): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertExamGrade", value: MsgInsertExamGrade.fromPartial( data ) }),
+    msgPayTaxes: (data: MsgPayTaxes): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgPayTaxes", value: MsgPayTaxes.fromPartial( data ) }),
+    msgInsertErasmusExam: (data: MsgInsertErasmusExam): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertErasmusExam", value: MsgInsertErasmusExam.fromPartial( data ) }),
+    msgStartErasmus: (data: MsgStartErasmus): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgStartErasmus", value: MsgStartErasmus.fromPartial( data ) }),
+    msgInsertStudentResidenceInfo: (data: MsgInsertStudentResidenceInfo): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertStudentResidenceInfo", value: MsgInsertStudentResidenceInfo.fromPartial( data ) }),
     msgExtendErasmus: (data: MsgExtendErasmus): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgExtendErasmus", value: MsgExtendErasmus.fromPartial( data ) }),
+    msgInsertErasmusRequest: (data: MsgInsertErasmusRequest): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertErasmusRequest", value: MsgInsertErasmusRequest.fromPartial( data ) }),
+    msgInsertStudentPersonalInfo: (data: MsgInsertStudentPersonalInfo): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertStudentPersonalInfo", value: MsgInsertStudentPersonalInfo.fromPartial( data ) }),
     msgConfigureChain: (data: MsgConfigureChain): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgConfigureChain", value: MsgConfigureChain.fromPartial( data ) }),
     msgSendErasmusStudent: (data: MsgSendErasmusStudent): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgSendErasmusStudent", value: MsgSendErasmusStudent.fromPartial( data ) }),
-    msgInsertStudentContactInfo: (data: MsgInsertStudentContactInfo): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertStudentContactInfo", value: MsgInsertStudentContactInfo.fromPartial( data ) }),
-    msgSendEndErasmusPeriodRequest: (data: MsgSendEndErasmusPeriodRequest): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgSendEndErasmusPeriodRequest", value: MsgSendEndErasmusPeriodRequest.fromPartial( data ) }),
-    msgPayTaxes: (data: MsgPayTaxes): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgPayTaxes", value: MsgPayTaxes.fromPartial( data ) }),
-    msgInsertStudentResidenceInfo: (data: MsgInsertStudentResidenceInfo): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertStudentResidenceInfo", value: MsgInsertStudentResidenceInfo.fromPartial( data ) }),
-    msgStartErasmus: (data: MsgStartErasmus): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgStartErasmus", value: MsgStartErasmus.fromPartial( data ) }),
-    msgInsertStudentPersonalInfo: (data: MsgInsertStudentPersonalInfo): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertStudentPersonalInfo", value: MsgInsertStudentPersonalInfo.fromPartial( data ) }),
-    msgSendExtendErasmusPeriod: (data: MsgSendExtendErasmusPeriod): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgSendExtendErasmusPeriod", value: MsgSendExtendErasmusPeriod.fromPartial( data ) }),
-    msgInsertErasmusRequest: (data: MsgInsertErasmusRequest): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertErasmusRequest", value: MsgInsertErasmusRequest.fromPartial( data ) }),
-    msgInsertErasmusExam: (data: MsgInsertErasmusExam): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertErasmusExam", value: MsgInsertErasmusExam.fromPartial( data ) }),
     msgEndErasmusBeforeDeadline: (data: MsgEndErasmusBeforeDeadline): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgEndErasmusBeforeDeadline", value: MsgEndErasmusBeforeDeadline.fromPartial( data ) }),
+    msgInsertStudentContactInfo: (data: MsgInsertStudentContactInfo): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertStudentContactInfo", value: MsgInsertStudentContactInfo.fromPartial( data ) }),
+    msgInsertExamGrade: (data: MsgInsertExamGrade): EncodeObject => ({ typeUrl: "/university_chain_de.universitychainde.MsgInsertExamGrade", value: MsgInsertExamGrade.fromPartial( data ) }),
     
   };
 };

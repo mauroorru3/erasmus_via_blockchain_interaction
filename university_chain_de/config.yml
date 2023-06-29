@@ -26,6 +26,24 @@ accounts:
 - name: Paul Becker
   coins: ["200000000token", "200000000stake"]
   mnemonic: "snap thought exercise habit someone south opinion thunder whisper range myth run urge tragic order clock train dutch machine canal item relief soon check"
+- name: Mike Eisenhauer
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "ball toilet volume magic game habit bar pair rhythm wasp hero pistol west raw post loan oblige height lion balance birth powder become solution"
+- name: Daniela Gloeckner
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "snap noble tourist snake leaf device web autumn garlic snack share bird current matrix weapon struggle assist mammal fury gospel shoot promote creek rally"
+- name: Nadine Baier
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "pepper sweet leopard animal arctic tired old explain pledge logic average weapon bird vicious brush notable live birth mutual keen only write false rich"
+- name: Jennifer Diederich
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "photo six tumble inflict dinosaur axis venue symptom brisk medal enforce alert craft truly lobster winner model deliver column sister canoe street concert board"
+- name: Christian Schroeder
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "always true umbrella quit drip visual juice renew dinosaur execute render stomach wet youth grunt exhibit silver can worth cricket mention cash exclude fat"
+- name: Ulrich Huber
+  coins: ["200000000token", "200000000stake"]
+  mnemonic: "awful comic when mansion blast fury hold tent someone throw jazz original keep profit round question lazy client minute oxygen ship ski fan depth"
 - name: Mario Rossi
   coins: ["200000000token", "200000000stake"]
   mnemonic: "pond sport hold enter develop turkey home close debris noodle kick orbit layer habit win love monster foil woman town govern truly effort gesture"

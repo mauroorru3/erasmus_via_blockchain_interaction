@@ -23,19 +23,33 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 		}, types.ErrStudentNotPresent
 	} else {
 
-		/*
-			val := types.StoredStudent{
-				Index: stu.Index,
-				StudentData: &types.StudentInfo{
-					UniversityName: "tum",
-				},
-				ErasmusData: stu.ErasmusData,
-			}
-		*/
+		val := types.StoredStudent{
+			Index: stu.Index,
+			StudentData: &types.StudentInfo{
+				Name:                     stu.StudentData.Name,
+				Surname:                  stu.StudentData.Surname,
+				CourseType:               stu.StudentData.CourseType,
+				CourseOfStudy:            stu.StudentData.CourseOfStudy,
+				Status:                   stu.StudentData.Status,
+				CurrentYearOfStudy:       stu.StudentData.CurrentYearOfStudy,
+				OutOfCourse:              stu.StudentData.OutOfCourse,
+				NumberOfYearsOutOfCourse: stu.StudentData.NumberOfYearsOutOfCourse,
+				StudentKey:               stu.StudentData.StudentKey,
+				CompleteInformation:      stu.StudentData.CompleteInformation,
+				UniversityName:           stu.StudentData.UniversityName,
+				//ChainName:                stu.StudentData.ChainName,
+			},
+			//TranscriptData: stu.TranscriptData,
+			//PersonalData:   stu.PersonalData,
+			//ResidenceData:  stu.ResidenceData,
+			//ContactData:    stu.ContactData,
+			//TaxesData:      stu.TaxesData,
+			//ErasmusData: stu.ErasmusData,
+		}
 
-		//packet.Student = &val
+		packet.Student = &val
 
-		packet.Student = &stu
+		//packet.Student = &stu
 
 		// Transmit the packet
 		err := k.TransmitErasmusStudentPacket(
