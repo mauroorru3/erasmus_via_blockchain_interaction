@@ -84,8 +84,6 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 												}, err
 											} else {
 
-												
-
 												foreignUni, err := utilfunc.GetForeignUniversityName(searchedStudent)
 												if err != nil {
 													return &types.MsgExtendErasmusResponse{
@@ -99,7 +97,7 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 															Status: -1,
 														}, err
 													} else {
-														
+
 														var packet types.ExtendErasmusPeriodPacketData
 														packet.DestinationUniversityName = foreignUni
 														packet.ForeignIndex = foreignIndex

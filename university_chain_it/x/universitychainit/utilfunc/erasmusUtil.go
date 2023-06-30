@@ -125,6 +125,22 @@ type ErasmusConfigStruct struct {
 	UniversitiesPlacesList         []ForeignUniversities    `json:"universitiesPlacesList"`
 }
 
+// student JSON structure
+
+type StudentInfoRestricted struct {
+	PacketID uint8 `json:"packet_id"`
+	//Name     string `json:"name"`
+	//Surname    string `json:"surname"`
+	//StudentKey        string `json:"student_key"`
+	HomeIndex         string `json:"home_index"`
+	HomeUniversity    string `json:"home_university"`
+	ForeignUniversity string `json:"foreign_university"`
+	//StartDate         string `json:"start_date"`
+	//EndDate           string `json:"end_date"`
+	//DurationInMonths uint8  `json:"duration_in_months"`
+	//ExamsData string `json:"exams_data"`
+}
+
 const erasmusConfigJSON string = "erasmusConfig.json"
 
 func IntializeErasmusStruct(incomeBracket uint32) (erasmusJSON string, err error) {
@@ -1057,3 +1073,71 @@ func ExtendErasmusForeignStudent(ctx sdk.Context, durationInMonths uint32, final
 
 	return err
 }
+
+func CreateFirstJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestricted
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	//lenCareer := len(erasmusCareer)
+
+	infoRestricted.HomeIndex = student.Index
+	infoRestricted.HomeUniversity = student.StudentData.UniversityName
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	//infoRestricted.StartDate = erasmusCareer[lenCareer-1].Start_date
+	//infoRestricted.EndDate = erasmusCareer[lenCareer-1].End_date
+	//infoRestricted.DurationInMonths = erasmusCareer[lenCareer-1].Duration_in_months
+	//infoRestricted.Name = student.StudentData.Name
+	//infoRestricted.Surname = student.StudentData.Surname
+	//infoRestricted.StudentKey = student.StudentData.StudentKey
+	infoRestricted.PacketID = 1
+	//infoRestricted.ExamsData = erasmusCareer[lenCareer-1].Exams_data
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+/*
+
+func CreateSecondJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestricted
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.StartDate = erasmusCareer[lenCareer-1].Start_date
+	infoRestricted.EndDate = erasmusCareer[lenCareer-1].End_date
+	infoRestricted.DurationInMonths = erasmusCareer[lenCareer-1].Duration_in_months
+	//infoRestricted.ExamsData = erasmusCareer[lenCareer-1].Exams_data
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+*/

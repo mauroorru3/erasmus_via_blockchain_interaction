@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"fmt"
 
 	"university_chain_it/x/universitychainit/types"
 	"university_chain_it/x/universitychainit/utilfunc"
@@ -14,7 +15,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	var packet types.ErasmusStudentPacketData
+	var packet types.ErasmusRestictedDataPacketData
 
 	stu, found := k.GetStoredStudent(ctx, msg.Index)
 	if !found {
@@ -24,7 +25,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 	} else {
 
 		val := types.StoredStudent{
-			Index: stu.Index,
+			//Index: stu.Index,
 			StudentData: &types.StudentInfo{
 				Name:                     stu.StudentData.Name,
 				Surname:                  stu.StudentData.Surname,
@@ -37,7 +38,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 				StudentKey:               stu.StudentData.StudentKey,
 				CompleteInformation:      stu.StudentData.CompleteInformation,
 				UniversityName:           stu.StudentData.UniversityName,
-				//ChainName:                stu.StudentData.ChainName,
+				ChainName:                stu.StudentData.ChainName,
 			},
 			//TranscriptData: stu.TranscriptData,
 			//PersonalData:   stu.PersonalData,
@@ -47,12 +48,22 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 			//ErasmusData: stu.ErasmusData,
 		}
 
-		packet.Student = &val
+		fmt.Println(val)
+
+		data, err := utilfunc.CreateFirstJSONPacketFromStudentData(stu)
+		if err != nil {
+			return &types.MsgSendErasmusStudentResponse{
+				Status: -1,
+			}, err
+		}
+
+		packet.ErasmusRestrctedInfo = data
+
+		utilfunc.PrintLogs("SendErasmusStudent " + packet.ErasmusRestrctedInfo)
 
 		//packet.Student = &stu
 
-		// Transmit the packet
-		err := k.TransmitErasmusStudentPacket(
+		err = k.TransmitErasmusRestictedDataPacket(
 			ctx,
 			packet,
 			msg.Port,
@@ -60,6 +71,18 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 			clienttypes.ZeroHeight(),
 			timeoutTimestamp,
 		)
+
+		/*
+			// Transmit the packet
+			err := k.TransmitErasmusStudentPacket(
+				ctx,
+				packet,
+				msg.Port,
+				"channel-0",
+				clienttypes.ZeroHeight(),
+				timeoutTimestamp,
+			)
+		*/
 
 		if err != nil {
 			utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
