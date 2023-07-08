@@ -52,11 +52,11 @@ message EndErasmusPeriodRequestPacketData {
 
 // EndErasmusPeriodRequestPacketAck defines a struct for the packet acknowledgment
 message EndErasmusPeriodRequestPacketAck {
-	  ErasmusInfo erasmusData = 1;
+	  string erasmusRestrictedInfo = 1;
 }
 // FinalErasmusDataPacketData defines a struct for the packet payload
 message FinalErasmusDataPacketData {
-  ErasmusInfo erasmusData = 1;
+  string erasmusRestrictedInfo = 1;
   string homeIndex = 2;
 }
 
@@ -76,10 +76,11 @@ message ExtendErasmusPeriodPacketAck {
 	}
 // ErasmusRestictedDataPacketData defines a struct for the packet payload
 message ErasmusRestictedDataPacketData {
-  string erasmusRestrctedInfo = 1;
+  string erasmusRestrictedInfo = 1;
 }
 
 // ErasmusRestictedDataPacketAck defines a struct for the packet acknowledgment
 message ErasmusRestictedDataPacketAck {
+  string erasmusRestrictedInfo = 1;
 	}
 // this line is used by starport scaffolding # ibc/packet/proto/message

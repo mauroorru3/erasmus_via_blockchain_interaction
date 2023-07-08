@@ -317,6 +317,7 @@ export interface UniversitychaindeStudentInfo {
   completeInformation?: number[];
   universityName?: string;
   chainName?: string;
+  departmentName?: string;
 }
 
 export interface UniversitychaindeTaxesInfo {

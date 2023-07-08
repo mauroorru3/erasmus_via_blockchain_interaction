@@ -11,7 +11,9 @@ then
 	if { [ "$2" = "unipi" ] || [ "$2" = "uniroma1" ]; } && { [ "$3" = "tum" ] || [ "$3" = "humboldt university" ]; };
 	then
 		sudo rm university_chain_it/data/logs.txt
+		sudo rm university_chain_it/data/data.txt
 		sudo rm university_chain_de/data/logs.txt
+		sudo rm university_chain_de/data/data.txt
 		sudo rm hub/data/logs.txt
 		sudo rm hub/data/data.txt
 		sudo docker exec hub ./test/test_configure_chain_hub.sh
@@ -26,7 +28,9 @@ then
 	if { [ "$2" = "tum" ] || [ "$2" = "humboldt university" ]; } && { [ "$3" = "unipi" ] || [ "$3" = "uniroma1" ]; };
 	then
 		sudo rm university_chain_it/data/logs.txt
+		sudo rm university_chain_it/data/data.txt
 		sudo rm university_chain_de/data/logs.txt
+		sudo rm university_chain_de/data/data.txt
 		sudo rm hub/data/logs.txt
 		sudo rm hub/data/data.txt
 		sudo docker exec hub ./test/test_configure_chain_hub.sh

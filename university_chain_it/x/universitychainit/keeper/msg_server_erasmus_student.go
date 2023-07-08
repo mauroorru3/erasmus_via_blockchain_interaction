@@ -50,16 +50,16 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 		fmt.Println(val)
 
-		data, err := utilfunc.CreateFirstJSONPacketFromStudentData(stu)
+		data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(stu)
 		if err != nil {
 			return &types.MsgSendErasmusStudentResponse{
 				Status: -1,
 			}, err
 		}
 
-		packet.ErasmusRestrctedInfo = data
+		packet.ErasmusRestrictedInfo = data
 
-		utilfunc.PrintLogs("SendErasmusStudent " + packet.ErasmusRestrctedInfo)
+		utilfunc.PrintLogs("SendErasmusStudent " + packet.ErasmusRestrictedInfo)
 
 		//packet.Student = &stu
 

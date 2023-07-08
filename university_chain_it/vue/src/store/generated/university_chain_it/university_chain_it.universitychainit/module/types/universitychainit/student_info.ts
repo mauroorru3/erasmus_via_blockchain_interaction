@@ -16,6 +16,7 @@ export interface StudentInfo {
   completeInformation: number[];
   universityName: string;
   chainName: string;
+  departmentName: string;
 }
 
 const baseStudentInfo: object = {
@@ -31,6 +32,7 @@ const baseStudentInfo: object = {
   completeInformation: 0,
   universityName: "",
   chainName: "",
+  departmentName: "",
 };
 
 export const StudentInfo = {
@@ -72,6 +74,9 @@ export const StudentInfo = {
     }
     if (message.chainName !== "") {
       writer.uint32(98).string(message.chainName);
+    }
+    if (message.departmentName !== "") {
+      writer.uint32(106).string(message.departmentName);
     }
     return writer;
   },
@@ -126,6 +131,9 @@ export const StudentInfo = {
           break;
         case 12:
           message.chainName = reader.string();
+          break;
+        case 13:
+          message.departmentName = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -209,6 +217,11 @@ export const StudentInfo = {
     } else {
       message.chainName = "";
     }
+    if (object.departmentName !== undefined && object.departmentName !== null) {
+      message.departmentName = String(object.departmentName);
+    } else {
+      message.departmentName = "";
+    }
     return message;
   },
 
@@ -235,6 +248,8 @@ export const StudentInfo = {
     message.universityName !== undefined &&
       (obj.universityName = message.universityName);
     message.chainName !== undefined && (obj.chainName = message.chainName);
+    message.departmentName !== undefined &&
+      (obj.departmentName = message.departmentName);
     return obj;
   },
 
@@ -309,6 +324,11 @@ export const StudentInfo = {
       message.chainName = object.chainName;
     } else {
       message.chainName = "";
+    }
+    if (object.departmentName !== undefined && object.departmentName !== null) {
+      message.departmentName = object.departmentName;
+    } else {
+      message.departmentName = "";
     }
     return message;
   },

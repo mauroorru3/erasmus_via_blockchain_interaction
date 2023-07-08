@@ -16,4 +16,5 @@ message StudentInfo {
   repeated int32 completeInformation = 10; 
   string universityName = 11;
   string chainName = 12;
+  string departmentName = 13;
 }

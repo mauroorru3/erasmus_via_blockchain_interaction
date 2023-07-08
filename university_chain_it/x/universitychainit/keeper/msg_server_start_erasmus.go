@@ -92,24 +92,18 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 
 												k.Keeper.InsertInTheErasmusFIFOQueue(ctx, &searchedStudent, &uniInfo)
 
-												var packet types.ErasmusStudentPacketData
+												var packet types.ErasmusRestictedDataPacketData
 
-												/*
+												data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(searchedStudent)
+												if err != nil {
+													return &types.MsgStartErasmusResponse{
+														Status: -1,
+													}, err
+												}
 
+												packet.ErasmusRestrictedInfo = data
 
-
-													//packet.Student = &searchedStudent
-
-													val := types.StoredStudent{
-														Index:        searchedStudent.Index,
-														PersonalData: searchedStudent.PersonalData,
-													}
-
-												*/
-												packet.Student = &searchedStudent
-
-												// Transmit the packet
-												err = k.TransmitErasmusStudentPacket(
+												err = k.TransmitErasmusRestictedDataPacket(
 													ctx,
 													packet,
 													"universitychainit",

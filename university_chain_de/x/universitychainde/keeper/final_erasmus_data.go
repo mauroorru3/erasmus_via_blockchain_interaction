@@ -83,10 +83,12 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 	if !found {
 		return packetAck, types.ErrStudentNotPresent
 	} else {
-		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusData)
+		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket " + data.ErasmusRestrictedInfo)
+		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusRestrictedInfo)
 		if err != nil {
 			return packetAck, err
 		}
+		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish")
 		k.SetStoredStudent(ctx, searchedStudent)
 		return packetAck, nil
 	}

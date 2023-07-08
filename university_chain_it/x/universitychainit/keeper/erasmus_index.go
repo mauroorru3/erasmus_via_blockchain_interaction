@@ -86,14 +86,262 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 		} else {
 
 			utilfunc.PrintLogs("OnRecvErasmusIndexPacket success")
+			utilfunc.PrintData("OnRecvErasmusIndexPacket " + data.String())
 
 			utilfunc.SetForeignIndex(&searchedStudent, data.ForeignIndex)
 
 			k.SetStoredStudent(ctx, searchedStudent)
+			//------------------
 
-			return packetAck, nil
+			stu, found := k.GetStoredStudent(ctx, data.Index)
+			if !found {
+				return packetAck, err
+			} else {
+
+				data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(stu)
+				if err != nil {
+					return packetAck, err
+				}
+
+				var packet types.ErasmusRestictedDataPacketData
+				packet.ErasmusRestrictedInfo = data
+
+				err = k.TransmitErasmusRestictedDataPacket(
+					ctx,
+					packet,
+					"universitychainit",
+					"channel-0",
+					clienttypes.ZeroHeight(),
+					timeoutTimestamp,
+				)
+
+				if err != nil {
+					utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+					return packetAck, err
+				} else {
+
+					utilfunc.PrintLogs("SendErasmusStudent CreateNameSurnameJSONPacketFromStudentData sent")
+					data, err := utilfunc.CreateStudentKeyPart1JSONPacketFromStudentData(stu)
+					if err != nil {
+						return packetAck, err
+					}
+
+					var packet types.ErasmusRestictedDataPacketData
+					packet.ErasmusRestrictedInfo = data
+
+					err = k.TransmitErasmusRestictedDataPacket(
+						ctx,
+						packet,
+						"universitychainit",
+						"channel-0",
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+					)
+
+					if err != nil {
+						utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+						return packetAck, err
+					} else {
+
+						utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart1JSONPacketFromStudentData sent")
+
+						data, err := utilfunc.CreateStudentKeyPart2JSONPacketFromStudentData(stu)
+						if err != nil {
+							return packetAck, err
+						}
+
+						var packet types.ErasmusRestictedDataPacketData
+						packet.ErasmusRestrictedInfo = data
+
+						err = k.TransmitErasmusRestictedDataPacket(
+							ctx,
+							packet,
+							"universitychainit",
+							"channel-0",
+							clienttypes.ZeroHeight(),
+							timeoutTimestamp,
+						)
+
+						if err != nil {
+							utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+							return packetAck, err
+						} else {
+							utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart2JSONPacketFromStudentData sent")
+
+							data, err := utilfunc.CreateStartDateJSONPacketFromStudentData(stu)
+							if err != nil {
+								return packetAck, err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+								return packetAck, err
+							} else {
+								utilfunc.PrintLogs("SendErasmusStudent CreateStartDateJSONPacketFromStudentData sent")
+								data, err := utilfunc.CreateEndDateJSONPacketFromStudentData(stu)
+								if err != nil {
+									return packetAck, err
+								}
+
+								var packet types.ErasmusRestictedDataPacketData
+								packet.ErasmusRestrictedInfo = data
+
+								err = k.TransmitErasmusRestictedDataPacket(
+									ctx,
+									packet,
+									"universitychainit",
+									"channel-0",
+									clienttypes.ZeroHeight(),
+									timeoutTimestamp,
+								)
+
+								if err != nil {
+									utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+									return packetAck, err
+								} else {
+									utilfunc.PrintLogs("SendErasmusStudent CreateEndDateJSONPacketFromStudentData sent")
+									data, err := utilfunc.CreateDurationJSONPacketFromStudentData(stu)
+									if err != nil {
+										return packetAck, err
+									}
+
+									var packet types.ErasmusRestictedDataPacketData
+									packet.ErasmusRestrictedInfo = data
+
+									err = k.TransmitErasmusRestictedDataPacket(
+										ctx,
+										packet,
+										"universitychainit",
+										"channel-0",
+										clienttypes.ZeroHeight(),
+										timeoutTimestamp,
+									)
+
+									if err != nil {
+										utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+										return packetAck, err
+									} else {
+										utilfunc.PrintLogs("SendErasmusStudent CreateDurationJSONPacketFromStudentData sent")
+										data, err := utilfunc.CreateCourseDetailsJSONPacketFromStudentData(stu)
+										if err != nil {
+											utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+											return packetAck, err
+										}
+
+										var packet types.ErasmusRestictedDataPacketData
+										packet.ErasmusRestrictedInfo = data
+
+										err = k.TransmitErasmusRestictedDataPacket(
+											ctx,
+											packet,
+											"universitychainit",
+											"channel-0",
+											clienttypes.ZeroHeight(),
+											timeoutTimestamp,
+										)
+
+										if err != nil {
+											utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+											return packetAck, err
+										} else {
+											utilfunc.PrintLogs("SendErasmusStudent CreateCourseDetailsJSONPacketFromStudentData sent")
+											data, err := utilfunc.CreateDepartmentJSONPacketFromStudentData(stu)
+											if err != nil {
+												return packetAck, err
+											}
+
+											var packet types.ErasmusRestictedDataPacketData
+											packet.ErasmusRestrictedInfo = data
+
+											err = k.TransmitErasmusRestictedDataPacket(
+												ctx,
+												packet,
+												"universitychainit",
+												"channel-0",
+												clienttypes.ZeroHeight(),
+												timeoutTimestamp,
+											)
+
+											if err != nil {
+												utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+												return packetAck, err
+											} else {
+												utilfunc.PrintLogs("SendErasmusStudent CreateDepartmentJSONPacketFromStudentData sent")
+												data, err := utilfunc.CreateErasmusTypeJSONPacketFromStudentData(stu)
+												if err != nil {
+													utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+													return packetAck, err
+												}
+
+												var packet types.ErasmusRestictedDataPacketData
+												packet.ErasmusRestrictedInfo = data
+
+												err = k.TransmitErasmusRestictedDataPacket(
+													ctx,
+													packet,
+													"universitychainit",
+													"channel-0",
+													clienttypes.ZeroHeight(),
+													timeoutTimestamp,
+												)
+
+												if err != nil {
+													utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+													return packetAck, err
+												} else {
+													utilfunc.PrintLogs("SendErasmusStudent CreateErasmusTypeJSONPacketFromStudentData sent")
+													data, err := utilfunc.CreateExamsJSONPacketFromStudentData(stu)
+													if err != nil {
+														utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+														return packetAck, err
+													}
+
+													var packet types.ErasmusRestictedDataPacketData
+													packet.ErasmusRestrictedInfo = data
+
+													err = k.TransmitErasmusRestictedDataPacket(
+														ctx,
+														packet,
+														"universitychainit",
+														"channel-0",
+														clienttypes.ZeroHeight(),
+														timeoutTimestamp,
+													)
+
+													if err != nil {
+														utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+														return packetAck, err
+													} else {
+														utilfunc.PrintLogs("SendErasmusStudent CreateExamsJSONPacketFromStudentData sent")
+														return packetAck, err
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+
 		}
 	}
+
 }
 
 // OnAcknowledgementErasmusIndexPacket responds to the the success or failure of a packet

@@ -1,6 +1,5 @@
 /* eslint-disable */
 import { StoredStudent } from "../universitychainde/stored_student";
-import { ErasmusInfo } from "../universitychainde/erasmus_info";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "university_chain_de.universitychainde";
@@ -8,6 +7,8 @@ export const protobufPackage = "university_chain_de.universitychainde";
 export interface UniversitychaindePacketData {
   noData: NoData | undefined;
   /** this line is used by starport scaffolding # ibc/packet/proto/field */
+  erasmusRestictedDataPacket: ErasmusRestictedDataPacketData | undefined;
+  /** this line is used by starport scaffolding # ibc/packet/proto/field/number */
   extendErasmusPeriodPacket: ExtendErasmusPeriodPacketData | undefined;
   /** this line is used by starport scaffolding # ibc/packet/proto/field/number */
   finalErasmusDataPacket: FinalErasmusDataPacketData | undefined;
@@ -50,12 +51,12 @@ export interface EndErasmusPeriodRequestPacketData {
 
 /** EndErasmusPeriodRequestPacketAck defines a struct for the packet acknowledgment */
 export interface EndErasmusPeriodRequestPacketAck {
-  erasmusData: ErasmusInfo | undefined;
+  erasmusRestrictedInfo: string;
 }
 
 /** FinalErasmusDataPacketData defines a struct for the packet payload */
 export interface FinalErasmusDataPacketData {
-  erasmusData: ErasmusInfo | undefined;
+  erasmusRestrictedInfo: string;
   homeIndex: string;
 }
 
@@ -73,6 +74,16 @@ export interface ExtendErasmusPeriodPacketData {
 /** ExtendErasmusPeriodPacketAck defines a struct for the packet acknowledgment */
 export interface ExtendErasmusPeriodPacketAck {}
 
+/** ErasmusRestictedDataPacketData defines a struct for the packet payload */
+export interface ErasmusRestictedDataPacketData {
+  erasmusRestrictedInfo: string;
+}
+
+/** ErasmusRestictedDataPacketAck defines a struct for the packet acknowledgment */
+export interface ErasmusRestictedDataPacketAck {
+  erasmusRestrictedInfo: string;
+}
+
 const baseUniversitychaindePacketData: object = {};
 
 export const UniversitychaindePacketData = {
@@ -82,6 +93,12 @@ export const UniversitychaindePacketData = {
   ): Writer {
     if (message.noData !== undefined) {
       NoData.encode(message.noData, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.erasmusRestictedDataPacket !== undefined) {
+      ErasmusRestictedDataPacketData.encode(
+        message.erasmusRestictedDataPacket,
+        writer.uint32(58).fork()
+      ).ldelim();
     }
     if (message.extendErasmusPeriodPacket !== undefined) {
       ExtendErasmusPeriodPacketData.encode(
@@ -131,6 +148,12 @@ export const UniversitychaindePacketData = {
         case 1:
           message.noData = NoData.decode(reader, reader.uint32());
           break;
+        case 7:
+          message.erasmusRestictedDataPacket = ErasmusRestictedDataPacketData.decode(
+            reader,
+            reader.uint32()
+          );
+          break;
         case 6:
           message.extendErasmusPeriodPacket = ExtendErasmusPeriodPacketData.decode(
             reader,
@@ -177,6 +200,16 @@ export const UniversitychaindePacketData = {
       message.noData = NoData.fromJSON(object.noData);
     } else {
       message.noData = undefined;
+    }
+    if (
+      object.erasmusRestictedDataPacket !== undefined &&
+      object.erasmusRestictedDataPacket !== null
+    ) {
+      message.erasmusRestictedDataPacket = ErasmusRestictedDataPacketData.fromJSON(
+        object.erasmusRestictedDataPacket
+      );
+    } else {
+      message.erasmusRestictedDataPacket = undefined;
     }
     if (
       object.extendErasmusPeriodPacket !== undefined &&
@@ -235,6 +268,12 @@ export const UniversitychaindePacketData = {
     const obj: any = {};
     message.noData !== undefined &&
       (obj.noData = message.noData ? NoData.toJSON(message.noData) : undefined);
+    message.erasmusRestictedDataPacket !== undefined &&
+      (obj.erasmusRestictedDataPacket = message.erasmusRestictedDataPacket
+        ? ErasmusRestictedDataPacketData.toJSON(
+            message.erasmusRestictedDataPacket
+          )
+        : undefined);
     message.extendErasmusPeriodPacket !== undefined &&
       (obj.extendErasmusPeriodPacket = message.extendErasmusPeriodPacket
         ? ExtendErasmusPeriodPacketData.toJSON(
@@ -272,6 +311,16 @@ export const UniversitychaindePacketData = {
       message.noData = NoData.fromPartial(object.noData);
     } else {
       message.noData = undefined;
+    }
+    if (
+      object.erasmusRestictedDataPacket !== undefined &&
+      object.erasmusRestictedDataPacket !== null
+    ) {
+      message.erasmusRestictedDataPacket = ErasmusRestictedDataPacketData.fromPartial(
+        object.erasmusRestictedDataPacket
+      );
+    } else {
+      message.erasmusRestictedDataPacket = undefined;
     }
     if (
       object.extendErasmusPeriodPacket !== undefined &&
@@ -762,18 +811,17 @@ export const EndErasmusPeriodRequestPacketData = {
   },
 };
 
-const baseEndErasmusPeriodRequestPacketAck: object = {};
+const baseEndErasmusPeriodRequestPacketAck: object = {
+  erasmusRestrictedInfo: "",
+};
 
 export const EndErasmusPeriodRequestPacketAck = {
   encode(
     message: EndErasmusPeriodRequestPacketAck,
     writer: Writer = Writer.create()
   ): Writer {
-    if (message.erasmusData !== undefined) {
-      ErasmusInfo.encode(
-        message.erasmusData,
-        writer.uint32(10).fork()
-      ).ldelim();
+    if (message.erasmusRestrictedInfo !== "") {
+      writer.uint32(10).string(message.erasmusRestrictedInfo);
     }
     return writer;
   },
@@ -791,7 +839,7 @@ export const EndErasmusPeriodRequestPacketAck = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.erasmusData = ErasmusInfo.decode(reader, reader.uint32());
+          message.erasmusRestrictedInfo = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -805,20 +853,21 @@ export const EndErasmusPeriodRequestPacketAck = {
     const message = {
       ...baseEndErasmusPeriodRequestPacketAck,
     } as EndErasmusPeriodRequestPacketAck;
-    if (object.erasmusData !== undefined && object.erasmusData !== null) {
-      message.erasmusData = ErasmusInfo.fromJSON(object.erasmusData);
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = String(object.erasmusRestrictedInfo);
     } else {
-      message.erasmusData = undefined;
+      message.erasmusRestrictedInfo = "";
     }
     return message;
   },
 
   toJSON(message: EndErasmusPeriodRequestPacketAck): unknown {
     const obj: any = {};
-    message.erasmusData !== undefined &&
-      (obj.erasmusData = message.erasmusData
-        ? ErasmusInfo.toJSON(message.erasmusData)
-        : undefined);
+    message.erasmusRestrictedInfo !== undefined &&
+      (obj.erasmusRestrictedInfo = message.erasmusRestrictedInfo);
     return obj;
   },
 
@@ -828,27 +877,30 @@ export const EndErasmusPeriodRequestPacketAck = {
     const message = {
       ...baseEndErasmusPeriodRequestPacketAck,
     } as EndErasmusPeriodRequestPacketAck;
-    if (object.erasmusData !== undefined && object.erasmusData !== null) {
-      message.erasmusData = ErasmusInfo.fromPartial(object.erasmusData);
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = object.erasmusRestrictedInfo;
     } else {
-      message.erasmusData = undefined;
+      message.erasmusRestrictedInfo = "";
     }
     return message;
   },
 };
 
-const baseFinalErasmusDataPacketData: object = { homeIndex: "" };
+const baseFinalErasmusDataPacketData: object = {
+  erasmusRestrictedInfo: "",
+  homeIndex: "",
+};
 
 export const FinalErasmusDataPacketData = {
   encode(
     message: FinalErasmusDataPacketData,
     writer: Writer = Writer.create()
   ): Writer {
-    if (message.erasmusData !== undefined) {
-      ErasmusInfo.encode(
-        message.erasmusData,
-        writer.uint32(10).fork()
-      ).ldelim();
+    if (message.erasmusRestrictedInfo !== "") {
+      writer.uint32(10).string(message.erasmusRestrictedInfo);
     }
     if (message.homeIndex !== "") {
       writer.uint32(18).string(message.homeIndex);
@@ -869,7 +921,7 @@ export const FinalErasmusDataPacketData = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.erasmusData = ErasmusInfo.decode(reader, reader.uint32());
+          message.erasmusRestrictedInfo = reader.string();
           break;
         case 2:
           message.homeIndex = reader.string();
@@ -886,10 +938,13 @@ export const FinalErasmusDataPacketData = {
     const message = {
       ...baseFinalErasmusDataPacketData,
     } as FinalErasmusDataPacketData;
-    if (object.erasmusData !== undefined && object.erasmusData !== null) {
-      message.erasmusData = ErasmusInfo.fromJSON(object.erasmusData);
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = String(object.erasmusRestrictedInfo);
     } else {
-      message.erasmusData = undefined;
+      message.erasmusRestrictedInfo = "";
     }
     if (object.homeIndex !== undefined && object.homeIndex !== null) {
       message.homeIndex = String(object.homeIndex);
@@ -901,10 +956,8 @@ export const FinalErasmusDataPacketData = {
 
   toJSON(message: FinalErasmusDataPacketData): unknown {
     const obj: any = {};
-    message.erasmusData !== undefined &&
-      (obj.erasmusData = message.erasmusData
-        ? ErasmusInfo.toJSON(message.erasmusData)
-        : undefined);
+    message.erasmusRestrictedInfo !== undefined &&
+      (obj.erasmusRestrictedInfo = message.erasmusRestrictedInfo);
     message.homeIndex !== undefined && (obj.homeIndex = message.homeIndex);
     return obj;
   },
@@ -915,10 +968,13 @@ export const FinalErasmusDataPacketData = {
     const message = {
       ...baseFinalErasmusDataPacketData,
     } as FinalErasmusDataPacketData;
-    if (object.erasmusData !== undefined && object.erasmusData !== null) {
-      message.erasmusData = ErasmusInfo.fromPartial(object.erasmusData);
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = object.erasmusRestrictedInfo;
     } else {
-      message.erasmusData = undefined;
+      message.erasmusRestrictedInfo = "";
     }
     if (object.homeIndex !== undefined && object.homeIndex !== null) {
       message.homeIndex = object.homeIndex;
@@ -1171,6 +1227,160 @@ export const ExtendErasmusPeriodPacketAck = {
     const message = {
       ...baseExtendErasmusPeriodPacketAck,
     } as ExtendErasmusPeriodPacketAck;
+    return message;
+  },
+};
+
+const baseErasmusRestictedDataPacketData: object = {
+  erasmusRestrictedInfo: "",
+};
+
+export const ErasmusRestictedDataPacketData = {
+  encode(
+    message: ErasmusRestictedDataPacketData,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.erasmusRestrictedInfo !== "") {
+      writer.uint32(10).string(message.erasmusRestrictedInfo);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): ErasmusRestictedDataPacketData {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseErasmusRestictedDataPacketData,
+    } as ErasmusRestictedDataPacketData;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.erasmusRestrictedInfo = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ErasmusRestictedDataPacketData {
+    const message = {
+      ...baseErasmusRestictedDataPacketData,
+    } as ErasmusRestictedDataPacketData;
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = String(object.erasmusRestrictedInfo);
+    } else {
+      message.erasmusRestrictedInfo = "";
+    }
+    return message;
+  },
+
+  toJSON(message: ErasmusRestictedDataPacketData): unknown {
+    const obj: any = {};
+    message.erasmusRestrictedInfo !== undefined &&
+      (obj.erasmusRestrictedInfo = message.erasmusRestrictedInfo);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<ErasmusRestictedDataPacketData>
+  ): ErasmusRestictedDataPacketData {
+    const message = {
+      ...baseErasmusRestictedDataPacketData,
+    } as ErasmusRestictedDataPacketData;
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = object.erasmusRestrictedInfo;
+    } else {
+      message.erasmusRestrictedInfo = "";
+    }
+    return message;
+  },
+};
+
+const baseErasmusRestictedDataPacketAck: object = { erasmusRestrictedInfo: "" };
+
+export const ErasmusRestictedDataPacketAck = {
+  encode(
+    message: ErasmusRestictedDataPacketAck,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.erasmusRestrictedInfo !== "") {
+      writer.uint32(10).string(message.erasmusRestrictedInfo);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): ErasmusRestictedDataPacketAck {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseErasmusRestictedDataPacketAck,
+    } as ErasmusRestictedDataPacketAck;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.erasmusRestrictedInfo = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ErasmusRestictedDataPacketAck {
+    const message = {
+      ...baseErasmusRestictedDataPacketAck,
+    } as ErasmusRestictedDataPacketAck;
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = String(object.erasmusRestrictedInfo);
+    } else {
+      message.erasmusRestrictedInfo = "";
+    }
+    return message;
+  },
+
+  toJSON(message: ErasmusRestictedDataPacketAck): unknown {
+    const obj: any = {};
+    message.erasmusRestrictedInfo !== undefined &&
+      (obj.erasmusRestrictedInfo = message.erasmusRestrictedInfo);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<ErasmusRestictedDataPacketAck>
+  ): ErasmusRestictedDataPacketAck {
+    const message = {
+      ...baseErasmusRestictedDataPacketAck,
+    } as ErasmusRestictedDataPacketAck;
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = object.erasmusRestrictedInfo;
+    } else {
+      message.erasmusRestrictedInfo = "";
+    }
     return message;
   },
 };

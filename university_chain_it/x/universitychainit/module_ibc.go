@@ -3,6 +3,8 @@ package universitychainit
 import (
 	"fmt"
 
+	"university_chain_it/x/universitychainit/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
@@ -10,7 +12,6 @@ import (
 	porttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibcexported "github.com/cosmos/ibc-go/v3/modules/core/exported"
-	"university_chain_it/x/universitychainit/types"
 )
 
 // OnChanOpenInit implements the IBCModule interface

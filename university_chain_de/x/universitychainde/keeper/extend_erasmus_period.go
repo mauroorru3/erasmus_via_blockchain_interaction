@@ -70,9 +70,8 @@ func (k Keeper) TransmitExtendErasmusPeriodPacket(
 
 // OnRecvExtendErasmusPeriodPacket processes packet reception
 func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData) (packetAck types.ExtendErasmusPeriodPacketAck, err error) {
-	
-	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket")
 
+	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket")
 
 	searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
 	if !found {
@@ -102,7 +101,6 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 		_ = dispatchedAck.Error
 		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error " + dispatchedAck.Error)
 
-
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
@@ -116,7 +114,6 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 		// TODO: successful acknowledgement logic
 		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success")
 
-
 		return nil
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
@@ -129,7 +126,6 @@ func (k Keeper) OnTimeoutExtendErasmusPeriodPacket(ctx sdk.Context, packet chann
 
 	// TODO: packet timeout logic
 	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket")
-
 
 	return nil
 }

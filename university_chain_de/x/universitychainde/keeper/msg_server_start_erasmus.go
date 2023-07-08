@@ -82,6 +82,7 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 												Status: -1,
 											}, err
 										} else {
+
 											err := k.Keeper.CollectAndSendErasmusContribution(ctx, &searchedStudent, uniInfo.UniversityKey)
 											if err != nil {
 												return &types.MsgStartErasmusResponse{
@@ -91,12 +92,18 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 
 												k.Keeper.InsertInTheErasmusFIFOQueue(ctx, &searchedStudent, &uniInfo)
 
-												var packet types.ErasmusStudentPacketData
+												var packet types.ErasmusRestictedDataPacketData
 
-												packet.Student = &searchedStudent
+												data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(searchedStudent)
+												if err != nil {
+													return &types.MsgStartErasmusResponse{
+														Status: -1,
+													}, err
+												}
 
-												// Transmit the packet
-												err = k.TransmitErasmusStudentPacket(
+												packet.ErasmusRestrictedInfo = data
+
+												err = k.TransmitErasmusRestictedDataPacket(
 													ctx,
 													packet,
 													"universitychainde",
@@ -105,8 +112,10 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 													timeoutTimestamp,
 												)
 												if err != nil {
+													utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
 													return nil, err
 												} else {
+													utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
 													k.Keeper.SetStoredStudent(ctx, searchedStudent)
 													k.Keeper.SetUniversityInfo(ctx, uniInfo)
 													return &types.MsgStartErasmusResponse{
@@ -114,7 +123,6 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 													}, nil
 												}
 											}
-
 										}
 									}
 
@@ -126,4 +134,5 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 			}
 		}
 	}
+
 }

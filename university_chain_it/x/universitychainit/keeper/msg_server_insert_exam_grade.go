@@ -48,53 +48,49 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 								Status: -1,
 							}, types.ErrStudentNotPresent
 						} else {
-							err := utilfunc.CheckCompleteInformation(searchedStudent)
-
-							if err != nil {
-								return &types.MsgInsertExamGradeResponse{
-									Status: -1,
-								}, types.ErrIncompleteStudentInformation
-							} else {
-								ok, err := utilfunc.CheckTaxPayment(searchedStudent)
-								//var ok bool = true
-								//var err error = nil
+							if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" {
+								err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 								if err != nil {
 									return &types.MsgInsertExamGradeResponse{
 										Status: -1,
-									}, err
+									}, types.ErrIncompleteStudentInformation
 								} else {
-									if !ok {
+									ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+									if err != nil {
 										return &types.MsgInsertExamGradeResponse{
 											Status: -1,
-										}, types.ErrUnpaidTaxes
+										}, err
 									} else {
-
-										err := utilfunc.CheckErasmusStatus(searchedStudent, "insert exam grade")
-										if err != nil {
+										if !ok {
 											return &types.MsgInsertExamGradeResponse{
 												Status: -1,
-											}, err
+											}, types.ErrUnpaidTaxes
 										} else {
 
-											gradeNum, err := strconv.ParseUint(msg.Grade, 10, 8)
+											err := utilfunc.CheckErasmusStatus(searchedStudent, "insert exam grade")
 											if err != nil {
-												if msg.Grade != "30L" {
-													return &types.MsgInsertExamGradeResponse{
-														Status: -1,
-													}, types.ErrWrongExamGrade
-												}
+												return &types.MsgInsertExamGradeResponse{
+													Status: -1,
+												}, err
 											} else {
-												if gradeNum > 30 || gradeNum < 18 {
-													return &types.MsgInsertExamGradeResponse{
-														Status: -1,
-													}, types.ErrWrongExamGrade
-												}
-											}
-											var credits uint8 = 0
-											var JSONExams string = ""
-											if searchedStudent.ErasmusData.ErasmusStudent == "Outgoing completed" || searchedStudent.ErasmusData.ErasmusStudent == "No" {
 
+												gradeNum, err := strconv.ParseUint(msg.Grade, 10, 8)
+												if err != nil {
+													if msg.Grade != "30L" {
+														return &types.MsgInsertExamGradeResponse{
+															Status: -1,
+														}, types.ErrWrongExamGrade
+													}
+												} else {
+													if gradeNum > 30 || gradeNum < 18 {
+														return &types.MsgInsertExamGradeResponse{
+															Status: -1,
+														}, types.ErrWrongExamGrade
+													}
+												}
+												var credits uint8 = 0
+												var JSONExams string = ""
 												JSONExams, credits, err = utilfunc.SetExamGrade(searchedStudent.TranscriptData.ExamsData, msg.ExamName, msg.Grade)
 												if err != nil {
 													return &types.MsgInsertExamGradeResponse{
@@ -104,26 +100,59 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 													searchedStudent.TranscriptData.ExamsData = JSONExams
 
 												}
-											} else { // Incoming
-												credits, err = utilfunc.SetErasmusExamGrade(&searchedStudent, msg.ExamName, msg.Grade)
-												if err != nil {
-													return &types.MsgInsertExamGradeResponse{
-														Status: -1,
-													}, err
-												}
+
+												searchedStudent.TranscriptData.AchievedCredits += uint32(credits)
+												searchedStudent.TranscriptData.ExamsPassed += 1
+
+												k.Keeper.SetStoredStudent(ctx, searchedStudent)
+
+												return &types.MsgInsertExamGradeResponse{
+													Status: 0,
+												}, nil
+
 											}
-											searchedStudent.TranscriptData.AchievedCredits += uint32(credits)
-											searchedStudent.TranscriptData.ExamsPassed += 1
-
-											k.Keeper.SetStoredStudent(ctx, searchedStudent)
-
-											return &types.MsgInsertExamGradeResponse{
-												Status: 0,
-											}, nil
-
 										}
 
 									}
+								}
+							} else {
+								err := utilfunc.CheckErasmusStatus(searchedStudent, "insert exam grade")
+								if err != nil {
+									return &types.MsgInsertExamGradeResponse{
+										Status: -1,
+									}, err
+								} else {
+
+									gradeNum, err := strconv.ParseUint(msg.Grade, 10, 8)
+									if err != nil {
+										if msg.Grade != "30L" {
+											return &types.MsgInsertExamGradeResponse{
+												Status: -1,
+											}, types.ErrWrongExamGrade
+										}
+									} else {
+										if gradeNum > 30 || gradeNum < 18 {
+											return &types.MsgInsertExamGradeResponse{
+												Status: -1,
+											}, types.ErrWrongExamGrade
+										}
+									}
+									var credits uint8 = 0
+									credits, err = utilfunc.SetErasmusExamGrade(&searchedStudent, msg.ExamName, msg.Grade)
+									if err != nil {
+										return &types.MsgInsertExamGradeResponse{
+											Status: -1,
+										}, err
+									}
+
+									searchedStudent.TranscriptData.AchievedCredits += uint32(credits)
+									searchedStudent.TranscriptData.ExamsPassed += 1
+
+									k.Keeper.SetStoredStudent(ctx, searchedStudent)
+
+									return &types.MsgInsertExamGradeResponse{
+										Status: 0,
+									}, nil
 								}
 							}
 						}

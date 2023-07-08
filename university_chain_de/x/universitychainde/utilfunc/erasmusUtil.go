@@ -125,6 +125,91 @@ type ErasmusConfigStruct struct {
 	UniversitiesPlacesList         []ForeignUniversities    `json:"universitiesPlacesList"`
 }
 
+// student JSON structure
+
+type StudentInfoRestrictedHomeIndexPacket struct {
+	PacketID          string `json:"p_id"`
+	HomeIndex         string `json:"h_id"`
+	HomeUniversity    string `json:"h_uni"`
+	ForeignUniversity string `json:"f_uni"`
+}
+
+type StudentInfoRestrictedNameSurnamePacket struct {
+	PacketID          string `json:"p_id"`
+	Name              string `json:"name"`
+	Surname           string `json:"surname"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+}
+
+type StudentInfoRestrictedStudentKeyPacket struct {
+	PacketID          string `json:"p_id"`
+	StudentKey        string `json:"stu_k"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+}
+
+type StudentInfoRestrictedStartDatePacket struct {
+	PacketID          string `json:"p_id"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+	StartDate         string `json:"s_date"`
+}
+
+type StudentInfoRestrictedEndDatePacket struct {
+	PacketID          string `json:"p_id"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+	EndDate           string `json:"e_date"`
+}
+
+type StudentInfoRestrictedDurationPacket struct {
+	PacketID          string `json:"p_id"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+	DurationInMonths  string `json:"duration"`
+}
+
+type StudentInfoRestrictedCourseDetailsPacket struct {
+	PacketID          string `json:"p_id"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+	CourseOfStudy     string `json:"course"`
+	CourseType        string `json:"course_t"`
+}
+
+type StudentInfoRestrictedDepartmentPacket struct {
+	PacketID          string `json:"p_id"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+	DepartmentName    string `json:"depart"`
+}
+
+type StudentInfoRestrictedExamsPacket struct {
+	PacketID          string   `json:"p_id"`
+	ForeignUniversity string   `json:"f_uni"`
+	ForeignIndex      string   `json:"f_id"`
+	ExamsData         []string `json:"exams"`
+	DepartmentName    string   `json:"depar"`
+}
+
+type StudentInfoRestrictedErasmusTypePacket struct {
+	PacketID          string `json:"p_id"`
+	ForeignUniversity string `json:"f_uni"`
+	ForeignIndex      string `json:"f_id"`
+	ErasmusType       string `json:"erasmus_t"`
+}
+
+type StudentInfoRestrictedAnswerPacket struct {
+	ForeignIndex string `json:"f_id"`
+}
+
+type ErasmusExamsResultsPacket struct {
+	ExamName  string `json:"exam_name"`
+	ExamDate  string `json:"exam_date"`
+	ExamGrade string `json:"exam_grade"`
+}
+
 const erasmusConfigJSON string = "erasmusConfig.json"
 
 func IntializeErasmusStruct(incomeBracket uint32) (erasmusJSON string, err error) {
@@ -146,6 +231,46 @@ func IntializeErasmusStruct(incomeBracket uint32) (erasmusJSON string, err error
 		Contribution: ErasmusContributionStruct{
 			Amount:          0,
 			Income_bracket:  incomeBracket,
+			Payment_made:    false,
+			Date_of_payment: "",
+		},
+		Exams_data: "",
+	}
+
+	var erasmusCareer []ErasmusCareerStruct
+	erasmusCareer = append(erasmusCareer, erasmusInfo)
+
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return erasmusJSON, err
+	}
+
+	erasmusJSON = string(resultByteJSON)
+
+	return erasmusJSON, err
+
+}
+
+func IntializeErasmusStructForeign(foreignUni string, foreignIndex string) (erasmusJSON string, err error) {
+
+	erasmusInfo := ErasmusCareerStruct{
+		Duration_in_months:            0,
+		Start_date:                    "",
+		End_date:                      "",
+		Erasmus_type:                  "",
+		Total_credits:                 0,
+		Achieved_credits:              0,
+		Total_exams:                   0,
+		Exams_passed:                  0,
+		Foreign_university_name:       foreignUni,
+		Foreign_university_country:    "",
+		Foreign_university_student_id: foreignIndex,
+		Foreign_chain_name:            "",
+		Status:                        "",
+		Contribution: ErasmusContributionStruct{
+			Amount:          0,
+			Income_bracket:  0,
 			Payment_made:    false,
 			Date_of_payment: "",
 		},
@@ -596,12 +721,12 @@ func StartErasmus(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.
 		student.ErasmusData.ErasmusStudent = "Outgoing"
 	*/
 
-	// I will enter just 30 seconds to see if the end the Erasmus period works.
+	// I will enter just 30 seconds to see if the end of the Erasmus period works.
 
 	startDate := ctx.BlockTime()
 
 	//endDate := startDate.AddDate(0, int(erasmusCareer[lenCareer-1].Duration_in_months), 0)
-	endDate := ctx.BlockTime().Add(time.Duration(1000 * time.Second))
+	endDate := startDate.Add(time.Duration(1000 * time.Second))
 	erasmusCareer[lenCareer-1].Start_date = FormatDeadline(startDate)
 	erasmusCareer[lenCareer-1].End_date = FormatDeadline(endDate)
 	erasmusCareer[lenCareer-1].Status = "In progress"
@@ -744,6 +869,69 @@ func GetForeignUniversityName(student types.StoredStudent) (res string, err erro
 	return res, err
 }
 
+func GetErasmusType(student types.StoredStudent) (res string, err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return res, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	res = erasmusCareer[lenCareer-1].Erasmus_type
+
+	return res, err
+}
+
+func SetErasmusType(student *types.StoredStudent, erasmusType string) (err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	erasmusCareer[lenCareer-1].Erasmus_type = erasmusType
+
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	student.ErasmusData.Career = string(resultByteJSON)
+
+	return err
+}
+
+func SetHomeUniversityInfo(student *types.StoredStudent, foreignChainName string, foreignUniCountry string) (err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	erasmusCareer[lenCareer-1].Foreign_chain_name = foreignChainName
+	erasmusCareer[lenCareer-1].Foreign_university_country = foreignUniCountry
+
+	resultByteJSON, err := json.Marshal(erasmusCareer)
+	if err != nil {
+		return err
+	}
+
+	student.ErasmusData.Career = string(resultByteJSON)
+
+	return err
+}
+
 func ConcludeErasmusFlag(ctx sdk.Context, student *types.StoredStudent) (err error) {
 
 	var erasmusCareer []ErasmusCareerStruct
@@ -781,18 +969,11 @@ func ConcludeErasmusFlag(ctx sdk.Context, student *types.StoredStudent) (err err
 
 	return err
 }
+func UpdateErasmusData(student *types.StoredStudent, erasmusInfo string) (err error) {
 
-func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusInfo) (err error) {
+	var results []ErasmusExamsResultsPacket
 
-	PrintLogs("UpdateErasmusData")
-
-	foreignIndex, err := GetForeignIndex(*student)
-	if err != nil {
-		return err
-	}
-	student.ErasmusData = erasmusInfo
-
-	SetForeignIndex(student, foreignIndex)
+	err = json.Unmarshal([]byte(erasmusInfo), &results)
 	if err != nil {
 		return err
 	}
@@ -805,6 +986,22 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 	}
 
 	lenCareer := len(erasmusCareer)
+
+	mapExamsErasmus := make(map[string]ExamStruct)
+
+	err = json.Unmarshal([]byte(erasmusCareer[lenCareer-1].Exams_data), &mapExamsErasmus)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return err
+
+	}
+
+	for _, elem := range results {
+		val := mapExamsErasmus[elem.ExamName]
+		val.Exam_date = elem.ExamDate
+		val.Marks = elem.ExamGrade
+		mapExamsErasmus[elem.ExamName] = val
+	}
 
 	student.ErasmusData.ErasmusStudent = "Outgoing completed"
 	student.ErasmusData.NextStudentFifo = ""
@@ -837,16 +1034,6 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 
 	err = json.Unmarshal([]byte(byteValue), &erasmusGradesConversion)
 	fmt.Println("Successfully Unmarshalled " + foreignUniversityInfoJSON)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "Error "+err.Error())
-		return err
-	}
-
-	// get the map of exams done during the Erasmus period
-
-	mapExamsErasmus := make(map[string]ExamStruct)
-
-	err = json.Unmarshal([]byte(erasmusCareer[lenCareer-1].Exams_data), &mapExamsErasmus)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error "+err.Error())
 		return err
@@ -901,10 +1088,33 @@ func UpdateErasmusData(student *types.StoredStudent, erasmusInfo *types.ErasmusI
 					val.Marks = erasmusGradesConversion.Grades_data[i].Grades[j+1]
 					val.Status = values[k].Status
 					val.Exam_date = values[k].Exam_date
-					val.Attendance_year = values[k].Attendance_year
+					actualDate, err := time.Parse(DeadlineLayout, val.Exam_date)
+					if err != nil {
+						return err
+					} else {
+						val.Attendance_year = uint16(actualDate.Year())
+					}
+					newMark, err := strconv.ParseFloat(val.Marks, 32)
+					if err != nil {
+						return err
+					} else {
+						if newMark <= 4 {
+							student.TranscriptData.AchievedCredits += uint32(val.Credits)
+							student.ErasmusData.AchievedCredits += uint32(val.Credits)
+							erasmusCareer[lenCareer-1].Achieved_credits += uint8(val.Credits)
+							erasmusCareer[lenCareer-1].Exams_passed += 1
+							student.TranscriptData.ExamsPassed += 1
+							student.ErasmusData.ExamsPassed += 1
+							val.Status = true
+							newVal := mapExamsErasmus[keys[k]]
+							newVal.Status = true
+							newVal.Attendance_year = uint16(actualDate.Year())
+							mapExamsErasmus[keys[k]] = newVal
+
+						}
+					}
+
 					mapExams[keys[k]] = val
-					student.TranscriptData.AchievedCredits += uint32(val.Credits)
-					student.TranscriptData.ExamsPassed += 1
 				}
 
 			}
@@ -1056,4 +1266,333 @@ func ExtendErasmusForeignStudent(ctx sdk.Context, durationInMonths uint32, final
 	student.ErasmusData.Career = string(resultByteJSON)
 
 	return err
+}
+
+func CreateHomeIndexJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedHomeIndexPacket
+
+	infoRestricted.HomeIndex = student.Index
+	infoRestricted.HomeUniversity = student.StudentData.UniversityName
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "1"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateNameSurnameJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedNameSurnamePacket
+
+	infoRestricted.Name = student.StudentData.Name
+	infoRestricted.Surname = student.StudentData.Surname
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "2"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateStudentKeyPart1JSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedStudentKeyPacket
+
+	infoRestricted.StudentKey = student.StudentData.StudentKey[0:25]
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "3"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateStudentKeyPart2JSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedStudentKeyPacket
+
+	infoRestricted.StudentKey = student.StudentData.StudentKey[25:45]
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "4"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateStartDateJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedStartDatePacket
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	infoRestricted.StartDate = erasmusCareer[lenCareer-1].Start_date
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "5"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateEndDateJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedEndDatePacket
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	infoRestricted.EndDate = erasmusCareer[lenCareer-1].End_date
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "6"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateDurationJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedDurationPacket
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	infoRestricted.DurationInMonths = strconv.Itoa(int(erasmusCareer[lenCareer-1].Duration_in_months))
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "7"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateCourseDetailsJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedCourseDetailsPacket
+
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.CourseType = student.StudentData.CourseType
+	infoRestricted.CourseOfStudy = student.StudentData.CourseOfStudy
+	infoRestricted.PacketID = "8"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateDepartmentJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedDepartmentPacket
+
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.DepartmentName = "Computer Science"
+	infoRestricted.PacketID = "9"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateErasmusTypeJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedErasmusTypePacket
+
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.ErasmusType, _ = GetErasmusType(student)
+	infoRestricted.PacketID = "10"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateExamsJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedExamsPacket
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	mapExamsErasmus := make(map[string]ExamStruct)
+
+	err = json.Unmarshal([]byte(erasmusCareer[lenCareer-1].Exams_data), &mapExamsErasmus)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error "+err.Error())
+		return studentJSON, err
+
+	}
+
+	keys := make([]string, len(mapExamsErasmus))
+
+	i := 0
+	for k := range mapExamsErasmus {
+		keys[i] = k
+		i++
+	}
+
+	infoRestricted.ExamsData = keys
+	infoRestricted.ForeignIndex, _ = GetForeignIndex(student)
+	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)
+	infoRestricted.PacketID = "11"
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func CreateAnswerJSONPacketFromStudentData(student types.StoredStudent) (studentJSON string, err error) {
+
+	var infoRestricted StudentInfoRestrictedAnswerPacket
+
+	infoRestricted.ForeignIndex = student.Index
+
+	resultByteJSON, err := json.Marshal(infoRestricted)
+	if err != nil {
+		return studentJSON, err
+	}
+
+	studentJSON = string(resultByteJSON)
+
+	return studentJSON, err
+}
+
+func GetErasmusExamsResults(student types.StoredStudent) (examsResults string, err error) {
+
+	var erasmusCareer []ErasmusCareerStruct
+
+	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
+	if err != nil {
+		return examsResults, err
+	}
+
+	lenCareer := len(erasmusCareer)
+
+	mapExamsErasmus := make(map[string]ExamStruct)
+
+	err = json.Unmarshal([]byte(erasmusCareer[lenCareer-1].Exams_data), &mapExamsErasmus)
+	if err != nil {
+		return examsResults, err
+
+	}
+
+	keys := make([]string, len(mapExamsErasmus))
+
+	i := 0
+	for k := range mapExamsErasmus {
+		keys[i] = k
+		i++
+	}
+
+	var erasmusExamsResults []ErasmusExamsResultsPacket
+
+	for j := range keys {
+		elem := ErasmusExamsResultsPacket{
+			ExamName:  keys[j],
+			ExamDate:  mapExamsErasmus[keys[j]].Exam_date,
+			ExamGrade: mapExamsErasmus[keys[j]].Marks,
+		}
+		erasmusExamsResults = append(erasmusExamsResults, elem)
+	}
+
+	resultByteJSON, err := json.Marshal(erasmusExamsResults)
+	if err != nil {
+		return examsResults, err
+	}
+
+	examsResults = string(resultByteJSON)
+
+	return examsResults, err
+
 }

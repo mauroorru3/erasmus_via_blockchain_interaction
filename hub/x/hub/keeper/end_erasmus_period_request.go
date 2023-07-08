@@ -79,7 +79,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 
 	// TODO: packet reception logic
 
-	packetAck.ErasmusData = nil
+	packetAck.ErasmusRestrictedInfo = ""
 
 	uniInfo, found := k.GetUniversities(ctx, data.DestinationUniversityName)
 	if !found {
@@ -87,6 +87,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 	} else {
 
 		var packet_to_send types.EndErasmusPeriodRequestPacketData = data
+		utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket " + data.String())
 
 		err := k.TransmitEndErasmusPeriodRequestPacket(
 			ctx,
@@ -123,6 +124,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
+			utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + err.Error())
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
@@ -137,7 +139,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 			var packet_to_send types.FinalErasmusDataPacketData
 
-			packet_to_send.ErasmusData = packetAck.ErasmusData
+			packet_to_send.ErasmusRestrictedInfo = packetAck.ErasmusRestrictedInfo
 			packet_to_send.HomeIndex = data.Index
 
 			err := k.TransmitFinalErasmusDataPacket(ctx,
@@ -150,7 +152,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 			if err != nil {
 				return err
 			} else {
-
+				utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket msg sent")
 				return nil
 			}
 		}

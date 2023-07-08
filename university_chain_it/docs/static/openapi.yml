@@ -30124,6 +30124,8 @@ paths:
                           type: string
                         chainName:
                           type: string
+                        departmentName:
+                          type: string
                     transcriptData:
                       type: object
                       properties:
@@ -30374,6 +30376,8 @@ paths:
                         type: string
                       chainName:
                         type: string
+                      departmentName:
+                        type: string
                   transcriptData:
                     type: object
                     properties:
@@ -30539,6 +30543,8 @@ paths:
                   universityName:
                     type: string
                   chainName:
+                    type: string
+                  departmentName:
                     type: string
         default:
           description: An unexpected error response.
@@ -51147,6 +51153,8 @@ definitions:
                   type: string
                 chainName:
                   type: string
+                departmentName:
+                  type: string
             transcriptData:
               type: object
               properties:
@@ -51498,6 +51506,8 @@ definitions:
                 type: string
               chainName:
                 type: string
+              departmentName:
+                type: string
           transcriptData:
             type: object
             properties:
@@ -51632,6 +51642,8 @@ definitions:
             type: string
           chainName:
             type: string
+          departmentName:
+            type: string
   university_chain_it.universitychainit.QueryGetTaxesInfoResponse:
     type: object
     properties:
@@ -51755,6 +51767,8 @@ definitions:
           universityName:
             type: string
           chainName:
+            type: string
+          departmentName:
             type: string
       transcriptData:
         type: object
@@ -51886,6 +51900,8 @@ definitions:
       universityName:
         type: string
       chainName:
+        type: string
+      departmentName:
         type: string
   university_chain_it.universitychainit.TaxesInfo:
     type: object

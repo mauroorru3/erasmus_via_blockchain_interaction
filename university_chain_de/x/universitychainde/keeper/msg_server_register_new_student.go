@@ -57,6 +57,7 @@ func (k msgServer) RegisterNewStudent(goCtx context.Context, msg *types.MsgRegis
 						Surname:                  msg.Surname,
 						CourseType:               msg.CourseType,
 						CourseOfStudy:            msg.CourseOfStudy,
+						DepartmentName:           msg.DepartmentName,
 						Status:                   "Active",
 						CurrentYearOfStudy:       1,
 						OutOfCourse:              false,

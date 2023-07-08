@@ -11,6 +11,7 @@ message UniversitychaindePacketData {
     oneof packet {
         NoData noData = 1;
         // this line is used by starport scaffolding # ibc/packet/proto/field
+				ErasmusRestictedDataPacketData erasmusRestictedDataPacket = 7; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				ExtendErasmusPeriodPacketData extendErasmusPeriodPacket = 6; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				FinalErasmusDataPacketData finalErasmusDataPacket = 5; // this line is used by starport scaffolding # ibc/packet/proto/field/number
 				EndErasmusPeriodRequestPacketData endErasmusPeriodRequestPacket = 4; // this line is used by starport scaffolding # ibc/packet/proto/field/number
@@ -51,11 +52,11 @@ message EndErasmusPeriodRequestPacketData {
 
 // EndErasmusPeriodRequestPacketAck defines a struct for the packet acknowledgment
 message EndErasmusPeriodRequestPacketAck {
-	  ErasmusInfo erasmusData = 1;
+  string erasmusRestrictedInfo = 1;
 }
 // FinalErasmusDataPacketData defines a struct for the packet payload
 message FinalErasmusDataPacketData {
-  ErasmusInfo erasmusData = 1;
+  string erasmusRestrictedInfo = 1;
   string homeIndex = 2;
 }
 
@@ -72,5 +73,14 @@ message ExtendErasmusPeriodPacketData {
 
 // ExtendErasmusPeriodPacketAck defines a struct for the packet acknowledgment
 message ExtendErasmusPeriodPacketAck {
+	}
+// ErasmusRestictedDataPacketData defines a struct for the packet payload
+message ErasmusRestictedDataPacketData {
+  string erasmusRestrictedInfo = 1;
+}
+
+// ErasmusRestictedDataPacketAck defines a struct for the packet acknowledgment
+message ErasmusRestictedDataPacketAck {
+  string erasmusRestrictedInfo = 1;
 	}
 // this line is used by starport scaffolding # ibc/packet/proto/message

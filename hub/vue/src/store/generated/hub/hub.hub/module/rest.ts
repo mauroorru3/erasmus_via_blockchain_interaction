@@ -205,6 +205,7 @@ export interface HubStudentInfo {
   completeInformation?: number[];
   universityName?: string;
   chainName?: string;
+  departmentName?: string;
 }
 
 export interface HubTaxesInfo {

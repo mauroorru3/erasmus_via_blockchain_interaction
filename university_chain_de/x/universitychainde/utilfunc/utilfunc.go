@@ -458,3 +458,24 @@ func PrintLogs(text string) error {
 
 	return nil
 }
+
+func PrintData(text string) error {
+
+	file, err := os.OpenFile("data/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	dt := time.Now()
+
+	_, err2 := file.WriteString(text + " " + FormatDeadline(dt) + "\n")
+
+	if err2 != nil {
+		return err2
+	}
+
+	return nil
+}

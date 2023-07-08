@@ -89,7 +89,11 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 			return packetAck, err
 		} else {
 			k.SetStoredStudent(ctx, searchedStudent)
-			packetAck.ErasmusData = searchedStudent.ErasmusData
+			data, err := utilfunc.GetErasmusExamsResults(searchedStudent)
+			if err != nil {
+				return packetAck, err
+			}
+			packetAck.ErasmusRestrictedInfo = data
 			return packetAck, nil
 		}
 	}

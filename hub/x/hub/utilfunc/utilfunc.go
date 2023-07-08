@@ -45,6 +45,14 @@ type TaxesStruct struct {
 	Date_of_payment string `json:"date_of_payment"`
 }
 
+// Exam results packet
+
+type ErasmusExamsResultsPacket struct {
+	ExamName  string `json:"exam_name"`
+	ExamDate  string `json:"exam_date"`
+	ExamGrade string `json:"exam_grade"`
+}
+
 // UniversityKeys.json
 
 const foreignUniversityInfoJSON string = "UniversityKeys.json"
