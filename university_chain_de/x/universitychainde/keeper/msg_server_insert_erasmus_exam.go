@@ -43,49 +43,63 @@ func (k msgServer) InsertErasmusExam(goCtx context.Context, msg *types.MsgInsert
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
 
-						err := utilfunc.CheckCompleteInformation(searchedStudent)
+						if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
 
-						if err != nil {
-							return &types.MsgInsertErasmusExamResponse{
-								Status: -1,
-							}, types.ErrIncompleteStudentInformation
-						} else {
-
-							ok, err := utilfunc.CheckTaxPayment(searchedStudent)
-							//var ok bool = true
-							//var err error = nil
+							err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 							if err != nil {
 								return &types.MsgInsertErasmusExamResponse{
 									Status: -1,
-								}, err
+								}, types.ErrIncompleteStudentInformation
 							} else {
-								if !ok {
+
+								ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+								//var ok bool = true
+								//var err error = nil
+
+								if err != nil {
 									return &types.MsgInsertErasmusExamResponse{
 										Status: -1,
-									}, types.ErrUnpaidTaxes
+									}, err
 								} else {
-
-									err := utilfunc.CheckErasmusStatus(searchedStudent, "insert erasmus exam")
-									if err != nil {
+									if !ok {
 										return &types.MsgInsertErasmusExamResponse{
 											Status: -1,
-										}, err
+										}, types.ErrUnpaidTaxes
 									} else {
-										err := utilfunc.InsertErasmusExam(&searchedStudent, msg.ExamName, uni.MaxErasmusExams)
+
+										err := utilfunc.CheckErasmusStatus(searchedStudent, "insert erasmus exam")
 										if err != nil {
 											return &types.MsgInsertErasmusExamResponse{
 												Status: -1,
 											}, err
 										} else {
-											k.Keeper.SetStoredStudent(ctx, searchedStudent)
-											return &types.MsgInsertErasmusExamResponse{
-												Status: 0,
-											}, nil
+											err := utilfunc.InsertErasmusExam(&searchedStudent, msg.ExamName, uni.MaxErasmusExams)
+											if err != nil {
+												return &types.MsgInsertErasmusExamResponse{
+													Status: -1,
+												}, err
+											} else {
+												k.Keeper.SetStoredStudent(ctx, searchedStudent)
+												return &types.MsgInsertErasmusExamResponse{
+													Status: 0,
+												}, nil
+											}
 										}
 									}
 								}
 
+							}
+						} else {
+							err := utilfunc.CheckErasmusStatus(searchedStudent, "insert erasmus exam")
+							if err != nil {
+								return &types.MsgInsertErasmusExamResponse{
+									Status: -1,
+								}, err
+							} else {
+								return &types.MsgInsertErasmusExamResponse{
+									Status: 0,
+								}, nil
 							}
 						}
 					}

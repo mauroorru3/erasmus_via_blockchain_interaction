@@ -1,0 +1,26 @@
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"tum_1\",\"h_uni\":\"tum\",\"f_uni\":\"unipi\"}"  2023-07-08 18:11:35
+{"f_id":"unipi_1"} 2023-07-08 18:11:35
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"tum_1\",\"h_uni\":\"tum\",\"f_uni\":\"unipi\"}"  2023-07-08 18:11:36
+{"f_id":"unipi_1"} 2023-07-08 18:11:36
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Karl\",\"surname\":\"Schmidt\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+OnRecvErasmusStudentPacket case 2 erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Karl\",\"surname\":\"Schmidt\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1vk8e4458ggmps0h4mv\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"53qc7vqyt4khmunp4w3a\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"s_date\":\"2023-07-08 18:11:32\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"e_date\":\"2023-07-08 18:28:12\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"duration\":\"6\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"depart\":\"Computer Science\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"erasmus_t\":\"study\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Karl\",\"surname\":\"Schmidt\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+OnRecvErasmusStudentPacket case 2 erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Karl\",\"surname\":\"Schmidt\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1vk8e4458ggmps0h4mv\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"53qc7vqyt4khmunp4w3a\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"s_date\":\"2023-07-08 18:11:32\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"e_date\":\"2023-07-08 18:28:12\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"duration\":\"6\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"depart\":\"Computer Science\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"erasmus_t\":\"study\"}"  2023-07-08 18:11:43
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"unipi\",\"f_id\":\"unipi_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2023-07-08 18:11:43

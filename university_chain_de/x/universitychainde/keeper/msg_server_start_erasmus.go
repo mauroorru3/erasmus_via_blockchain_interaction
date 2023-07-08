@@ -46,87 +46,101 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
 
-						err := utilfunc.CheckCompleteInformation(searchedStudent)
+						if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
 
-						if err != nil {
-							return &types.MsgStartErasmusResponse{
-								Status: -1,
-							}, types.ErrIncompleteStudentInformation
-						} else {
-
-							ok, err := utilfunc.CheckTaxPayment(searchedStudent)
-							//var ok bool = true
-							//var err error = nil
+							err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 							if err != nil {
 								return &types.MsgStartErasmusResponse{
 									Status: -1,
-								}, err
+								}, types.ErrIncompleteStudentInformation
 							} else {
-								if !ok {
+
+								ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+								//var ok bool = true
+								//var err error = nil
+
+								if err != nil {
 									return &types.MsgStartErasmusResponse{
 										Status: -1,
-									}, types.ErrUnpaidTaxes
+									}, err
 								} else {
-
-									err := utilfunc.CheckErasmusStatus(searchedStudent, "start erasmus")
-									if err != nil {
+									if !ok {
 										return &types.MsgStartErasmusResponse{
 											Status: -1,
-										}, err
+										}, types.ErrUnpaidTaxes
 									} else {
 
-										err := utilfunc.StartErasmus(ctx, &searchedStudent, &uniInfo)
+										err := utilfunc.CheckErasmusStatus(searchedStudent, "start erasmus")
 										if err != nil {
 											return &types.MsgStartErasmusResponse{
 												Status: -1,
 											}, err
 										} else {
 
-											err := k.Keeper.CollectAndSendErasmusContribution(ctx, &searchedStudent, uniInfo.UniversityKey)
+											err := utilfunc.StartErasmus(ctx, &searchedStudent, &uniInfo)
 											if err != nil {
 												return &types.MsgStartErasmusResponse{
 													Status: -1,
 												}, err
 											} else {
 
-												k.Keeper.InsertInTheErasmusFIFOQueue(ctx, &searchedStudent, &uniInfo)
-
-												var packet types.ErasmusRestictedDataPacketData
-
-												data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(searchedStudent)
+												err := k.Keeper.CollectAndSendErasmusContribution(ctx, &searchedStudent, uniInfo.UniversityKey)
 												if err != nil {
 													return &types.MsgStartErasmusResponse{
 														Status: -1,
 													}, err
-												}
-
-												packet.ErasmusRestrictedInfo = data
-
-												err = k.TransmitErasmusRestictedDataPacket(
-													ctx,
-													packet,
-													"universitychainde",
-													"channel-0",
-													clienttypes.ZeroHeight(),
-													timeoutTimestamp,
-												)
-												if err != nil {
-													utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
-													return nil, err
 												} else {
-													utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
-													k.Keeper.SetStoredStudent(ctx, searchedStudent)
-													k.Keeper.SetUniversityInfo(ctx, uniInfo)
-													return &types.MsgStartErasmusResponse{
-														Status: 0,
-													}, nil
+
+													k.Keeper.InsertInTheErasmusFIFOQueue(ctx, &searchedStudent, &uniInfo)
+
+													var packet types.ErasmusRestictedDataPacketData
+
+													data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(searchedStudent)
+													if err != nil {
+														return &types.MsgStartErasmusResponse{
+															Status: -1,
+														}, err
+													}
+
+													packet.ErasmusRestrictedInfo = data
+
+													err = k.TransmitErasmusRestictedDataPacket(
+														ctx,
+														packet,
+														"universitychainde",
+														"channel-0",
+														clienttypes.ZeroHeight(),
+														timeoutTimestamp,
+													)
+													if err != nil {
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
+														return nil, err
+													} else {
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
+														k.Keeper.SetStoredStudent(ctx, searchedStudent)
+														k.Keeper.SetUniversityInfo(ctx, uniInfo)
+														return &types.MsgStartErasmusResponse{
+															Status: 0,
+														}, nil
+													}
 												}
 											}
 										}
-									}
 
+									}
 								}
+							}
+						} else {
+							err := utilfunc.CheckErasmusStatus(searchedStudent, "start erasmus")
+							if err != nil {
+								return &types.MsgStartErasmusResponse{
+									Status: -1,
+								}, err
+							} else {
+								return &types.MsgStartErasmusResponse{
+									Status: 0,
+								}, nil
 							}
 						}
 					}
@@ -134,5 +148,4 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 			}
 		}
 	}
-
 }

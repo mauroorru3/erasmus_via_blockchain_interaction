@@ -49,7 +49,7 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 								Status: -1,
 							}, types.ErrStudentNotPresent
 						} else {
-							if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" {
+							if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
 								err := utilfunc.CheckCompleteInformation(searchedStudent)
 								if err != nil {
 									return &types.MsgInsertExamGradeResponse{

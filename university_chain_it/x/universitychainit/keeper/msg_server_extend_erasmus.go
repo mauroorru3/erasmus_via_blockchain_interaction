@@ -42,87 +42,91 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
 
-						err := utilfunc.CheckCompleteInformation(searchedStudent)
+						if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
 
-						if err != nil {
-							return &types.MsgExtendErasmusResponse{
-								Status: -1,
-							}, types.ErrIncompleteStudentInformation
-						} else {
-
-							ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+							err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 							if err != nil {
 								return &types.MsgExtendErasmusResponse{
 									Status: -1,
-								}, err
+								}, types.ErrIncompleteStudentInformation
 							} else {
-								if !ok {
+
+								ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+
+								if err != nil {
 									return &types.MsgExtendErasmusResponse{
 										Status: -1,
-									}, types.ErrUnpaidTaxes
+									}, err
 								} else {
-
-									err := utilfunc.CheckErasmusStatus(searchedStudent, "extend erasmus")
-									if err != nil {
+									if !ok {
 										return &types.MsgExtendErasmusResponse{
 											Status: -1,
-										}, err
+										}, types.ErrUnpaidTaxes
 									} else {
 
-										err := utilfunc.CheckErasmusDeadline(ctx, uniInfo.DeadlineErasmus)
+										err := utilfunc.CheckErasmusStatus(searchedStudent, "extend erasmus")
 										if err != nil {
 											return &types.MsgExtendErasmusResponse{
 												Status: -1,
 											}, err
 										} else {
 
-											additionalDuration, finalDate, err := utilfunc.ExtendErasmus(ctx, msg.DurationInMonths, &searchedStudent)
+											err := utilfunc.CheckErasmusDeadline(ctx, uniInfo.DeadlineErasmus)
 											if err != nil {
 												return &types.MsgExtendErasmusResponse{
 													Status: -1,
 												}, err
 											} else {
 
-												foreignUni, err := utilfunc.GetForeignUniversityName(searchedStudent)
+												additionalDuration, finalDate, err := utilfunc.ExtendErasmus(ctx, msg.DurationInMonths, &searchedStudent)
 												if err != nil {
 													return &types.MsgExtendErasmusResponse{
 														Status: -1,
 													}, err
 												} else {
 
-													foreignIndex, err := utilfunc.GetForeignIndex(searchedStudent)
+													var packet types.ExtendErasmusPeriodPacketData
+
+													foreignUni, err := utilfunc.GetForeignUniversityName(searchedStudent)
 													if err != nil {
 														return &types.MsgExtendErasmusResponse{
 															Status: -1,
 														}, err
 													} else {
 
-														var packet types.ExtendErasmusPeriodPacketData
-														packet.DestinationUniversityName = foreignUni
-														packet.ForeignIndex = foreignIndex
-														packet.DurationInMonths = uint32(additionalDuration)
-														packet.FinalDate = finalDate
-
-														// Transmit the packet
-														err = k.TransmitExtendErasmusPeriodPacket(
-															ctx,
-															packet,
-															"universitychainit",
-															"channel-0",
-															clienttypes.ZeroHeight(),
-															timeoutTimestamp,
-														)
+														foreignIndex, err := utilfunc.GetForeignIndex(searchedStudent)
 														if err != nil {
-															return nil, err
+															return &types.MsgExtendErasmusResponse{
+																Status: -1,
+															}, err
 														} else {
 
-															k.CheckAndInCaseMoveStutent(ctx, &searchedStudent, &uniInfo)
-															k.Keeper.SetStoredStudent(ctx, searchedStudent)
-															k.Keeper.SetUniversityInfo(ctx, uniInfo)
-															return &types.MsgExtendErasmusResponse{
-																Status: 0,
-															}, nil
+															packet.DestinationUniversityName = foreignUni
+															packet.ForeignIndex = foreignIndex
+															packet.DurationInMonths = uint32(additionalDuration)
+															packet.FinalDate = finalDate
+
+															// Transmit the packet
+															err = k.TransmitExtendErasmusPeriodPacket(
+																ctx,
+																packet,
+																"universitychainit",
+																"channel-0",
+																clienttypes.ZeroHeight(),
+																timeoutTimestamp,
+															)
+															if err != nil {
+																return nil, err
+															} else {
+
+																k.CheckAndInCaseMoveStutent(ctx, &searchedStudent, &uniInfo)
+																k.Keeper.SetStoredStudent(ctx, searchedStudent)
+																k.Keeper.SetUniversityInfo(ctx, uniInfo)
+																return &types.MsgExtendErasmusResponse{
+																	Status: 0,
+																}, nil
+															}
 														}
 													}
 												}
@@ -131,6 +135,17 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 										}
 									}
 								}
+							}
+						} else {
+							err := utilfunc.CheckErasmusStatus(searchedStudent, "extend erasmus")
+							if err != nil {
+								return &types.MsgExtendErasmusResponse{
+									Status: -1,
+								}, err
+							} else {
+								return &types.MsgExtendErasmusResponse{
+									Status: 0,
+								}, nil
 							}
 						}
 					}

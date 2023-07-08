@@ -45,25 +45,31 @@ func (k msgServer) PayTaxes(goCtx context.Context, msg *types.MsgPayTaxes) (*typ
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
 
-						err := utilfunc.CheckCompleteInformation(searchedStudent)
+						if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
+							err := utilfunc.CheckCompleteInformation(searchedStudent)
 
-						if err != nil {
-							return &types.MsgPayTaxesResponse{
-								Status: -1,
-							}, types.ErrIncompleteStudentInformation
-						} else {
-
-							err := k.Keeper.CollectAndPayTaxes(ctx, &searchedStudent, uniInfo.UniversityKey)
 							if err != nil {
 								return &types.MsgPayTaxesResponse{
 									Status: -1,
-								}, err
-							}
+								}, types.ErrIncompleteStudentInformation
+							} else {
 
-							k.Keeper.SetStoredStudent(ctx, searchedStudent)
+								err := k.Keeper.CollectAndPayTaxes(ctx, &searchedStudent, uniInfo.UniversityKey)
+								if err != nil {
+									return &types.MsgPayTaxesResponse{
+										Status: -1,
+									}, err
+								}
+
+								k.Keeper.SetStoredStudent(ctx, searchedStudent)
+								return &types.MsgPayTaxesResponse{
+									Status: 0,
+								}, nil
+							}
+						} else {
 							return &types.MsgPayTaxesResponse{
-								Status: 0,
-							}, nil
+								Status: -1,
+							}, types.ErrTaxesPaidHomeUniversity
 						}
 					}
 				}

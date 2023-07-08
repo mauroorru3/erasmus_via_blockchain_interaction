@@ -62,25 +62,38 @@ func (k msgServer) InsertStudentPersonalInfo(goCtx context.Context, msg *types.M
 							}, err
 						} else {
 
-							var taxesData, erasmusData string
-							var err error
+							if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
 
-							taxesData, err = utilfunc.IntializeTaxesStruct(msg.IncomeBracket, uniInfo.TaxesBrackets)
-							if err != nil {
-								return &types.MsgInsertStudentPersonalInfoResponse{
-									Status: -1,
-								}, err
-							} else {
-								erasmusData, err = utilfunc.IntializeErasmusStruct(msg.IncomeBracket)
-								if err != nil {
-									return &types.MsgInsertStudentPersonalInfoResponse{
-										Status: -1,
-									}, err
+								if searchedStudent.StudentData.CompleteInformation[0] == 0 {
+
+									var taxesData, erasmusData string
+									var err error
+
+									taxesData, err = utilfunc.IntializeTaxesStruct(msg.IncomeBracket, uniInfo.TaxesBrackets)
+									if err != nil {
+										return &types.MsgInsertStudentPersonalInfoResponse{
+											Status: -1,
+										}, err
+									} else {
+										erasmusData, err = utilfunc.IntializeErasmusStruct(msg.IncomeBracket)
+										if err != nil {
+											return &types.MsgInsertStudentPersonalInfoResponse{
+												Status: -1,
+											}, err
+										} else {
+
+											searchedStudent.TaxesData.TaxesHistory = taxesData
+											searchedStudent.ErasmusData.Career = erasmusData
+											searchedStudent.StudentData.CompleteInformation[0] = 1
+
+											k.Keeper.SetStoredStudent(ctx, searchedStudent)
+
+											return &types.MsgInsertStudentPersonalInfoResponse{
+												Status: 0,
+											}, nil
+										}
+									}
 								} else {
-
-									searchedStudent.TaxesData.TaxesHistory = taxesData
-									searchedStudent.ErasmusData.Career = erasmusData
-									searchedStudent.StudentData.CompleteInformation[0] = 1
 
 									k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
@@ -88,6 +101,14 @@ func (k msgServer) InsertStudentPersonalInfo(goCtx context.Context, msg *types.M
 										Status: 0,
 									}, nil
 								}
+							} else {
+								searchedStudent.StudentData.CompleteInformation[0] = 1
+
+								k.Keeper.SetStoredStudent(ctx, searchedStudent)
+
+								return &types.MsgInsertStudentPersonalInfoResponse{
+									Status: 0,
+								}, nil
 							}
 						}
 					}

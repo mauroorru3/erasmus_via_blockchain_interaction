@@ -44,83 +44,97 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 						}, types.ErrKeyEnteredMismatchStudent
 					} else {
 
-						err := utilfunc.CheckCompleteInformation(searchedStudent)
+						if searchedStudent.ErasmusData.ErasmusStudent != "Incoming" && searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
 
-						if err != nil {
-							return &types.MsgEndErasmusBeforeDeadlineResponse{
-								Status: -1,
-							}, types.ErrIncompleteStudentInformation
-						} else {
-
-							ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+							err := utilfunc.CheckCompleteInformation(searchedStudent)
 
 							if err != nil {
 								return &types.MsgEndErasmusBeforeDeadlineResponse{
 									Status: -1,
-								}, err
+								}, types.ErrIncompleteStudentInformation
 							} else {
-								if !ok {
+
+								ok, err := utilfunc.CheckTaxPayment(searchedStudent)
+
+								if err != nil {
 									return &types.MsgEndErasmusBeforeDeadlineResponse{
 										Status: -1,
-									}, types.ErrUnpaidTaxes
+									}, err
 								} else {
-
-									err := utilfunc.CheckErasmusStatus(searchedStudent, "end erasmus before deadline")
-									if err != nil {
+									if !ok {
 										return &types.MsgEndErasmusBeforeDeadlineResponse{
 											Status: -1,
-										}, err
+										}, types.ErrUnpaidTaxes
 									} else {
 
-										k.RemoveFromFifo(ctx, &searchedStudent, &uniInfo)
-
-										k.SetStoredStudent(ctx, searchedStudent)
-										k.SetUniversityInfo(ctx, uniInfo)
-
-										var packet types.EndErasmusPeriodRequestPacketData
-
-										packet.StartingUniversityName = msg.University
-										packet.Index = searchedStudent.Index
-
-										foreignUniversityName, err := utilfunc.GetForeignUniversityName(searchedStudent)
+										err := utilfunc.CheckErasmusStatus(searchedStudent, "end erasmus before deadline")
 										if err != nil {
 											return &types.MsgEndErasmusBeforeDeadlineResponse{
 												Status: -1,
 											}, err
 										} else {
 
-											packet.DestinationUniversityName = foreignUniversityName
-											foreignIndex, err := utilfunc.GetForeignIndex(searchedStudent)
+											k.RemoveFromFifo(ctx, &searchedStudent, &uniInfo)
 
+											k.SetStoredStudent(ctx, searchedStudent)
+											k.SetUniversityInfo(ctx, uniInfo)
+
+											var packet types.EndErasmusPeriodRequestPacketData
+
+											packet.StartingUniversityName = msg.University
+											packet.Index = searchedStudent.Index
+
+											foreignUniversityName, err := utilfunc.GetForeignUniversityName(searchedStudent)
 											if err != nil {
 												return &types.MsgEndErasmusBeforeDeadlineResponse{
 													Status: -1,
 												}, err
 											} else {
 
-												packet.ForeignIndex = foreignIndex
+												packet.DestinationUniversityName = foreignUniversityName
+												foreignIndex, err := utilfunc.GetForeignIndex(searchedStudent)
 
-												err = k.TransmitEndErasmusPeriodRequestPacket(
-													ctx,
-													packet,
-													"universitychainde",
-													"channel-0",
-													clienttypes.ZeroHeight(),
-													timeoutTimestamp,
-												)
 												if err != nil {
 													return &types.MsgEndErasmusBeforeDeadlineResponse{
 														Status: -1,
 													}, err
 												} else {
-													return &types.MsgEndErasmusBeforeDeadlineResponse{
-														Status: 0,
-													}, nil
+
+													packet.ForeignIndex = foreignIndex
+
+													err = k.TransmitEndErasmusPeriodRequestPacket(
+														ctx,
+														packet,
+														"universitychainde",
+														"channel-0",
+														clienttypes.ZeroHeight(),
+														timeoutTimestamp,
+													)
+													if err != nil {
+														return &types.MsgEndErasmusBeforeDeadlineResponse{
+															Status: -1,
+														}, err
+													} else {
+														return &types.MsgEndErasmusBeforeDeadlineResponse{
+															Status: 0,
+														}, nil
+													}
 												}
 											}
 										}
 									}
 								}
+							}
+						} else {
+							err := utilfunc.CheckErasmusStatus(searchedStudent, "end erasmus before deadline")
+							if err != nil {
+								return &types.MsgEndErasmusBeforeDeadlineResponse{
+									Status: -1,
+								}, err
+							} else {
+								return &types.MsgEndErasmusBeforeDeadlineResponse{
+									Status: 0,
+								}, nil
 							}
 						}
 					}

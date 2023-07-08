@@ -73,28 +73,6 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							packet.ForeignIndex = foreignIndex
 
-							/*
-
-								utilfunc.PrintLogs("prima di SendEndErasmusPeriodRequest")
-
-								_, err := msgServer.SendEndErasmusPeriodRequest(goCtx, &types.MsgSendEndErasmusPeriodRequest{
-									Creator:                   storedStudent.StudentData.StudentKey,
-									Port:                      "hub",
-									ChannelID:                 "channel-0",
-									TimeoutTimestamp:          timeoutTimestamp,
-									StartingUniversityName:    storedStudent.StudentData.UniversityName,
-									DestinationUniversityName: foreignUniversityName,
-									Index:                     storedStudent.Index,
-									ForeignIndex:              foreignIndex,
-								})
-
-								if err != nil {
-									utilfunc.PrintLogs("SendEndErasmusPeriodRequest " + err.Error())
-									panic(err)
-								} else {
-
-							*/
-
 							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.ForeignIndex)
 							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.DestinationUniversityName)
 
