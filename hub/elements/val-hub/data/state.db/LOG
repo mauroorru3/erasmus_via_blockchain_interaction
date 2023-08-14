@@ -1,0 +1,44 @@
+=============== Jul 22, 2023 (UTC) ===============
+12:39:52.362531 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+12:39:52.371919 db@open opening
+12:39:52.372114 version@stat F·[] S·0B[] Sc·[]
+12:39:52.379567 db@janitor F·2 G·0
+12:39:52.379577 db@open done T·7.60889ms
+12:41:24.589867 db@close closing
+12:41:24.589887 db@close done T·19.121µs
+=============== Jul 23, 2023 (UTC) ===============
+18:06:17.122517 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:06:17.122826 version@stat F·[] S·0B[] Sc·[]
+18:06:17.122836 db@open opening
+18:06:17.122856 journal@recovery F·1
+18:06:17.122934 journal@recovery recovering @1
+18:06:17.126318 memdb@flush created L0@2 N·77 S·15KiB "abc..y:1,v6":"val..y:9,v31"
+18:06:17.126687 version@stat F·[1] S·15KiB[15KiB] Sc·[0.25]
+18:06:17.139080 db@janitor F·3 G·0
+18:06:17.139096 db@open done T·16.256676ms
+18:15:10.762000 db@close closing
+18:15:10.762022 db@close done T·21.37µs
+=============== Jul 24, 2023 (UTC) ===============
+16:16:11.346961 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:16:11.347386 version@stat F·[1] S·15KiB[15KiB] Sc·[0.25]
+16:16:11.347400 db@open opening
+16:16:11.347431 journal@recovery F·1
+16:16:11.348190 journal@recovery recovering @3
+16:16:11.353893 memdb@flush created L0@5 N·424 S·83KiB "abc..100,v403":"val..:99,v392"
+16:16:11.354030 version@stat F·[2] S·98KiB[98KiB] Sc·[0.50]
+16:16:11.367275 db@janitor F·4 G·0
+16:16:11.367289 db@open done T·19.88486ms
+16:18:11.847118 db@close closing
+16:18:11.847151 db@close done T·31.596µs
+=============== Jul 24, 2023 (UTC) ===============
+16:22:07.036098 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:22:07.036206 version@stat F·[2] S·98KiB[98KiB] Sc·[0.50]
+16:22:07.036221 db@open opening
+16:22:07.036268 journal@recovery F·1
+16:22:07.036364 journal@recovery recovering @6
+16:22:07.040252 memdb@flush created L0@8 N·92 S·15KiB "abc..125,v504":"val..149,v593"
+16:22:07.040462 version@stat F·[3] S·113KiB[113KiB] Sc·[0.75]
+16:22:07.056608 db@janitor F·5 G·0
+16:22:07.056621 db@open done T·20.395148ms
+16:23:05.927998 db@close closing
+16:23:05.928053 db@close done T·54.542µs
