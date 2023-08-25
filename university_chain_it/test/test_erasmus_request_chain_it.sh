@@ -13,10 +13,13 @@ then
 fi
 
 
-export Mario_Rossi=$(university_chain_itd keys show "Mario Rossi" -a) 
+
+Mario_Rossi=$(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Mario Rossi" --address)
 
 echo ""
 echo "Command:"
-echo "university_chain_itd tx universitychainit insert-erasmus-request $1 1 6 $2 study --from $Mario_Rossi --gas auto --chain-id university_chain_it --yes"
+echo "sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-erasmus-request $1 1 6 $2 study --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node tcp://val-"$1":26657"
 echo ""
-university_chain_itd tx universitychainit insert-erasmus-request "$1" 1 6 "$2" study --from "$Mario_Rossi" --gas auto --chain-id university_chain_it --yes
+sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-erasmus-request $1 1 6 $2 study --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
+
+

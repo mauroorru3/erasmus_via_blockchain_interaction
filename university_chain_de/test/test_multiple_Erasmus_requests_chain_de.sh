@@ -11,32 +11,39 @@ then
 	exit 1
 fi
 
+uni="tum"
+if [ "$1" = "humboldt university" ];
+then 
+	uni="humboldt"
+fi
+
 
 export university=""
 
 if [ "$1" = "tum" ];
 then 
-	university=$(university_chain_ded keys show "TUM" -a) 
+	university=$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "TUM" -a) 
 elif [ "$1" != "humboldt university" ];
 then 
-	university=$(university_chain_ded keys show "Humboldt University" -a) 	
+	university=$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Humboldt University" -a) 
 fi
 
-export chain_admin=$(university_chain_ded keys show "Admin Chain DE" -a) 
+export chain_admin=$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Admin Chain DE" -a) 
 
-export prof_ae=$(university_chain_ded keys show "Prof. Friedrich Mayer" -a) 
+export prof_ae=$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Prof. Friedrich Mayer" -a) 
 
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde configure-chain --from $chain_admin --gas auto --chain-id university_chain_de --yes"
+echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde configure-chain --from $chain_admin --keyring-backend test --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 echo ""
-university_chain_ded tx universitychainde configure-chain --from "$chain_admin" --gas auto --chain-id university_chain_de --yes
+sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde configure-chain --from "$chain_admin" --keyring-backend test --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
 
 
-usersArray=( $(university_chain_ded keys show "Karl Schmidt" -a) $(university_chain_ded keys show "Paul Becker" -a) 
-	$(university_chain_ded keys show "Mike Eisenhauer" -a) $(university_chain_ded keys show "Daniela Gloeckner" -a) 
-	$(university_chain_ded keys show "Nadine Baier" -a) $(university_chain_ded keys show "Jennifer Diederich" -a))
+
+usersArray=( $(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Karl Schmidt" -a) $(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Paul Becker" -a) 
+	$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Mike Eisenhauer" -a) $(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Daniela Gloeckner" -a) 
+	$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Nadine Baier" -a) $(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Jennifer Diederich" -a))
 nameAndSurnameArray=("Karl" "Schmidt" "Paul" "Becker" "Mike" "Eisenhauer" "Daniela" "Gloeckner" "Nadine" "Baier" "Jennifer" "Diederich")
 i=0
 j=1
@@ -46,71 +53,185 @@ for user in "${usersArray[@]}"
 do
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde register-new-student $1 ${nameAndSurnameArray[$i]} ${nameAndSurnameArray[$i+1]} master cs "Computer Science" --from $user --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde register-new-student $1 ${nameAndSurnameArray[$i]} ${nameAndSurnameArray[$i+1]} master cs "Computer Science" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde register-new-student "$1" "${nameAndSurnameArray[$i]}" "${nameAndSurnameArray[$i+1]}" master cs "Computer Science" --from "$user" --gas auto --chain-id university_chain_de --yes
-
-
-	echo ""
-	echo "Command:"
-	echo "university_chain_ded tx universitychainde insert-student-personal-info $1 $j male 1994-06-06 italian italy Rome Rome 1111111111111111 20000 --from $user --gas auto --chain-id university_chain_de --yes"
-	echo ""
-	university_chain_ded tx universitychainde insert-student-personal-info "$1" "$j" male 1994-06-06 italian italy Rome Rome 1111111111111111 20000 --from "$user" --gas auto --chain-id university_chain_de --yes 
-
-	echo ""
-	echo "Command:"
-	echo "university_chain_ded tx universitychainde insert-student-contact-info $1 $j "via roma" mario.rossi@example.it 0000000000 --from $user --gas auto --chain-id university_chain_de --yes"
-	echo ""
-	university_chain_ded tx universitychainde insert-student-contact-info "$1" "$j" "via roma" mario.rossi@example.it 0000000000 --from "$user" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde register-new-student "$1" "${nameAndSurnameArray[$i]}" "${nameAndSurnameArray[$i+1]}" master cs "Computer Science" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde register-new-student "$1" "${nameAndSurnameArray[$i]}" "${nameAndSurnameArray[$i+1]}" master cs "Computer Science" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde insert-student-residence-info $1 $j italy PI Pisa 56100 "via roma" 3 0000000000 --from $user --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-personal-info $1 $j male 1994-06-06 italian italy Rome Rome 1111111111111111 20000 --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde insert-student-residence-info "$1" "$j" italy PI Pisa 56100 "via roma" 3 0000000000 --from "$user" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-personal-info "$1" "$j" male 1994-06-06 italian italy Rome Rome 1111111111111111 20000 --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	
+	
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde register-new-student "$1" "${nameAndSurnameArray[$i]}" "${nameAndSurnameArray[$i+1]}" master cs "Computer Science" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-personal-info "$1" "$j" male 1994-06-06 italian italy Rome Rome 1111111111111111 20000 --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde pay-taxes $1 $j --from $user --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-contact-info $1 $j "via roma" mario.rossi@example.it 0000000000 --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde pay-taxes "$1" "$j" --from "$user" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-contact-info "$1" "$j" "via roma" mario.rossi@example.it 0000000000 --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+
+
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-contact-info "$1" "$j" "via roma" mario.rossi@example.it 0000000000 --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde insert-exam-grade $1 $j "Algorithm engineering" 1.5 --from $prof_ae --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-residence-info $1 $j italy PI Pisa 56100 "via roma" 3 0000000000 --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde insert-exam-grade "$1" "$j" "Algorithm engineering" 1.5 --from "$prof_ae" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-residence-info "$1" "$j" italy PI Pisa 56100 "via roma" 3 0000000000 --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+
+
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-student-residence-info "$1" "$j" italy PI Pisa 56100 "via roma" 3 0000000000 --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde insert-erasmus-request $1 $j 6 $2 study --from $user --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde pay-taxes $1 $j --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde insert-erasmus-request "$1" "$j" 6 "$2" study --from "$user" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde pay-taxes "$1" "$j" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+
+
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde pay-taxes "$1" "$j" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde insert-erasmus-exam $1 $j "Advanced databases" --from $user --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-exam-grade $1 $j "Algorithm engineering" 1.5 --from $prof_ae --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde insert-erasmus-exam "$1" "$j" "Advanced databases" --from "$user" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-exam-grade "$1" "$j" "Algorithm engineering" 1.5 --from "$prof_ae" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-exam-grade "$1" "$j" "Algorithm engineering" 1.5 --from "$prof_ae" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	echo ""
 	echo "Command:"
-	echo "university_chain_ded tx universitychainde start-erasmus $1 $j --from $user --gas auto --chain-id university_chain_de --yes"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-request $1 $j 6 $2 study --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 	echo ""
-	university_chain_ded tx universitychainde start-erasmus "$1" "$j" --from "$user" --gas auto --chain-id university_chain_de --yes
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-request "$1" "$j" 6 "$2" study --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-request "$1" "$j" 6 "$2" study --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
+
+	echo ""
+	echo "Command:"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-exam $1 $j "Advanced databases" --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
+	echo ""
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-exam "$1" "$j" "Advanced databases" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+
+
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-exam "$1" "$j" "Advanced databases" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
+
+	echo ""
+	echo "Command:"
+	echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde start-erasmus $1 $j --from $user --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
+	echo ""
+	sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde start-erasmus "$1" "$j" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	
+	
+	while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde start-erasmus "$1" "$j" --from "$user" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
+	
+	sleep 10
 
 	i=$((i+2))
 	j=$((j+1))
+	
 
 done
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde end-erasmus-before-deadline $1 3 --from $(university_chain_ded keys show "Mike Eisenhauer" -a) --gas auto --chain-id university_chain_de --yes"
+echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde end-erasmus-before-deadline $1 3 --from $(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Mike Eisenhauer" -a) --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 echo ""
-university_chain_ded tx universitychainde end-erasmus-before-deadline "$1" 3 --from "$(university_chain_ded keys show "Mike Eisenhauer" -a)"  --gas auto --chain-id university_chain_de --yes
+sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde end-erasmus-before-deadline "$1" 3 --from "$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Mike Eisenhauer" -a)"  --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
 
-
+while [ "$?" -ne 0 ];
+	do
+		echo ""
+		echo "Wait 10 seconds and run the command again"
+		echo ""
+		sleep 10
+		sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde end-erasmus-before-deadline "$1" 3 --from "$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Mike Eisenhauer" -a)"  --keyring-backend test --gas auto --chain-id university_chain_de --yes --node "tcp://val-"$uni":26657"
+	done
 
 
 

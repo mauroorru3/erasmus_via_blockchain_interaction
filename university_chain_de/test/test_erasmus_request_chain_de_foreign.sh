@@ -11,10 +11,18 @@ then
 	exit 1
 fi
 
-export Mario_Rossi=$(university_chain_itd keys show "Mario Rossi" -a) 
+
+uni="tum"
+if [ "$1" = "humboldt university" ];
+then 
+	uni="humboldt"
+fi
+
+
+Mario_Rossi=$(sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de  university_chain_ded_i keys --keyring-backend test show "Mario Rossi" -a) 
 
 echo ""
 echo "Command:"
-echo "university_chain_ded tx universitychainde insert-erasmus-request $1 1 6 $2 study --from $Mario_Rossi --gas auto --chain-id university_chain_de --yes"
+echo "sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657"
 echo ""
-university_chain_ded tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Mario_Rossi" --gas auto --chain-id university_chain_de --yes
+sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-"$uni":/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i tx universitychainde insert-erasmus-request "$1" 1 6 "$2" study --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_de --yes --node tcp://val-"$uni":26657

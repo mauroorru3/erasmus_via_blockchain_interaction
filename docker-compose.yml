@@ -18,6 +18,7 @@ services:
       - 0.0.0.0:26650:26657
     volumes:
       - ./university_chain_it/elements/val-unipi:/root/.university_chain_it
+      - ./university_chain_it/log/val-unipi:/log
       
 
   val-uniroma1:
@@ -31,6 +32,7 @@ services:
       - 0.0.0.0:26651:26657
     volumes:
       - ./university_chain_it/elements/val-uniroma1:/root/.university_chain_it
+      - ./university_chain_it/log/val-uniroma1:/log
       
   val-tum:
     command: start
@@ -42,7 +44,8 @@ services:
     ports:
       - 0.0.0.0:26652:26657
     volumes:
-      - ./university_chain_de/elements/val-tum:/root/.university_chain_de	
+      - ./university_chain_de/elements/val-tum:/root/.university_chain_de
+      - ./university_chain_de/log/val-tum:/log
       
 
   val-humboldt:
@@ -56,6 +59,7 @@ services:
       - 0.0.0.0:26653:26657
     volumes:
       - ./university_chain_de/elements/val-humboldt:/root/.university_chain_de
+      - ./university_chain_de/log/val-humboldt:/log
       
   val-hub:
     command: start
@@ -67,6 +71,7 @@ services:
       - 0.0.0.0:26654:26657
     volumes:
       - ./hub/elements/val-hub:/root/.hub
+      - ./hub/log:/log
 
       
   go_relayer_it_hub:
@@ -80,6 +85,17 @@ services:
     volumes:
       - ./go_relayer_it_hub:/go_relayer_it_hub
       
+  go_relayer_de_hub:
+    profiles: ["go"]
+    container_name: go_relayer_de_hub
+    image: "go_relayer_de_hub"
+    tty: true
+    stdin_open: true
+    networks:
+      - net-public
+    volumes:
+      - ./go_relayer_de_hub:/go_relayer_de_hub
+      
   hermes_relayer_it_hub:
     profiles: ["hermes"]
     container_name: hermes_relayer_it_hub
@@ -90,5 +106,17 @@ services:
       - net-public
     volumes:
       - ./hermes_relayer_it_hub:/hermes_relayer_it_hub
+      
+  hermes_relayer_de_hub:
+    profiles: ["hermes"]
+    container_name: hermes_relayer_de_hub
+    image: "hermes_relayer_de_hub"
+    tty: true
+    stdin_open: true
+    networks:
+      - net-public
+    volumes:
+      - ./hermes_relayer_de_hub:/hermes_relayer_de_hub
+    
       
 

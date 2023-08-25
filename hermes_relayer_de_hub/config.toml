@@ -104,14 +104,14 @@ port = 3001
 id = 'university_chain_de'
 
 # Specify the RPC address and port where the chain RPC server listens on. Required
-rpc_addr = 'http://university_chain_de:26657'
+rpc_addr = 'http://val-tum:26657'
 
 # Specify the GRPC address and port where the chain GRPC server listens on. Required
-grpc_addr = 'http://university_chain_de:9090'
+grpc_addr = 'http://val-tum:9090'
 
 # Specify the WebSocket address and port where the chain WebSocket server
 # listens on. Required
-websocket_addr = 'ws://university_chain_de:26657/websocket'
+websocket_addr = 'ws://val-tum:26657/websocket'
 
 # Specify the maximum amount of time (duration) that the RPC requests should
 # take before timing out. Default: 10s (10 seconds)
@@ -240,9 +240,9 @@ memo_prefix = ''
 
 [[chains]]
 id = 'hub'
-rpc_addr = 'http://hub:26657'
-grpc_addr = 'http://hub:9090'
-websocket_addr = 'ws://hub:26657/websocket'
+rpc_addr = 'http://val-hub:26657'
+grpc_addr = 'http://val-hub:9090'
+websocket_addr = 'ws://val-hub:26657/websocket'
 rpc_timeout = '10s'
 account_prefix = 'cosmos'
 key_name = 'Admin Hub'

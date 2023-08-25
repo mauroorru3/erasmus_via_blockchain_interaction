@@ -18,7 +18,10 @@ Create the image of the Italian chain:
 cd university_chain_it
 ```
 ```bash
-sudo docker build -f Dockerfile-university_chain_it . -t university_chain_it --no-cache
+go build -o ./build/university_chain_itd ./cmd/university_chain_itd/main.go
+```
+```bash
+sudo docker build -f Dockerfile-university_chain_itd . -t university_chain_itd_i
 ```
 ```bash
 cd ..
@@ -30,7 +33,10 @@ Create the image of the German chain:
 cd university_chain_de
 ```
 ```bash
-sudo docker build -f Dockerfile-university_chain_de . -t university_chain_de --no-cache
+go build -o ./build/university_chain_ded cmd/university_chain_ded/main.go
+```
+```bash
+sudo docker build -f Dockerfile-university_chain_ded . -t university_chain_ded_i
 ```
 ```bash
 cd ..
@@ -42,7 +48,10 @@ Create the image of the Hub chain:
 cd hub
 ```
 ```bash
-sudo docker build -f Dockerfile-hub . -t hub --no-cache
+go build -o ./build/hubd ./cmd/hubd/main.go
+```
+```bash
+sudo docker build -f Dockerfile-hubd . -t hubd_i
 ```
 ```bash
 cd ..
@@ -107,16 +116,22 @@ chmod +x allow_permissions.sh
 ./allow_permissions.sh
 ```
 
+To run the initial configuration (it must be executed before running all the containers):
+
+```bash
+./start_configuration.sh
+```
+
 To start the containers with hermes relayers:
 
 ```bash
-sudo docker compose -f modular.yaml --profile hermes up
+sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile hermes up
 ```
 
 To start the containers with go relayers:
 
 ```bash
-sudo docker compose -f modular.yaml --profile go up
+sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile go up
 ```
 
 _Remember_ that the relayers must be executed when the configuration of the chains has been completed, otherwise there will be errors.
@@ -180,20 +195,20 @@ The tests that will be performed are the following (in the specific case of the 
 To see the updated data in the home chain:
 
 ```bash
-sudo docker exec -it university_chain_it university_chain_itd query universitychainit show-stored-student unipi_1
+sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i query universitychainit show-stored-student unipi_1  --chain-id university_chain_it --node "tcp://val-unipi:26657"
 ```
 
 To see the updated data in the destination chain:
 
 ```bash
-sudo docker exec -it university_chain_de university_chain_ded query universitychainde show-stored-student tum_1
+sudo docker run --rm -i -v $(pwd)/university_chain_de/elements/val-tum:/root/.university_chain_de --network university_chain-prod_net-public university_chain_ded_i query universitychainde show-stored-student tum_1  --chain-id university_chain_de --node "tcp://val-tum:26657"
 ```
 
 
 Once the transfer of information between the chains is complete, the following test can be performed:
 
 ```bash
-sudo docker exec university_chain_de ./test/test_insert_grade_chain_de.sh tum
+./university_chain_de/test/test_insert_grade_chain_de.sh tum
 ```
 
 The test will check the insertion of the exam grade in the Erasmus plan.
@@ -202,19 +217,29 @@ Once the Erasmus is finished (I have set the timer temporarily to 240 seconds fo
 To see the updated data in the home chain:
 
 ```bash
-sudo docker exec -it university_chain_it university_chain_itd query universitychainit show-stored-student unipi_1
+sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i query universitychainit show-stored-student unipi_1  --chain-id university_chain_it --node "tcp://val-unipi:26657"
 ```
+
+Besides waiting for the normal Erasmus conclusion, it is also possible to run the Erasmus period extension test and the Erasmus early termination test. Respectively:
+
+```bash
+./university_chain_it/test/test_extend_erasmus_request_chain_it.sh unipi
+```
+```bash
+./university_chain_it/test/test_end_erasmus_request_chain_it.sh unipi
+```
+
 
 To end the execution of the containers with hermes relayers:
 
 ```bash
-sudo docker compose -f modular.yaml --profile hermes down
+sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile hermes down
 ```
 
 To end the execution of the containers with go relayers:
 
 ```bash
-sudo docker compose -f modular.yaml --profile go down
+sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile go down
 ```
 
 
