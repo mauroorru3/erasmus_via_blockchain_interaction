@@ -10,103 +10,6 @@ As above.
 
 ## Usage
 
-
-
-Create the image of the Italian chain:
-
-```bash
-cd university_chain_it
-```
-```bash
-go build -o ./build/university_chain_itd ./cmd/university_chain_itd/main.go
-```
-```bash
-sudo docker build -f Dockerfile-university_chain_itd . -t university_chain_itd_i
-```
-```bash
-cd ..
-```
-
-Create the image of the German chain:
-
-```bash
-cd university_chain_de
-```
-```bash
-go build -o ./build/university_chain_ded cmd/university_chain_ded/main.go
-```
-```bash
-sudo docker build -f Dockerfile-university_chain_ded . -t university_chain_ded_i
-```
-```bash
-cd ..
-```
-
-Create the image of the Hub chain:
-
-```bash
-cd hub
-```
-```bash
-go build -o ./build/hubd ./cmd/hubd/main.go
-```
-```bash
-sudo docker build -f Dockerfile-hubd . -t hubd_i
-```
-```bash
-cd ..
-```
-
-Create the image of the Relayer that connect the Italian chain with the hub chain:
-Go relayer:
-
-```bash
-cd go_relayer_it_hub
-```
-```bash
-sudo docker build -f Dockerfile . -t go_relayer_it_hub --no-cache
-```
-```bash
-cd ..
-```
-
-Hermes relayer:
-
-```bash
-cd hermes_relayer_it_hub
-```
-```bash
-sudo docker build -f Dockerfile . -t hermes_relayer_it_hub --no-cache
-```
-```bash
-cd ..
-```
-
-Create the image of the Relayer that connect the German chain with the hub chain:
-Go relayer:
-
-```bash
-cd go_relayer_de_hub
-```
-```bash
-sudo docker build -f Dockerfile . -t go_relayer_de_hub --no-cache
-``` 
-```bash
-cd ..
-```
-
-Hermes relayer:
-
-```bash
-cd hermes_relayer_de_hub
-```
-```bash
-sudo docker build -f Dockerfile . -t hermes_relayer_de_hub --no-cache
-```
-```bash
-cd ..
-```
-
 To allow scripts to be executed within containers:
 
 ```bash
@@ -114,6 +17,21 @@ chmod +x allow_permissions.sh
 ```
 ```bash
 ./allow_permissions.sh
+```
+
+To create all the images we need:
+
+- Italian chain;
+- German chain;
+- Hub chain;
+- Go relayer that connect the Italian chain with the Hub chain;
+- Hermes relayer that connect the Italian chain with the Hub chain;
+- Go relayer that connect the German chain with the Hub chain;
+- Hermes relayer that connect the German chain with the Hub chain;
+
+we execute the following script:
+```bash
+./create_images.sh
 ```
 
 To run the initial configuration (it must be executed before running all the containers):

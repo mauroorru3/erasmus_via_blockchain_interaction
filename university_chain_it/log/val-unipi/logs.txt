@@ -1,0 +1,49 @@
+TransmitErasmusStudentPacket packet sent 2023-09-02 10:44:31
+TransmitErasmusStudentPacket packet sent 2023-09-02 10:44:32
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:44:46
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:44:48
+OnRecvErasmusIndexPacket success 2023-09-02 10:45:01
+SendErasmusStudent CreateNameSurnameJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateStudentKeyPart1JSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateStudentKeyPart2JSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateStartDateJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateEndDateJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateDurationJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateCourseDetailsJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateDepartmentJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateErasmusTypeJSONPacketFromStudentData sent 2023-09-02 10:45:01
+SendErasmusStudent CreateExamsJSONPacketFromStudentData sent 2023-09-02 10:45:01
+OnRecvErasmusIndexPacket success 2023-09-02 10:45:04
+SendErasmusStudent CreateNameSurnameJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateStudentKeyPart1JSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateStudentKeyPart2JSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateStartDateJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateEndDateJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateDurationJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateCourseDetailsJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateDepartmentJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateErasmusTypeJSONPacketFromStudentData sent 2023-09-02 10:45:04
+SendErasmusStudent CreateExamsJSONPacketFromStudentData sent 2023-09-02 10:45:04
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:16
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+OnAcknowledgementErasmusRestictedDataPacket success 2023-09-02 10:45:20
+TransmitEndErasmusPeriodRequestPacket tum_1 2023-09-07 18:07:23
+TransmitEndErasmusPeriodRequestPacket tum 2023-09-07 18:07:23
+TransmitEndErasmusPeriodRequestPacket packet sent 2023-09-07 18:07:23

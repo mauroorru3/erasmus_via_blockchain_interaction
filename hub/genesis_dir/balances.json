@@ -26,32 +26,6 @@
           ]
         },
         {
-          "address": "cosmos1zwf5j033nczy7t6vclckdlrlml2mqhnjfy9d66",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos1ga559f4vhx98u0exa5cvtxr4vxnk00tqfc0rlc",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
           "address": "cosmos1fqsghvntkst69tc8w32gyzmxy4rgt6jrqguc6t",
           "coins": [
             {
@@ -65,7 +39,7 @@
           ]
         },
         {
-          "address": "cosmos1fr0ywndv8ncel7udrupqzpadvhl9zq2hr93xhh",
+          "address": "cosmos1w68naxagtnzfs7jrldjaalgcgfrctrk06y2rep",
           "coins": [
             {
               "denom": "stake",
@@ -78,59 +52,7 @@
           ]
         },
         {
-          "address": "cosmos1vqzc7d3prjp5ngprlzq4ppxu8xeajjjcn0tffv",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos1vk8e4458ggmps0h4mv53qc7vqyt4khmunp4w3a",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos1sf3zdq9q7tzfk9l83g05padqky4v9tld2dhsur",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos138z7ccp56e0rfg66tvknfl24672862sl2fex4z",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos13nrfelferv5a7dkd5rnt9r7ku7wgma9g52l0rf",
+          "address": "cosmos1346c0nfhx7upfs2a5zjffzw2clsstpvnxe583m",
           "coins": [
             {
               "denom": "stake",
@@ -156,19 +78,6 @@
           ]
         },
         {
-          "address": "cosmos1nft8sjz9zhdprj44vyrz7g0uss7qjhaga0etvk",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
           "address": "cosmos15s2893pv9gxghpqjcuv5j02589005e0w2ss2pv",
           "coins": [
             {
@@ -182,72 +91,7 @@
           ]
         },
         {
-          "address": "cosmos1cc90wwv6k78yrp6x59et2jhj03ryxy8jq54cxs",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
           "address": "cosmos1cmvty4l0kzrmscpusn2t59ettmrp50t23hc7v8",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos1e9rvl6jn9g7gpyhvhcvhczt4aj4sjy54fdrp4j",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos16ytzr5hgv75k7hqmp4wtqetvwx9mz4vkv90g8k",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos16amnmlz2e8tzlwxdd9nu3ugvau5ccnn0k2wac6",
-          "coins": [
-            {
-              "denom": "stake",
-              "amount": "1000000000000000"
-            },
-            {
-              "denom": "token",
-              "amount": "1000000000000000"
-            }
-          ]
-        },
-        {
-          "address": "cosmos1m0qq4aecd58j4pvjt042hmzpldzxl4s4njm03y",
           "coins": [
             {
               "denom": "stake",
@@ -286,3 +130,4 @@
           ]
         }
       ]
+

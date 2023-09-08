@@ -2,6 +2,9 @@ accounts:
 - name: Hub
   coins: ["20000token", "200000000stake"]
   mnemonic: "network sunset track violin fossil version east adult deal swing summer inner piece wet elegant creek local squeeze horse soda bottom relief arctic south"
+- name: Hub-instance-2
+  coins: ["20000token", "200000000stake"]
+  mnemonic: "romance whip sense act best soul drastic spray keep spoon side combine sheriff member arrange wall minute captain combine stable when smile giggle fire"
 - name: Admin Hub
   coins: ["20000token", "200000000stake"]
   mnemonic: "festival vicious churn air remain section exotic quit attack expose host entry raven north repeat silk hire way draft era thumb boil orbit trust"

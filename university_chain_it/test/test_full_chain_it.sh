@@ -37,13 +37,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit configure-chain --from "$chain_admin" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -54,13 +54,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit register-new-student "$1" Mario Rossi master cs "Computer Science" --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -71,15 +71,15 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit configure-chain --from "$chain_admin" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-student-personal-info "$1" 1 male 1994-06-06 italian italy Rome Rome 1111111111111111 20000 --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -90,13 +90,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-student-contact-info "$1" 1 "via roma" mario.rossi@example.it 0000000000 --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -107,13 +107,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-student-residence-info "$1" 1 italy PI Pisa 56100 "via roma" 3 0000000000 --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -124,13 +124,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit pay-taxes "$1" 1 --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -141,13 +141,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-exam-grade "$1" 1 "Algorithm engineering" 25 --from "$prof_ae" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -158,13 +158,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-erasmus-request "$1" 1 6 "$2" study --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -175,13 +175,13 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit insert-erasmus-exam "$1" 1 "Advanced databases" --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 
-sleep 10
+sleep 15
 
 echo ""
 echo "Command:"
@@ -193,9 +193,9 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 while [ "$?" -ne 0 ];
 do
 	echo ""
-	echo "Wait 10 seconds and run the command again"
+	echo "Wait 15 seconds and run the command again"
 	echo ""
-	sleep 10
+	sleep 15
 	sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit start-erasmus "$1" 1 --from "$Mario_Rossi" --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 done
 

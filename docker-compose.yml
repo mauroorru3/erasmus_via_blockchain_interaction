@@ -3,6 +3,7 @@ version: "3.7"
 networks:
   net-it:
   net-de:
+  net-hub:
   net-public:
 
 services:
@@ -61,17 +62,31 @@ services:
       - ./university_chain_de/elements/val-humboldt:/root/.university_chain_de
       - ./university_chain_de/log/val-humboldt:/log
       
-  val-hub:
+  val-hub-instance-1:
     command: start
-    container_name: val-hub
+    container_name: val-hub-instance-1
     image: "hubd_i"
     networks:
+      - net-hub
       - net-public
     ports:
       - 0.0.0.0:26654:26657
     volumes:
-      - ./hub/elements/val-hub:/root/.hub
-      - ./hub/log:/log
+      - ./hub/elements/val-hub-instance-1:/root/.hub
+      - ./hub/log/val-hub-instance-1:/log
+      
+  val-hub-instance-2:
+    command: start
+    container_name: val-hub-instance-2
+    image: "hubd_i"
+    networks:
+      - net-hub
+      - net-public
+    ports:
+      - 0.0.0.0:26655:26657
+    volumes:
+      - ./hub/elements/val-hub-instance-2:/root/.hub
+      - ./hub/log/val-hub-instance-2:/log
 
       
   go_relayer_it_hub:
@@ -96,9 +111,9 @@ services:
     volumes:
       - ./go_relayer_de_hub:/go_relayer_de_hub
       
-  hermes_relayer_it_hub:
+  hermes_relayer_it_hub_relayer:
     profiles: ["hermes"]
-    container_name: hermes_relayer_it_hub
+    #container_name: hermes_relayer_it_hub
     image: "hermes_relayer_it_hub"
     tty: true
     stdin_open: true
@@ -106,10 +121,13 @@ services:
       - net-public
     volumes:
       - ./hermes_relayer_it_hub:/hermes_relayer_it_hub
+    deploy:
+      mode: replicated
+      replicas: 2
       
-  hermes_relayer_de_hub:
+  hermes_relayer_de_hub_relayer:
     profiles: ["hermes"]
-    container_name: hermes_relayer_de_hub
+    #container_name: hermes_relayer_de_hub
     image: "hermes_relayer_de_hub"
     tty: true
     stdin_open: true
@@ -117,6 +135,8 @@ services:
       - net-public
     volumes:
       - ./hermes_relayer_de_hub:/hermes_relayer_de_hub
-    
-      
+    deploy:
+      mode: replicated
+      replicas: 2
+
 

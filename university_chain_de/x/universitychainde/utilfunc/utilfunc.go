@@ -435,7 +435,7 @@ func CheckCompleteInformation(student types.StoredStudent) (err error) {
 
 func PrintLogs(text string) error {
 
-	file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile("log/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		return err
@@ -461,7 +461,7 @@ func PrintLogs(text string) error {
 
 func PrintData(text string) error {
 
-	file, err := os.OpenFile("data/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile("log/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		return err
