@@ -19,3 +19,15 @@
 
 # Go workspace file
 go.work
+
+university_chain_it/build/
+university_chain_de/build/
+hub/build/
+university_chain_it/elements
+university_chain_de/elements
+hub/elements
+university_chain_it/log/
+university_chain_de/log/
+hub/log/
+statistics/*.txt
+
