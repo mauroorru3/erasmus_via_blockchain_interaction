@@ -14,12 +14,26 @@ then
 		sudo rm university_chain_it/log/val-uniroma1/logs.txt
 		sudo rm university_chain_it/log/val-unipi/data.txt
 		sudo rm university_chain_it/log/val-uniroma1/data.txt
+		sudo rm university_chain_it/log/val-unipi/statsGasConsumed.txt
+		sudo rm university_chain_it/log/val-unipi/statsTiming.txt
+		sudo rm university_chain_it/log/val-uniroma1/statsGasConsumed.txt
+		sudo rm university_chain_it/log/val-uniroma1/statsTiming.txt
 		sudo rm university_chain_de/log/val-tum/logs.txt
 		sudo rm university_chain_de/log/val-humboldt/logs.txt
 		sudo rm university_chain_de/log/val-tum/data.txt
 		sudo rm university_chain_de/log/val-humboldt/data.txt
-		sudo rm hub/log/logs.txt
-		sudo rm hub/log/data.txt
+		sudo rm university_chain_de/log/val-tum/statsGasConsumed.txt
+		sudo rm university_chain_de/log/val-tum/statsTiming.txt
+		sudo rm university_chain_de/log/val-humboldt/statsGasConsumed.txt
+		sudo rm university_chain_de/log/val-humboldt/statsTiming.txt
+		sudo rm hub/log/val-hub-instance-1/logs.txt
+		sudo rm hub/log/val-hub-instance-1/data.txt
+		sudo rm hub/log/val-hub-instance-1/statsGasConsumed.txt
+		sudo rm hub/log/val-hub-instance-1/statsTiming.txt
+		sudo rm hub/log/val-hub-instance-2/logs.txt
+		sudo rm hub/log/val-hub-instance-2/data.txt
+		sudo rm hub/log/val-hub-instance-2/statsGasConsumed.txt
+		sudo rm hub/log/val-hub-instance-2/statsTiming.txt
 		sudo ./hub/test/test_configure_chain_hub.sh
 		sudo ./university_chain_de/test/test_configure_chain_de.sh "$3"
 		sudo ./university_chain_it/test/test_full_chain_it.sh "$2" "$3"
@@ -35,12 +49,26 @@ then
 		sudo rm university_chain_it/log/val-uniroma1/logs.txt
 		sudo rm university_chain_it/log/val-unipi/data.txt
 		sudo rm university_chain_it/log/val-uniroma1/data.txt
+		sudo rm university_chain_it/log/val-unipi/statsGasConsumed.txt
+		sudo rm university_chain_it/log/val-unipi/statsTiming.txt
+		sudo rm university_chain_it/log/val-uniroma1/statsGasConsumed.txt
+		sudo rm university_chain_it/log/val-uniroma1/statsTiming.txt
 		sudo rm university_chain_de/log/val-tum/logs.txt
 		sudo rm university_chain_de/log/val-humboldt/logs.txt
 		sudo rm university_chain_de/log/val-tum/data.txt
 		sudo rm university_chain_de/log/val-humboldt/data.txt
-		sudo rm hub/log/logs.txt
-		sudo rm hub/log/data.txt
+		sudo rm university_chain_de/log/val-tum/statsGasConsumed.txt
+		sudo rm university_chain_de/log/val-tum/statsTiming.txt
+		sudo rm university_chain_de/log/val-humboldt/statsGasConsumed.txt
+		sudo rm university_chain_de/log/val-humboldt/statsTiming.txt
+		sudo rm hub/log/val-hub-instance-1/logs.txt
+		sudo rm hub/log/val-hub-instance-1/data.txt
+		sudo rm hub/log/val-hub-instance-1/statsGasConsumed.txt
+		sudo rm hub/log/val-hub-instance-1/statsTiming.txt
+		sudo rm hub/log/val-hub-instance-2/logs.txt
+		sudo rm hub/log/val-hub-instance-2/data.txt
+		sudo rm hub/log/val-hub-instance-2/statsGasConsumed.txt
+		sudo rm hub/log/val-hub-instance-2/statsTiming.txt
 		sudo ./hub/test/test_configure_chain_hub.sh
 		sudo ./university_chain_it/test/test_configure_chain_it.sh "$3"
 		sudo ./university_chain_de/test/test_full_chain_de.sh "$2" "$3"

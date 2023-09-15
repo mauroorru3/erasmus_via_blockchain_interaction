@@ -88,27 +88,50 @@ func (k msgServer) InsertStudentPersonalInfo(goCtx context.Context, msg *types.M
 
 											k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
-											return &types.MsgInsertStudentPersonalInfoResponse{
-												Status: 0,
-											}, nil
+											err = utilfunc.GetConsumedGas("InsertStudentPersonalInfo IT", searchedStudent.Index, ctx)
+											if err != nil {
+												return &types.MsgInsertStudentPersonalInfoResponse{
+													Status: -1,
+												}, err
+											} else {
+
+												return &types.MsgInsertStudentPersonalInfoResponse{
+													Status: 0,
+												}, nil
+											}
 										}
 									}
 								} else {
 
 									k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
-									return &types.MsgInsertStudentPersonalInfoResponse{
-										Status: 0,
-									}, nil
+									err = utilfunc.GetConsumedGas("InsertStudentPersonalInfo IT", searchedStudent.Index, ctx)
+									if err != nil {
+										return &types.MsgInsertStudentPersonalInfoResponse{
+											Status: -1,
+										}, err
+									} else {
+
+										return &types.MsgInsertStudentPersonalInfoResponse{
+											Status: 0,
+										}, nil
+									}
 								}
 							} else {
 								searchedStudent.StudentData.CompleteInformation[0] = 1
 
 								k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
-								return &types.MsgInsertStudentPersonalInfoResponse{
-									Status: 0,
-								}, nil
+								err = utilfunc.GetConsumedGas("InsertStudentPersonalInfo IT", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgInsertStudentPersonalInfoResponse{
+										Status: -1,
+									}, err
+								} else {
+									return &types.MsgInsertStudentPersonalInfoResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						}
 					}

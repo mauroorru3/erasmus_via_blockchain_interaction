@@ -123,9 +123,18 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 																k.CheckAndInCaseMoveStutent(ctx, &searchedStudent, &uniInfo)
 																k.Keeper.SetStoredStudent(ctx, searchedStudent)
 																k.Keeper.SetUniversityInfo(ctx, uniInfo)
-																return &types.MsgExtendErasmusResponse{
-																	Status: 0,
-																}, nil
+
+																err = utilfunc.GetConsumedGas("ExtendErasmus IT", searchedStudent.Index, ctx)
+																if err != nil {
+																	return &types.MsgExtendErasmusResponse{
+																		Status: -1,
+																	}, err
+																} else {
+
+																	return &types.MsgExtendErasmusResponse{
+																		Status: 0,
+																	}, nil
+																}
 															}
 														}
 													}
@@ -143,9 +152,18 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 									Status: -1,
 								}, err
 							} else {
-								return &types.MsgExtendErasmusResponse{
-									Status: 0,
-								}, nil
+
+								err = utilfunc.GetConsumedGas("ExtendErasmus IT", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgExtendErasmusResponse{
+										Status: -1,
+									}, err
+								} else {
+
+									return &types.MsgExtendErasmusResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						}
 					}

@@ -61,6 +61,9 @@ func (k Keeper) TransmitEndErasmusPeriodRequestPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitEndErasmusPeriodRequestPacket", ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -70,6 +73,14 @@ func (k Keeper) TransmitEndErasmusPeriodRequestPacket(
 
 // OnRecvEndErasmusPeriodRequestPacket processes packet reception
 func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData) (packetAck types.EndErasmusPeriodRequestPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
@@ -100,8 +111,14 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 		if err != nil {
 			return packetAck, err
 		} else {
+			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
+			if err != nil {
+				return packetAck, err
+			} else {
+				utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket sending ack", ctx, sizeInt, binArray)
+				return packetAck, nil
+			}
 
-			return packetAck, nil
 		}
 	}
 }
@@ -109,6 +126,14 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 // OnAcknowledgementEndErasmusPeriodRequestPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, packet channeltypes.Packet, data types.EndErasmusPeriodRequestPacketData, ack channeltypes.Acknowledgement) error {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return err
+	}
+	utilfunc.GetTransactionStats("OnAcknowledgementEndErasmusPeriodRequestPacket", ctx, sizeInt, binArray)
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
@@ -153,7 +178,14 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 				return err
 			} else {
 				utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket msg sent")
-				return nil
+
+				err = utilfunc.GetConsumedGas("OnAcknowledgementEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
+				if err != nil {
+					return err
+				} else {
+					return nil
+				}
+
 			}
 		}
 

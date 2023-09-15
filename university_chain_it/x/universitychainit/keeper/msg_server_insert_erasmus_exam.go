@@ -23,7 +23,7 @@ func (k msgServer) InsertErasmusExam(goCtx context.Context, msg *types.MsgInsert
 			}, types.ErrChainConfigurationNotDone
 		} else {
 
-			uni, found := k.Keeper.GetUniversityInfo(ctx, msg.University)
+			uniInfo, found := k.Keeper.GetUniversityInfo(ctx, msg.University)
 			if !found {
 				return &types.MsgInsertErasmusExamResponse{
 					Status: -1,
@@ -74,16 +74,24 @@ func (k msgServer) InsertErasmusExam(goCtx context.Context, msg *types.MsgInsert
 												Status: -1,
 											}, err
 										} else {
-											err := utilfunc.InsertErasmusExam(&searchedStudent, msg.ExamName, uni.MaxErasmusExams)
+											err := utilfunc.InsertErasmusExam(&searchedStudent, msg.ExamName, uniInfo.MaxErasmusExams)
 											if err != nil {
 												return &types.MsgInsertErasmusExamResponse{
 													Status: -1,
 												}, err
 											} else {
 												k.Keeper.SetStoredStudent(ctx, searchedStudent)
-												return &types.MsgInsertErasmusExamResponse{
-													Status: 0,
-												}, nil
+
+												err = utilfunc.GetConsumedGas("InsertErasmusExam IT", searchedStudent.Index, ctx)
+												if err != nil {
+													return &types.MsgInsertErasmusExamResponse{
+														Status: -1,
+													}, err
+												} else {
+													return &types.MsgInsertErasmusExamResponse{
+														Status: 0,
+													}, nil
+												}
 											}
 										}
 									}
@@ -97,9 +105,17 @@ func (k msgServer) InsertErasmusExam(goCtx context.Context, msg *types.MsgInsert
 									Status: -1,
 								}, err
 							} else {
-								return &types.MsgInsertErasmusExamResponse{
-									Status: 0,
-								}, nil
+
+								err = utilfunc.GetConsumedGas("InsertErasmusExam IT", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgInsertErasmusExamResponse{
+										Status: -1,
+									}, err
+								} else {
+									return &types.MsgInsertErasmusExamResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						}
 					}

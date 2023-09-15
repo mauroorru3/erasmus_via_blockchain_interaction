@@ -33,7 +33,8 @@ var erasmusTypeMap = map[string]int{
 }
 
 const (
-	DeadlineLayout = "2006-01-02 15:04:05"
+	DeadlineLayout  = "2006-01-02 15:04:05"
+	DateLayoutMilli = "2006-01-02 15:04:05.000"
 )
 
 //-----------------------------------------
@@ -748,6 +749,12 @@ func FormatDeadline(deadline time.Time) string {
 	newTime := deadline.In(loc)
 	return newTime.Format(DeadlineLayout)
 	//return deadline.Format(DeadlineLayout)
+}
+
+func FormatDeadlineMilliseconds(deadline time.Time) string {
+	loc, _ := time.LoadLocation("Europe/Rome")
+	newTime := deadline.In(loc)
+	return newTime.Format(DateLayoutMilli)
 }
 
 func GetErasmusDeadline(student types.StoredStudent) (date time.Time, err error) {

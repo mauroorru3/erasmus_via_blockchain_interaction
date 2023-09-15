@@ -95,11 +95,18 @@ func (k msgServer) InsertErasmusRequest(goCtx context.Context, msg *types.MsgIns
 														}, err
 													} else {
 														k.Keeper.SetStoredStudent(ctx, searchedStudent)
-														return &types.MsgInsertErasmusRequestResponse{
-															Status: 0,
-														}, nil
-													}
 
+														err = utilfunc.GetConsumedGas("InsertErasmusRequest DE", searchedStudent.Index, ctx)
+														if err != nil {
+															return &types.MsgInsertErasmusRequestResponse{
+																Status: -1,
+															}, err
+														} else {
+															return &types.MsgInsertErasmusRequestResponse{
+																Status: 0,
+															}, nil
+														}
+													}
 												}
 											}
 										}
@@ -114,9 +121,16 @@ func (k msgServer) InsertErasmusRequest(goCtx context.Context, msg *types.MsgIns
 									Status: -1,
 								}, err
 							} else {
-								return &types.MsgInsertErasmusRequestResponse{
-									Status: 0,
-								}, nil
+								err = utilfunc.GetConsumedGas("InsertErasmusRequest DE", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgInsertErasmusRequestResponse{
+										Status: -1,
+									}, err
+								} else {
+									return &types.MsgInsertErasmusRequestResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						}
 					}

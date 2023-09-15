@@ -23,7 +23,7 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 			}, types.ErrChainConfigurationNotDone
 		} else {
 
-			_, found = k.GetUniversityInfo(ctx, msg.University)
+			_, found := k.GetUniversityInfo(ctx, msg.University)
 			if !found {
 				return &types.MsgInsertExamGradeResponse{
 					Status: -1,
@@ -106,10 +106,18 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 
 												k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
-												return &types.MsgInsertExamGradeResponse{
-													Status: 0,
-												}, nil
+												err = utilfunc.GetConsumedGas("InsertExamGrade IT", searchedStudent.Index, ctx)
+												if err != nil {
+													return &types.MsgInsertExamGradeResponse{
+														Status: -1,
+													}, err
+												} else {
 
+													return &types.MsgInsertExamGradeResponse{
+														Status: 0,
+													}, nil
+
+												}
 											}
 										}
 
@@ -150,9 +158,17 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 
 									k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
-									return &types.MsgInsertExamGradeResponse{
-										Status: 0,
-									}, nil
+									err = utilfunc.GetConsumedGas("InsertExamGrade IT", searchedStudent.Index, ctx)
+									if err != nil {
+										return &types.MsgInsertExamGradeResponse{
+											Status: -1,
+										}, err
+									} else {
+
+										return &types.MsgInsertExamGradeResponse{
+											Status: 0,
+										}, nil
+									}
 								}
 							}
 						}

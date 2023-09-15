@@ -3,6 +3,7 @@ package keeper
 import (
 	"encoding/json"
 	"errors"
+	"strconv"
 
 	"hub/x/hub/types"
 	"hub/x/hub/utilfunc"
@@ -62,6 +63,9 @@ func (k Keeper) TransmitErasmusRestictedDataPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitErasmusRestictedDataPacket", ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -71,6 +75,14 @@ func (k Keeper) TransmitErasmusRestictedDataPacket(
 
 // OnRecvErasmusRestictedDataPacket processes packet reception
 func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusRestictedDataPacketData) (packetAck types.ErasmusRestictedDataPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
@@ -111,7 +123,15 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			if err != nil {
 				return packetAck, err
 			} else {
-				return packetAck, nil
+				packetHash := utilfunc.Hash(binArray)
+				err = utilfunc.GetConsumedGas("OnRecvErasmusRestictedDataPacket Hub", strconv.FormatInt(int64(packetHash), 10), ctx)
+				if err != nil {
+					return packetAck, err
+				} else {
+					utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket sending ack", ctx, sizeInt, binArray)
+					return packetAck, nil
+				}
+
 			}
 		}
 
@@ -122,6 +142,14 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 // OnAcknowledgementErasmusRestictedDataPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusRestictedDataPacketData, ack channeltypes.Acknowledgement) error {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return err
+	}
+	utilfunc.GetTransactionStats("OnAcknowledgementErasmusRestictedDataPacket", ctx, sizeInt, binArray)
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
@@ -186,7 +214,16 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 				} else {
 
 					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket packet sent")
-					return nil
+
+					err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusRestictedDataPacket Hub", packet_to_send.Index, ctx)
+					if err != nil {
+						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error " + err.Error())
+						return err
+					} else {
+
+						return nil
+					}
+
 				}
 			}
 		}

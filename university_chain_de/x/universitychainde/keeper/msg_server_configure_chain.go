@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strconv"
 
 	"university_chain_de/x/universitychainde/types"
 	"university_chain_de/x/universitychainde/utilfunc"
@@ -120,9 +121,23 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 
 							}
 						}
-						return &types.MsgConfigureChainResponse{
-							Status: 0,
-						}, nil
+
+						uniInfo, found := k.Keeper.GetUniversityInfo(ctx, universityInfoList[0].Name)
+						if !found {
+							return &types.MsgConfigureChainResponse{
+								Status: -1,
+							}, types.ErrWrongNameUniversity
+						}
+						err = utilfunc.GetConsumedGas("ConfigureChain DE", strconv.FormatInt(int64(uniInfo.GetNextStudentId()), 10), ctx)
+						if err != nil {
+							return &types.MsgConfigureChainResponse{
+								Status: -1,
+							}, err
+						} else {
+							return &types.MsgConfigureChainResponse{
+								Status: 0,
+							}, nil
+						}
 					}
 				}
 			}

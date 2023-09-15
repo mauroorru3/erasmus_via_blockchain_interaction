@@ -90,12 +90,16 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent")
 
+							err = utilfunc.GetConsumedGas("TerminateExpiredErasmusPeriods DE", studentIndex, ctx)
+							if err != nil {
+								panic(err)
+							}
+
 							// Move along FIFO
 							studentIndex = uniList[i].FifoHeadErasmus
-
 							count++
-
 						}
+
 					}
 
 				} else {

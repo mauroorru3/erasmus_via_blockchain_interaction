@@ -3,10 +3,14 @@ package utilfunc
 import (
 	"encoding/json"
 	"fmt"
+	"hash/fnv"
 	"io"
 	"os"
+	"strconv"
 	"time"
 	"university_chain_it/x/universitychainit/types"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 // UniversityKeys.json
@@ -478,4 +482,84 @@ func PrintData(text string) error {
 	}
 
 	return nil
+}
+
+func PrintStats(text string, fileName string) error {
+
+	file, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	_, err2 := file.WriteString(text + "\n")
+
+	if err2 != nil {
+		return err2
+	}
+
+	return nil
+}
+
+func Hash(bytes []byte) uint32 {
+	h := fnv.New32a()
+	h.Write(bytes)
+	return h.Sum32()
+}
+
+// the other way to calculate the packet size:
+// binArray, err := packet.GetBytes()
+// if err != nil {
+//	panic(err)
+// }
+// 	bytesSize := binary.Size(binArray)
+//	bytesSizeString := strconv.FormatInt(int64(bytesSize), 10)
+
+func GetTransactionStats(functionName string, ctx sdk.Context, sizeInt int, binArray []byte) (err error) {
+	sizeString := strconv.FormatInt(int64(sizeInt), 10)
+	packetHash := Hash(binArray)
+	packetHashString := strconv.FormatInt(int64(packetHash), 10)
+
+	stats := map[string]string{
+		"functionName": functionName,
+		"packetHash":   packetHashString,
+		"packetSize":   sizeString,
+		"time":         FormatDeadlineMilliseconds(time.Now()),
+	}
+
+	jsonStats, err := json.Marshal(stats)
+	if err != nil {
+		fmt.Printf("could not marshal json: %s\n", err)
+		return err
+	}
+
+	PrintStats(string(jsonStats), "log/statsTiming.txt")
+
+	return nil
+
+}
+
+func GetConsumedGas(functionName string, identifier string, ctx sdk.Context) (err error) {
+
+	gasConsumed := ctx.GasMeter().GasConsumed()
+	gasConsumedString := strconv.FormatInt(int64(gasConsumed), 10)
+
+	stats := map[string]string{
+		"functionName": functionName,
+		"id":           identifier,
+		"consumedGas":  gasConsumedString,
+	}
+
+	jsonStats, err := json.Marshal(stats)
+	if err != nil {
+		fmt.Printf("could not marshal json: %s\n", err)
+		return err
+	}
+
+	PrintStats(string(jsonStats), "log/statsGasConsumed.txt")
+
+	return nil
+
 }

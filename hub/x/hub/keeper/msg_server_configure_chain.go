@@ -61,9 +61,16 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 							k.Keeper.SetUniversities(ctx, foreignUniversity)
 						}
 					}
-					return &types.MsgConfigureChainResponse{
-						Status: 0,
-					}, nil
+					err = utilfunc.GetConsumedGas("ConfigureChain Hub", "1", ctx)
+					if err != nil {
+						return &types.MsgConfigureChainResponse{
+							Status: -1,
+						}, err
+					} else {
+						return &types.MsgConfigureChainResponse{
+							Status: 0,
+						}, nil
+					}
 				}
 			}
 		}

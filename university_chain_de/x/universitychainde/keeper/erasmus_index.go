@@ -61,6 +61,9 @@ func (k Keeper) TransmitErasmusIndexPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitErasmusIndexPacket", ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -70,6 +73,14 @@ func (k Keeper) TransmitErasmusIndexPacket(
 
 // OnRecvErasmusIndexPacket processes packet reception
 func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) (packetAck types.ErasmusIndexPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	err = data.ValidateBasic()
 
@@ -328,7 +339,20 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 														return packetAck, err
 													} else {
 														utilfunc.PrintLogs("SendErasmusStudent CreateExamsJSONPacketFromStudentData sent")
-														return packetAck, err
+
+														stringIndex, err := utilfunc.GetForeignIndex(stu)
+														if err != nil {
+															return packetAck, err
+														} else {
+															err = utilfunc.GetConsumedGas("OnRecvErasmusIndexPacket DE", stringIndex, ctx)
+															if err != nil {
+																return packetAck, err
+															} else {
+																utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", ctx, sizeInt, binArray)
+																return packetAck, nil
+															}
+
+														}
 													}
 												}
 											}
@@ -350,6 +374,14 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 // OnAcknowledgementErasmusIndexPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData, ack channeltypes.Acknowledgement) error {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return err
+	}
+	utilfunc.GetTransactionStats("OnAcknowledgementErasmusIndexPacket", ctx, sizeInt, binArray)
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
@@ -373,7 +405,14 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 
 		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
 
-		return nil
+		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket DE", data.Index, ctx)
+		if err != nil {
+			return err
+		} else {
+
+			return nil
+
+		}
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")

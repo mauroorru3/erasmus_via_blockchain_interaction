@@ -120,9 +120,17 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
 														k.Keeper.SetStoredStudent(ctx, searchedStudent)
 														k.Keeper.SetUniversityInfo(ctx, uniInfo)
-														return &types.MsgStartErasmusResponse{
-															Status: 0,
-														}, nil
+
+														err = utilfunc.GetConsumedGas("StartErasmus DE", searchedStudent.Index, ctx)
+														if err != nil {
+															return &types.MsgStartErasmusResponse{
+																Status: -1,
+															}, err
+														} else {
+															return &types.MsgStartErasmusResponse{
+																Status: 0,
+															}, nil
+														}
 													}
 												}
 											}
@@ -138,9 +146,16 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 									Status: -1,
 								}, err
 							} else {
-								return &types.MsgStartErasmusResponse{
-									Status: 0,
-								}, nil
+								err = utilfunc.GetConsumedGas("StartErasmus DE", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgStartErasmusResponse{
+										Status: -1,
+									}, err
+								} else {
+									return &types.MsgStartErasmusResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						}
 					}

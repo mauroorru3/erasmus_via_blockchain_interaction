@@ -62,9 +62,17 @@ func (k msgServer) PayTaxes(goCtx context.Context, msg *types.MsgPayTaxes) (*typ
 								}
 
 								k.Keeper.SetStoredStudent(ctx, searchedStudent)
-								return &types.MsgPayTaxesResponse{
-									Status: 0,
-								}, nil
+
+								err = utilfunc.GetConsumedGas("PayTaxes IT", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgPayTaxesResponse{
+										Status: -1,
+									}, err
+								} else {
+									return &types.MsgPayTaxesResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						} else {
 							return &types.MsgPayTaxesResponse{

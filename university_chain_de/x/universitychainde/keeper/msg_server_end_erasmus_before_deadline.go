@@ -115,9 +115,17 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 															Status: -1,
 														}, err
 													} else {
-														return &types.MsgEndErasmusBeforeDeadlineResponse{
-															Status: 0,
-														}, nil
+
+														err = utilfunc.GetConsumedGas("EndErasmusBeforeDeadline DE", searchedStudent.Index, ctx)
+														if err != nil {
+															return &types.MsgEndErasmusBeforeDeadlineResponse{
+																Status: -1,
+															}, err
+														} else {
+															return &types.MsgEndErasmusBeforeDeadlineResponse{
+																Status: 0,
+															}, nil
+														}
 													}
 												}
 											}
@@ -132,9 +140,17 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 									Status: -1,
 								}, err
 							} else {
-								return &types.MsgEndErasmusBeforeDeadlineResponse{
-									Status: 0,
-								}, nil
+
+								err = utilfunc.GetConsumedGas("EndErasmusBeforeDeadline DE", searchedStudent.Index, ctx)
+								if err != nil {
+									return &types.MsgEndErasmusBeforeDeadlineResponse{
+										Status: -1,
+									}, err
+								} else {
+									return &types.MsgEndErasmusBeforeDeadlineResponse{
+										Status: 0,
+									}, nil
+								}
 							}
 						}
 					}
