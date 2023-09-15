@@ -26,8 +26,11 @@ hub/build/
 university_chain_it/elements
 university_chain_de/elements
 hub/elements
-university_chain_it/log/
-university_chain_de/log/
-hub/log/
+university_chain_it/log/val-unipi/
+university_chain_it/log/val-uniroma1/
+university_chain_de/log/val-humboldt/
+university_chain_de/log/val-tum/
+hub/log/val-hub-instance-1/
+hub/log/val-hub-instance-2/
 statistics/*.txt
 
