@@ -22,6 +22,7 @@ func (k Keeper) TransmitErasmusStudentPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -63,7 +64,7 @@ func (k Keeper) TransmitErasmusStudentPacket(
 	)
 
 	sizeInt := packet.Size()
-	utilfunc.GetTransactionStats("TransmitErasmusStudentPacket", ctx, sizeInt, packetBytes)
+	utilfunc.GetTransactionStats("TransmitErasmusStudentPacket", details, ctx, sizeInt, packetBytes)
 
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
@@ -80,7 +81,7 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 	if err != nil {
 		return packetAck, err
 	}
-	utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket", ctx, sizeInt, binArray)
+	utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket", "", ctx, sizeInt, binArray)
 
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
@@ -131,7 +132,13 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 					if err != nil {
 						return packetAck, err
 					} else {
-						utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket sending ack", ctx, sizeInt, binArray)
+
+						packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+						if err != nil {
+							return packetAck, err
+						}
+						sizeInt := len(packetAckBytes)
+						utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket sending ack", "", ctx, sizeInt, binArray)
 						return packetAck, nil
 					}
 
@@ -146,13 +153,6 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData, ack channeltypes.Acknowledgement) error {
 
-	sizeInt := packet.Size()
-	binArray, err := data.GetBytes()
-	if err != nil {
-		return err
-	}
-	utilfunc.GetTransactionStats("OnAcknowledgementErasmusStudentPacket", ctx, sizeInt, binArray)
-
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
@@ -166,6 +166,13 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.ErasmusStudentPacketAck
+
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementErasmusStudentPacket", "", ctx, sizeInt, binArray)
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format

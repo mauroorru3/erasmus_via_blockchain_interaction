@@ -1,0 +1,36 @@
+{"consumedGas":"192354","functionName":"ConfigureChain DE","id":"1"}
+{"consumedGas":"162604","functionName":"OnRecvErasmusRestictedDataPacket DE - case 1","id":"unipi_1"}
+{"consumedGas":"165565","functionName":"OnRecvErasmusRestictedDataPacket DE - case 1","id":"unipi_2"}
+{"consumedGas":"238663","functionName":"OnRecvErasmusRestictedDataPacket DE - case 2","id":"unipi_1"}
+{"consumedGas":"288324","functionName":"OnRecvErasmusRestictedDataPacket DE - case 3","id":"unipi_1"}
+{"consumedGas":"338666","functionName":"OnRecvErasmusRestictedDataPacket DE - case 4","id":"unipi_1"}
+{"consumedGas":"389638","functionName":"OnRecvErasmusRestictedDataPacket DE - case 5","id":"unipi_1"}
+{"consumedGas":"441237","functionName":"OnRecvErasmusRestictedDataPacket DE - case 6","id":"unipi_1"}
+{"consumedGas":"492893","functionName":"OnRecvErasmusRestictedDataPacket DE - case 7","id":"unipi_1"}
+{"consumedGas":"544909","functionName":"OnRecvErasmusRestictedDataPacket DE - case 8","id":"unipi_1"}
+{"consumedGas":"597534","functionName":"OnRecvErasmusRestictedDataPacket DE - case 9","id":"unipi_1"}
+{"consumedGas":"650393","functionName":"OnRecvErasmusRestictedDataPacket DE - case 10","id":"unipi_1"}
+{"consumedGas":"708907","functionName":"OnRecvErasmusRestictedDataPacket DE - case 11","id":"unipi_1"}
+{"consumedGas":"169488","functionName":"OnRecvErasmusRestictedDataPacket DE - case 1","id":"unipi_3"}
+{"consumedGas":"239286","functionName":"OnRecvErasmusRestictedDataPacket DE - case 2","id":"unipi_3"}
+{"consumedGas":"289109","functionName":"OnRecvErasmusRestictedDataPacket DE - case 3","id":"unipi_3"}
+{"consumedGas":"339613","functionName":"OnRecvErasmusRestictedDataPacket DE - case 4","id":"unipi_3"}
+{"consumedGas":"390747","functionName":"OnRecvErasmusRestictedDataPacket DE - case 5","id":"unipi_3"}
+{"consumedGas":"442508","functionName":"OnRecvErasmusRestictedDataPacket DE - case 6","id":"unipi_3"}
+{"consumedGas":"494326","functionName":"OnRecvErasmusRestictedDataPacket DE - case 7","id":"unipi_3"}
+{"consumedGas":"546504","functionName":"OnRecvErasmusRestictedDataPacket DE - case 8","id":"unipi_3"}
+{"consumedGas":"599258","functionName":"OnRecvErasmusRestictedDataPacket DE - case 9","id":"unipi_3"}
+{"consumedGas":"652216","functionName":"OnRecvErasmusRestictedDataPacket DE - case 10","id":"unipi_3"}
+{"consumedGas":"710829","functionName":"OnRecvErasmusRestictedDataPacket DE - case 11","id":"unipi_3"}
+{"consumedGas":"163256","functionName":"OnRecvEndErasmusPeriodRequestPacket","id":"unipi_1"}
+{"consumedGas":"163381","functionName":"OnRecvEndErasmusPeriodRequestPacket","id":"unipi_3"}
+{"consumedGas":"242986","functionName":"OnRecvErasmusRestictedDataPacket DE - case 2","id":"unipi_2"}
+{"consumedGas":"292842","functionName":"OnRecvErasmusRestictedDataPacket DE - case 3","id":"unipi_2"}
+{"consumedGas":"343379","functionName":"OnRecvErasmusRestictedDataPacket DE - case 4","id":"unipi_2"}
+{"consumedGas":"394546","functionName":"OnRecvErasmusRestictedDataPacket DE - case 5","id":"unipi_2"}
+{"consumedGas":"446340","functionName":"OnRecvErasmusRestictedDataPacket DE - case 6","id":"unipi_2"}
+{"consumedGas":"498191","functionName":"OnRecvErasmusRestictedDataPacket DE - case 7","id":"unipi_2"}
+{"consumedGas":"550402","functionName":"OnRecvErasmusRestictedDataPacket DE - case 8","id":"unipi_2"}
+{"consumedGas":"603189","functionName":"OnRecvErasmusRestictedDataPacket DE - case 9","id":"unipi_2"}
+{"consumedGas":"656180","functionName":"OnRecvErasmusRestictedDataPacket DE - case 10","id":"unipi_2"}
+{"consumedGas":"714826","functionName":"OnRecvErasmusRestictedDataPacket DE - case 11","id":"unipi_2"}

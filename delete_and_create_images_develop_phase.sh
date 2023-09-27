@@ -22,4 +22,3 @@ go build -o ./build/hubd ./cmd/hubd/main.go;
 sudo docker build -f Dockerfile-hubd . -t hubd_i; 
 cd ..;
 
-

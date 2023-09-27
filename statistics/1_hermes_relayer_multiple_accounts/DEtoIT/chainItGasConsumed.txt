@@ -1,0 +1,13 @@
+Function: OnRecvErasmusRestictedDataPacket IT - case 2 - Gas consumed: 869716
+Function: OnRecvErasmusRestictedDataPacket IT - case 5 - Gas consumed: 1021375
+Function: OnRecvErasmusRestictedDataPacket IT - case 8 - Gas consumed: 1177330
+Function: OnRecvErasmusRestictedDataPacket IT - case 11 - Gas consumed: 1341853
+Function: OnRecvErasmusRestictedDataPacket IT - case 6 - Gas consumed: 1073202
+Function: OnRecvErasmusRestictedDataPacket IT - case 7 - Gas consumed: 1125086
+Function: OnRecvErasmusRestictedDataPacket IT - case 9 - Gas consumed: 1230150
+Function: OnRecvErasmusRestictedDataPacket IT - case 10 - Gas consumed: 1283174
+Function: ConfigureChain IT - Gas consumed: 188700
+Function: OnRecvErasmusRestictedDataPacket IT - case 1 - Gas consumed: 275508
+Function: OnRecvErasmusRestictedDataPacket IT - case 3 - Gas consumed: 919605
+Function: OnRecvErasmusRestictedDataPacket IT - case 4 - Gas consumed: 970175
+Function: OnRecvEndErasmusPeriodRequestPacket IT - Gas consumed: 394732

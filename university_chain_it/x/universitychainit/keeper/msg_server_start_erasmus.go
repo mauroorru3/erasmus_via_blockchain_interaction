@@ -112,6 +112,7 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 														"channel-0",
 														clienttypes.ZeroHeight(),
 														timeoutTimestamp,
+														" StartErasmus",
 													)
 													if err != nil {
 														utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())

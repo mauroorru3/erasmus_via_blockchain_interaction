@@ -115,6 +115,7 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 																"channel-0",
 																clienttypes.ZeroHeight(),
 																timeoutTimestamp,
+																"ExtendErasmus",
 															)
 															if err != nil {
 																return nil, err

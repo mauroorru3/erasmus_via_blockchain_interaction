@@ -1,0 +1,15 @@
+Function: RegisterNewStudent DE - Gas consumed: 100968
+Function: InsertErasmusRequest DE - Gas consumed: 115660
+Function: TerminateExpiredErasmusPeriods DE - Gas consumed: 318961
+Function: OnRecvFinalErasmusDataPacket DE - Gas consumed: 212954
+Function: ConfigureChain DE - Gas consumed: 192354
+Function: InsertStudentPersonalInfo DE - Gas consumed: 106682
+Function: InsertExamGrade DE - Gas consumed: 121129
+Function: InsertStudentResidenceInfo DE - Gas consumed: 111656
+Function: StartErasmus DE - Gas consumed: 176237
+Function: OnAcknowledgementErasmusRestictedDataPacket DE - Gas consumed: 386992
+Function: OnRecvErasmusIndexPacket DE - Gas consumed: 443920
+Function: OnAcknowledgementEndErasmusPeriodRequestPacket DE - Gas consumed: 131055
+Function: InsertStudentContactInfo DE - Gas consumed: 109680
+Function: PayTaxes DE - Gas consumed: 142880
+Function: InsertErasmusExam DE - Gas consumed: 119772

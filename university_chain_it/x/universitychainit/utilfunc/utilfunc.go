@@ -517,16 +517,16 @@ func Hash(bytes []byte) uint32 {
 // 	bytesSize := binary.Size(binArray)
 //	bytesSizeString := strconv.FormatInt(int64(bytesSize), 10)
 
-func GetTransactionStats(functionName string, ctx sdk.Context, sizeInt int, binArray []byte) (err error) {
+func GetTransactionStats(functionName string, details string, ctx sdk.Context, sizeInt int, binArray []byte) (err error) {
 	sizeString := strconv.FormatInt(int64(sizeInt), 10)
 	packetHash := Hash(binArray)
 	packetHashString := strconv.FormatInt(int64(packetHash), 10)
 
 	stats := map[string]string{
-		"functionName": functionName,
-		"packetHash":   packetHashString,
-		"packetSize":   sizeString,
-		"time":         FormatDeadlineMilliseconds(time.Now()),
+		"details":    functionName + details + " IT",
+		"packetHash": packetHashString,
+		"packetSize": sizeString,
+		"time":       FormatDeadlineMilliseconds(time.Now()),
 	}
 
 	jsonStats, err := json.Marshal(stats)

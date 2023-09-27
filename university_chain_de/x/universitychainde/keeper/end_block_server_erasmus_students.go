@@ -83,6 +83,7 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 								"channel-0",
 								clienttypes.ZeroHeight(),
 								timeoutTimestamp,
+								"TerminateExpiredErasmusPeriods",
 							)
 							if err != nil {
 								panic(err)

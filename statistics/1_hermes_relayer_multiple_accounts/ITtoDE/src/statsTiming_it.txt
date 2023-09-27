@@ -1,0 +1,82 @@
+{"details":"TransmitErasmusRestictedDataPacket StartErasmus IT","packetHash":"3480378438","packetSize":"126","time":"2023-09-22 18:32:00.757"}
+{"details":"TransmitErasmusRestictedDataPacket StartErasmus IT","packetHash":"564705611","packetSize":"126","time":"2023-09-22 18:32:11.387"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3480378438","packetSize":"28","time":"2023-09-22 18:32:16.802"}
+{"details":"TransmitErasmusRestictedDataPacket StartErasmus IT","packetHash":"248483140","packetSize":"126","time":"2023-09-22 18:32:27.538"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"564705611","packetSize":"28","time":"2023-09-22 18:32:27.542"}
+{"details":"OnRecvErasmusIndexPacket IT","packetHash":"3647126934","packetSize":"81","time":"2023-09-22 18:32:32.762"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT","packetHash":"3359016122","packetSize":"141","time":"2023-09-22 18:32:32.765"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT","packetHash":"190727210","packetSize":"144","time":"2023-09-22 18:32:32.768"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT","packetHash":"2996184719","packetSize":"139","time":"2023-09-22 18:32:32.771"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT","packetHash":"721401106","packetSize":"139","time":"2023-09-22 18:32:32.774"}
+{"details":"TransmitErasmusRestictedDataPacket - case 6 IT","packetHash":"879826839","packetSize":"139","time":"2023-09-22 18:32:32.777"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT","packetHash":"3208824081","packetSize":"123","time":"2023-09-22 18:32:32.780"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT","packetHash":"3269899987","packetSize":"142","time":"2023-09-22 18:32:32.783"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT","packetHash":"1944079568","packetSize":"136","time":"2023-09-22 18:32:32.786"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT","packetHash":"2470391675","packetSize":"129","time":"2023-09-22 18:32:32.789"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT","packetHash":"1463645902","packetSize":"151","time":"2023-09-22 18:32:32.792"}
+{"details":"OnRecvErasmusIndexPacket sending ack IT","packetHash":"3647126934","packetSize":"2","time":"2023-09-22 18:32:32.795"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"248483140","packetSize":"28","time":"2023-09-22 18:32:43.502"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3359016122","packetSize":"28","time":"2023-09-22 18:32:48.808"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"190727210","packetSize":"28","time":"2023-09-22 18:32:48.811"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2996184719","packetSize":"28","time":"2023-09-22 18:32:48.814"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"721401106","packetSize":"28","time":"2023-09-22 18:32:48.817"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"879826839","packetSize":"28","time":"2023-09-22 18:32:48.820"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3208824081","packetSize":"28","time":"2023-09-22 18:32:48.824"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3269899987","packetSize":"28","time":"2023-09-22 18:32:48.827"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1944079568","packetSize":"28","time":"2023-09-22 18:32:48.832"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2470391675","packetSize":"28","time":"2023-09-22 18:32:48.835"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1463645902","packetSize":"28","time":"2023-09-22 18:32:48.838"}
+{"details":"OnRecvErasmusIndexPacket IT","packetHash":"2500232562","packetSize":"81","time":"2023-09-22 18:33:04.673"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT","packetHash":"2205639880","packetSize":"144","time":"2023-09-22 18:33:04.679"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT","packetHash":"306530419","packetSize":"144","time":"2023-09-22 18:33:04.682"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT","packetHash":"32932988","packetSize":"139","time":"2023-09-22 18:33:04.685"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT","packetHash":"449712292","packetSize":"139","time":"2023-09-22 18:33:04.688"}
+{"details":"TransmitErasmusRestictedDataPacket - case 6 IT","packetHash":"1331945933","packetSize":"139","time":"2023-09-22 18:33:04.691"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT","packetHash":"610706427","packetSize":"123","time":"2023-09-22 18:33:04.694"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT","packetHash":"3819287233","packetSize":"142","time":"2023-09-22 18:33:04.697"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT","packetHash":"2595633762","packetSize":"136","time":"2023-09-22 18:33:04.700"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT","packetHash":"1875916373","packetSize":"129","time":"2023-09-22 18:33:04.703"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT","packetHash":"4065902136","packetSize":"151","time":"2023-09-22 18:33:04.706"}
+{"details":"OnRecvErasmusIndexPacket sending ack IT","packetHash":"2500232562","packetSize":"2","time":"2023-09-22 18:33:04.709"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2205639880","packetSize":"28","time":"2023-09-22 18:33:20.720"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"306530419","packetSize":"28","time":"2023-09-22 18:33:20.723"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"32932988","packetSize":"28","time":"2023-09-22 18:33:20.729"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"449712292","packetSize":"28","time":"2023-09-22 18:33:20.734"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1331945933","packetSize":"28","time":"2023-09-22 18:33:20.740"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"610706427","packetSize":"28","time":"2023-09-22 18:33:20.745"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3819287233","packetSize":"28","time":"2023-09-22 18:33:20.751"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2595633762","packetSize":"28","time":"2023-09-22 18:33:20.756"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1875916373","packetSize":"28","time":"2023-09-22 18:33:20.762"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"4065902136","packetSize":"28","time":"2023-09-22 18:33:20.767"}
+{"details":"TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT","packetHash":"3815771571","packetSize":"93","time":"2023-09-22 18:34:03.619"}
+{"details":"TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT","packetHash":"1445095162","packetSize":"86","time":"2023-09-22 18:34:14.257"}
+{"details":"OnAcknowledgementEndErasmusPeriodRequestPacket IT","packetHash":"3815771571","packetSize":"28","time":"2023-09-22 18:34:19.481"}
+{"details":"OnAcknowledgementEndErasmusPeriodRequestPacket IT","packetHash":"1445095162","packetSize":"28","time":"2023-09-22 18:34:30.210"}
+{"details":"TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT","packetHash":"299004043","packetSize":"93","time":"2023-09-22 18:34:30.214"}
+{"details":"OnRecvFinalErasmusDataPacket IT","packetHash":"68306130","packetSize":"143","time":"2023-09-22 18:34:40.861"}
+{"details":"OnRecvFinalErasmusDataPacket sending ack IT","packetHash":"68306130","packetSize":"2","time":"2023-09-22 18:34:40.870"}
+{"details":"OnAcknowledgementEndErasmusPeriodRequestPacket IT","packetHash":"299004043","packetSize":"28","time":"2023-09-22 18:34:46.384"}
+{"details":"OnRecvFinalErasmusDataPacket IT","packetHash":"34750892","packetSize":"143","time":"2023-09-22 18:35:07.786"}
+{"details":"OnRecvFinalErasmusDataPacket sending ack IT","packetHash":"34750892","packetSize":"2","time":"2023-09-22 18:35:07.801"}
+{"details":"OnRecvErasmusIndexPacket IT","packetHash":"2233210936","packetSize":"81","time":"2023-09-22 18:39:02.683"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT","packetHash":"237660299","packetSize":"145","time":"2023-09-22 18:39:02.686"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT","packetHash":"3346533658","packetSize":"144","time":"2023-09-22 18:39:02.689"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT","packetHash":"4136228389","packetSize":"139","time":"2023-09-22 18:39:02.692"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT","packetHash":"2959241023","packetSize":"139","time":"2023-09-22 18:39:02.695"}
+{"details":"TransmitErasmusRestictedDataPacket - case 6 IT","packetHash":"573086905","packetSize":"139","time":"2023-09-22 18:39:02.698"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT","packetHash":"2895273716","packetSize":"123","time":"2023-09-22 18:39:02.701"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT","packetHash":"1370763274","packetSize":"142","time":"2023-09-22 18:39:02.704"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT","packetHash":"7832773","packetSize":"136","time":"2023-09-22 18:39:02.707"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT","packetHash":"461056174","packetSize":"129","time":"2023-09-22 18:39:02.710"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT","packetHash":"3664367923","packetSize":"151","time":"2023-09-22 18:39:02.713"}
+{"details":"OnRecvErasmusIndexPacket sending ack IT","packetHash":"2233210936","packetSize":"2","time":"2023-09-22 18:39:02.716"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"237660299","packetSize":"28","time":"2023-09-22 18:39:18.537"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3346533658","packetSize":"28","time":"2023-09-22 18:39:18.540"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"4136228389","packetSize":"28","time":"2023-09-22 18:39:18.543"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2959241023","packetSize":"28","time":"2023-09-22 18:39:18.546"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"573086905","packetSize":"28","time":"2023-09-22 18:39:18.549"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2895273716","packetSize":"28","time":"2023-09-22 18:39:18.552"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1370763274","packetSize":"28","time":"2023-09-22 18:39:18.555"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"7832773","packetSize":"28","time":"2023-09-22 18:39:18.558"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"461056174","packetSize":"28","time":"2023-09-22 18:39:18.561"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3664367923","packetSize":"28","time":"2023-09-22 18:39:18.564"}

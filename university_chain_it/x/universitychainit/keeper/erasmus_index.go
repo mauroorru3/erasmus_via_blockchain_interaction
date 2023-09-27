@@ -21,6 +21,7 @@ func (k Keeper) TransmitErasmusIndexPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -62,7 +63,7 @@ func (k Keeper) TransmitErasmusIndexPacket(
 	)
 
 	sizeInt := packet.Size()
-	utilfunc.GetTransactionStats("TransmitErasmusIndexPacket", ctx, sizeInt, packetBytes)
+	utilfunc.GetTransactionStats("TransmitErasmusIndexPacket", details, ctx, sizeInt, packetBytes)
 
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
@@ -79,7 +80,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 	if err != nil {
 		return packetAck, err
 	}
-	utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket", ctx, sizeInt, binArray)
+	utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket", "", ctx, sizeInt, binArray)
 
 	// validate packet data upon receiving
 	err = data.ValidateBasic()
@@ -123,6 +124,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 					"channel-0",
 					clienttypes.ZeroHeight(),
 					timeoutTimestamp,
+					" OnRecvErasmusIndexPacket - case 2",
 				)
 
 				if err != nil {
@@ -146,6 +148,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 						"channel-0",
 						clienttypes.ZeroHeight(),
 						timeoutTimestamp,
+						" OnRecvErasmusIndexPacket - case 3",
 					)
 
 					if err != nil {
@@ -170,6 +173,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 							"channel-0",
 							clienttypes.ZeroHeight(),
 							timeoutTimestamp,
+							" OnRecvErasmusIndexPacket - case 4",
 						)
 
 						if err != nil {
@@ -193,6 +197,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 								"channel-0",
 								clienttypes.ZeroHeight(),
 								timeoutTimestamp,
+								" OnRecvErasmusIndexPacket - case 5",
 							)
 
 							if err != nil {
@@ -215,6 +220,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 									"channel-0",
 									clienttypes.ZeroHeight(),
 									timeoutTimestamp,
+									" - case 6",
 								)
 
 								if err != nil {
@@ -237,6 +243,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 										"channel-0",
 										clienttypes.ZeroHeight(),
 										timeoutTimestamp,
+										" OnRecvErasmusIndexPacket - case 7",
 									)
 
 									if err != nil {
@@ -260,6 +267,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 											"channel-0",
 											clienttypes.ZeroHeight(),
 											timeoutTimestamp,
+											" OnRecvErasmusIndexPacket - case 8",
 										)
 
 										if err != nil {
@@ -282,6 +290,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 												"channel-0",
 												clienttypes.ZeroHeight(),
 												timeoutTimestamp,
+												" OnRecvErasmusIndexPacket - case 9",
 											)
 
 											if err != nil {
@@ -305,6 +314,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 													"channel-0",
 													clienttypes.ZeroHeight(),
 													timeoutTimestamp,
+													" OnRecvErasmusIndexPacket - case 10",
 												)
 
 												if err != nil {
@@ -328,6 +338,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 														"channel-0",
 														clienttypes.ZeroHeight(),
 														timeoutTimestamp,
+														" OnRecvErasmusIndexPacket - case 11",
 													)
 
 													if err != nil {
@@ -346,7 +357,13 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 																return packetAck, err
 															} else {
 
-																utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket IT sending ack", ctx, sizeInt, binArray)
+																packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+																if err != nil {
+																	return packetAck, err
+																}
+																sizeInt := len(packetAckBytes)
+																//sizeInt := packetAck.Size()
+																utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", "", ctx, sizeInt, binArray)
 																return packetAck, nil
 
 															}
@@ -373,13 +390,6 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData, ack channeltypes.Acknowledgement) error {
 
-	sizeInt := packet.Size()
-	binArray, err := data.GetBytes()
-	if err != nil {
-		return err
-	}
-	utilfunc.GetTransactionStats("OnAcknowledgementErasmusIndexPacket", ctx, sizeInt, binArray)
-
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
@@ -393,6 +403,13 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		// Decode the packet acknowledgment
 		var packetAck types.ErasmusIndexPacketAck
 
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementErasmusIndexPacket", "", ctx, sizeInt, binArray)
+
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
 			utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket cannot unmarshal acknowledgment")
@@ -400,7 +417,6 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		}
 
 		// TODO: successful acknowledgement logic
-
 		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket IT", data.Index, ctx)

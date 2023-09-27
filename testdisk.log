@@ -1,0 +1,154 @@
+
+
+Sat Sep 23 22:49:19 2023
+Command line: TestDisk
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.2.0-33-generic (#33~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep  7 10:33:52 UTC 2) x86_64
+Compiler: GCC 11.2
+ext2fs lib: 1.46.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.3
+User is not root!
+Hard disk list
+
+
+TestDisk exited normally.
+Using locale 'it_IT.UTF-8'.
+
+
+Sat Sep 23 22:49:19 2023
+Command line: TestDisk /debug
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.2.0-33-generic (#33~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep  7 10:33:52 UTC 2) x86_64
+Compiler: GCC 11.2
+ext2fs lib: 1.46.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.3
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop18 - 0 B - 0 sectors (RO), sector size=512
+Hard disk list
+Disk /dev/mmcblk0 - 62 GB / 57 GiB - CHS 1899392 4 16, sector size=512
+Disk /dev/loop0 - 69 KB / 68 KiB - 136 sectors (RO), sector size=512
+Disk /dev/loop1 - 4096 B - 8 sectors (RO), sector size=512
+Disk /dev/loop10 - 77 MB / 73 MiB - 151296 sectors (RO), sector size=512
+Disk /dev/loop11 - 77 MB / 73 MiB - 151352 sectors (RO), sector size=512
+Disk /dev/loop12 - 248 MB / 236 MiB - 485064 sectors (RO), sector size=512
+Disk /dev/loop13 - 248 MB / 236 MiB - 485192 sectors (RO), sector size=512
+Disk /dev/loop14 - 172 MB / 164 MiB - 337560 sectors (RO), sector size=512
+Disk /dev/loop15 - 172 MB / 164 MiB - 337560 sectors (RO), sector size=512
+Disk /dev/loop16 - 366 MB / 349 MiB - 716168 sectors (RO), sector size=512
+Disk /dev/loop17 - 366 MB / 349 MiB - 716176 sectors (RO), sector size=512
+Disk /dev/loop19 - 509 MB / 485 MiB - 994336 sectors (RO), sector size=512
+Disk /dev/loop2 - 317 MB / 303 MiB - 620640 sectors (RO), sector size=512
+Disk /dev/loop20 - 85 MB / 81 MiB - 166424 sectors (RO), sector size=512
+Disk /dev/loop21 - 96 MB / 91 MiB - 187776 sectors (RO), sector size=512
+Disk /dev/loop22 - 117 MB / 111 MiB - 228728 sectors (RO), sector size=512
+Disk /dev/loop23 - 137 MB / 131 MiB - 268728 sectors (RO), sector size=512
+Disk /dev/loop24 - 828 MB / 790 MiB - 1618432 sectors (RO), sector size=512
+Disk /dev/loop25 - 835 MB / 796 MiB - 1632096 sectors (RO), sector size=512
+Disk /dev/loop26 - 183 MB / 175 MiB - 358936 sectors (RO), sector size=512
+Disk /dev/loop27 - 183 MB / 175 MiB - 359344 sectors (RO), sector size=512
+Disk /dev/loop28 - 48 MB / 45 MiB - 94064 sectors (RO), sector size=512
+Disk /dev/loop29 - 12 MB / 12 MiB - 25240 sectors (RO), sector size=512
+Disk /dev/loop3 - 317 MB / 303 MiB - 620632 sectors (RO), sector size=512
+Disk /dev/loop30 - 42 MB / 40 MiB - 83648 sectors (RO), sector size=512
+Disk /dev/loop31 - 42 MB / 40 MiB - 83648 sectors (RO), sector size=512
+Disk /dev/loop32 - 68 MB / 65 MiB - 133424 sectors (RO), sector size=512
+Disk /dev/loop33 - 66 MB / 63 MiB - 130848 sectors (RO), sector size=512
+Disk /dev/loop34 - 135 MB / 129 MiB - 264808 sectors (RO), sector size=512
+Disk /dev/loop35 - 136 MB / 130 MiB - 266888 sectors (RO), sector size=512
+Disk /dev/loop36 - 425 MB / 405 MiB - 831128 sectors (RO), sector size=512
+Disk /dev/loop37 - 425 MB / 405 MiB - 831304 sectors (RO), sector size=512
+Disk /dev/loop38 - 310 MB / 295 MiB - 605624 sectors (RO), sector size=512
+Disk /dev/loop39 - 336 MB / 320 MiB - 656256 sectors (RO), sector size=512
+Disk /dev/loop4 - 110 MB / 105 MiB - 216728 sectors (RO), sector size=512
+Disk /dev/loop40 - 317 MB / 303 MiB - 620696 sectors (RO), sector size=512
+Disk /dev/loop41 - 317 MB / 303 MiB - 620704 sectors (RO), sector size=512
+Disk /dev/loop42 - 338 MB / 322 MiB - 661400 sectors (RO), sector size=512
+Disk /dev/loop43 - 363 MB / 347 MiB - 710696 sectors (RO), sector size=512
+Disk /dev/loop44 - 364 MB / 347 MiB - 710960 sectors (RO), sector size=512
+Disk /dev/loop45 - 521 MB / 496 MiB - 1017608 sectors (RO), sector size=512
+Disk /dev/loop5 - 110 MB / 105 MiB - 216592 sectors (RO), sector size=512
+Disk /dev/loop6 - 58 MB / 55 MiB - 114000 sectors (RO), sector size=512
+Disk /dev/loop7 - 58 MB / 55 MiB - 113992 sectors (RO), sector size=512
+Disk /dev/loop8 - 66 MB / 63 MiB - 129944 sectors (RO), sector size=512
+Disk /dev/loop9 - 66 MB / 63 MiB - 129976 sectors (RO), sector size=512
+Disk /dev/nvme0n1 - 1024 GB / 953 GiB - CHS 976762 64 32, sector size=512
+
+Partition table type (auto): Intel
+Disk /dev/mmcblk0 - 62 GB / 57 GiB
+Partition table type: EFI GPT
+
+Analyse Disk /dev/mmcblk0 - 62 GB / 57 GiB - CHS 1899392 4 16
+Bad GPT partition, invalid signature.
+Trying alternate GPT
+Bad GPT partition, invalid signature.
+Current partition structure:
+Bad GPT partition, invalid signature.
+Trying alternate GPT
+Bad GPT partition, invalid signature.
+
+search_part()
+Disk /dev/mmcblk0 - 62 GB / 57 GiB - CHS 1899392 4 16
+     MS Data                    32768  121561087  121528320
+     exFAT, blocksize=131072, 62 GB / 57 GiB
+
+Results
+   P MS Data                    32768  121561087  121528320
+     exFAT, blocksize=131072, 62 GB / 57 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 121528320 linear /dev/mmcblk0 32768" | dmsetup create test0
+
+interface_write()
+ 1 P MS Data                    32768  121561087  121528320
+
+search_part()
+Disk /dev/mmcblk0 - 62 GB / 57 GiB - CHS 1899392 4 16
+     MS Data                    32768  121561087  121528320
+     exFAT, blocksize=131072, 62 GB / 57 GiB
+     MS Data                    32768  121561087  121528320
+     exFAT found using backup sector, blocksize=131072, 62 GB / 57 GiB
+     MS Data                    32768  121561087  121528320
+     exFAT found using backup sector, blocksize=131072, 62 GB / 57 GiB
+Search for partition aborted
+
+Results
+   P MS Data                    32768  121561087  121528320
+     exFAT, blocksize=131072, 62 GB / 57 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 121528320 linear /dev/mmcblk0 32768" | dmsetup create test0
+
+interface_write()
+ 1 P MS Data                    32768  121561087  121528320
+simulate write!
+
+Interface Advanced
+Bad GPT partition, invalid signature.
+Trying alternate GPT
+Bad GPT partition, invalid signature.
+
+Analyse Disk /dev/mmcblk0 - 62 GB / 57 GiB - CHS 1899392 4 16
+Bad GPT partition, invalid signature.
+Trying alternate GPT
+Bad GPT partition, invalid signature.
+Current partition structure:
+Bad GPT partition, invalid signature.
+Trying alternate GPT
+Bad GPT partition, invalid signature.
+
+search_part()
+Disk /dev/mmcblk0 - 62 GB / 57 GiB - CHS 1899392 4 16
+     MS Data                    32768  121561087  121528320
+     exFAT, blocksize=131072, 62 GB / 57 GiB
+
+Results
+   P MS Data                    32768  121561087  121528320
+     exFAT, blocksize=131072, 62 GB / 57 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 121528320 linear /dev/mmcblk0 32768" | dmsetup create test0
+SIGINT detected! TestDisk has been killed.

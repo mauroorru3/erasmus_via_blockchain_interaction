@@ -3,8 +3,8 @@
 # and install Go Relayer
 
 # Use Golang Docker Image
-#FROM golang:1.18
-FROM golang:1.20.5
+FROM golang:1.18
+#FROM golang:1.20.5
 
 # Set working dir
 WORKDIR /go_relayer_it_hub
@@ -13,8 +13,8 @@ WORKDIR /go_relayer_it_hub
 RUN apt-get install git
 
 # Clone relayer repository and install relayer
-# RUN git clone https://github.com/cosmos/relayer.git && cd relayer && git checkout v2.0.0-rc3 && make install
-RUN git clone https://github.com/cosmos/relayer.git && cd relayer && make install
+RUN git clone https://github.com/cosmos/relayer.git && cd relayer && git checkout v2.0.0-rc3 && make install
+# RUN git clone https://github.com/cosmos/relayer.git && cd relayer && make install
 
 # Copy configs
 # ADD configs /home/rly/configs

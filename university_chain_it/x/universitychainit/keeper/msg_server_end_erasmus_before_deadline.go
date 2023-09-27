@@ -109,6 +109,7 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 														"channel-0",
 														clienttypes.ZeroHeight(),
 														timeoutTimestamp,
+														"EndErasmusBeforeDeadline",
 													)
 													if err != nil {
 														return &types.MsgEndErasmusBeforeDeadlineResponse{

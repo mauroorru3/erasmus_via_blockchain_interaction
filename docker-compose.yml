@@ -99,6 +99,7 @@ services:
       - net-public
     volumes:
       - ./go_relayer_it_hub:/go_relayer_it_hub
+
       
   go_relayer_de_hub:
     profiles: ["go"]
@@ -110,6 +111,7 @@ services:
       - net-public
     volumes:
       - ./go_relayer_de_hub:/go_relayer_de_hub
+
       
   hermes_relayer_it_hub_relayer:
     profiles: ["hermes"]

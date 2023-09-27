@@ -37,6 +37,7 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 		msg.ChannelID,
 		clienttypes.ZeroHeight(),
 		msg.TimeoutTimestamp,
+		"SendErasmusStudent",
 	)
 	if err != nil {
 		return nil, err

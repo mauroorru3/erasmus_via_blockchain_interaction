@@ -22,6 +22,7 @@ func (k Keeper) TransmitExtendErasmusPeriodPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -63,7 +64,7 @@ func (k Keeper) TransmitExtendErasmusPeriodPacket(
 	)
 
 	sizeInt := packet.Size()
-	utilfunc.GetTransactionStats("TransmitExtendErasmusPeriodPacket", ctx, sizeInt, packetBytes)
+	utilfunc.GetTransactionStats("TransmitExtendErasmusPeriodPacket", details, ctx, sizeInt, packetBytes)
 
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
@@ -80,7 +81,7 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 	if err != nil {
 		return packetAck, err
 	}
-	utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket", ctx, sizeInt, binArray)
+	utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket", "", ctx, sizeInt, binArray)
 
 	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket")
 
@@ -97,7 +98,8 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 			uniInfo.Port,
 			uniInfo.ChannelID,
 			clienttypes.ZeroHeight(),
-			timeoutTimestamp)
+			timeoutTimestamp,
+			"")
 
 		if err != nil {
 			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + err.Error())
@@ -106,11 +108,16 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket packet sent")
 
 			packetHash := utilfunc.Hash(binArray)
-			err = utilfunc.GetConsumedGas("OnRecvExtendErasmusPeriodPacket Hub", strconv.FormatInt(int64(packetHash), 10), ctx)
+			err = utilfunc.GetConsumedGas("OnRecvExtendErasmusPeriodPacket", strconv.FormatInt(int64(packetHash), 10), ctx)
 			if err != nil {
 				return packetAck, err
 			} else {
-				utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket sending ack", ctx, sizeInt, binArray)
+				packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+				if err != nil {
+					return packetAck, err
+				}
+				sizeInt := len(packetAckBytes)
+				utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket Hub sending ack", "", ctx, sizeInt, binArray)
 				return packetAck, nil
 			}
 		}
@@ -121,13 +128,6 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 // OnAcknowledgementExtendErasmusPeriodPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData, ack channeltypes.Acknowledgement) error {
-
-	sizeInt := packet.Size()
-	binArray, err := data.GetBytes()
-	if err != nil {
-		return err
-	}
-	utilfunc.GetTransactionStats("OnAcknowledgementExtendErasmusPeriodPacket", ctx, sizeInt, binArray)
 
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
@@ -141,6 +141,13 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.ExtendErasmusPeriodPacketAck
+
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementExtendErasmusPeriodPacket", "", ctx, sizeInt, binArray)
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format

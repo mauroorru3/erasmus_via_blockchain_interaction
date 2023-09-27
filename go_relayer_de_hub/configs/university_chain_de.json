@@ -4,7 +4,7 @@
     "key": "admin_university_chain_de",
     "chain-id": "university_chain_de",
     "rpc-addr": "http://val-tum:26657",
-    "grpc-addr": "",
+    "grpc-addr": "http://val-tum:9090",
     "account-prefix": "cosmos",
     "keyring-backend": "test",
     "gas-adjustment": 1.5,

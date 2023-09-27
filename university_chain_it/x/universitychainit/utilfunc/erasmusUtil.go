@@ -727,7 +727,7 @@ func StartErasmus(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.
 	startDate := ctx.BlockTime()
 
 	//endDate := startDate.AddDate(0, int(erasmusCareer[lenCareer-1].Duration_in_months), 0)
-	endDate := startDate.Add(time.Duration(1000 * time.Second))
+	endDate := startDate.Add(time.Duration(240 * time.Second))
 	erasmusCareer[lenCareer-1].Start_date = FormatDeadline(startDate)
 	erasmusCareer[lenCareer-1].End_date = FormatDeadline(endDate)
 	erasmusCareer[lenCareer-1].Status = "In progress"

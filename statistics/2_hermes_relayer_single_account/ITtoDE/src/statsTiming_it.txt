@@ -1,0 +1,28 @@
+{"details":"TransmitErasmusRestictedDataPacket StartErasmus IT","packetHash":"3480378438","packetSize":"126","time":"2023-09-22 19:43:16.602"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3480378438","packetSize":"28","time":"2023-09-22 19:43:32.464"}
+{"details":"OnRecvErasmusIndexPacket IT","packetHash":"3647126934","packetSize":"81","time":"2023-09-22 19:43:48.511"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT","packetHash":"3359016122","packetSize":"141","time":"2023-09-22 19:43:48.517"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT","packetHash":"190727210","packetSize":"144","time":"2023-09-22 19:43:48.523"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT","packetHash":"2996184719","packetSize":"139","time":"2023-09-22 19:43:48.529"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT","packetHash":"3659404254","packetSize":"139","time":"2023-09-22 19:43:48.532"}
+{"details":"TransmitErasmusRestictedDataPacket - case 6 IT","packetHash":"1733559075","packetSize":"139","time":"2023-09-22 19:43:48.535"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT","packetHash":"3208824081","packetSize":"123","time":"2023-09-22 19:43:48.538"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT","packetHash":"3269899987","packetSize":"142","time":"2023-09-22 19:43:48.541"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT","packetHash":"1944079568","packetSize":"136","time":"2023-09-22 19:43:48.544"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT","packetHash":"2470391675","packetSize":"129","time":"2023-09-22 19:43:48.547"}
+{"details":"TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT","packetHash":"1463645902","packetSize":"151","time":"2023-09-22 19:43:48.550"}
+{"details":"OnRecvErasmusIndexPacket sending ack IT","packetHash":"3647126934","packetSize":"2","time":"2023-09-22 19:43:48.553"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3359016122","packetSize":"28","time":"2023-09-22 19:44:04.776"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"190727210","packetSize":"28","time":"2023-09-22 19:44:04.779"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2996184719","packetSize":"28","time":"2023-09-22 19:44:04.782"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3659404254","packetSize":"28","time":"2023-09-22 19:44:04.785"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1733559075","packetSize":"28","time":"2023-09-22 19:44:04.788"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3208824081","packetSize":"28","time":"2023-09-22 19:44:04.791"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"3269899987","packetSize":"28","time":"2023-09-22 19:44:04.794"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1944079568","packetSize":"28","time":"2023-09-22 19:44:04.797"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"2470391675","packetSize":"28","time":"2023-09-22 19:44:04.800"}
+{"details":"OnAcknowledgementErasmusRestictedDataPacket IT","packetHash":"1463645902","packetSize":"28","time":"2023-09-22 19:44:04.803"}
+{"details":"TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT","packetHash":"3815771571","packetSize":"93","time":"2023-09-22 19:45:19.205"}
+{"details":"OnAcknowledgementEndErasmusPeriodRequestPacket IT","packetHash":"3815771571","packetSize":"28","time":"2023-09-22 19:45:35.767"}
+{"details":"OnRecvFinalErasmusDataPacket IT","packetHash":"68306130","packetSize":"143","time":"2023-09-22 19:45:51.838"}
+{"details":"OnRecvFinalErasmusDataPacket sending ack IT","packetHash":"68306130","packetSize":"2","time":"2023-09-22 19:45:51.846"}

@@ -1,0 +1,6 @@
+2023-09-23 10:51:29.089914699 +0200 CEST m=+0.007843610
+Initial function: TransmitErasmusRestictedDataPacket StartErasmus DE
+Start time: 2023-09-23 10:25:50.157 +0000 UTC
+End function: OnAcknowledgementErasmusRestictedDataPacket Hub
+End time: 2023-09-23 10:26:59.404 +0000 UTC
+Interval: 1m9.247s
