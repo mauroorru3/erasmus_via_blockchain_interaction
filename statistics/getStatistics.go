@@ -332,7 +332,7 @@ func getLatency(timingMap map[string][]timingStruct, mode string) (ltStruct []la
 func printLatency(fileName string, ltStruct []latencyStruct) (err error) {
 
 	//file_chain_final, err := os.OpenFile("./statistics/"+fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	file_chain_final, err := os.Create("./statistics/" + fileName)
+	file_chain_final, err := os.Create("./statistics/" + fileName + ".txt")
 	if err != nil {
 		return err
 	}

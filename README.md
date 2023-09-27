@@ -130,7 +130,7 @@ Once the transfer of information between the chains is complete, the following t
 ```
 
 The test will check the insertion of the exam grade in the Erasmus plan.
-Once the Erasmus is finished (I have set the timer temporarily to 240 seconds for the tests), the updated data on the Erasmus plan will be transferred back to the home university, where the grade conversion will be carried out.
+Once the Erasmus is finished (I have set the timer temporarily to 120 seconds for the tests), the updated data on the Erasmus plan will be transferred back to the home university, where the grade conversion will be carried out.
 
 To see the updated data in the home chain:
 
@@ -159,6 +159,8 @@ To end the execution of the containers with go relayers:
 ```bash
 sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile go down
 ```
+
+To calculate statistics, first run a test, then e.g. `./test_chain.sh it unipi tum`, and, from the main directory, run `./statistics/getStatistics.go normal`. Or if you ran the test from the German chain to the Italian chain, then for example `./test_chain.sh de tum unipi`, run `go run ./statistics/getStatistics.go reverse`. You will find the test results inside the statistics directory.
 
 
 ## Contributing
