@@ -63,11 +63,12 @@ func (k msgServer) InsertStudentContactInfo(goCtx context.Context, msg *types.Ms
 								return &types.MsgInsertStudentContactInfoResponse{
 									Status: -1,
 								}, err
-							} else {
-								return &types.MsgInsertStudentContactInfoResponse{
-									Status: 0,
-								}, nil
+
 							}
+							return &types.MsgInsertStudentContactInfoResponse{
+								Status: 0,
+							}, nil
+
 						}
 					}
 				}

@@ -84,8 +84,8 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 	}
 	utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket", "", ctx, sizeInt, binArray)
 
-	utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
-	utilfunc.PrintData(data.String())
+	utilfunc.PrintLogs("OnRecvErasmusStudentPacket", ctx)
+	utilfunc.PrintData(data.String(), ctx)
 
 	// TODO: packet reception logic
 
@@ -103,7 +103,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 	switch packetID {
 	case "1":
 
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 1")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 1", ctx)
 		var homeIndexPacket utilfunc.StudentInfoRestrictedHomeIndexPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &homeIndexPacket)
 		if err != nil {
@@ -160,7 +160,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 					} else {
 
 						packetAck.ErasmusRestrictedInfo = resAck
-						utilfunc.PrintData(packetAck.ErasmusRestrictedInfo)
+						utilfunc.PrintData(packetAck.ErasmusRestrictedInfo, ctx)
 
 						err = utilfunc.SetForeignIndex(&student, homeIndexPacket.HomeIndex)
 						if err != nil {
@@ -170,7 +170,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 							utilfunc.SetHomeUniversityInfo(&student, homeUni.ChainName, homeUni.ForeignUniversitiesCountry)
 							k.SetStoredStudent(ctx, student)
 							k.SetUniversityInfo(ctx, uniInfo)
-							utilfunc.PrintLogs("OnRecvErasmusStudentPacket ack sent")
+							utilfunc.PrintLogs("OnRecvErasmusStudentPacket ack sent", ctx)
 
 							err = utilfunc.GetConsumedGas("OnRecvErasmusRestictedDataPacket DE - case 1", homeIndexPacket.HomeIndex, ctx)
 							if err != nil {
@@ -192,7 +192,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "2":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 2")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 2", ctx)
 		var nameSurnamePacket utilfunc.StudentInfoRestrictedNameSurnamePacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &nameSurnamePacket)
 		if err != nil {
@@ -229,7 +229,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 		}
 
 	case "3":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 3")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 3", ctx)
 		var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
 		if err != nil {
@@ -264,7 +264,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "4":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 3")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 3", ctx)
 		var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
 		if err != nil {
@@ -299,7 +299,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "5":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 4")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 4", ctx)
 		var startDatePacket utilfunc.StudentInfoRestrictedStartDatePacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &startDatePacket)
 		if err != nil {
@@ -348,7 +348,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "6":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 5")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 5", ctx)
 		var endDatePacket utilfunc.StudentInfoRestrictedEndDatePacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &endDatePacket)
 		if err != nil {
@@ -398,7 +398,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "7":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 6")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 6", ctx)
 		var durationPacket utilfunc.StudentInfoRestrictedDurationPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &durationPacket)
 		if err != nil {
@@ -447,17 +447,17 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "8":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 7")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 7", ctx)
 		var courseDetailsPacket utilfunc.StudentInfoRestrictedCourseDetailsPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &courseDetailsPacket)
 		if err != nil {
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 7 1 " + err.Error())
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 7 1 "+err.Error(), ctx)
 			return packetAck, err
 		}
 
 		student, found := k.GetStoredStudent(ctx, courseDetailsPacket.ForeignIndex)
 		if !found {
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 7 2 " + err.Error())
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 7 2 "+err.Error(), ctx)
 			return packetAck, types.ErrStudentNotPresent
 		} else {
 
@@ -486,17 +486,17 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "9":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 8")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 8", ctx)
 		var departmentPacket utilfunc.StudentInfoRestrictedDepartmentPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &departmentPacket)
 		if err != nil {
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 8 1 " + err.Error())
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 8 1 "+err.Error(), ctx)
 			return packetAck, err
 		}
 
 		student, found := k.GetStoredStudent(ctx, departmentPacket.ForeignIndex)
 		if !found {
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 8 2 " + err.Error())
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 8 2 "+err.Error(), ctx)
 			return packetAck, types.ErrStudentNotPresent
 		} else {
 			student.StudentData.DepartmentName = departmentPacket.DepartmentName
@@ -557,17 +557,17 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			}
 		}
 	case "11":
-		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10")
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10", ctx)
 		var examsPacket utilfunc.StudentInfoRestrictedExamsPacket
 		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &examsPacket)
 		if err != nil {
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 1 " + err.Error())
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 1 "+err.Error(), ctx)
 			return packetAck, err
 		}
 
 		student, found := k.GetStoredStudent(ctx, examsPacket.ForeignIndex)
 		if !found {
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 2 " + err.Error())
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 2 "+err.Error(), ctx)
 			return packetAck, types.ErrStudentNotPresent
 		} else {
 
@@ -575,20 +575,20 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 
 			examsJSON, _, err := utilfunc.GetJSONFromCourseExams(examsPacket.ForeignUniversity, student.StudentData.DepartmentName, student.StudentData.CourseType, student.StudentData.CourseOfStudy)
 			if err != nil {
-				utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 3 " + err.Error())
+				utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 3 "+err.Error(), ctx)
 				return packetAck, err
 			}
 
 			err = json.Unmarshal([]byte(examsJSON), &mapExams)
 			if err != nil {
-				utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 4 " + err.Error())
+				utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 4 "+err.Error(), ctx)
 				return packetAck, err
 			}
 
 			var erasmusCareer []utilfunc.ErasmusCareerStruct
 			err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
 			if err != nil {
-				utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 5 " + err.Error())
+				utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 10 5 "+err.Error(), ctx)
 				return packetAck, err
 			}
 			lenCareer := len(erasmusCareer)
@@ -659,7 +659,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -675,12 +675,12 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket cannot unmarshal acknowledgment")
+			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket cannot unmarshal acknowledgment", ctx)
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
 		// TODO: successful acknowledgement logic
-		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket success", ctx)
 
 		packetHash := utilfunc.Hash(binArray)
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusRestictedDataPacket DE", strconv.FormatInt(int64(packetHash), 10), ctx)
@@ -699,7 +699,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusRestictedDataPacketData) error {
 
 	// TODO: packet timeout logic
-	utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket", ctx)
 
 	return nil
 }

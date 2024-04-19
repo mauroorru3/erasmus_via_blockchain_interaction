@@ -87,7 +87,7 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 		return packetAck, err
 	}
 
-	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket")
+	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket", ctx)
 
 	// TODO: packet reception logic
 
@@ -95,12 +95,12 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 	if !found {
 		return packetAck, types.ErrStudentNotPresent
 	} else {
-		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket " + data.ErasmusRestrictedInfo)
+		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket "+data.ErasmusRestrictedInfo, ctx)
 		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusRestrictedInfo)
 		if err != nil {
 			return packetAck, err
 		}
-		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish")
+		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish", ctx)
 		k.SetStoredStudent(ctx, searchedStudent)
 
 		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket IT", data.HomeIndex, ctx)
@@ -131,7 +131,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -152,7 +152,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success", ctx)
 		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket IT", data.HomeIndex, ctx)
 		if err != nil {
 			return err
@@ -172,7 +172,7 @@ func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channelt
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket")
+	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
 
 	return nil
 }

@@ -90,7 +90,7 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 
 	// TODO: packet reception logic
 
-	utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
+	utilfunc.PrintLogs("OnRecvErasmusStudentPacket", ctx)
 
 	allStudents := k.GetAllStoredStudent(ctx)
 	found := false
@@ -158,7 +158,7 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		// TODO: failed acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error "+dispatchedAck.Error, ctx)
 
 		_ = dispatchedAck.Error
 
@@ -176,13 +176,13 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment " + err.Error())
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment "+err.Error(), ctx)
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusStudentPacket IT", data.Student.Index, ctx)
 
@@ -204,7 +204,7 @@ func (k Keeper) OnTimeoutErasmusStudentPacket(ctx sdk.Context, packet channeltyp
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutErasmusStudentPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusStudentPacket", ctx)
 
 	return nil
 }

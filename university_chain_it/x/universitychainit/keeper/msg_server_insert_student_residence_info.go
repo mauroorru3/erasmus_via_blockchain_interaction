@@ -70,11 +70,11 @@ func (k msgServer) InsertStudentResidenceInfo(goCtx context.Context, msg *types.
 								return &types.MsgInsertStudentResidenceInfoResponse{
 									Status: -1,
 								}, err
-							} else {
-								return &types.MsgInsertStudentResidenceInfoResponse{
-									Status: 0,
-								}, nil
+
 							}
+							return &types.MsgInsertStudentResidenceInfoResponse{
+								Status: 0,
+							}, nil
 
 						}
 					}

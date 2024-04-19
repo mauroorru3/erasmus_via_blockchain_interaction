@@ -5,11 +5,14 @@ import (
 
 	"hub/x/hub/types"
 	"hub/x/hub/utilfunc"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func (k msgServer) SendErasmusIndex(goCtx context.Context, msg *types.MsgSendErasmusIndex) (*types.MsgSendErasmusIndexResponse, error) {
 
-	utilfunc.PrintLogs("SendErasmusIndex")
+	ctx := sdk.UnwrapSDKContext(goCtx)
+	utilfunc.PrintLogs("SendErasmusIndex", ctx)
 
 	return &types.MsgSendErasmusIndexResponse{
 		Status: -1,

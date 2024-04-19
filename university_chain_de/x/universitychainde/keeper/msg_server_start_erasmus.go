@@ -115,10 +115,10 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 														" StartErasmus",
 													)
 													if err != nil {
-														utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error())
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket "+err.Error(), ctx)
 														return nil, err
 													} else {
-														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent")
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent", ctx)
 														k.Keeper.SetStoredStudent(ctx, searchedStudent)
 														k.Keeper.SetUniversityInfo(ctx, uniInfo)
 

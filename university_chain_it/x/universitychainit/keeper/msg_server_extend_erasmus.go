@@ -130,12 +130,13 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 																	return &types.MsgExtendErasmusResponse{
 																		Status: -1,
 																	}, err
-																} else {
 
-																	return &types.MsgExtendErasmusResponse{
-																		Status: 0,
-																	}, nil
 																}
+
+																return &types.MsgExtendErasmusResponse{
+																	Status: 0,
+																}, nil
+
 															}
 														}
 													}

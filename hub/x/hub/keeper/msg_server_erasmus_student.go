@@ -21,9 +21,8 @@ func (k msgServer) SendErasmusStudent(goCtx context.Context, msg *types.MsgSendE
 
 	*/
 
-	utilfunc.PrintLogs("SendErasmusStudent")
-
 	ctx := sdk.UnwrapSDKContext(goCtx)
+	utilfunc.PrintLogs("SendErasmusStudent", ctx)
 
 	var packet types.ErasmusStudentPacketData
 

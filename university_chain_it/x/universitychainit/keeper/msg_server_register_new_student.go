@@ -124,16 +124,18 @@ func (k msgServer) RegisterNewStudent(goCtx context.Context, msg *types.MsgRegis
 					uniInfo.NextStudentId++
 					k.Keeper.SetUniversityInfo(ctx, uniInfo)
 					k.Keeper.SetStoredStudent(ctx, newStoredStudent)
+
 					err = utilfunc.GetConsumedGas("RegisterNewStudent IT", newStoredStudent.Index, ctx)
 					if err != nil {
 						return &types.MsgRegisterNewStudentResponse{
 							StudentIndex: "-1",
 						}, err
-					} else {
-						return &types.MsgRegisterNewStudentResponse{
-							StudentIndex: returnIndexStudent,
-						}, nil
+
 					}
+					return &types.MsgRegisterNewStudentResponse{
+						StudentIndex: returnIndexStudent,
+					}, nil
+
 				}
 			}
 		}

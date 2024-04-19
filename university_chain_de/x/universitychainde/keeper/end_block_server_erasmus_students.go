@@ -73,8 +73,8 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							packet.ForeignIndex = foreignIndex
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.ForeignIndex)
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.DestinationUniversityName)
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket "+packet.ForeignIndex, ctx)
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket "+packet.DestinationUniversityName, ctx)
 
 							err = k.TransmitEndErasmusPeriodRequestPacket(
 								ctx,
@@ -89,7 +89,7 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 								panic(err)
 							}
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent")
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent", ctx)
 
 							err = utilfunc.GetConsumedGas("TerminateExpiredErasmusPeriods DE", studentIndex, ctx)
 							if err != nil {

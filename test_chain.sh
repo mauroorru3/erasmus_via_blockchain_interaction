@@ -1,5 +1,8 @@
 #!/bin/bash
 
+current_datetime=$(date +"%Y-%m-%d %H:%M:%S.%3N")
+echo $current_datetime >> stats_times.txt
+
 if [ $# -ne 3 ];
 	then echo "The number of arguments must be 3. The first represents the chain, the second the home university and the third the destination university. Usage example: ./test_chain.sh it unipi tum"; 
 	exit 1
@@ -10,6 +13,7 @@ if [ "$1" = "it" ];
 then  
 	if { [ "$2" = "unipi" ] || [ "$2" = "uniroma1" ]; } && { [ "$3" = "tum" ] || [ "$3" = "humboldt university" ]; };
 	then
+		: '
 		sudo rm university_chain_it/log/val-unipi/logs.txt
 		sudo rm university_chain_it/log/val-uniroma1/logs.txt
 		sudo rm university_chain_it/log/val-unipi/data.txt
@@ -34,6 +38,7 @@ then
 		sudo rm hub/log/val-hub-instance-2/data.txt
 		sudo rm hub/log/val-hub-instance-2/statsGasConsumed.txt
 		sudo rm hub/log/val-hub-instance-2/statsTiming.txt
+		'
 		sudo ./hub/test/test_configure_chain_hub.sh
 		sudo ./university_chain_de/test/test_configure_chain_de.sh "$3"
 		sudo ./university_chain_it/test/test_full_chain_it.sh "$2" "$3"
@@ -45,6 +50,7 @@ elif [ "$1" = "de" ];
 then  
 	if { [ "$2" = "tum" ] || [ "$2" = "humboldt university" ]; } && { [ "$3" = "unipi" ] || [ "$3" = "uniroma1" ]; };
 	then
+		: '
 		sudo rm university_chain_it/log/val-unipi/logs.txt
 		sudo rm university_chain_it/log/val-uniroma1/logs.txt
 		sudo rm university_chain_it/log/val-unipi/data.txt
@@ -69,6 +75,7 @@ then
 		sudo rm hub/log/val-hub-instance-2/data.txt
 		sudo rm hub/log/val-hub-instance-2/statsGasConsumed.txt
 		sudo rm hub/log/val-hub-instance-2/statsTiming.txt
+		'
 		sudo ./hub/test/test_configure_chain_hub.sh
 		sudo ./university_chain_it/test/test_configure_chain_it.sh "$3"
 		sudo ./university_chain_de/test/test_full_chain_de.sh "$2" "$3"

@@ -83,11 +83,11 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 	}
 	utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket", "", ctx, sizeInt, binArray)
 
-	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket")
+	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket", ctx)
 
 	uniInfo, found := k.GetUniversities(ctx, data.DestinationUniversityName)
 	if !found {
-		utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + types.ErrWrongNameUniversity.Error())
+		utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+types.ErrWrongNameUniversity.Error(), ctx)
 		return packetAck, types.ErrWrongNameUniversity
 	} else {
 
@@ -102,10 +102,10 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 			"")
 
 		if err != nil {
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + err.Error())
+			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+err.Error(), ctx)
 			return packetAck, err
 		} else {
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket packet sent")
+			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket packet sent", ctx)
 
 			packetHash := utilfunc.Hash(binArray)
 			err = utilfunc.GetConsumedGas("OnRecvExtendErasmusPeriodPacket", strconv.FormatInt(int64(packetHash), 10), ctx)
@@ -135,7 +135,7 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -156,7 +156,7 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success", ctx)
 
 		packetHash := utilfunc.Hash(binArray)
 		err = utilfunc.GetConsumedGas("OnAcknowledgementExtendErasmusPeriodPacket Hub", strconv.FormatInt(int64(packetHash), 10), ctx)
@@ -178,7 +178,7 @@ func (k Keeper) OnTimeoutExtendErasmusPeriodPacket(ctx sdk.Context, packet chann
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket")
+	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket", ctx)
 
 	return nil
 }

@@ -89,7 +89,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 
 	// TODO: packet reception logic
 
-	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket", ctx)
 
 	searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
 	if !found {
@@ -107,19 +107,20 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 				return packetAck, err
 			}
 			packetAck.ErasmusRestrictedInfo = data
+
+			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+			if err != nil {
+				return packetAck, err
+			}
+
 			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket IT", stringIndex, ctx)
 			if err != nil {
 				return packetAck, err
-			} else {
-
-				packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
-				if err != nil {
-					return packetAck, err
-				}
-				sizeInt := len(packetAckBytes)
-				utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket sending ack", "", ctx, sizeInt, binArray)
-				return packetAck, nil
 			}
+
+			sizeInt := len(packetAckBytes)
+			utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket sending ack", "", ctx, sizeInt, binArray)
+			return packetAck, nil
 
 		}
 	}
@@ -136,7 +137,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -157,16 +158,15 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementEndErasmusPeriodRequestPacket IT", data.Index, ctx)
 		if err != nil {
 			return err
-		} else {
-
-			return nil
-
 		}
+
+		return nil
+
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -178,7 +178,7 @@ func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet c
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket", ctx)
 
 	return nil
 }

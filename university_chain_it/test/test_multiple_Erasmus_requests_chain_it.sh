@@ -35,8 +35,17 @@ sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.u
 
 
 
+usersArray=( $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Mario Rossi" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Tamara Genovesi" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Franca Ferrari" --address))
+nameAndSurnameArray=("Mario" "Rossi" "Tamara" "Genovesi" "Franca" "Ferrari")
+
+
+
+
+: << 'COMMENT'
+
 usersArray=( $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Mario Rossi" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Tamara Genovesi" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Franca Ferrari" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Luigi Lena" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Gianpiero Serafino" --address) $(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-unipi:/root/.university_chain_it  university_chain_itd_i keys --keyring-backend test show "Antonella Marino" --address))
 nameAndSurnameArray=("Mario" "Rossi" "Tamara" "Genovesi" "Franca" "Ferrari" "Luigi" "Lena" "Gianpiero" "Serafino" "Antonella" "Marino")
+COMMENT
 
 
 : << 'COMMENT'

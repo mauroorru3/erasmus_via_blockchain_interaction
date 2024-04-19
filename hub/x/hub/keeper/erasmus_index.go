@@ -87,7 +87,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 		return packetAck, err
 	}
 
-	utilfunc.PrintLogs("OnRecvErasmusIndexPacket")
+	utilfunc.PrintLogs("OnRecvErasmusIndexPacket", ctx)
 
 	// TODO: packet reception logic
 
@@ -117,7 +117,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -138,7 +138,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket Hub", data.Index, ctx)
 		if err != nil {
@@ -159,7 +159,7 @@ func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
 
 	return nil
 }

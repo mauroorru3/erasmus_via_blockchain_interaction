@@ -89,7 +89,7 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 
 	// TODO: packet reception logic
 
-	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket")
+	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket", ctx)
 
 	err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket Hub", data.HomeIndex, ctx)
 	if err != nil {
@@ -116,7 +116,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -137,7 +137,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementFinalErasmusDataPacket Hub", data.HomeIndex, ctx)
 		if err != nil {
@@ -158,7 +158,7 @@ func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channelt
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket")
+	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
 
 	return nil
 }

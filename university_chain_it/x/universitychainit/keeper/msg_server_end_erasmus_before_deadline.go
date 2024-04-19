@@ -121,12 +121,12 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 															return &types.MsgEndErasmusBeforeDeadlineResponse{
 																Status: -1,
 															}, err
-														} else {
-
-															return &types.MsgEndErasmusBeforeDeadlineResponse{
-																Status: 0,
-															}, nil
 														}
+
+														return &types.MsgEndErasmusBeforeDeadlineResponse{
+															Status: 0,
+														}, nil
+
 													}
 												}
 											}

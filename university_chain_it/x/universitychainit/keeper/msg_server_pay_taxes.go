@@ -68,11 +68,12 @@ func (k msgServer) PayTaxes(goCtx context.Context, msg *types.MsgPayTaxes) (*typ
 									return &types.MsgPayTaxesResponse{
 										Status: -1,
 									}, err
-								} else {
-									return &types.MsgPayTaxesResponse{
-										Status: 0,
-									}, nil
+
 								}
+								return &types.MsgPayTaxesResponse{
+									Status: 0,
+								}, nil
+
 							}
 						} else {
 							return &types.MsgPayTaxesResponse{

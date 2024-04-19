@@ -111,13 +111,13 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 													return &types.MsgInsertExamGradeResponse{
 														Status: -1,
 													}, err
-												} else {
-
-													return &types.MsgInsertExamGradeResponse{
-														Status: 0,
-													}, nil
 
 												}
+
+												return &types.MsgInsertExamGradeResponse{
+													Status: 0,
+												}, nil
+
 											}
 										}
 
@@ -163,12 +163,13 @@ func (k msgServer) InsertExamGrade(goCtx context.Context, msg *types.MsgInsertEx
 										return &types.MsgInsertExamGradeResponse{
 											Status: -1,
 										}, err
-									} else {
 
-										return &types.MsgInsertExamGradeResponse{
-											Status: 0,
-										}, nil
 									}
+
+									return &types.MsgInsertExamGradeResponse{
+										Status: 0,
+									}, nil
+
 								}
 							}
 						}

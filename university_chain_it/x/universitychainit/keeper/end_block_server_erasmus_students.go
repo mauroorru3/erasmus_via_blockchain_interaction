@@ -108,7 +108,7 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 								panic(err)
 							}
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent")
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent", ctx)
 
 							err = utilfunc.GetConsumedGas("TransmitEndErasmusPeriodRequestPacket IT", studentIndex, ctx)
 							if err != nil {

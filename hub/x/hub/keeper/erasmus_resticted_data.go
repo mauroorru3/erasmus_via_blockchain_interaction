@@ -89,9 +89,9 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 		return packetAck, err
 	}
 
-	utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket")
+	utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket", ctx)
 
-	utilfunc.PrintData(data.String())
+	utilfunc.PrintData(data.String(), ctx)
 
 	var result map[string]interface{}
 	err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &result)
@@ -155,7 +155,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
-		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -171,12 +171,12 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket " + err.Error())
+			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket "+err.Error(), ctx)
 			return errors.New("cannot unmarshal acknowledgment " + err.Error())
 		}
 
 		// TODO: successful acknowledgement logic
-		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket", ctx)
 
 		if packetAck.ErasmusRestrictedInfo != "" {
 
@@ -195,18 +195,18 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 			uniInfo, found := k.GetUniversities(ctx, uniStr)
 			if !found {
-				utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket " + types.ErrWrongNameUniversity.Error())
+				utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket "+types.ErrWrongNameUniversity.Error(), ctx)
 				return types.ErrWrongNameUniversity
 			} else {
 
 				var packet_to_send types.ErasmusIndexPacketData
 
-				utilfunc.PrintData("OnAcknowledgementErasmusRestictedDataPacket " + data.String())
+				utilfunc.PrintData("OnAcknowledgementErasmusRestictedDataPacket "+data.String(), ctx)
 
 				packet_to_send.ForeignIndex = result["f_id"]
 				packet_to_send.Index = packetSent["h_id"]
 
-				utilfunc.PrintData("OnAcknowledgementErasmusRestictedDataPacket " + packet_to_send.String())
+				utilfunc.PrintData("OnAcknowledgementErasmusRestictedDataPacket "+packet_to_send.String(), ctx)
 
 				err := k.TransmitErasmusIndexPacket(ctx,
 					packet_to_send,
@@ -217,15 +217,15 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 					" OnAcknowledgementErasmusRestictedDataPacket")
 
 				if err != nil {
-					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error " + err.Error())
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error "+err.Error(), ctx)
 					return err
 				} else {
 
-					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket packet sent")
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket packet sent", ctx)
 
 					err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusRestictedDataPacket Hub", packet_to_send.Index, ctx)
 					if err != nil {
-						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error " + err.Error())
+						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error "+err.Error(), ctx)
 						return err
 					} else {
 
@@ -247,7 +247,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusRestictedDataPacketData) error {
 
 	// TODO: packet timeout logic
-	utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket")
+	utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket", ctx)
 
 	return nil
 }

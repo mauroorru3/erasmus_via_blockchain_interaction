@@ -82,21 +82,21 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 	}
 	utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket", "", ctx, sizeInt, binArray)
 
-	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket")
+	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket", ctx)
 
 	searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
 	if !found {
-		utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + types.ErrStudentNotPresent.Error())
+		utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+types.ErrStudentNotPresent.Error(), ctx)
 		return packetAck, types.ErrStudentNotPresent
 	} else {
 
 		err := utilfunc.ExtendErasmusForeignStudent(ctx, data.DurationInMonths, data.FinalDate, &searchedStudent)
 		if err != nil {
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + err.Error())
+			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+err.Error(), ctx)
 			return packetAck, err
 		} else {
 			k.SetStoredStudent(ctx, searchedStudent)
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket ack sent")
+			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket ack sent", ctx)
 
 			stringIndex, err := utilfunc.GetForeignIndex(searchedStudent)
 			if err != nil {
@@ -129,7 +129,7 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -149,11 +149,11 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 		}
 
 		// TODO: successful acknowledgement logic
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success", ctx)
 
 		searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
 		if !found {
-			utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket " + types.ErrStudentNotPresent.Error())
+			utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket "+types.ErrStudentNotPresent.Error(), ctx)
 			return types.ErrStudentNotPresent
 		} else {
 			stringIndex, err := utilfunc.GetForeignIndex(searchedStudent)
@@ -180,7 +180,7 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 func (k Keeper) OnTimeoutExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData) error {
 
 	// TODO: packet timeout logic
-	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket")
+	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket", ctx)
 
 	return nil
 }

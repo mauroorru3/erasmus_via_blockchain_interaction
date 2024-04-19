@@ -110,12 +110,13 @@ func (k msgServer) InsertStudentPersonalInfo(goCtx context.Context, msg *types.M
 										return &types.MsgInsertStudentPersonalInfoResponse{
 											Status: -1,
 										}, err
-									} else {
 
-										return &types.MsgInsertStudentPersonalInfoResponse{
-											Status: 0,
-										}, nil
 									}
+
+									return &types.MsgInsertStudentPersonalInfoResponse{
+										Status: 0,
+									}, nil
+
 								}
 							} else {
 								searchedStudent.StudentData.CompleteInformation[0] = 1
@@ -127,11 +128,12 @@ func (k msgServer) InsertStudentPersonalInfo(goCtx context.Context, msg *types.M
 									return &types.MsgInsertStudentPersonalInfoResponse{
 										Status: -1,
 									}, err
-								} else {
-									return &types.MsgInsertStudentPersonalInfoResponse{
-										Status: 0,
-									}, nil
+
 								}
+								return &types.MsgInsertStudentPersonalInfoResponse{
+									Status: 0,
+								}, nil
+
 							}
 						}
 					}

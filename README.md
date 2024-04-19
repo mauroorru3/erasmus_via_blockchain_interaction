@@ -46,10 +46,6 @@ To start the containers with hermes relayers:
 sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile hermes up
 ```
 
-To start the containers with go relayers:
-
-```bash
-sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile go up
 ```
 
 _Remember_ that the relayers must be executed when the configuration of the chains has been completed, otherwise there will be errors.
@@ -58,28 +54,50 @@ _Remember_ that the order of execution is important.
 First the relayer related to the Chain IT and the Hub must be started, and then the relayer related to the Chain DE and the Hub.
 The execution must take place in a new terminal for the IT-Hub relayer and the DE-Hub relayer.
 
+The following commands consider the case of two hermes relayers:
+
 ```bash
-sudo docker exec -it hermes_relayer_it_hub bash
+sudo docker exec -it university_chain-prod-hermes_relayer_it_hub_relayer-1 bash
+```
+
+```bash
+./run-relayer.sh
+```
+
+```bash
+sudo docker exec -it university_chain-prod-hermes_relayer_de_hub_relayer-1 bash
+```
+```bash
+./run-relayer.sh
+```
+
+Concerning the case of 4 hermes relayer:
+
+```bash
+sudo docker exec -it university_chain-prod-hermes_relayer_it_hub_relayer-1 bash
 ```
 ```bash
 ./run-relayer.sh
 ```
 
 ```bash
-sudo docker exec -it hermes_relayer_de_hub bash
+sudo docker exec -it university_chain-prod-hermes_relayer_de_hub_relayer-1 bash
+```
+```bash
+./run-relayer.sh
+```
+```bash
+sudo docker exec -it university_chain-prod-hermes_relayer_it_hub_relayer-2 bash
 ```
 ```bash
 ./run-relayer.sh
 ```
 
-
-To start the go relayer process:
-
 ```bash
-sudo docker exec go_relayer_it_hub ./run-relayer_it_hub.sh
+sudo docker exec -it university_chain-prod-hermes_relayer_de_hub_relayer-2 bash
 ```
 ```bash
-sudo docker exec go_relayer_de_hub ./run-relayer_de_hub.sh
+./run-relayer.sh
 ```
 
 
@@ -154,13 +172,6 @@ To end the execution of the containers with hermes relayers:
 sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile hermes down
 ```
 
-To end the execution of the containers with go relayers:
-
-```bash
-sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile go down
-```
-
-To calculate statistics, first run a test, then e.g. `./test_chain.sh it unipi tum`, and, from the main directory, run `./statistics/getStatistics.go normal`. Or if you ran the test from the German chain to the Italian chain, then for example `./test_chain.sh de tum unipi`, run `go run ./statistics/getStatistics.go reverse`. You will find the test results inside the statistics directory.
 
 
 ## Contributing

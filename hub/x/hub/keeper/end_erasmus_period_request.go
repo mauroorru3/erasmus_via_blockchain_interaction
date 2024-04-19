@@ -87,7 +87,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 		return packetAck, err
 	}
 
-	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket", ctx)
 
 	// TODO: packet reception logic
 
@@ -99,7 +99,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 	} else {
 
 		var packet_to_send types.EndErasmusPeriodRequestPacketData = data
-		utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket " + data.String())
+		utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket "+data.String(), ctx)
 
 		err := k.TransmitEndErasmusPeriodRequestPacket(
 			ctx,
@@ -140,7 +140,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -156,13 +156,13 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + err.Error())
+			utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error "+err.Error(), ctx)
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success", ctx)
 
 		uniInfo, found := k.GetUniversities(ctx, data.StartingUniversityName)
 		if !found {
@@ -185,7 +185,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 			if err != nil {
 				return err
 			} else {
-				utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket msg sent")
+				utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket msg sent", ctx)
 
 				err = utilfunc.GetConsumedGas("OnAcknowledgementEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
 				if err != nil {
@@ -208,7 +208,7 @@ func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet c
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket", ctx)
 
 	return nil
 }

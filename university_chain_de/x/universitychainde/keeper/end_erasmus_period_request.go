@@ -89,7 +89,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 
 	// TODO: packet reception logic
 
-	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket", ctx)
 
 	searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
 	if !found {
@@ -104,10 +104,10 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 			stringIndex := data.Index
 			data, err := utilfunc.GetErasmusExamsResults(searchedStudent)
 			if err != nil {
-				utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+				utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 				return packetAck, err
 			}
-			utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket " + data)
+			utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket "+data, ctx)
 			packetAck.ErasmusRestrictedInfo = data
 
 			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket", stringIndex, ctx)
@@ -138,7 +138,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -159,7 +159,7 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 		// TODO: successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementEndErasmusPeriodRequestPacket DE", data.Index, ctx)
 		if err != nil {
@@ -180,7 +180,7 @@ func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet c
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket")
+	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket", ctx)
 
 	return nil
 }

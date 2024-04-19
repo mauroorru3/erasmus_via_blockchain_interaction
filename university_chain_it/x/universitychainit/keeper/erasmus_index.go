@@ -93,12 +93,12 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 
 		searchedStudent, found := k.GetStoredStudent(ctx, data.Index)
 		if !found {
-			utilfunc.PrintLogs("OnRecvErasmusIndexPacket " + types.ErrStudentNotPresent.Error())
+			utilfunc.PrintLogs("OnRecvErasmusIndexPacket "+types.ErrStudentNotPresent.Error(), ctx)
 			return packetAck, types.ErrStudentNotPresent
 		} else {
 
-			utilfunc.PrintLogs("OnRecvErasmusIndexPacket success")
-			utilfunc.PrintData("OnRecvErasmusIndexPacket " + data.String())
+			utilfunc.PrintLogs("OnRecvErasmusIndexPacket success", ctx)
+			utilfunc.PrintData("OnRecvErasmusIndexPacket "+data.String(), ctx)
 
 			utilfunc.SetForeignIndex(&searchedStudent, data.ForeignIndex)
 
@@ -128,11 +128,11 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 				)
 
 				if err != nil {
-					utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+					utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 					return packetAck, err
 				} else {
 
-					utilfunc.PrintLogs("SendErasmusStudent CreateNameSurnameJSONPacketFromStudentData sent")
+					utilfunc.PrintLogs("SendErasmusStudent CreateNameSurnameJSONPacketFromStudentData sent", ctx)
 					data, err := utilfunc.CreateStudentKeyPart1JSONPacketFromStudentData(stu)
 					if err != nil {
 						return packetAck, err
@@ -152,11 +152,11 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 					)
 
 					if err != nil {
-						utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+						utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 						return packetAck, err
 					} else {
 
-						utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart1JSONPacketFromStudentData sent")
+						utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart1JSONPacketFromStudentData sent", ctx)
 
 						data, err := utilfunc.CreateStudentKeyPart2JSONPacketFromStudentData(stu)
 						if err != nil {
@@ -177,10 +177,10 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 						)
 
 						if err != nil {
-							utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+							utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 							return packetAck, err
 						} else {
-							utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart2JSONPacketFromStudentData sent")
+							utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart2JSONPacketFromStudentData sent", ctx)
 
 							data, err := utilfunc.CreateStartDateJSONPacketFromStudentData(stu)
 							if err != nil {
@@ -201,10 +201,10 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 							)
 
 							if err != nil {
-								utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+								utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 								return packetAck, err
 							} else {
-								utilfunc.PrintLogs("SendErasmusStudent CreateStartDateJSONPacketFromStudentData sent")
+								utilfunc.PrintLogs("SendErasmusStudent CreateStartDateJSONPacketFromStudentData sent", ctx)
 								data, err := utilfunc.CreateEndDateJSONPacketFromStudentData(stu)
 								if err != nil {
 									return packetAck, err
@@ -224,10 +224,10 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 								)
 
 								if err != nil {
-									utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+									utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 									return packetAck, err
 								} else {
-									utilfunc.PrintLogs("SendErasmusStudent CreateEndDateJSONPacketFromStudentData sent")
+									utilfunc.PrintLogs("SendErasmusStudent CreateEndDateJSONPacketFromStudentData sent", ctx)
 									data, err := utilfunc.CreateDurationJSONPacketFromStudentData(stu)
 									if err != nil {
 										return packetAck, err
@@ -247,13 +247,13 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 									)
 
 									if err != nil {
-										utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+										utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 										return packetAck, err
 									} else {
-										utilfunc.PrintLogs("SendErasmusStudent CreateDurationJSONPacketFromStudentData sent")
+										utilfunc.PrintLogs("SendErasmusStudent CreateDurationJSONPacketFromStudentData sent", ctx)
 										data, err := utilfunc.CreateCourseDetailsJSONPacketFromStudentData(stu)
 										if err != nil {
-											utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+											utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 											return packetAck, err
 										}
 
@@ -271,10 +271,10 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 										)
 
 										if err != nil {
-											utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+											utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 											return packetAck, err
 										} else {
-											utilfunc.PrintLogs("SendErasmusStudent CreateCourseDetailsJSONPacketFromStudentData sent")
+											utilfunc.PrintLogs("SendErasmusStudent CreateCourseDetailsJSONPacketFromStudentData sent", ctx)
 											data, err := utilfunc.CreateDepartmentJSONPacketFromStudentData(stu)
 											if err != nil {
 												return packetAck, err
@@ -294,13 +294,13 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 											)
 
 											if err != nil {
-												utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+												utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 												return packetAck, err
 											} else {
-												utilfunc.PrintLogs("SendErasmusStudent CreateDepartmentJSONPacketFromStudentData sent")
+												utilfunc.PrintLogs("SendErasmusStudent CreateDepartmentJSONPacketFromStudentData sent", ctx)
 												data, err := utilfunc.CreateErasmusTypeJSONPacketFromStudentData(stu)
 												if err != nil {
-													utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+													utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 													return packetAck, err
 												}
 
@@ -318,13 +318,13 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 												)
 
 												if err != nil {
-													utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+													utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 													return packetAck, err
 												} else {
-													utilfunc.PrintLogs("SendErasmusStudent CreateErasmusTypeJSONPacketFromStudentData sent")
+													utilfunc.PrintLogs("SendErasmusStudent CreateErasmusTypeJSONPacketFromStudentData sent", ctx)
 													data, err := utilfunc.CreateExamsJSONPacketFromStudentData(stu)
 													if err != nil {
-														utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+														utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 														return packetAck, err
 													}
 
@@ -342,31 +342,31 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 													)
 
 													if err != nil {
-														utilfunc.PrintLogs("SendErasmusStudent " + err.Error())
+														utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
 														return packetAck, err
 													} else {
-														utilfunc.PrintLogs("SendErasmusStudent CreateExamsJSONPacketFromStudentData sent")
+														utilfunc.PrintLogs("SendErasmusStudent CreateExamsJSONPacketFromStudentData sent", ctx)
 
 														stringIndex, err := utilfunc.GetForeignIndex(stu)
 														if err != nil {
 															return packetAck, err
 														} else {
+
 															err = utilfunc.GetConsumedGas("OnRecvErasmusIndexPacket IT", stringIndex, ctx)
 
 															if err != nil {
 																return packetAck, err
-															} else {
-
-																packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
-																if err != nil {
-																	return packetAck, err
-																}
-																sizeInt := len(packetAckBytes)
-																//sizeInt := packetAck.Size()
-																utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", "", ctx, sizeInt, binArray)
-																return packetAck, nil
-
 															}
+
+															packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+															if err != nil {
+																return packetAck, err
+															}
+															sizeInt := len(packetAckBytes)
+															//sizeInt := packetAck.Size()
+															utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", "", ctx, sizeInt, binArray)
+															return packetAck, nil
+
 														}
 													}
 												}
@@ -396,7 +396,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		// TODO: failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
@@ -412,21 +412,20 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket cannot unmarshal acknowledgment")
+			utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket cannot unmarshal acknowledgment", ctx)
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
 		// TODO: successful acknowledgement logic
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket IT", data.Index, ctx)
 		if err != nil {
 			return err
-		} else {
-
-			return nil
-
 		}
+
+		return nil
+
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -438,7 +437,7 @@ func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes
 
 	// TODO: packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
 
 	return nil
 }

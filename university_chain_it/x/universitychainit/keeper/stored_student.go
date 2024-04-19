@@ -1,9 +1,10 @@
 package keeper
 
 import (
+	"university_chain_it/x/universitychainit/types"
+
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"university_chain_it/x/universitychainit/types"
 )
 
 // SetStoredStudent set a specific storedStudent in the store from its index

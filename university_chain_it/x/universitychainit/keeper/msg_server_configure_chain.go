@@ -128,16 +128,18 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 								Status: -1,
 							}, types.ErrWrongNameUniversity
 						}
+
 						err = utilfunc.GetConsumedGas("ConfigureChain IT", strconv.FormatInt(int64(uniInfo.GetNextStudentId()), 10), ctx)
 						if err != nil {
 							return &types.MsgConfigureChainResponse{
 								Status: -1,
 							}, err
-						} else {
-							return &types.MsgConfigureChainResponse{
-								Status: 0,
-							}, nil
 						}
+
+						return &types.MsgConfigureChainResponse{
+							Status: 0,
+						}, nil
+
 					}
 				}
 			}

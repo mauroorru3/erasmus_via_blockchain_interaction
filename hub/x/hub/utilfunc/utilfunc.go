@@ -183,45 +183,45 @@ func GetForeignUniversityName(student types.StoredStudent) (res string, err erro
 	return res, err
 }
 
-func PrintLogs(text string) error {
+func PrintLogs(text string, ctx sdk.Context) error {
+	if !ctx.IsCheckTx() {
+		file, err := os.OpenFile("log/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
-	file, err := os.OpenFile("log/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			return err
+		}
 
-	if err != nil {
-		return err
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
+
+		if err2 != nil {
+			return err2
+		}
 	}
-
-	defer file.Close()
-
-	dt := time.Now()
-
-	_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
-
-	if err2 != nil {
-		return err2
-	}
-
 	return nil
 }
 
-func PrintData(text string) error {
+func PrintData(text string, ctx sdk.Context) error {
+	if !ctx.IsCheckTx() {
+		file, err := os.OpenFile("log/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
-	file, err := os.OpenFile("log/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			return err
+		}
 
-	if err != nil {
-		return err
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
+
+		if err2 != nil {
+			return err2
+		}
 	}
-
-	defer file.Close()
-
-	dt := time.Now()
-
-	_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
-
-	if err2 != nil {
-		return err2
-	}
-
 	return nil
 }
 
@@ -259,48 +259,51 @@ func Hash(bytes []byte) uint32 {
 //	bytesSizeString := strconv.FormatInt(int64(bytesSize), 10)
 
 func GetTransactionStats(functionName string, details string, ctx sdk.Context, sizeInt int, binArray []byte) (err error) {
-	sizeString := strconv.FormatInt(int64(sizeInt), 10)
-	packetHash := Hash(binArray)
-	packetHashString := strconv.FormatInt(int64(packetHash), 10)
+	if !ctx.IsCheckTx() {
+		sizeString := strconv.FormatInt(int64(sizeInt), 10)
+		packetHash := Hash(binArray)
+		packetHashString := strconv.FormatInt(int64(packetHash), 10)
 
-	stats := map[string]string{
-		"details":    functionName + details + " Hub",
-		"packetHash": packetHashString,
-		"packetSize": sizeString,
-		"time":       FormatDeadlineMilliseconds(time.Now()),
+		stats := map[string]string{
+			"details":    functionName + details + " Hub",
+			"packetHash": packetHashString,
+			"packetSize": sizeString,
+			"time":       FormatDeadlineMilliseconds(time.Now()),
+		}
+
+		jsonStats, err := json.Marshal(stats)
+		if err != nil {
+			fmt.Printf("could not marshal json: %s\n", err)
+			return err
+		}
+
+		PrintStats(string(jsonStats), "log/statsTiming.txt")
 	}
-
-	jsonStats, err := json.Marshal(stats)
-	if err != nil {
-		fmt.Printf("could not marshal json: %s\n", err)
-		return err
-	}
-
-	PrintStats(string(jsonStats), "log/statsTiming.txt")
-
 	return nil
 
 }
 
 func GetConsumedGas(functionName string, identifier string, ctx sdk.Context) (err error) {
 
-	gasConsumed := ctx.GasMeter().GasConsumed()
-	gasConsumedString := strconv.FormatInt(int64(gasConsumed), 10)
+	if !ctx.IsCheckTx() {
+		gasConsumed := ctx.GasMeter().GasConsumed()
+		gasConsumedString := strconv.FormatInt(int64(gasConsumed), 10)
 
-	stats := map[string]string{
-		"functionName": functionName,
-		"id":           identifier,
-		"consumedGas":  gasConsumedString,
+		stats := map[string]string{
+			"functionName": functionName,
+			"id":           identifier,
+			"consumedGas":  gasConsumedString,
+			"time":         FormatDeadlineMilliseconds(time.Now()),
+		}
+
+		jsonStats, err := json.Marshal(stats)
+		if err != nil {
+			fmt.Printf("could not marshal json: %s\n", err)
+			return err
+		}
+
+		PrintStats(string(jsonStats), "log/statsGasConsumed.txt")
 	}
-
-	jsonStats, err := json.Marshal(stats)
-	if err != nil {
-		fmt.Printf("could not marshal json: %s\n", err)
-		return err
-	}
-
-	PrintStats(string(jsonStats), "log/statsGasConsumed.txt")
-
 	return nil
 
 }

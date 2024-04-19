@@ -1280,6 +1280,13 @@ func CreateHomeIndexJSONPacketFromStudentData(student types.StoredStudent) (stud
 
 	var infoRestricted StudentInfoRestrictedHomeIndexPacket
 
+	/*
+		infoRestricted.HomeIndex = "a"
+		for i := 0; i < 72; i++ {
+			infoRestricted.HomeIndex = infoRestricted.HomeIndex + "a"
+		}
+	*/
+
 	infoRestricted.HomeIndex = student.Index
 	infoRestricted.HomeUniversity = student.StudentData.UniversityName
 	infoRestricted.ForeignUniversity, _ = GetForeignUniversityName(student)

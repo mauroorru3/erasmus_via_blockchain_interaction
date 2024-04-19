@@ -87,11 +87,12 @@ func (k msgServer) InsertErasmusExam(goCtx context.Context, msg *types.MsgInsert
 													return &types.MsgInsertErasmusExamResponse{
 														Status: -1,
 													}, err
-												} else {
-													return &types.MsgInsertErasmusExamResponse{
-														Status: 0,
-													}, nil
 												}
+
+												return &types.MsgInsertErasmusExamResponse{
+													Status: 0,
+												}, nil
+
 											}
 										}
 									}
