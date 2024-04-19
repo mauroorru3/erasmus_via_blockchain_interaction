@@ -2118,3 +2118,4 @@
 {"consumedGas":"662649","functionName":"OnRecvErasmusRestictedDataPacket Hub","id":"1875916373","time":"2024-04-19 11:27:46.756"}
 {"consumedGas":"713777","functionName":"OnRecvErasmusRestictedDataPacket Hub","id":"4065902136","time":"2024-04-19 11:27:46.756"}
 {"consumedGas":"739638","functionName":"OnAcknowledgementErasmusIndexPacket Hub","id":"unipi_3","time":"2024-04-19 11:27:46.757"}
+{"consumedGas":"70746","functionName":"ConfigureChain Hub","id":"1","time":"2024-04-19 11:40:28.674"}
