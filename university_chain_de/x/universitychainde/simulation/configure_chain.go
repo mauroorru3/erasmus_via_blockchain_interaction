@@ -22,7 +22,7 @@ func SimulateMsgConfigureChain(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the ConfigureChain simulation
+		// Handling the ConfigureChain simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "ConfigureChain simulation not implemented"), nil, nil
 	}

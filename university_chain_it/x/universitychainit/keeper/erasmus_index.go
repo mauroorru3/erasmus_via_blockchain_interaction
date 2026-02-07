@@ -89,7 +89,7 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 		return packetAck, err
 	} else {
 
-		// TODO: packet reception logic
+		// Packet reception logic
 
 		searchedStudent, found := k.GetStoredStudent(ctx, data.Index)
 		if !found {
@@ -393,7 +393,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
+		// Failed acknowledgement logic
 		_ = dispatchedAck.Error
 
 		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error "+dispatchedAck.Error, ctx)
@@ -416,7 +416,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket IT", data.Index, ctx)
@@ -435,7 +435,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 // OnTimeoutErasmusIndexPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 
 	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
 

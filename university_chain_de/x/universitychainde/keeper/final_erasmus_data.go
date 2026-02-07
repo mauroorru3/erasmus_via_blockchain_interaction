@@ -89,7 +89,7 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 
 	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket", ctx)
 
-	// TODO: packet reception logic
+	// Packet reception logic
 
 	searchedStudent, found := k.GetStoredStudent(ctx, data.HomeIndex)
 	if !found {
@@ -126,7 +126,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
+		// Failed acknowledgement logic
 		_ = dispatchedAck.Error
 
 		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error "+dispatchedAck.Error, ctx)
@@ -148,7 +148,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementFinalErasmusDataPacket DE", data.HomeIndex, ctx)
@@ -168,7 +168,7 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 // OnTimeoutFinalErasmusDataPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 
 	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
 

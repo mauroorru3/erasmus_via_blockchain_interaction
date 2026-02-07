@@ -26,55 +26,55 @@ var (
 
 const (
 	opWeightMsgConfigureChain = "op_weight_msg_configure_chain"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgConfigureChain int = 100
 
 	opWeightMsgRegisterNewStudent = "op_weight_msg_register_new_student"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgRegisterNewStudent int = 100
 
 	opWeightMsgInsertStudentPersonalInfo = "op_weight_msg_insert_student_personal_info"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgInsertStudentPersonalInfo int = 100
 
 	opWeightMsgInsertStudentContactInfo = "op_weight_msg_insert_student_contact_info"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgInsertStudentContactInfo int = 100
 
 	opWeightMsgInsertStudentResidenceInfo = "op_weight_msg_insert_student_residence_info"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgInsertStudentResidenceInfo int = 100
 
 	opWeightMsgFunCanc = "op_weight_msg_fun_canc"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgFunCanc int = 100
 
 	opWeightMsgInsertExamGrade = "op_weight_msg_insert_exam_grade"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgInsertExamGrade int = 100
 
 	opWeightMsgPayTaxes = "op_weight_msg_pay_taxes"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgPayTaxes int = 100
 
 	opWeightMsgInsertErasmusRequest = "op_weight_msg_insert_erasmus_request"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgInsertErasmusRequest int = 100
 
 	opWeightMsgInsertErasmusExam = "op_weight_msg_insert_erasmus_exam"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgInsertErasmusExam int = 100
 
 	opWeightMsgStartErasmus = "op_weight_msg_start_erasmus"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgStartErasmus int = 100
 
 	opWeightMsgEndErasmusBeforeDeadline = "op_weight_msg_end_erasmus_before_deadline"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgEndErasmusBeforeDeadline int = 100
 
 	opWeightMsgExtendErasmus = "op_weight_msg_extend_erasmus"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgExtendErasmus int = 100
 
 	// this line is used by starport scaffolding # simapp/module/const

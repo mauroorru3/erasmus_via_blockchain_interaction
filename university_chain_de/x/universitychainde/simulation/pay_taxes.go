@@ -22,7 +22,7 @@ func SimulateMsgPayTaxes(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the PayTaxes simulation
+		// Handling the PayTaxes simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "PayTaxes simulation not implemented"), nil, nil
 	}

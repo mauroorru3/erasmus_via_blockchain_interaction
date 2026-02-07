@@ -23,7 +23,7 @@ func (k msgServer) SendFinalErasmusData(goCtx context.Context, msg *types.MsgSen
 
 
 
-		// TODO: logic before transmitting the packet
+		// Logic before transmitting the packet
 
 		// Construct the packet
 		var packet types.FinalErasmusDataPacketData

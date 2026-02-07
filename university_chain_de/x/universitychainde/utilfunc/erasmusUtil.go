@@ -510,7 +510,6 @@ func CheckErasmusParams(durationInMonths string, erasmusType string, student *ty
 		erasmusCareer = append(erasmusCareer, erasmusInfo)
 	}
 
-	// TO DO
 	// verify also the available places in the selected foreign university
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)

@@ -53,7 +53,6 @@ To start the hermes relayer process:
 _Remember_ that the order of execution is important. 
 First the relayer related to the Chain IT and the Hub must be started, and then the relayer related to the Chain DE and the Hub.
 The execution must take place in a new terminal for the IT-Hub relayer and the DE-Hub relayer.
-
 The following commands consider the case of two hermes relayers:
 
 ```bash

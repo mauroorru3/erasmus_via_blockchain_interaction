@@ -22,7 +22,7 @@ func SimulateMsgExtendErasmus(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the ExtendErasmus simulation
+		// Handling the ExtendErasmus simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "ExtendErasmus simulation not implemented"), nil, nil
 	}

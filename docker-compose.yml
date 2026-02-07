@@ -125,7 +125,7 @@ services:
       - ./hermes_relayer_it_hub:/hermes_relayer_it_hub
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
       
   hermes_relayer_de_hub_relayer:
     profiles: ["hermes"]
@@ -139,6 +139,6 @@ services:
       - ./hermes_relayer_de_hub:/hermes_relayer_de_hub
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
 
 

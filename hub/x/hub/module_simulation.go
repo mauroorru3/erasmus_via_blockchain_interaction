@@ -25,7 +25,7 @@ var (
 
 const (
 	opWeightMsgConfigureChain = "op_weight_msg_configure_chain"
-	// TODO: Determine the simulation weight value
+	// Determine the simulation weight value
 	defaultWeightMsgConfigureChain int = 100
 
 	// this line is used by starport scaffolding # simapp/module/const

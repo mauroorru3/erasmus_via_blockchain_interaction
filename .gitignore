@@ -20,6 +20,7 @@
 # Go workspace file
 go.work
 
+stats_times.txt
 university_chain_it/build/
 university_chain_de/build/
 hub/build/

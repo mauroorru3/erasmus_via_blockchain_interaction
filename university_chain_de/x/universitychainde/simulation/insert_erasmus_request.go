@@ -22,7 +22,7 @@ func SimulateMsgInsertErasmusRequest(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the InsertErasmusRequest simulation
+		// Handling the InsertErasmusRequest simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "InsertErasmusRequest simulation not implemented"), nil, nil
 	}

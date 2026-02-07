@@ -22,7 +22,7 @@ func SimulateMsgInsertStudentContactInfo(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the InsertStudentContactInfo simulation
+		// Handling the InsertStudentContactInfo simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "InsertStudentContactInfo simulation not implemented"), nil, nil
 	}

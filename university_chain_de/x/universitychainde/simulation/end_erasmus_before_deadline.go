@@ -22,7 +22,7 @@ func SimulateMsgEndErasmusBeforeDeadline(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the EndErasmusBeforeDeadline simulation
+		// Handling the EndErasmusBeforeDeadline simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "EndErasmusBeforeDeadline simulation not implemented"), nil, nil
 	}

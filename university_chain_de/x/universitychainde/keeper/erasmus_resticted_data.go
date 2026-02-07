@@ -87,7 +87,7 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 	utilfunc.PrintLogs("OnRecvErasmusStudentPacket", ctx)
 	utilfunc.PrintData(data.String(), ctx)
 
-	// TODO: packet reception logic
+	// Packet reception logic
 
 	var result map[string]interface{}
 	err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &result)
@@ -656,7 +656,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
+		// Failed acknowledgement logic
 		_ = dispatchedAck.Error
 
 		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error "+dispatchedAck.Error, ctx)
@@ -679,7 +679,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket success", ctx)
 
 		packetHash := utilfunc.Hash(binArray)
@@ -698,7 +698,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 // OnTimeoutErasmusRestictedDataPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusRestictedDataPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 	utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket", ctx)
 
 	return nil

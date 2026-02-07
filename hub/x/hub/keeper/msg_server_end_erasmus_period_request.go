@@ -11,7 +11,7 @@ import (
 
 func (k msgServer) SendEndErasmusPeriodRequest(goCtx context.Context, msg *types.MsgSendEndErasmusPeriodRequest) (*types.MsgSendEndErasmusPeriodRequestResponse, error) {
 
-	// TODO: logic before transmitting the packet
+	// Logic before transmitting the packet
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 	utilfunc.PrintLogs("SendEndErasmusPeriodRequest", ctx)

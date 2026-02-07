@@ -6,8 +6,8 @@
         "country": "Germany",
         "secretariat_key": "cosmos10nc5zkj9lhk3xn4rfjdkfrceae8ln5zxkm8r3y",
         "university_key": "cosmos1lfamc5y86xs00g5pm46nzyxhe9ftc7tsssjywe",
-        "deadline_taxes": "2024-12-31 12:00:00",
-        "deadline_erasmus": "2024-12-31 12:00:00",
+        "deadline_taxes": "2027-12-31 12:00:00",
+        "deadline_erasmus": "2027-12-31 12:00:00",
         "max_erasmus_exams": 3,
         "taxes_brackets": {
             "first": [6500, 0], 

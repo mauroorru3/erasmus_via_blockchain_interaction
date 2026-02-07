@@ -22,7 +22,7 @@ func SimulateMsgRegisterNewStudent(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the RegisterNewStudent simulation
+		// Handling the RegisterNewStudent simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "RegisterNewStudent simulation not implemented"), nil, nil
 	}
