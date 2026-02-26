@@ -95,7 +95,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 
 	uniInfo, found := k.GetUniversities(ctx, data.DestinationUniversityName)
 	if !found {
-		return packetAck, types.ErrWrongNameUniversity
+		return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 	} else {
 
 		var packet_to_send types.EndErasmusPeriodRequestPacketData = data
@@ -111,7 +111,7 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 			"")
 
 		if err != nil {
-			return packetAck, err
+			return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 		} else {
 			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
 			if err != nil {
@@ -138,7 +138,11 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 	case *channeltypes.Acknowledgement_Error:
 
 		// Failed acknowledgement logic
-		_ = dispatchedAck.Error
+
+		err := k.HandleAbortPacketEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName)
+		if err != nil {
+			return err
+		}
 
 		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error "+dispatchedAck.Error, ctx)
 
@@ -209,6 +213,11 @@ func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet c
 	// Packet timeout logic
 
 	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket", ctx)
+
+	err := k.HandleAbortPacketEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

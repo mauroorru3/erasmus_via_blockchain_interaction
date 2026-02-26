@@ -161,5 +161,10 @@ func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes
 
 	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
 
+	err := k.HandleAbortPacketV2(ctx, data.Index, data.ForeignIndex, "", "")
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

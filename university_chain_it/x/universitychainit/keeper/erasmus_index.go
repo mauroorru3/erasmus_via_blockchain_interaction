@@ -394,6 +394,9 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 	case *channeltypes.Acknowledgement_Error:
 
 		// Failed acknowledgement logic
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
 		_ = dispatchedAck.Error
 
 		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error "+dispatchedAck.Error, ctx)
@@ -401,6 +404,9 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
 		var packetAck types.ErasmusIndexPacketAck
 
 		sizeInt := len(dispatchedAck.Result)
@@ -417,6 +423,9 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 		}
 
 		// Successful acknowledgement logic
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
 		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success", ctx)
 
 		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket IT", data.Index, ctx)
@@ -436,6 +445,7 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) error {
 
 	// Packet timeout logic
+	// University chains do not send this type of packet, so it cannot timeout.
 
 	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
 

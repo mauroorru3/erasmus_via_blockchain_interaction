@@ -98,7 +98,7 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket "+data.ErasmusRestrictedInfo, ctx)
 		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusRestrictedInfo)
 		if err != nil {
-			return packetAck, err
+			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
 		}
 		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish", ctx)
 		k.SetStoredStudent(ctx, searchedStudent)
@@ -106,11 +106,11 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket IT", data.HomeIndex, ctx)
 
 		if err != nil {
-			return packetAck, err
+			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
 		} else {
 			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
 			if err != nil {
-				return packetAck, err
+				return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
 			}
 			sizeInt := len(packetAckBytes)
 			utilfunc.GetTransactionStats("OnRecvFinalErasmusDataPacket sending ack", "", ctx, sizeInt, binArray)
@@ -129,6 +129,9 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 	case *channeltypes.Acknowledgement_Error:
 
 		// Failed acknowledgement logic
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
 		_ = dispatchedAck.Error
 
 		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error "+dispatchedAck.Error, ctx)
@@ -137,6 +140,8 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.FinalErasmusDataPacketAck
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
 
 		sizeInt := len(dispatchedAck.Result)
 		binArray, err := data.GetBytes()
@@ -151,6 +156,8 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 		}
 
 		// Successful acknowledgement logic
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
 
 		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success", ctx)
 		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket IT", data.HomeIndex, ctx)
@@ -171,6 +178,8 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData) error {
 
 	// Packet timeout logic
+
+	// University chains do not send this type of packet, so it cannot timeout.
 
 	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
 

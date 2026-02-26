@@ -57,6 +57,26 @@ type ErasmusExamsResultsPacket struct {
 	ExamGrade string `json:"exam_grade"`
 }
 
+// student JSON structure
+
+type AbortOperationPacket struct {
+	PacketID          string `json:"p_id"`
+	OperationID       string `json:"op"`
+	HomeIndex         string `json:"h_id"`
+	ForeignIndex      string `json:"f_id"`
+	HomeUniversity    string `json:"h_uni"`
+	ForeignUniversity string `json:"f_uni"`
+}
+
+type StandardAckPacket struct {
+	PacketID          string `json:"p_id"`
+	OperationID       string `json:"op"`
+	HomeIndex         string `json:"h_id"`
+	ForeignIndex      string `json:"f_id"`
+	HomeUniversity    string `json:"h_uni"`
+	ForeignUniversity string `json:"f_uni"`
+}
+
 // UniversityKeys.json
 
 const foreignUniversityInfoJSON string = "UniversityKeys.json"

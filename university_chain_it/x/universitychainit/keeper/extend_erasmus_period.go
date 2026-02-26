@@ -112,7 +112,7 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 					}
 					sizeInt := len(packetAckBytes)
 					utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket IT sending ack", "", ctx, sizeInt, binArray)
-					return packetAck, nil
+					return packetAck, err
 				}
 
 			}
@@ -128,7 +128,10 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 	case *channeltypes.Acknowledgement_Error:
 
 		// Failed acknowledgement logic
-		_ = dispatchedAck.Error
+		err := k.RevertExtendErasmus(ctx, data.ForeignIndex)
+		if err != nil {
+			return err
+		}
 		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
@@ -180,6 +183,11 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 func (k Keeper) OnTimeoutExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData) error {
 
 	// Packet timeout logic
+
+	err := k.RevertExtendErasmus(ctx, data.ForeignIndex)
+	if err != nil {
+		return err
+	}
 	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket", ctx)
 
 	return nil

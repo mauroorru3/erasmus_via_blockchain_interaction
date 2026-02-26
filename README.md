@@ -30,6 +30,7 @@ To create all the images we need:
 - Hermes relayer that connect the German chain with the Hub chain;
 
 we execute the following script:
+
 ```bash
 ./create_images.sh
 ```
@@ -46,7 +47,6 @@ To start the containers with hermes relayers:
 sudo docker compose --file docker-compose.yml --project-name university_chain-prod --profile hermes up
 ```
 
-```
 
 _Remember_ that the relayers must be executed when the configuration of the chains has been completed, otherwise there will be errors.
 To start the hermes relayer process:
@@ -108,10 +108,8 @@ Open a new terminal and run:
 ./test_chain.sh it unipi tum
 ```
 
-to run the tests in the italian chain, starting from the Unipi university and carrying out the Erasmus programme at TUM University
-(there are also other possibilities, such as `./test_chain.sh de tum uniroma1` and so on).
-Universities in the Italian chain: `unipi` and `uniroma1`.
-Universities in the German chain: `tum` and `humboldt university`.
+To run the tests in the italian chain, starting from the Unipi university and carrying out the Erasmus programme at TUM University (there are also other possibilities, such as `./test_chain.sh de tum uniroma1` and so on).
+Universities in the Italian chain: `unipi` and `uniroma1`. Universities in the German chain: `tum` and `humboldt university`.
 
 The tests that will be performed are the following (in the specific case of the `./test_chain.sh it unipi tum` command):
 - Hub chain configuration;
