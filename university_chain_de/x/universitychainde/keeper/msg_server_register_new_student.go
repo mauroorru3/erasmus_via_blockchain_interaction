@@ -57,6 +57,7 @@ func (k msgServer) RegisterNewStudent(goCtx context.Context, msg *types.MsgRegis
 						Surname:                  msg.Surname,
 						CourseType:               msg.CourseType,
 						CourseOfStudy:            msg.CourseOfStudy,
+						DepartmentName:           msg.DepartmentName,
 						Status:                   "Active",
 						CurrentYearOfStudy:       1,
 						OutOfCourse:              false,
@@ -118,14 +119,33 @@ func (k msgServer) RegisterNewStudent(goCtx context.Context, msg *types.MsgRegis
 							PreviousStudentFifo: "",
 							NextStudentFifo:     "",
 						},
+						OperationInfo: &types.OperationInfo{
+							StudentOperationDetails:      "",
+							PreviousStudentOperationFifo: "",
+							NextStudentOperationFifo:     "",
+						},
+						Counters: &types.CountersInfo{
+							PacketsRetriesStartErasmus: []int32{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+							AcksReceivedStartErasmus:   0,
+							RetryNumberOperations:      0,
+							MaximumNumberRetries:       3,
+						},
 					}
 					returnIndexStudent = strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)
 					uniInfo.NextStudentId++
 					k.Keeper.SetUniversityInfo(ctx, uniInfo)
 					k.Keeper.SetStoredStudent(ctx, newStoredStudent)
-					return &types.MsgRegisterNewStudentResponse{
-						StudentIndex: returnIndexStudent,
-					}, nil
+
+					err = utilfunc.GetConsumedGas("RegisterNewStudent DE", newStoredStudent.Index, ctx)
+					if err != nil {
+						return &types.MsgRegisterNewStudentResponse{
+							StudentIndex: "-1",
+						}, err
+					} else {
+						return &types.MsgRegisterNewStudentResponse{
+							StudentIndex: returnIndexStudent,
+						}, nil
+					}
 				}
 			}
 		}

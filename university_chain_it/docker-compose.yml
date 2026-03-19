@@ -1,0 +1,67 @@
+version: "3.7"
+
+networks:
+  net-it:
+  net-public:
+
+services:
+
+  val-unipi:
+    command: start
+    container_name: val-unipi
+    image: university_chain_itd_i
+    networks:
+      - net-it
+      - net-public
+    ports:
+      - 0.0.0.0:26657:26657
+    volumes:
+      - ./university_chain_it/elements/val-unipi:/root/.university_chain_it
+
+  val-uniroma1:
+    
+    container_name: val-uniroma1
+    image: university_chain_itd_i
+    networks:
+      - net-it
+      - net-public
+    ports:
+      - 0.0.0.0:26658:26657
+    volumes:
+      - ./university_chain_it/elements/val-uniroma1:/root/.university_chain_it
+      
+  hub:
+    command: start
+    container_name: val-hub
+    image: "hub"
+    networks:
+      - net-public
+    ports:
+      - 0.0.0.0:26659:26657
+    volumes:
+      - ./elements/val-hub:/root/.hub
+
+      
+  go_relayer_it_hub:
+    profiles: ["go"]
+    container_name: go_relayer_it_hub
+    image: "go_relayer_it_hub"
+    tty: true
+    stdin_open: true
+    networks:
+      - net-public
+    volumes:
+      - ./go_relayer_it_hub:/go_relayer_it_hub
+      
+  hermes_relayer_it_hub:
+    profiles: ["hermes"]
+    container_name: hermes_relayer_it_hub
+    image: "hermes_relayer_it_hub"
+    tty: true
+    stdin_open: true
+    networks:
+      - net-public
+    volumes:
+      - ./hermes_relayer_it_hub:/hermes_relayer_it_hub
+      
+

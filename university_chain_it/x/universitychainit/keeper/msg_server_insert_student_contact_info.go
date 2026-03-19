@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"university_chain_it/x/universitychainit/types"
+	"university_chain_it/x/universitychainit/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
@@ -57,9 +58,17 @@ func (k msgServer) InsertStudentContactInfo(goCtx context.Context, msg *types.Ms
 							searchedStudent.StudentData.CompleteInformation[2] = 1
 							k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
+							err = utilfunc.GetConsumedGas("InsertStudentContactInfo IT", searchedStudent.Index, ctx)
+							if err != nil {
+								return &types.MsgInsertStudentContactInfoResponse{
+									Status: -1,
+								}, err
+
+							}
 							return &types.MsgInsertStudentContactInfoResponse{
 								Status: 0,
 							}, nil
+
 						}
 					}
 				}

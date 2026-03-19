@@ -1,0 +1,24 @@
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"3774865805","packetSize":"124","time":"2023-09-23 10:26:06.440"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 1 IT","packetHash":"3774865805","packetSize":"50","time":"2023-09-23 10:26:06.449"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"2323988964","packetSize":"146","time":"2023-09-23 10:26:48.966"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 2 IT","packetHash":"2323988964","packetSize":"28","time":"2023-09-23 10:26:48.975"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"2305263122","packetSize":"148","time":"2023-09-23 10:26:48.975"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 3 IT","packetHash":"2305263122","packetSize":"28","time":"2023-09-23 10:26:48.981"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"74340789","packetSize":"143","time":"2023-09-23 10:26:48.981"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 4 IT","packetHash":"74340789","packetSize":"28","time":"2023-09-23 10:26:48.987"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"4266959980","packetSize":"143","time":"2023-09-23 10:26:48.987"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 5 IT","packetHash":"4266959980","packetSize":"28","time":"2023-09-23 10:26:49.004"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"221551440","packetSize":"143","time":"2023-09-23 10:26:49.004"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 6 IT","packetHash":"221551440","packetSize":"28","time":"2023-09-23 10:26:49.012"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"103223663","packetSize":"127","time":"2023-09-23 10:26:49.013"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 7 IT","packetHash":"103223663","packetSize":"28","time":"2023-09-23 10:26:49.018"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"3856128501","packetSize":"146","time":"2023-09-23 10:26:49.019"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 8 IT","packetHash":"3856128501","packetSize":"28","time":"2023-09-23 10:26:49.024"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"2446635674","packetSize":"140","time":"2023-09-23 10:26:49.024"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 9 IT","packetHash":"2446635674","packetSize":"28","time":"2023-09-23 10:26:49.030"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"2285303385","packetSize":"133","time":"2023-09-23 10:26:49.030"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 10 IT","packetHash":"2285303385","packetSize":"28","time":"2023-09-23 10:26:49.036"}
+{"details":"OnRecvErasmusRestictedDataPacket IT","packetHash":"1673166576","packetSize":"155","time":"2023-09-23 10:26:49.037"}
+{"details":"OnRecvErasmusRestictedDataPacket sending ack - case 11 IT","packetHash":"1673166576","packetSize":"28","time":"2023-09-23 10:26:49.043"}
+{"details":"OnRecvErasmusStudentPacket IT","packetHash":"2047838743","packetSize":"93","time":"2023-09-23 10:42:48.889"}
+{"details":"OnRecvErasmusStudentPacket sending ack IT","packetHash":"2047838743","packetSize":"107","time":"2023-09-23 10:42:48.893"}

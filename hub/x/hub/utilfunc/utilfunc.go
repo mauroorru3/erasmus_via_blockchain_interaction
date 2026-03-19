@@ -3,10 +3,14 @@ package utilfunc
 import (
 	"encoding/json"
 	"fmt"
+	"hash/fnv"
 	"hub/x/hub/types"
 	"io"
 	"os"
+	"strconv"
 	"time"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 // Erasmus Career
@@ -45,6 +49,43 @@ type TaxesStruct struct {
 	Date_of_payment string `json:"date_of_payment"`
 }
 
+// Exam results packet
+
+type ErasmusExamsResultsPacket struct {
+	ExamName  string `json:"exam_name"`
+	ExamDate  string `json:"exam_date"`
+	ExamGrade string `json:"exam_grade"`
+}
+
+// student JSON structure
+
+type StudentInfoRestrictedAnswerPacket struct {
+	PacketID     string `json:"p_id"`
+	ForeignIndex string `json:"f_id"`
+}
+
+type SuccessPacket struct {
+	PacketID       string `json:"p_id"`
+	HomeIndex      string `json:"h_id"`
+	HomeUniversity string `json:"h_uni"`
+}
+
+type AbortOperationPacket struct {
+	PacketID          string `json:"p_id"`
+	HomeIndex         string `json:"h_id"`
+	ForeignIndex      string `json:"f_id"`
+	HomeUniversity    string `json:"h_uni"`
+	ForeignUniversity string `json:"f_uni"`
+}
+
+type StandardAckPacket struct {
+	PacketID          string `json:"p_id"`
+	HomeIndex         string `json:"h_id"`
+	ForeignIndex      string `json:"f_id"`
+	HomeUniversity    string `json:"h_uni"`
+	ForeignUniversity string `json:"f_uni"`
+}
+
 // UniversityKeys.json
 
 const foreignUniversityInfoJSON string = "UniversityKeys.json"
@@ -63,13 +104,20 @@ type UniListKey struct {
 }
 
 const (
-	DateLayout = "2006-01-02 15:04:05"
+	DateLayout      = "2006-01-02 15:04:05"
+	DateLayoutMilli = "2006-01-02 15:04:05.000"
 )
 
 func FormatDate(date time.Time) string {
 	loc, _ := time.LoadLocation("Europe/Rome")
 	newTime := date.In(loc)
 	return newTime.Format(DateLayout)
+}
+
+func FormatDeadlineMilliseconds(deadline time.Time) string {
+	loc, _ := time.LoadLocation("Europe/Rome")
+	newTime := deadline.In(loc)
+	return newTime.Format(DateLayoutMilli)
 }
 
 func ReadForeignUniversityInfo() (universityInfo []UniversityKeys, err error) {
@@ -164,9 +212,51 @@ func GetForeignUniversityName(student types.StoredStudent) (res string, err erro
 	return res, err
 }
 
-func PrintLogs(text string) error {
+func PrintLogs(text string, ctx sdk.Context) error {
+	if !ctx.IsCheckTx() {
+		file, err := os.OpenFile("log/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
-	file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			return err
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
+
+		if err2 != nil {
+			return err2
+		}
+	}
+	return nil
+}
+
+func PrintData(text string, ctx sdk.Context) error {
+	if !ctx.IsCheckTx() {
+		file, err := os.OpenFile("log/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+		if err != nil {
+			return err
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
+
+		if err2 != nil {
+			return err2
+		}
+	}
+	return nil
+}
+
+func PrintStats(text string, fileName string) error {
+
+	file, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		return err
@@ -174,9 +264,7 @@ func PrintLogs(text string) error {
 
 	defer file.Close()
 
-	dt := time.Now()
-
-	_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
+	_, err2 := file.WriteString(text + "\n")
 
 	if err2 != nil {
 		return err2
@@ -185,23 +273,100 @@ func PrintLogs(text string) error {
 	return nil
 }
 
-func PrintData(text string) error {
+func Hash(bytes []byte) uint32 {
+	h := fnv.New32a()
+	h.Write(bytes)
+	return h.Sum32()
+}
 
-	file, err := os.OpenFile("data/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+// the other way to calculate the packet size:
+// binArray, err := packet.GetBytes()
+// if err != nil {
+//	panic(err)
+// }
+// 	bytesSize := binary.Size(binArray)
+//	bytesSizeString := strconv.FormatInt(int64(bytesSize), 10)
 
-	if err != nil {
-		return err
+func GetTransactionStats(functionName string, details string, ctx sdk.Context, sizeInt int, binArray []byte) (err error) {
+	if !ctx.IsCheckTx() {
+		sizeString := strconv.FormatInt(int64(sizeInt), 10)
+		packetHash := Hash(binArray)
+		packetHashString := strconv.FormatInt(int64(packetHash), 10)
+
+		stats := map[string]string{
+			"details":    functionName + details + " Hub",
+			"packetHash": packetHashString,
+			"packetSize": sizeString,
+			"time":       FormatDeadlineMilliseconds(time.Now()),
+		}
+
+		jsonStats, err := json.Marshal(stats)
+		if err != nil {
+			fmt.Printf("could not marshal json: %s\n", err)
+			return err
+		}
+
+		PrintStats(string(jsonStats), "log/statsTiming.txt")
 	}
-
-	defer file.Close()
-
-	dt := time.Now()
-
-	_, err2 := file.WriteString(text + " " + FormatDate(dt) + "\n")
-
-	if err2 != nil {
-		return err2
-	}
-
 	return nil
+
+}
+
+func GetConsumedGas(functionName string, identifier string, ctx sdk.Context) (err error) {
+
+	if !ctx.IsCheckTx() {
+		gasConsumed := ctx.GasMeter().GasConsumed()
+		gasConsumedString := strconv.FormatInt(int64(gasConsumed), 10)
+
+		stats := map[string]string{
+			"functionName": functionName,
+			"id":           identifier,
+			"consumedGas":  gasConsumedString,
+			"time":         FormatDeadlineMilliseconds(time.Now()),
+		}
+
+		jsonStats, err := json.Marshal(stats)
+		if err != nil {
+			fmt.Printf("could not marshal json: %s\n", err)
+			return err
+		}
+
+		PrintStats(string(jsonStats), "log/statsGasConsumed.txt")
+	}
+	return nil
+
+}
+
+func CreateSuccessOperationString() (abort_op_JSON string, err error) {
+
+	var success_op SuccessPacket
+
+	success_op.HomeIndex = ""
+	success_op.HomeUniversity = ""
+	success_op.PacketID = "23" // Value that identifies the packet confirmation
+
+	resultByteJSON, err := json.Marshal(success_op)
+	if err != nil {
+		return abort_op_JSON, err
+	}
+
+	abort_op_JSON = string(resultByteJSON)
+
+	return abort_op_JSON, err
+}
+
+// Function that constructs the ack contents and returns the ack related to the abort operation
+
+func HandleSuccessAck(ctx sdk.Context) (packetAck types.ErasmusRestictedDataPacketAck, err error) {
+
+	PrintLogs("HandleSuccessAck", ctx)
+
+	new_data_info, err := CreateSuccessOperationString()
+	if err != nil {
+		return packetAck, err
+	} else {
+
+		packetAck.ErasmusRestrictedInfo = new_data_info
+		return packetAck, err
+	}
 }

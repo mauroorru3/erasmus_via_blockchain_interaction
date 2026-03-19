@@ -6,8 +6,8 @@
         "country": "Italy",
         "secretariat_key": "cosmos1sf3zdq9q7tzfk9l83g05padqky4v9tld2dhsur",
         "university_key": "cosmos1mhmthq4cx8ltfexahqrhutqxu9d26zltwhh39n",
-        "deadline_taxes": "2023-12-31 12:00:00",
-        "deadline_erasmus": "2023-12-31 12:00:00",
+        "deadline_taxes": "2027-12-31 12:00:00",
+        "deadline_erasmus": "2027-12-31 12:00:00",
         "max_erasmus_exams": 3,
         "taxes_brackets": {
             "first": [6500, 0], 

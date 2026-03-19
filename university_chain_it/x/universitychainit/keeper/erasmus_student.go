@@ -22,6 +22,7 @@ func (k Keeper) TransmitErasmusStudentPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -62,6 +63,9 @@ func (k Keeper) TransmitErasmusStudentPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitErasmusStudentPacket", details, ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -71,14 +75,22 @@ func (k Keeper) TransmitErasmusStudentPacket(
 
 // OnRecvErasmusStudentPacket processes packet reception
 func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData) (packetAck types.ErasmusStudentPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket", "", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
 	}
 
-	// TODO: packet reception logic
+	// Packet reception logic
 
-	utilfunc.PrintLogs("OnRecvErasmusStudentPacket")
+	utilfunc.PrintLogs("OnRecvErasmusStudentPacket", ctx)
 
 	allStudents := k.GetAllStoredStudent(ctx)
 	found := false
@@ -115,7 +127,21 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 					packetAck.ForeignIndex = data.Student.Index
 					k.SetStoredStudent(ctx, *data.Student)
 					k.SetUniversityInfo(ctx, uniInfo)
-					return packetAck, nil
+
+					err = utilfunc.GetConsumedGas("OnRecvErasmusStudentPacket IT", data.Student.Index, ctx)
+					if err != nil {
+						return packetAck, err
+					} else {
+
+						packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+						if err != nil {
+							return packetAck, err
+						}
+						sizeInt := len(packetAckBytes)
+						utilfunc.GetTransactionStats("OnRecvErasmusStudentPacket sending ack", "", ctx, sizeInt, binArray)
+						return packetAck, nil
+					}
+
 				}
 
 			}
@@ -126,12 +152,13 @@ func (k Keeper) OnRecvErasmusStudentPacket(ctx sdk.Context, packet channeltypes.
 // OnAcknowledgementErasmusStudentPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData, ack channeltypes.Acknowledgement) error {
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
+		// Failed acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket error "+dispatchedAck.Error, ctx)
 
 		_ = dispatchedAck.Error
 
@@ -140,17 +167,32 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 		// Decode the packet acknowledgment
 		var packetAck types.ErasmusStudentPacketAck
 
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementErasmusStudentPacket", "", ctx, sizeInt, binArray)
+
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment " + err.Error())
+			utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket cannot unmarshal acknowledgment "+err.Error(), ctx)
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusStudentPacket success", ctx)
 
-		return nil
+		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusStudentPacket IT", data.Student.Index, ctx)
+
+		if err != nil {
+			return err
+		} else {
+
+			return nil
+
+		}
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -160,9 +202,9 @@ func (k Keeper) OnAcknowledgementErasmusStudentPacket(ctx sdk.Context, packet ch
 // OnTimeoutErasmusStudentPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutErasmusStudentPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusStudentPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutErasmusStudentPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusStudentPacket", ctx)
 
 	return nil
 }

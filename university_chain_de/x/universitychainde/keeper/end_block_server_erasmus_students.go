@@ -54,6 +54,11 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 					k.SetStoredStudent(ctx, storedStudent)
 
+					err = k.AddOperationQueue(ctx, &storedStudent, &uniList[i], "2", 1)
+					if err != nil {
+						panic(err)
+					}
+
 					var packet types.EndErasmusPeriodRequestPacketData
 
 					packet.StartingUniversityName = storedStudent.StudentData.UniversityName
@@ -73,30 +78,8 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							packet.ForeignIndex = foreignIndex
 
-							/*
-
-								utilfunc.PrintLogs("prima di SendEndErasmusPeriodRequest")
-
-								_, err := msgServer.SendEndErasmusPeriodRequest(goCtx, &types.MsgSendEndErasmusPeriodRequest{
-									Creator:                   storedStudent.StudentData.StudentKey,
-									Port:                      "hub",
-									ChannelID:                 "channel-0",
-									TimeoutTimestamp:          timeoutTimestamp,
-									StartingUniversityName:    storedStudent.StudentData.UniversityName,
-									DestinationUniversityName: foreignUniversityName,
-									Index:                     storedStudent.Index,
-									ForeignIndex:              foreignIndex,
-								})
-
-								if err != nil {
-									utilfunc.PrintLogs("SendEndErasmusPeriodRequest " + err.Error())
-									panic(err)
-								} else {
-
-							*/
-
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.ForeignIndex)
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.DestinationUniversityName)
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket "+packet.ForeignIndex, ctx)
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket "+packet.DestinationUniversityName, ctx)
 
 							err = k.TransmitEndErasmusPeriodRequestPacket(
 								ctx,
@@ -105,19 +88,24 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 								"channel-0",
 								clienttypes.ZeroHeight(),
 								timeoutTimestamp,
+								"TerminateExpiredErasmusPeriods",
 							)
 							if err != nil {
 								panic(err)
 							}
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent")
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent", ctx)
+
+							err = utilfunc.GetConsumedGas("TerminateExpiredErasmusPeriods DE", studentIndex, ctx)
+							if err != nil {
+								panic(err)
+							}
 
 							// Move along FIFO
 							studentIndex = uniList[i].FifoHeadErasmus
-
 							count++
-
 						}
+
 					}
 
 				} else {

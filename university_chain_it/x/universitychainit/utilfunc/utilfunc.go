@@ -3,10 +3,14 @@ package utilfunc
 import (
 	"encoding/json"
 	"fmt"
+	"hash/fnv"
 	"io"
 	"os"
+	"strconv"
 	"time"
 	"university_chain_it/x/universitychainit/types"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 // UniversityKeys.json
@@ -433,9 +437,59 @@ func CheckCompleteInformation(student types.StoredStudent) (err error) {
 	}
 }
 
-func PrintLogs(text string) error {
+func PrintLogs(text string, ctx sdk.Context) error {
 
-	file, err := os.OpenFile("data/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if !ctx.IsCheckTx() {
+		file, err := os.OpenFile("log/logs.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+		if err != nil {
+			return err
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString(text + " " + FormatDeadline(dt) + "\n")
+
+		if err2 != nil {
+			return err2
+		}
+
+		err2 = file.Sync()
+		if err2 != nil {
+			return err2
+		}
+	}
+	return nil
+}
+
+func PrintData(text string, ctx sdk.Context) error {
+
+	if !ctx.IsCheckTx() {
+		file, err := os.OpenFile("log/data.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+		if err != nil {
+			return err
+		}
+
+		defer file.Close()
+
+		dt := time.Now()
+
+		_, err2 := file.WriteString(text + " " + FormatDeadline(dt) + "\n")
+
+		if err2 != nil {
+			return err2
+		}
+	}
+
+	return nil
+}
+
+func PrintStats(text string, fileName string) error {
+
+	file, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		return err
@@ -443,18 +497,75 @@ func PrintLogs(text string) error {
 
 	defer file.Close()
 
-	dt := time.Now()
+	_, err2 := file.WriteString(text + "\n")
 
-	_, err2 := file.WriteString(text + " " + FormatDeadline(dt) + "\n")
-
-	if err2 != nil {
-		return err2
-	}
-
-	err2 = file.Sync()
 	if err2 != nil {
 		return err2
 	}
 
 	return nil
+}
+
+func Hash(bytes []byte) uint32 {
+	h := fnv.New32a()
+	h.Write(bytes)
+	return h.Sum32()
+}
+
+// the other way to calculate the packet size:
+// binArray, err := packet.GetBytes()
+// if err != nil {
+//	panic(err)
+// }
+// 	bytesSize := binary.Size(binArray)
+//	bytesSizeString := strconv.FormatInt(int64(bytesSize), 10)
+
+func GetTransactionStats(functionName string, details string, ctx sdk.Context, sizeInt int, binArray []byte) (err error) {
+	if !ctx.IsCheckTx() {
+		sizeString := strconv.FormatInt(int64(sizeInt), 10)
+		packetHash := Hash(binArray)
+		packetHashString := strconv.FormatInt(int64(packetHash), 10)
+
+		stats := map[string]string{
+			"details":    functionName + details + " IT",
+			"packetHash": packetHashString,
+			"packetSize": sizeString,
+			"time":       FormatDeadlineMilliseconds(time.Now()),
+		}
+
+		jsonStats, err := json.Marshal(stats)
+		if err != nil {
+			fmt.Printf("could not marshal json: %s\n", err)
+			return err
+		}
+
+		PrintStats(string(jsonStats), "log/statsTiming.txt")
+	}
+	return nil
+
+}
+
+func GetConsumedGas(functionName string, identifier string, ctx sdk.Context) (err error) {
+
+	if !ctx.IsCheckTx() {
+		gasConsumed := ctx.GasMeter().GasConsumed()
+		gasConsumedString := strconv.FormatInt(int64(gasConsumed), 10)
+
+		stats := map[string]string{
+			"functionName": functionName,
+			"id":           identifier,
+			"consumedGas":  gasConsumedString,
+			"time":         FormatDeadlineMilliseconds(time.Now()),
+		}
+
+		jsonStats, err := json.Marshal(stats)
+		if err != nil {
+			fmt.Printf("could not marshal json: %s\n", err)
+			return err
+		}
+
+		PrintStats(string(jsonStats), "log/statsGasConsumed.txt")
+	}
+	return nil
+
 }

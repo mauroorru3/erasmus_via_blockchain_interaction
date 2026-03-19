@@ -25,6 +25,7 @@ func DefaultGenesis() *GenesisState {
 		ContactInfo:         nil,
 		TaxesInfo:           nil,
 		ErasmusInfo:         nil,
+		OperationInfo:       nil,
 		ChainInfo: ChainInfo{
 			HubKey:                "cosmos1nqg8gn5kdvs3na2psm9fp2sad7yka8tmh90dpd",
 			ChainAdministratorKey: "cosmos1cc90wwv6k78yrp6x59et2jhj03ryxy8jq54cxs",

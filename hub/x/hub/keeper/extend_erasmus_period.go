@@ -1,7 +1,9 @@
 package keeper
 
 import (
+	"encoding/json"
 	"errors"
+	"strconv"
 
 	"hub/x/hub/types"
 	"hub/x/hub/utilfunc"
@@ -21,6 +23,7 @@ func (k Keeper) TransmitExtendErasmusPeriodPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -61,6 +64,9 @@ func (k Keeper) TransmitExtendErasmusPeriodPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitExtendErasmusPeriodPacket", details, ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -70,12 +76,20 @@ func (k Keeper) TransmitExtendErasmusPeriodPacket(
 
 // OnRecvExtendErasmusPeriodPacket processes packet reception
 func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData) (packetAck types.ExtendErasmusPeriodPacketAck, err error) {
-	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket")
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket", "", ctx, sizeInt, binArray)
+
+	utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket", ctx)
 
 	uniInfo, found := k.GetUniversities(ctx, data.DestinationUniversityName)
 	if !found {
-		utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + types.ErrWrongNameUniversity.Error())
-		return packetAck, types.ErrWrongNameUniversity
+		utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+types.ErrWrongNameUniversity.Error(), ctx)
+		return k.HandleAbortAckExtendErasmus(ctx, "", data.ForeignIndex, "", data.DestinationUniversityName)
 	} else {
 
 		// Transmit the packet
@@ -85,16 +99,29 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 			uniInfo.Port,
 			uniInfo.ChannelID,
 			clienttypes.ZeroHeight(),
-			timeoutTimestamp)
+			timeoutTimestamp,
+			"")
 
 		if err != nil {
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket " + err.Error())
-			return packetAck, err
+			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+err.Error(), ctx)
+			return k.HandleAbortAckExtendErasmus(ctx, "", data.ForeignIndex, "", data.DestinationUniversityName)
 		} else {
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket packet sent")
-			return packetAck, nil
-		}
+			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket packet sent", ctx)
 
+			packetHash := utilfunc.Hash(binArray)
+			err = utilfunc.GetConsumedGas("OnRecvExtendErasmusPeriodPacket", strconv.FormatInt(int64(packetHash), 10), ctx)
+			if err != nil {
+				return packetAck, err
+			} else {
+				packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+				if err != nil {
+					return packetAck, err
+				}
+				sizeInt := len(packetAckBytes)
+				utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket Hub sending ack", "", ctx, sizeInt, binArray)
+				return packetAck, nil
+			}
+		}
 	}
 
 }
@@ -106,26 +133,178 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
-		_ = dispatchedAck.Error
+		// Failed acknowledgement logic
+		err := k.HandleAbortPacketExtendErasmus(ctx, "", data.ForeignIndex, "", data.DestinationUniversityName)
+		if err != nil {
+			return err
+		}
 
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.ExtendErasmusPeriodPacketAck
 
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementExtendErasmusPeriodPacket", "", ctx, sizeInt, binArray)
+
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success")
+		if packetAck.ErasmusRestrictedInfo != "" {
 
-		return nil
+			utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket packetAck.ErasmusRestrictedInfo != nil", ctx)
+			utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket "+packetAck.ErasmusRestrictedInfo, ctx)
+
+			var result map[string]interface{}
+			err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &result)
+			if err != nil {
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket unmarshal packetAck.ErasmusRestrictedInfo", ctx)
+				return err
+			}
+
+			packetID, found := result["p_id"].(string)
+			if !found {
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket p_id not found", ctx)
+				return err
+			}
+
+			switch packetID {
+
+			case "22": //extend erasmus confirmation
+
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case 22", ctx)
+
+				var okPacket utilfunc.SuccessPacket
+				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &okPacket)
+				if err != nil {
+					err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
+					if err != nil {
+						return err
+					}
+				}
+
+				var successData utilfunc.SuccessPacket
+
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case 22 packetack "+packetAck.ErasmusRestrictedInfo, ctx)
+
+				uniInfo, found := k.GetUniversities(ctx, okPacket.HomeUniversity)
+				if !found {
+					utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case 22 "+types.ErrWrongNameUniversity.Error(), ctx)
+					return types.ErrWrongNameUniversity
+				} else {
+
+					successData.HomeIndex = okPacket.HomeIndex
+					successData.HomeUniversity = okPacket.HomeUniversity
+					successData.PacketID = okPacket.PacketID
+
+					resultByteJSON, err := json.Marshal(successData)
+					if err != nil {
+						return err
+					}
+
+					var packet_to_send types.ErasmusRestictedDataPacketData
+					packet_to_send.ErasmusRestrictedInfo = string(resultByteJSON)
+
+					err = k.TransmitErasmusRestictedDataPacket(ctx,
+						packet_to_send,
+						uniInfo.Port,
+						uniInfo.ChannelID,
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+						" OnAcknowledgementExtendErasmusPeriodPacket case 22")
+
+					if err != nil {
+						utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case 22 error "+err.Error(), ctx)
+						err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
+						if err != nil {
+							return err
+						}
+					}
+				}
+
+			case "-3": // extend erasmus application error
+
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case -3", ctx)
+
+				var abortPacket utilfunc.AbortOperationPacket
+				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &abortPacket)
+				if err != nil {
+					err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
+					if err != nil {
+						return err
+					}
+				}
+
+				var abortData utilfunc.AbortOperationPacket
+
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case -3 packetack "+packetAck.ErasmusRestrictedInfo, ctx)
+
+				uniInfo, found := k.GetUniversities(ctx, abortPacket.HomeUniversity)
+				if !found {
+					utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case -3 "+types.ErrWrongNameUniversity.Error(), ctx)
+					return types.ErrWrongNameUniversity
+				} else {
+
+					abortData.HomeIndex = abortPacket.HomeIndex
+					abortData.HomeUniversity = abortPacket.HomeUniversity
+					abortData.PacketID = abortPacket.PacketID
+					abortData.ForeignUniversity = abortPacket.ForeignUniversity
+					abortData.PacketID = abortPacket.PacketID
+
+					resultByteJSON, err := json.Marshal(abortData)
+					if err != nil {
+						return err
+					}
+
+					var packet_to_send types.ErasmusRestictedDataPacketData
+					packet_to_send.ErasmusRestrictedInfo = string(resultByteJSON)
+
+					utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case -3 abortData "+string(resultByteJSON), ctx)
+
+					err = k.TransmitErasmusRestictedDataPacket(ctx,
+						packet_to_send,
+						uniInfo.Port,
+						uniInfo.ChannelID,
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+						" OnAcknowledgementExtendErasmusPeriodPacket case -3")
+
+					if err != nil {
+						utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case -3 error "+err.Error(), ctx)
+						err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
+						if err != nil {
+							return err
+						}
+					}
+				}
+
+			default:
+				return nil
+
+			}
+		}
+
+		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success", ctx)
+
+		packetHash := utilfunc.Hash(binArray)
+		err = utilfunc.GetConsumedGas("OnAcknowledgementExtendErasmusPeriodPacket Hub", strconv.FormatInt(int64(packetHash), 10), ctx)
+		if err != nil {
+			return err
+		} else {
+
+			return nil
+		}
+
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -135,9 +314,18 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 // OnTimeoutExtendErasmusPeriodPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket")
+	utilfunc.PrintLogs("OnTimeoutExtendErasmusPeriodPacket", ctx)
+
+	/*
+
+		err := k.HandleAbortPacketExtendErasmus(ctx, "", data.ForeignIndex, "", data.DestinationUniversityName)
+		if err != nil {
+			return err
+		}
+
+	*/
 
 	return nil
 }

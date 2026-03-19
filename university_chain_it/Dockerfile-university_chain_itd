@@ -1,0 +1,10 @@
+FROM --platform=linux debian:11-slim
+ARG BUILDARCH
+
+ENV LOCAL=/usr/local
+
+COPY build/university_chain_itd ${LOCAL}/bin/university_chain_itd
+RUN mkdir -p ${PWD}/data
+COPY data/* ${PWD}/data
+
+ENTRYPOINT [ "university_chain_itd" ]

@@ -1,0 +1,317 @@
+Packet hash: 4065902136
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT - PacketSize: 151 - Time: 2023-09-22 21:52:36.002 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 151 - Time: 2023-09-22 21:52:43 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 151 - Time: 2023-09-22 21:52:43 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:43 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.858 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.855 +0000 UTC - Chain: Hub
+
+Packet hash: 4136228389
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT - PacketSize: 139 - Time: 2023-09-22 21:59:15.804 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.737 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.53 +0000 UTC - Chain: Hub
+
+Packet hash: 3208824081
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT - PacketSize: 123 - Time: 2023-09-22 21:51:58.808 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 123 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 123 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.725 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.609 +0000 UTC - Chain: Hub
+
+Packet hash: 248483140
+	Details: TransmitErasmusRestictedDataPacket StartErasmus IT - PacketSize: 126 - Time: 2023-09-22 21:52:04.085 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 126 - Time: 2023-09-22 21:52:10.867 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 126 - Time: 2023-09-22 21:52:10.867 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:10.867 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:20.034 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 48 - Time: 2023-09-22 21:52:26.838 +0000 UTC - Chain: Hub
+
+Packet hash: 32932988
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT - PacketSize: 139 - Time: 2023-09-22 21:52:35.982 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.837 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.854 +0000 UTC - Chain: Hub
+
+Packet hash: 7832773
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT - PacketSize: 136 - Time: 2023-09-22 21:59:15.832 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 136 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 136 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.751 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.531 +0000 UTC - Chain: Hub
+
+Packet hash: 3359016122
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT - PacketSize: 141 - Time: 2023-09-22 21:51:58.777 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 141 - Time: 2023-09-22 21:52:05.449 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 141 - Time: 2023-09-22 21:52:05.449 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.45 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.712 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.608 +0000 UTC - Chain: Hub
+
+Packet hash: 2500232562
+	Details: TransmitErasmusIndexPacket OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 81 - Time: 2023-09-22 21:52:26.838 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusIndexPacket IT - PacketSize: 81 - Time: 2023-09-22 21:52:35.973 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusIndexPacket sending ack IT - PacketSize: 2 - Time: 2023-09-22 21:52:36.006 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusIndexPacket Hub - PacketSize: 2 - Time: 2023-09-22 21:52:43 +0000 UTC - Chain: Hub
+
+Packet hash: 1875916373
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT - PacketSize: 129 - Time: 2023-09-22 21:52:35.999 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 129 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 129 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.855 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.855 +0000 UTC - Chain: Hub
+
+Packet hash: 3819287233
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT - PacketSize: 142 - Time: 2023-09-22 21:52:35.994 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 142 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 142 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.849 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.855 +0000 UTC - Chain: Hub
+
+Packet hash: 34750892
+	Details: TransmitFinalErasmusDataPacket Hub - PacketSize: 143 - Time: 2023-09-22 21:54:29.571 +0000 UTC - Chain: Hub
+	Details: OnRecvFinalErasmusDataPacket IT - PacketSize: 143 - Time: 2023-09-22 21:54:38.348 +0000 UTC - Chain: IT
+	Details: OnRecvFinalErasmusDataPacket sending ack IT - PacketSize: 2 - Time: 2023-09-22 21:54:38.356 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementFinalErasmusDataPacket Hub - PacketSize: 2 - Time: 2023-09-22 21:54:45.648 +0000 UTC - Chain: Hub
+
+Packet hash: 237660299
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT - PacketSize: 145 - Time: 2023-09-22 21:59:15.793 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 145 - Time: 2023-09-22 21:59:23.49 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 145 - Time: 2023-09-22 21:59:23.49 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.49 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.731 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.53 +0000 UTC - Chain: Hub
+
+Packet hash: 3647126934
+	Details: TransmitErasmusIndexPacket OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 81 - Time: 2023-09-22 21:51:49.497 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusIndexPacket IT - PacketSize: 81 - Time: 2023-09-22 21:51:58.773 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusIndexPacket sending ack IT - PacketSize: 2 - Time: 2023-09-22 21:51:58.836 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusIndexPacket Hub - PacketSize: 2 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+
+Packet hash: 1944079568
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT - PacketSize: 136 - Time: 2023-09-22 21:51:58.819 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 136 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 136 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.731 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.61 +0000 UTC - Chain: Hub
+
+Packet hash: 1159742861
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT - PacketSize: 139 - Time: 2023-09-22 21:52:35.985 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.84 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.854 +0000 UTC - Chain: Hub
+
+Packet hash: 622999814
+	Details: TransmitErasmusRestictedDataPacket - case 6 IT - PacketSize: 139 - Time: 2023-09-22 21:51:58.8 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.722 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.609 +0000 UTC - Chain: Hub
+
+Packet hash: 3269899987
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT - PacketSize: 142 - Time: 2023-09-22 21:51:58.814 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 142 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 142 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.452 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.728 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.61 +0000 UTC - Chain: Hub
+
+Packet hash: 2230809056
+	Details: TransmitErasmusRestictedDataPacket - case 6 IT - PacketSize: 139 - Time: 2023-09-22 21:52:35.988 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.843 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.855 +0000 UTC - Chain: Hub
+
+Packet hash: 68306130
+	Details: TransmitFinalErasmusDataPacket Hub - PacketSize: 143 - Time: 2023-09-22 21:53:52.237 +0000 UTC - Chain: Hub
+	Details: OnRecvFinalErasmusDataPacket IT - PacketSize: 143 - Time: 2023-09-22 21:54:01.037 +0000 UTC - Chain: IT
+	Details: OnRecvFinalErasmusDataPacket sending ack IT - PacketSize: 2 - Time: 2023-09-22 21:54:01.046 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementFinalErasmusDataPacket Hub - PacketSize: 2 - Time: 2023-09-22 21:54:08.3 +0000 UTC - Chain: Hub
+
+Packet hash: 1370763274
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 8 IT - PacketSize: 142 - Time: 2023-09-22 21:59:15.826 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 142 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 142 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.748 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.531 +0000 UTC - Chain: Hub
+
+Packet hash: 3480378438
+	Details: TransmitErasmusRestictedDataPacket StartErasmus IT - PacketSize: 126 - Time: 2023-09-22 21:51:26.696 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 126 - Time: 2023-09-22 21:51:33.464 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 126 - Time: 2023-09-22 21:51:33.464 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:51:33.464 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:51:42.713 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 48 - Time: 2023-09-22 21:51:49.497 +0000 UTC - Chain: Hub
+
+Packet hash: 2996184719
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 4 IT - PacketSize: 139 - Time: 2023-09-22 21:51:58.788 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:05.45 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:05.45 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.717 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.609 +0000 UTC - Chain: Hub
+
+Packet hash: 2831348263
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT - PacketSize: 139 - Time: 2023-09-22 21:51:58.794 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:52:05.451 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.719 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.609 +0000 UTC - Chain: Hub
+
+Packet hash: 3664367923
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT - PacketSize: 151 - Time: 2023-09-22 21:59:15.844 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 151 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 151 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.495 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.757 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.532 +0000 UTC - Chain: Hub
+
+Packet hash: 306530419
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT - PacketSize: 144 - Time: 2023-09-22 21:52:35.979 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:52:42.997 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.834 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.854 +0000 UTC - Chain: Hub
+
+Packet hash: 1445095162
+	Details: TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT - PacketSize: 86 - Time: 2023-09-22 21:53:50.404 +0000 UTC - Chain: IT
+	Details: TransmitEndErasmusPeriodRequestPacket Hub - PacketSize: 86 - Time: 2023-09-22 21:53:57.669 +0000 UTC - Chain: Hub
+	Details: OnRecvEndErasmusPeriodRequestPacket Hub - PacketSize: 86 - Time: 2023-09-22 21:53:57.669 +0000 UTC - Chain: Hub
+	Details: OnRecvEndErasmusPeriodRequestPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:53:57.669 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementEndErasmusPeriodRequestPacket IT - PacketSize: 28 - Time: 2023-09-22 21:54:06.354 +0000 UTC - Chain: IT
+
+Packet hash: 2470391675
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT - PacketSize: 129 - Time: 2023-09-22 21:51:58.825 +0000 UTC - Chain: IT
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 129 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 129 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.734 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.61 +0000 UTC - Chain: Hub
+
+Packet hash: 2205639880
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 2 IT - PacketSize: 144 - Time: 2023-09-22 21:52:35.976 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.996 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:52:42.996 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:52:42.996 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.831 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.854 +0000 UTC - Chain: Hub
+
+Packet hash: 2233210936
+	Details: TransmitErasmusIndexPacket OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 81 - Time: 2023-09-22 21:59:07.444 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusIndexPacket IT - PacketSize: 81 - Time: 2023-09-22 21:59:15.789 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusIndexPacket sending ack IT - PacketSize: 2 - Time: 2023-09-22 21:59:15.85 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusIndexPacket Hub - PacketSize: 2 - Time: 2023-09-22 21:59:23.495 +0000 UTC - Chain: Hub
+
+Packet hash: 610706427
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT - PacketSize: 123 - Time: 2023-09-22 21:52:35.991 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 123 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 123 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.998 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.846 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.855 +0000 UTC - Chain: Hub
+
+Packet hash: 1184177851
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 5 IT - PacketSize: 139 - Time: 2023-09-22 21:59:15.809 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.492 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:59:23.492 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.74 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.531 +0000 UTC - Chain: Hub
+
+Packet hash: 3494704352
+	Details: TransmitErasmusRestictedDataPacket - case 6 IT - PacketSize: 139 - Time: 2023-09-22 21:59:15.815 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:59:23.492 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 139 - Time: 2023-09-22 21:59:23.492 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.742 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.531 +0000 UTC - Chain: Hub
+
+Packet hash: 2895273716
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 7 IT - PacketSize: 123 - Time: 2023-09-22 21:59:15.82 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 123 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 123 - Time: 2023-09-22 21:59:23.493 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.745 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.531 +0000 UTC - Chain: Hub
+
+Packet hash: 461056174
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 10 IT - PacketSize: 129 - Time: 2023-09-22 21:59:15.839 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 129 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 129 - Time: 2023-09-22 21:59:23.494 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.754 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.531 +0000 UTC - Chain: Hub
+
+Packet hash: 564705611
+	Details: TransmitErasmusRestictedDataPacket StartErasmus IT - PacketSize: 126 - Time: 2023-09-22 21:51:47.936 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 126 - Time: 2023-09-22 21:51:54.728 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 126 - Time: 2023-09-22 21:51:54.728 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:51:54.728 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:04.081 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 48 - Time: 2023-09-22 21:59:07.444 +0000 UTC - Chain: Hub
+
+Packet hash: 190727210
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT - PacketSize: 144 - Time: 2023-09-22 21:51:58.783 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:52:05.45 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.45 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:52:05.45 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.714 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.609 +0000 UTC - Chain: Hub
+
+Packet hash: 1463645902
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 11 IT - PacketSize: 151 - Time: 2023-09-22 21:51:58.83 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 151 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 151 - Time: 2023-09-22 21:52:05.453 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:14.737 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:21.61 +0000 UTC - Chain: Hub
+
+Packet hash: 3346533658
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 3 IT - PacketSize: 144 - Time: 2023-09-22 21:59:15.799 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 144 - Time: 2023-09-22 21:59:23.491 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:59:31.734 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:59:39.53 +0000 UTC - Chain: Hub
+
+Packet hash: 2595633762
+	Details: TransmitErasmusRestictedDataPacket OnRecvErasmusIndexPacket - case 9 IT - PacketSize: 136 - Time: 2023-09-22 21:52:35.997 +0000 UTC - Chain: IT
+	Details: OnRecvErasmusRestictedDataPacket Hub - PacketSize: 136 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: TransmitErasmusRestictedDataPacket Hub - PacketSize: 136 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnRecvErasmusRestictedDataPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:52:42.999 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementErasmusRestictedDataPacket IT - PacketSize: 28 - Time: 2023-09-22 21:52:51.852 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementErasmusRestictedDataPacket Hub - PacketSize: 28 - Time: 2023-09-22 21:52:58.855 +0000 UTC - Chain: Hub
+
+Packet hash: 3815771571
+	Details: TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT - PacketSize: 93 - Time: 2023-09-22 21:53:29.139 +0000 UTC - Chain: IT
+	Details: OnRecvEndErasmusPeriodRequestPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:53:36.288 +0000 UTC - Chain: Hub
+	Details: TransmitEndErasmusPeriodRequestPacket Hub - PacketSize: 93 - Time: 2023-09-22 21:53:36.288 +0000 UTC - Chain: Hub
+	Details: OnRecvEndErasmusPeriodRequestPacket Hub - PacketSize: 93 - Time: 2023-09-22 21:53:36.288 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementEndErasmusPeriodRequestPacket IT - PacketSize: 28 - Time: 2023-09-22 21:53:45.102 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementEndErasmusPeriodRequestPacket Hub - PacketSize: 107 - Time: 2023-09-22 21:53:52.237 +0000 UTC - Chain: Hub
+
+Packet hash: 299004043
+	Details: TransmitEndErasmusPeriodRequestPacketTerminateExpiredErasmusPeriods IT - PacketSize: 93 - Time: 2023-09-22 21:54:06.357 +0000 UTC - Chain: IT
+	Details: OnRecvEndErasmusPeriodRequestPacket sending ack Hub - PacketSize: 28 - Time: 2023-09-22 21:54:13.518 +0000 UTC - Chain: Hub
+	Details: TransmitEndErasmusPeriodRequestPacket Hub - PacketSize: 93 - Time: 2023-09-22 21:54:13.518 +0000 UTC - Chain: Hub
+	Details: OnRecvEndErasmusPeriodRequestPacket Hub - PacketSize: 93 - Time: 2023-09-22 21:54:13.518 +0000 UTC - Chain: Hub
+	Details: OnAcknowledgementEndErasmusPeriodRequestPacket IT - PacketSize: 28 - Time: 2023-09-22 21:54:22.503 +0000 UTC - Chain: IT
+	Details: OnAcknowledgementEndErasmusPeriodRequestPacket Hub - PacketSize: 107 - Time: 2023-09-22 21:54:29.571 +0000 UTC - Chain: Hub
+

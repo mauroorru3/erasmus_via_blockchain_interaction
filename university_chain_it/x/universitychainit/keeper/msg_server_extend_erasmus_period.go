@@ -8,5 +8,8 @@ import (
 
 func (k msgServer) SendExtendErasmusPeriod(goCtx context.Context, msg *types.MsgSendExtendErasmusPeriod) (*types.MsgSendExtendErasmusPeriodResponse, error) {
 
-	return &types.MsgSendExtendErasmusPeriodResponse{}, nil
+	return &types.MsgSendExtendErasmusPeriodResponse{
+		Status: -1,
+	}, types.ErrNonCallableFunction
+
 }

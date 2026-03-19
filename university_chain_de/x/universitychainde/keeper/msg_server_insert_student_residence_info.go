@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"university_chain_de/x/universitychainde/types"
+	"university_chain_de/x/universitychainde/utilfunc"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
@@ -64,10 +65,16 @@ func (k msgServer) InsertStudentResidenceInfo(goCtx context.Context, msg *types.
 
 							k.Keeper.SetStoredStudent(ctx, searchedStudent)
 
-							return &types.MsgInsertStudentResidenceInfoResponse{
-								Status: 0,
-							}, nil
-
+							err = utilfunc.GetConsumedGas("InsertStudentResidenceInfo DE", searchedStudent.Index, ctx)
+							if err != nil {
+								return &types.MsgInsertStudentResidenceInfoResponse{
+									Status: -1,
+								}, err
+							} else {
+								return &types.MsgInsertStudentResidenceInfoResponse{
+									Status: 0,
+								}, nil
+							}
 						}
 					}
 

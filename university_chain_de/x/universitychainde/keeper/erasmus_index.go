@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"errors"
+
 	"university_chain_de/x/universitychainde/types"
 	"university_chain_de/x/universitychainde/utilfunc"
 
@@ -20,6 +21,7 @@ func (k Keeper) TransmitErasmusIndexPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -60,6 +62,9 @@ func (k Keeper) TransmitErasmusIndexPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitErasmusIndexPacket", details, ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -69,6 +74,14 @@ func (k Keeper) TransmitErasmusIndexPacket(
 
 // OnRecvErasmusIndexPacket processes packet reception
 func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) (packetAck types.ErasmusIndexPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket", "", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	err = data.ValidateBasic()
 
@@ -76,52 +89,376 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 		return packetAck, err
 	} else {
 
-		// TODO: packet reception logic
+		// Packet reception logic
 
 		searchedStudent, found := k.GetStoredStudent(ctx, data.Index)
 		if !found {
-			utilfunc.PrintLogs("OnRecvErasmusIndexPacket " + types.ErrStudentNotPresent.Error())
+			utilfunc.PrintLogs("OnRecvErasmusIndexPacket "+types.ErrStudentNotPresent.Error(), ctx)
 			return packetAck, types.ErrStudentNotPresent
 		} else {
 
-			utilfunc.PrintLogs("OnRecvErasmusIndexPacket success")
+			utilfunc.PrintLogs("OnRecvErasmusIndexPacket success", ctx)
+			utilfunc.PrintData("OnRecvErasmusIndexPacket "+data.String(), ctx)
 
 			utilfunc.SetForeignIndex(&searchedStudent, data.ForeignIndex)
 
 			k.SetStoredStudent(ctx, searchedStudent)
+			//------------------
 
-			return packetAck, nil
+			stu, found := k.GetStoredStudent(ctx, data.Index)
+			if !found {
+				return packetAck, err
+			} else {
+
+				// remove the timer for the first packet of the start erasmus operation
+				err = k.ClearOperationQueue(ctx, &stu)
+				if err != nil {
+					return packetAck, err
+				}
+
+				data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(stu)
+				if err != nil {
+					return packetAck, err
+				}
+
+				var packet types.ErasmusRestictedDataPacketData
+				packet.ErasmusRestrictedInfo = data
+
+				err = k.TransmitErasmusRestictedDataPacket(
+					ctx,
+					packet,
+					"universitychainde",
+					"channel-0",
+					clienttypes.ZeroHeight(),
+					timeoutTimestamp,
+					" OnRecvErasmusIndexPacket - case 2",
+				)
+
+				if err != nil {
+					utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+					return packetAck, err
+				} else {
+
+					utilfunc.PrintLogs("SendErasmusStudent CreateNameSurnameJSONPacketFromStudentData sent", ctx)
+
+					data, err := utilfunc.CreateStudentKeyPart1JSONPacketFromStudentData(stu)
+					if err != nil {
+						return packetAck, err
+					}
+
+					var packet types.ErasmusRestictedDataPacketData
+					packet.ErasmusRestrictedInfo = data
+
+					err = k.TransmitErasmusRestictedDataPacket(
+						ctx,
+						packet,
+						"universitychainde",
+						"channel-0",
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+						" OnRecvErasmusIndexPacket - case 3",
+					)
+
+					if err != nil {
+						utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+						return packetAck, err
+					} else {
+
+						utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart1JSONPacketFromStudentData sent", ctx)
+
+						data, err := utilfunc.CreateStudentKeyPart2JSONPacketFromStudentData(stu)
+						if err != nil {
+							return packetAck, err
+						}
+
+						var packet types.ErasmusRestictedDataPacketData
+						packet.ErasmusRestrictedInfo = data
+
+						err = k.TransmitErasmusRestictedDataPacket(
+							ctx,
+							packet,
+							"universitychainde",
+							"channel-0",
+							clienttypes.ZeroHeight(),
+							timeoutTimestamp,
+							" OnRecvErasmusIndexPacket - case 4",
+						)
+
+						if err != nil {
+							utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+							return packetAck, err
+						} else {
+							utilfunc.PrintLogs("SendErasmusStudent CreateStudentKeyPart2JSONPacketFromStudentData sent", ctx)
+
+							data, err := utilfunc.CreateStartDateJSONPacketFromStudentData(stu)
+							if err != nil {
+								return packetAck, err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainde",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnRecvErasmusIndexPacket - case 5",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+								return packetAck, err
+							} else {
+								utilfunc.PrintLogs("SendErasmusStudent CreateStartDateJSONPacketFromStudentData sent", ctx)
+								data, err := utilfunc.CreateEndDateJSONPacketFromStudentData(stu)
+								if err != nil {
+									return packetAck, err
+								}
+
+								var packet types.ErasmusRestictedDataPacketData
+								packet.ErasmusRestrictedInfo = data
+
+								err = k.TransmitErasmusRestictedDataPacket(
+									ctx,
+									packet,
+									"universitychainde",
+									"channel-0",
+									clienttypes.ZeroHeight(),
+									timeoutTimestamp,
+									" OnRecvErasmusIndexPacket - case 6",
+								)
+
+								if err != nil {
+									utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+									return packetAck, err
+								} else {
+									utilfunc.PrintLogs("SendErasmusStudent CreateEndDateJSONPacketFromStudentData sent", ctx)
+									data, err := utilfunc.CreateDurationJSONPacketFromStudentData(stu)
+									if err != nil {
+										return packetAck, err
+									}
+
+									var packet types.ErasmusRestictedDataPacketData
+									packet.ErasmusRestrictedInfo = data
+
+									err = k.TransmitErasmusRestictedDataPacket(
+										ctx,
+										packet,
+										"universitychainde",
+										"channel-0",
+										clienttypes.ZeroHeight(),
+										timeoutTimestamp,
+										" OnRecvErasmusIndexPacket - case 7",
+									)
+
+									if err != nil {
+										utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+										return packetAck, err
+									} else {
+										utilfunc.PrintLogs("SendErasmusStudent CreateDurationJSONPacketFromStudentData sent", ctx)
+
+										data, err := utilfunc.CreateCourseDetailsJSONPacketFromStudentData(stu)
+										if err != nil {
+											utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+											return packetAck, err
+										}
+
+										var packet types.ErasmusRestictedDataPacketData
+										packet.ErasmusRestrictedInfo = data
+
+										err = k.TransmitErasmusRestictedDataPacket(
+											ctx,
+											packet,
+											"universitychainde",
+											"channel-0",
+											clienttypes.ZeroHeight(),
+											timeoutTimestamp,
+											" OnRecvErasmusIndexPacket - case 8",
+										)
+
+										if err != nil {
+											utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+											return packetAck, err
+										} else {
+											utilfunc.PrintLogs("SendErasmusStudent CreateCourseDetailsJSONPacketFromStudentData sent", ctx)
+											data, err := utilfunc.CreateDepartmentJSONPacketFromStudentData(stu)
+											if err != nil {
+												return packetAck, err
+											}
+
+											var packet types.ErasmusRestictedDataPacketData
+											packet.ErasmusRestrictedInfo = data
+
+											err = k.TransmitErasmusRestictedDataPacket(
+												ctx,
+												packet,
+												"universitychainde",
+												"channel-0",
+												clienttypes.ZeroHeight(),
+												timeoutTimestamp,
+												" OnRecvErasmusIndexPacket - case 9",
+											)
+
+											if err != nil {
+												utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+												return packetAck, err
+											} else {
+												utilfunc.PrintLogs("SendErasmusStudent CreateDepartmentJSONPacketFromStudentData sent", ctx)
+												data, err := utilfunc.CreateErasmusTypeJSONPacketFromStudentData(stu)
+												if err != nil {
+													utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+													return packetAck, err
+												}
+
+												var packet types.ErasmusRestictedDataPacketData
+												packet.ErasmusRestrictedInfo = data
+
+												err = k.TransmitErasmusRestictedDataPacket(
+													ctx,
+													packet,
+													"universitychainde",
+													"channel-0",
+													clienttypes.ZeroHeight(),
+													timeoutTimestamp,
+													" OnRecvErasmusIndexPacket - case 10",
+												)
+
+												if err != nil {
+													utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+													return packetAck, err
+												} else {
+													utilfunc.PrintLogs("SendErasmusStudent CreateErasmusTypeJSONPacketFromStudentData sent", ctx)
+
+													data, err := utilfunc.CreateExamsJSONPacketFromStudentData(stu)
+													if err != nil {
+														utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+														return packetAck, err
+													}
+
+													var packet types.ErasmusRestictedDataPacketData
+													packet.ErasmusRestrictedInfo = data
+
+													err = k.TransmitErasmusRestictedDataPacket(
+														ctx,
+														packet,
+														"universitychainde",
+														"channel-0",
+														clienttypes.ZeroHeight(),
+														timeoutTimestamp,
+														" OnRecvErasmusIndexPacket - case 11",
+													)
+
+													if err != nil {
+														utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+														return packetAck, err
+													} else {
+														utilfunc.PrintLogs("SendErasmusStudent CreateExamsJSONPacketFromStudentData sent", ctx)
+
+														stringIndex, err := utilfunc.GetForeignIndex(stu)
+														if err != nil {
+															return packetAck, err
+														} else {
+															err = utilfunc.GetConsumedGas("OnRecvErasmusIndexPacket DE", stringIndex, ctx)
+															if err != nil {
+																return packetAck, err
+															} else {
+																packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+																if err != nil {
+																	return packetAck, err
+																}
+
+																sizeInt := len(packetAckBytes)
+																//sizeInt := packetAck.Size()
+																utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", "", ctx, sizeInt, binArray)
+
+																uniInfo, found := k.GetUniversityInfo(ctx, searchedStudent.StudentData.UniversityName)
+																if !found {
+																	return packetAck, err
+																} else {
+																	// The timer for the last 10 packets of the start erasmus operation is created
+
+																	err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "4", 1)
+																	if err != nil {
+																		return packetAck, err
+																	}
+
+																	utilfunc.PrintLogs("OnRecvErasmusIndexPacket - The timer for the last 10 packets of the start erasmus operation is created", ctx)
+																}
+
+																return packetAck, nil
+															}
+
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+
+						}
+					}
+				}
+			}
+
 		}
 	}
+
 }
 
 // OnAcknowledgementErasmusIndexPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData, ack channeltypes.Acknowledgement) error {
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
+		// Failed acknowledgement logic
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
+
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
 		var packetAck types.ErasmusIndexPacketAck
+
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementErasmusIndexPacket", "", ctx, sizeInt, binArray)
 
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
-			utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket cannot unmarshal acknowledgment")
+			utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket cannot unmarshal acknowledgment", ctx)
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success", ctx)
+
+		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket IT", data.Index, ctx)
+		if err != nil {
+			return err
+		}
 
 		return nil
+
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -131,9 +468,10 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 // OnTimeoutErasmusIndexPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
+	// University chains do not send this type of packet, so it cannot timeout.
 
-	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
 
 	return nil
 }

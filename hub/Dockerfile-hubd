@@ -1,0 +1,10 @@
+FROM --platform=linux debian:11-slim
+ARG BUILDARCH
+
+ENV LOCAL=/usr/local
+
+COPY build/hubd ${LOCAL}/bin/hubd
+RUN mkdir -p ${PWD}/data
+COPY data/* ${PWD}/data
+
+ENTRYPOINT [ "hubd" ]

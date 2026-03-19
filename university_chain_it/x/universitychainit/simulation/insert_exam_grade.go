@@ -22,7 +22,7 @@ func SimulateMsgInsertExamGrade(
 			Creator: simAccount.Address.String(),
 		}
 
-		// TODO: Handling the InsertExamGrade simulation
+		// Handling the InsertExamGrade simulation
 
 		return simtypes.NoOpMsg(types.ModuleName, msg.Type(), "InsertExamGrade simulation not implemented"), nil, nil
 	}

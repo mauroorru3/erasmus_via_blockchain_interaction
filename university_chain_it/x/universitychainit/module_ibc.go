@@ -3,6 +3,8 @@ package universitychainit
 import (
 	"fmt"
 
+	"university_chain_it/x/universitychainit/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
@@ -10,7 +12,6 @@ import (
 	porttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibcexported "github.com/cosmos/ibc-go/v3/modules/core/exported"
-	"university_chain_it/x/universitychainit/types"
 )
 
 // OnChanOpenInit implements the IBCModule interface
@@ -233,6 +234,25 @@ func (am AppModule) OnRecvPacket(
 				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
 			),
 		)
+	case *types.UniversitychainitPacketData_ErasmusRestictedDataPacket:
+		packetAck, err := am.keeper.OnRecvErasmusRestictedDataPacket(ctx, modulePacket, *packet.ErasmusRestictedDataPacket)
+		if err != nil {
+			ack = channeltypes.NewErrorAcknowledgement(err.Error())
+		} else {
+			// Encode packet acknowledgment
+			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+			if err != nil {
+				return channeltypes.NewErrorAcknowledgement(sdkerrors.Wrap(sdkerrors.ErrJSONMarshal, err.Error()).Error())
+			}
+			ack = channeltypes.NewResultAcknowledgement(sdk.MustSortJSON(packetAckBytes))
+		}
+		ctx.EventManager().EmitEvent(
+			sdk.NewEvent(
+				types.EventTypeErasmusRestictedDataPacket,
+				sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
+				sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", err != nil)),
+			),
+		)
 		// this line is used by starport scaffolding # ibc/packet/module/recv
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -296,6 +316,12 @@ func (am AppModule) OnAcknowledgementPacket(
 			return err
 		}
 		eventType = types.EventTypeExtendErasmusPeriodPacket
+	case *types.UniversitychainitPacketData_ErasmusRestictedDataPacket:
+		err := am.keeper.OnAcknowledgementErasmusRestictedDataPacket(ctx, modulePacket, *packet.ErasmusRestictedDataPacket, ack)
+		if err != nil {
+			return err
+		}
+		eventType = types.EventTypeErasmusRestictedDataPacket
 		// this line is used by starport scaffolding # ibc/packet/module/ack
 	default:
 		errMsg := fmt.Sprintf("unrecognized %s packet type: %T", types.ModuleName, packet)
@@ -365,6 +391,11 @@ func (am AppModule) OnTimeoutPacket(
 		}
 	case *types.UniversitychainitPacketData_ExtendErasmusPeriodPacket:
 		err := am.keeper.OnTimeoutExtendErasmusPeriodPacket(ctx, modulePacket, *packet.ExtendErasmusPeriodPacket)
+		if err != nil {
+			return err
+		}
+	case *types.UniversitychainitPacketData_ErasmusRestictedDataPacket:
+		err := am.keeper.OnTimeoutErasmusRestictedDataPacket(ctx, modulePacket, *packet.ErasmusRestictedDataPacket)
 		if err != nil {
 			return err
 		}

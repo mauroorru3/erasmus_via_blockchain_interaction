@@ -1,0 +1,7 @@
+Function: OnRecvErasmusRestictedDataPacket Hub - Gas consumed: 700583
+Function: OnAcknowledgementErasmusRestictedDataPacket Hub - Gas consumed: 154381
+Function: OnAcknowledgementErasmusIndexPacket Hub - Gas consumed: 726426
+Function: OnRecvEndErasmusPeriodRequestPacket Hub - Gas consumed: 155654
+Function: OnAcknowledgementEndErasmusPeriodRequestPacket Hub - Gas consumed: 155305
+Function: OnAcknowledgementFinalErasmusDataPacket Hub - Gas consumed: 131511
+Function: ConfigureChain Hub - Gas consumed: 70746

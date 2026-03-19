@@ -1,0 +1,118 @@
+Student moving from Chain IT to Chain DE:
+
+Packets from Chain IT to Hub:
+Packet size: 136 - latency: 10.743s
+Packet size: 93 - latency: 10.52s
+Packet size: 139 - latency: 10.758s
+Packet size: 144 - latency: 10.771s
+Packet size: 139 - latency: 10.768s
+Packet size: 123 - latency: 10.753s
+Packet size: 142 - latency: 10.749s
+Packet size: 129 - latency: 10.738s
+Packet size: 126 - latency: 11.181s
+Packet size: 139 - latency: 10.764s
+Packet size: 151 - latency: 10.732s
+Packet size: 141 - latency: 10.773s
+
+Ack packets from Hub to Chain IT:
+Packet size: 28 - latency: 10.596s
+Packet size: 28 - latency: 10.603s
+Packet size: 28 - latency: 10.619s
+Packet size: 28 - latency: 10.614s
+Packet size: 28 - latency: 10.846s
+Packet size: 28 - latency: 10.598s
+Packet size: 28 - latency: 10.606s
+Packet size: 28 - latency: 10.088s
+Packet size: 28 - latency: 10.601s
+Packet size: 28 - latency: 10.609s
+Packet size: 28 - latency: 10.611s
+Packet size: 28 - latency: 10.616s
+
+Packets from Hub to Chain DE:
+Packet size: 151 - latency: 9.23s
+Packet size: 142 - latency: 9.216s
+Packet size: 129 - latency: 9.227s
+Packet size: 139 - latency: 9.205s
+Packet size: 139 - latency: 9.199s
+Packet size: 139 - latency: 9.194s
+Packet size: 123 - latency: 9.211s
+Packet size: 136 - latency: 9.222s
+Packet size: 93 - latency: 9.383s
+Packet size: 126 - latency: 9.178s
+Packet size: 141 - latency: 9.184s
+Packet size: 144 - latency: 9.188s
+
+Ack packets from Chain DE to Hub:
+Packet size: 28 - latency: 9.558s
+Packet size: 28 - latency: 9.547s
+Packet size: 28 - latency: 9.54s
+Packet size: 28 - latency: 9.577s
+Packet size: 28 - latency: 9.564s
+Packet size: 28 - latency: 9.571s
+Packet size: 28 - latency: 9.553s
+Packet size: 28 - latency: 9.531s
+Packet size: 28 - latency: 9.534s
+Packet size: 28 - latency: 9.524s
+Packet size: 2 - latency: 9.807s
+Packet size: 48 - latency: 9.453s
+
+Student moving from Chain DE to Chain IT:
+
+Packets from Chain DE to Hub:
+Packet size: 146 - latency: 10.549s
+Packet size: 93 - latency: 6.658s
+Packet size: 143 - latency: 10.57s
+Packet size: 133 - latency: 10.539s
+Packet size: 143 - latency: 10.559s
+Packet size: 140 - latency: 10.544s
+Packet size: 146 - latency: 10.575s
+Packet size: 148 - latency: 10.573s
+Packet size: 143 - latency: 10.565s
+Packet size: 124 - latency: 10.485s
+Packet size: 127 - latency: 10.554s
+Packet size: 155 - latency: 10.533s
+
+
+Ack packets from Hub to Chain DE:
+Packet size: 28 - latency: 10.782s
+Packet size: 28 - latency: 10.692s
+Packet size: 28 - latency: 10.713s
+Packet size: 28 - latency: 10.698s
+Packet size: 28 - latency: 9.37s
+Packet size: 28 - latency: 10.684s
+Packet size: 28 - latency: 10.708s
+Packet size: 28 - latency: 10.678s
+Packet size: 28 - latency: 10.681s
+Packet size: 28 - latency: 10.687s
+Packet size: 28 - latency: 10.69s
+Packet size: 28 - latency: 10.703s
+
+
+Packets from Hub to Chain IT:
+Packet size: 127 - latency: 10.977s
+Packet size: 146 - latency: 10.983s
+Packet size: 93 - latency: 9.661s
+Packet size: 148 - latency: 10.941s
+Packet size: 143 - latency: 10.952s
+Packet size: 140 - latency: 10.988s
+Packet size: 124 - latency: 5.798s
+Packet size: 143 - latency: 10.969s
+Packet size: 155 - latency: 11s
+Packet size: 133 - latency: 10.993s
+Packet size: 146 - latency: 10.933s
+Packet size: 143 - latency: 10.947s
+
+
+Ack packets from Chain IT to Hub:
+Packet size: 28 - latency: 10.374s
+Packet size: 28 - latency: 10.422s
+Packet size: 28 - latency: 10.399s
+Packet size: 28 - latency: 10.361s
+Packet size: 28 - latency: 10.368s
+Packet size: 50 - latency: 10.33s
+Packet size: 28 - latency: 10.392s
+Packet size: 28 - latency: 10.428s
+Packet size: 28 - latency: 10.416s
+Packet size: 28 - latency: 10.38s
+Packet size: 107 - latency: 6.538s
+Packet size: 28 - latency: 10.386s

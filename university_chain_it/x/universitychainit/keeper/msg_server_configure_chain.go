@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strconv"
 
 	"university_chain_it/x/universitychainit/types"
 	"university_chain_it/x/universitychainit/utilfunc"
@@ -81,15 +82,17 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 								//deadlineTaxes := ctx.BlockTime().Add(time.Duration(3 * 30 * 24 * time.Hour))
 
 								k.Keeper.SetUniversityInfo(ctx, types.UniversityInfo{
-									UniversityName:  universityInfoList[i].Name,
-									NextStudentId:   1,
-									SecretariatKey:  universityInfoList[i].Secretariat_key,
-									UniversityKey:   universityInfoList[i].University_key,
-									CaiKey:          "",
-									FifoHeadErasmus: "",
-									FifoTailErasmus: "",
-									DeadlineTaxes:   universityInfoList[i].Deadline_taxes,
-									DeadlineErasmus: universityInfoList[i].Deadline_erasmus,
+									UniversityName:    universityInfoList[i].Name,
+									NextStudentId:     1,
+									SecretariatKey:    universityInfoList[i].Secretariat_key,
+									UniversityKey:     universityInfoList[i].University_key,
+									CaiKey:            "",
+									FifoHeadErasmus:   "",
+									FifoTailErasmus:   "",
+									FifoHeadOperation: "",
+									FifoTailOperation: "",
+									DeadlineTaxes:     universityInfoList[i].Deadline_taxes,
+									DeadlineErasmus:   universityInfoList[i].Deadline_erasmus,
 									//DeadlineTaxes:   utilfunc.FormatDeadline(deadlineTaxes),
 									//DeadlineErasmus: utilfunc.FormatDeadline(deadlineErasmus),
 									MaxErasmusExams: universityInfoList[i].Max_erasmus_exams,
@@ -121,9 +124,24 @@ func (k msgServer) ConfigureChain(goCtx context.Context, msg *types.MsgConfigure
 
 							}
 						}
+						uniInfo, found := k.Keeper.GetUniversityInfo(ctx, universityInfoList[0].Name)
+						if !found {
+							return &types.MsgConfigureChainResponse{
+								Status: -1,
+							}, types.ErrWrongNameUniversity
+						}
+
+						err = utilfunc.GetConsumedGas("ConfigureChain IT", strconv.FormatInt(int64(uniInfo.GetNextStudentId()), 10), ctx)
+						if err != nil {
+							return &types.MsgConfigureChainResponse{
+								Status: -1,
+							}, err
+						}
+
 						return &types.MsgConfigureChainResponse{
 							Status: 0,
 						}, nil
+
 					}
 				}
 			}

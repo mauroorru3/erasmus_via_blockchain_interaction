@@ -21,6 +21,7 @@ func (k Keeper) TransmitErasmusIndexPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -61,6 +62,9 @@ func (k Keeper) TransmitErasmusIndexPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitErasmusIndexPacket", details, ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -70,44 +74,80 @@ func (k Keeper) TransmitErasmusIndexPacket(
 
 // OnRecvErasmusIndexPacket processes packet reception
 func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) (packetAck types.ErasmusIndexPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket", "", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
 	}
 
-	utilfunc.PrintLogs("OnRecvErasmusIndexPacket")
+	utilfunc.PrintLogs("OnRecvErasmusIndexPacket", ctx)
 
-	// TODO: packet reception logic
+	// Packet reception logic
 
-	return packetAck, nil
+	err = utilfunc.GetConsumedGas("OnRecvErasmusIndexPacket Hub", data.Index, ctx)
+
+	if err != nil {
+		return packetAck, err
+	} else {
+		packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+		if err != nil {
+			return packetAck, err
+		}
+		sizeInt := len(packetAckBytes)
+		utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", "", ctx, sizeInt, binArray)
+		return packetAck, nil
+	}
+
 }
 
 // OnAcknowledgementErasmusIndexPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData, ack channeltypes.Acknowledgement) error {
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
+		// Failed acknowledgement logic
 		_ = dispatchedAck.Error
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error " + dispatchedAck.Error)
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.ErasmusIndexPacketAck
 
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementErasmusIndexPacket", "", ctx, sizeInt, binArray)
+
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success")
+		utilfunc.PrintLogs("OnAcknowledgementErasmusIndexPacket success", ctx)
 
-		return nil
+		err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusIndexPacket Hub", data.Index, ctx)
+		if err != nil {
+			return err
+		} else {
+
+			return nil
+
+		}
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -117,9 +157,18 @@ func (k Keeper) OnAcknowledgementErasmusIndexPacket(ctx sdk.Context, packet chan
 // OnTimeoutErasmusIndexPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket")
+	utilfunc.PrintLogs("OnTimeoutErasmusIndexPacket", ctx)
+
+	/*
+
+		err := k.HandleAbortPacketV2(ctx, data.Index, data.ForeignIndex, "", "")
+		if err != nil {
+			return err
+		}
+
+	*/
 
 	return nil
 }

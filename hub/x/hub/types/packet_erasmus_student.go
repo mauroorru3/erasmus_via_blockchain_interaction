@@ -3,7 +3,7 @@ package types
 // ValidateBasic is used for validating the packet
 func (p ErasmusStudentPacketData) ValidateBasic() error {
 
-	// TODO: Validate the packet data
+	// Validate the packet data
 
 	return nil
 }

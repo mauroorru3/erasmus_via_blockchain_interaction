@@ -3,12 +3,13 @@ package keeper
 import (
 	"context"
 
+	"university_chain_it/x/universitychainit/types"
+
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"university_chain_it/x/universitychainit/types"
 )
 
 func (k Keeper) StoredStudentAll(c context.Context, req *types.QueryAllStoredStudentRequest) (*types.QueryAllStoredStudentResponse, error) {

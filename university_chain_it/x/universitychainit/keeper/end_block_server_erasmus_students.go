@@ -54,6 +54,13 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 					k.SetStoredStudent(ctx, storedStudent)
 
+					// The timer for the end erasmus operation is created
+
+					err = k.AddOperationQueue(ctx, &storedStudent, &uniList[i], "2", 1)
+					if err != nil {
+						panic(err)
+					}
+
 					var packet types.EndErasmusPeriodRequestPacketData
 
 					packet.StartingUniversityName = storedStudent.StudentData.UniversityName
@@ -95,9 +102,6 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 							*/
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.ForeignIndex)
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket " + packet.DestinationUniversityName)
-
 							err = k.TransmitEndErasmusPeriodRequestPacket(
 								ctx,
 								packet,
@@ -105,12 +109,18 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 								"channel-0",
 								clienttypes.ZeroHeight(),
 								timeoutTimestamp,
+								"TerminateExpiredErasmusPeriods",
 							)
 							if err != nil {
 								panic(err)
 							}
 
-							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent")
+							utilfunc.PrintLogs("TransmitEndErasmusPeriodRequestPacket packet sent", ctx)
+
+							err = utilfunc.GetConsumedGas("TransmitEndErasmusPeriodRequestPacket IT", studentIndex, ctx)
+							if err != nil {
+								panic(err)
+							}
 
 							// Move along FIFO
 							studentIndex = uniList[i].FifoHeadErasmus

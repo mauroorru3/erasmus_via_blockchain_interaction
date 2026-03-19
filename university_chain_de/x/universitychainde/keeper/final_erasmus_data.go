@@ -21,6 +21,7 @@ func (k Keeper) TransmitFinalErasmusDataPacket(
 	sourceChannel string,
 	timeoutHeight clienttypes.Height,
 	timeoutTimestamp uint64,
+	details string,
 ) error {
 
 	sourceChannelEnd, found := k.ChannelKeeper.GetChannel(ctx, sourcePort, sourceChannel)
@@ -61,6 +62,9 @@ func (k Keeper) TransmitFinalErasmusDataPacket(
 		timeoutTimestamp,
 	)
 
+	sizeInt := packet.Size()
+	utilfunc.GetTransactionStats("TransmitEndErasmusPeriodRequestPacket", details, ctx, sizeInt, packetBytes)
+
 	if err := k.ChannelKeeper.SendPacket(ctx, channelCap, packet); err != nil {
 		return err
 	}
@@ -70,25 +74,53 @@ func (k Keeper) TransmitFinalErasmusDataPacket(
 
 // OnRecvFinalErasmusDataPacket processes packet reception
 func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData) (packetAck types.FinalErasmusDataPacketAck, err error) {
+
+	sizeInt := packet.Size()
+	binArray, err := data.GetBytes()
+	if err != nil {
+		return packetAck, err
+	}
+	utilfunc.GetTransactionStats("OnRecvFinalErasmusDataPacket", "", ctx, sizeInt, binArray)
+
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
 		return packetAck, err
 	}
 
-	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket")
+	utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket", ctx)
 
-	// TODO: packet reception logic
+	// Packet reception logic
 
 	searchedStudent, found := k.GetStoredStudent(ctx, data.HomeIndex)
 	if !found {
 		return packetAck, types.ErrStudentNotPresent
 	} else {
-		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusData)
+		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket "+data.ErasmusRestrictedInfo, ctx)
+		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusRestrictedInfo)
 		if err != nil {
-			return packetAck, err
+			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
 		}
+		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish", ctx)
 		k.SetStoredStudent(ctx, searchedStudent)
-		return packetAck, nil
+
+		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket DE", data.HomeIndex, ctx)
+		if err != nil {
+			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+		} else {
+			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+			if err != nil {
+				return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+			}
+			sizeInt := len(packetAckBytes)
+			utilfunc.GetTransactionStats("OnRecvFinalErasmusDataPacket sending ack", "", ctx, sizeInt, binArray)
+
+			err = k.ClearOperationQueue(ctx, &searchedStudent)
+			if err != nil {
+				return packetAck, nil
+			}
+
+			return packetAck, nil
+		}
 	}
 
 }
@@ -96,29 +128,49 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 // OnAcknowledgementFinalErasmusDataPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData, ack channeltypes.Acknowledgement) error {
+
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
 
-		// TODO: failed acknowledgement logic
-		_ = dispatchedAck.Error
+		// Failed acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error " + dispatchedAck.Error)
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error "+dispatchedAck.Error, ctx)
 
 		return nil
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.FinalErasmusDataPacketAck
 
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
+
+		sizeInt := len(dispatchedAck.Result)
+		binArray, err := data.GetBytes()
+		if err != nil {
+			return err
+		}
+		utilfunc.GetTransactionStats("OnAcknowledgementFinalErasmusDataPacket", "", ctx, sizeInt, binArray)
+
 		if err := types.ModuleCdc.UnmarshalJSON(dispatchedAck.Result, &packetAck); err != nil {
 			// The counter-party module doesn't implement the correct acknowledgment format
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// TODO: successful acknowledgement logic
+		// Successful acknowledgement logic
 
-		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success")
+		// University chains do not send this type of packet, therefore it is not possible to receive any ack.
 
-		return nil
+		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket success", ctx)
+
+		err = utilfunc.GetConsumedGas("OnAcknowledgementFinalErasmusDataPacket DE", data.HomeIndex, ctx)
+		if err != nil {
+			return err
+		} else {
+
+			return nil
+
+		}
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")
@@ -128,9 +180,11 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 // OnTimeoutFinalErasmusDataPacket responds to the case where a packet has not been transmitted because of a timeout
 func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FinalErasmusDataPacketData) error {
 
-	// TODO: packet timeout logic
+	// Packet timeout logic
 
-	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket")
+	// University chains do not send this type of packet, so it cannot timeout.
+
+	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
 
 	return nil
 }

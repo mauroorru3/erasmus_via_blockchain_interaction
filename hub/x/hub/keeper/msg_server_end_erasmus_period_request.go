@@ -5,13 +5,16 @@ import (
 
 	"hub/x/hub/types"
 	"hub/x/hub/utilfunc"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func (k msgServer) SendEndErasmusPeriodRequest(goCtx context.Context, msg *types.MsgSendEndErasmusPeriodRequest) (*types.MsgSendEndErasmusPeriodRequestResponse, error) {
 
-	// TODO: logic before transmitting the packet
+	// Logic before transmitting the packet
 
-	utilfunc.PrintLogs("SendEndErasmusPeriodRequest")
+	ctx := sdk.UnwrapSDKContext(goCtx)
+	utilfunc.PrintLogs("SendEndErasmusPeriodRequest", ctx)
 
 	return &types.MsgSendEndErasmusPeriodRequestResponse{
 		Status: -1,

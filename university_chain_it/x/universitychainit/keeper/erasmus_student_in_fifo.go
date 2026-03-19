@@ -11,6 +11,8 @@ import (
 
 func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
 
+	utilfunc.PrintLogs("RemoveFromFifo", ctx)
+
 	if student.ErasmusData.PreviousStudentFifo != "" {
 		beforeElement, found := k.GetStoredStudent(ctx, student.ErasmusData.PreviousStudentFifo)
 		if !found {
@@ -51,6 +53,8 @@ func (k Keeper) RemoveFromFifo(ctx sdk.Context, student *types.StoredStudent, un
 }
 
 func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
+
+	utilfunc.PrintLogs("InsertInTheErasmusFIFOQueue", ctx)
 
 	finish := false
 	if uniInfo.FifoHeadErasmus == "" && uniInfo.FifoTailErasmus == "" {
@@ -121,7 +125,9 @@ func (k Keeper) InsertInTheErasmusFIFOQueue(ctx sdk.Context, student *types.Stor
 
 }
 
-func (k Keeper) CheckAndInCaseMoveStutent(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
+func (k Keeper) CheckAndInCaseMoveStudent(ctx sdk.Context, student *types.StoredStudent, uniInfo *types.UniversityInfo) {
+
+	utilfunc.PrintLogs("CheckAndInCaseMoveStutent", ctx)
 
 	if student.ErasmusData.NextStudentFifo != "" {
 		nextElem, found := k.GetStoredStudent(ctx, student.ErasmusData.NextStudentFifo)
