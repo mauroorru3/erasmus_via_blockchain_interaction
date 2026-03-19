@@ -164,10 +164,14 @@ func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channelt
 
 	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
 
-	err := k.HandleAbortPacketEndErasmusV2(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
-	if err != nil {
-		return err
-	}
+	/*
+
+		err := k.HandleAbortPacketEndErasmusV2(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+		if err != nil {
+			return err
+		}
+
+	*/
 
 	return nil
 }

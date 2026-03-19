@@ -25,36 +25,6 @@ func (k Keeper) ClearErasmusCareer(ctx sdk.Context, studentIndex string) (err er
 		return types.ErrStudentNotPresent
 	} else {
 
-		var erasmusCareer []utilfunc.ErasmusCareerStruct
-
-		err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
-		if err != nil {
-			return err
-		}
-
-		lenCareer := len(erasmusCareer)
-
-		if student.ErasmusData.ErasmusStudent == "Incoming" && lenCareer == 1 {
-
-			k.RemoveStoredStudent(ctx, studentIndex)
-			return nil
-
-		}
-		if student.ErasmusData.ErasmusStudent == "Incoming" && lenCareer > 1 {
-
-			erasmusCareer = erasmusCareer[:lenCareer-1]
-			resultByteJSON, err := json.Marshal(erasmusCareer)
-			if err != nil {
-				return err
-			}
-
-			erasmusJSON := string(resultByteJSON)
-
-			student.ErasmusData.Career = erasmusJSON
-			k.SetStoredStudent(ctx, student)
-			return err
-
-		}
 		if student.ErasmusData.ErasmusStudent == "Outgoing" {
 
 			uniInfo, found := k.GetUniversityInfo(ctx, student.StudentData.UniversityName)
@@ -115,9 +85,14 @@ func (k Keeper) ClearErasmusCareer(ctx sdk.Context, studentIndex string) (err er
 
 				student.ErasmusData.Career = erasmusJSON
 				k.SetStoredStudent(ctx, student)
-				return err
 			}
 		}
+
+		err = k.ClearOperationQueue(ctx, &student)
+		if err != nil {
+			return err
+		}
+
 	}
 	return nil
 }
@@ -133,8 +108,7 @@ func (k Keeper) CreateAbortOperationString(student types.StoredStudent) (abort_o
 	abort_op.ForeignIndex, _ = utilfunc.GetForeignIndex(student)
 	abort_op.ForeignUniversity, _ = utilfunc.GetForeignUniversityName(student)
 	abort_op.HomeUniversity = student.StudentData.UniversityName
-	abort_op.OperationID = "1" // Identifies the Start Erasmus operation and the outgoing student
-	abort_op.PacketID = "-1"   // Value that identifies the packet related to the abort operation
+	abort_op.PacketID = "-1" // Value that identifies the packet related to the abort operation of the Start Erasmus operation
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {
@@ -154,6 +128,8 @@ func (k Keeper) SendAbortPacket(ctx sdk.Context, data string) (err error) {
 
 	var packet types.ErasmusRestictedDataPacketData
 	packet.ErasmusRestrictedInfo = data
+
+	utilfunc.PrintLogs("SendAbortPacket data "+data, ctx)
 
 	err = k.TransmitErasmusRestictedDataPacket(
 		ctx,
@@ -194,13 +170,9 @@ func (k Keeper) HandleAbortPacket(ctx sdk.Context, studentIndex string) (err err
 			return err
 		} else {
 
-			if err != nil {
-				utilfunc.PrintLogs("HandleAbortPacket "+err.Error(), ctx)
-				return err
-			}
+			utilfunc.PrintLogs("HandleAbortPacket", ctx)
 			return nil
 		}
-
 	}
 }
 
@@ -284,7 +256,7 @@ func (k Keeper) RevertEndErasmus(ctx sdk.Context, studentIndex string) (err erro
 				startDate := ctx.BlockTime()
 
 				// I add a few seconds (obviously for testing) so that the Erasmus deadline is postponed and the packet is sent again
-				endDate := startDate.Add(time.Duration(100 * time.Second))
+				endDate := startDate.Add(time.Duration(600 * time.Second))
 				erasmusCareer[lenCareer-1].End_date = utilfunc.FormatDeadline(endDate)
 				erasmusCareer[lenCareer-1].Status = "Outgoing"
 
@@ -304,28 +276,8 @@ func (k Keeper) RevertEndErasmus(ctx sdk.Context, studentIndex string) (err erro
 
 			}
 		}
-		if student.ErasmusData.ErasmusStudent == "Incoming completed" {
-
-			student.ErasmusData.ErasmusStudent = "Incoming"
-			var erasmusCareer []utilfunc.ErasmusCareerStruct
-
-			err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
-			if err != nil {
-				return err
-			}
-
-			lenCareer := len(erasmusCareer)
-			erasmusCareer[lenCareer-1].Status = "In progress"
-
-			resultByteJSON, err := json.Marshal(erasmusCareer)
-			if err != nil {
-				return err
-			}
-
-			student.ErasmusData.Career = string(resultByteJSON)
-
-			k.SetStoredStudent(ctx, student)
-
+		err = k.ClearOperationQueue(ctx, &student)
+		if err != nil {
 			return err
 		}
 	}
@@ -343,8 +295,7 @@ func (k Keeper) CreateAbortOperationStringEndErasmusV2(student types.StoredStude
 	abort_op.ForeignIndex, _ = utilfunc.GetForeignIndex(student)
 	abort_op.ForeignUniversity, _ = utilfunc.GetForeignUniversityName(student)
 	abort_op.HomeUniversity = student.StudentData.UniversityName
-	abort_op.OperationID = "2"
-	abort_op.PacketID = "-1"
+	abort_op.PacketID = "-2"
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {
@@ -364,8 +315,7 @@ func (k Keeper) CreateAbortOperationStringEndErasmus(student_index string, stude
 	abort_op.ForeignIndex = student_foreign_index
 	abort_op.ForeignUniversity = student_foreign_uni
 	abort_op.HomeUniversity = student_home_uni
-	abort_op.OperationID = "2"
-	abort_op.PacketID = "-1"
+	abort_op.PacketID = "-2"
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {
@@ -375,6 +325,34 @@ func (k Keeper) CreateAbortOperationStringEndErasmus(student_index string, stude
 	abort_op_JSON = string(resultByteJSON)
 
 	return abort_op_JSON, err
+}
+
+// Function that constructs packet contents and returns the packet related to the abort operation of the end erasmus
+
+func (k Keeper) HandleAbortEndErasmus(ctx sdk.Context, studentIndex string) (err error) {
+
+	utilfunc.PrintLogs("HandleAbortEndErasmus", ctx)
+
+	storedStudent, found := k.GetStoredStudent(ctx, studentIndex)
+	if !found {
+		return types.ErrStudentNotPresent
+	} else {
+	}
+
+	new_data_info, err := k.CreateAbortOperationStringEndErasmusV2(storedStudent)
+	if err != nil {
+		return err
+	} else {
+
+		err = k.SendAbortPacket(ctx, new_data_info)
+		if err != nil {
+			return err
+		} else {
+
+			utilfunc.PrintLogs("HandleAbortEndErasmus", ctx)
+			return nil
+		}
+	}
 }
 
 // Function that constructs the ack contents and returns the ack related to the abort operation of the end erasmus
@@ -468,10 +446,13 @@ func (k Keeper) RevertExtendErasmus(ctx sdk.Context, studentIndex string) (err e
 
 	student, found := k.GetStoredStudent(ctx, studentIndex)
 	if !found {
+		utilfunc.PrintLogs("RevertExtendErasmus - error ErrStudentNotPresent", ctx)
 		return types.ErrStudentNotPresent
 	} else {
 
-		if student.ErasmusData.ErasmusStudent == "Outgoing" || student.ErasmusData.ErasmusStudent == "Incoming" {
+		if student.ErasmusData.ErasmusStudent == "Outgoing" {
+
+			utilfunc.PrintLogs("RevertExtendErasmus - case outgoing and incoming", ctx)
 
 			var erasmusCareer []utilfunc.ErasmusCareerStruct
 
@@ -485,10 +466,10 @@ func (k Keeper) RevertExtendErasmus(ctx sdk.Context, studentIndex string) (err e
 			// It is assumed that the Erasmus extension is 6 months, and therefore
 			// it is brought back to the previous state by subtracting 6 months
 
-			erasmusCareer[lenCareer-1].Duration_in_months -= 6
-			student.ErasmusData.NumberMonths -= 6
+			erasmusCareer[lenCareer-1].Duration_in_months = erasmusCareer[lenCareer-1].Duration_in_months - 3
+			student.ErasmusData.NumberMonths = student.ErasmusData.NumberMonths - 3
 
-			startDate, err := time.Parse(utilfunc.DeadlineLayout, erasmusCareer[lenCareer-1].Start_date)
+			current_end_date, err := time.Parse(utilfunc.DeadlineLayout, erasmusCareer[lenCareer-1].End_date)
 			if err != nil {
 				return err
 			}
@@ -496,7 +477,7 @@ func (k Keeper) RevertExtendErasmus(ctx sdk.Context, studentIndex string) (err e
 			// as a test in extend erasmus 1500 seconds were added for each extend, here to do
 			// the revert 1500 seconds are subtracted
 
-			endDate := startDate.Add(time.Duration(-1500 * time.Second))
+			endDate := current_end_date.Add(time.Duration(-1500 * time.Second))
 			erasmusCareer[lenCareer-1].End_date = endDate.Format(utilfunc.DeadlineLayout)
 
 			resultByteJSON, err := json.Marshal(erasmusCareer)
@@ -510,22 +491,24 @@ func (k Keeper) RevertExtendErasmus(ctx sdk.Context, studentIndex string) (err e
 
 			k.SetStoredStudent(ctx, student)
 
-			return err
-		}
-
-		if student.ErasmusData.ErasmusStudent == "Outgoing" {
-
 			uniInfo, found := k.GetUniversityInfo(ctx, student.StudentData.UniversityName)
 			if !found {
 				return types.ErrWrongNameUniversity
 			} else {
 
-				k.CheckAndInCaseMoveStutent(ctx, &student, &uniInfo)
+				k.CheckAndInCaseMoveStudent(ctx, &student, &uniInfo)
 				k.SetUniversityInfo(ctx, uniInfo)
 			}
-		}
 
+			err = k.ClearOperationQueue(ctx, &student)
+			if err != nil {
+				return err
+			}
+
+		}
 	}
+	utilfunc.PrintLogs("RevertExtendErasmus - end", ctx)
+
 	return nil
 }
 
@@ -536,12 +519,11 @@ func (k Keeper) CreateAbortOperationStringExtendErasmus(student types.StoredStud
 
 	var abort_op utilfunc.AbortOperationPacket
 
-	abort_op.HomeIndex = student.Index
-	abort_op.ForeignIndex, _ = utilfunc.GetForeignIndex(student)
-	abort_op.ForeignUniversity, _ = utilfunc.GetForeignUniversityName(student)
-	abort_op.HomeUniversity = student.StudentData.UniversityName
-	abort_op.OperationID = "3"
-	abort_op.PacketID = "-1"
+	abort_op.HomeIndex, _ = utilfunc.GetForeignIndex(student)
+	abort_op.ForeignIndex = student.Index
+	abort_op.ForeignUniversity = student.StudentData.UniversityName
+	abort_op.HomeUniversity, _ = utilfunc.GetForeignUniversityName(student)
+	abort_op.PacketID = "-3"
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {
@@ -582,5 +564,28 @@ func (k Keeper) HandleAbortPacketExtendErasmus(ctx sdk.Context, studentIndex str
 			return nil
 		}
 
+	}
+}
+
+// Function that allows the construction of the ack content that allows the abort
+// operation related to the extend of the Erasmus
+
+func (k Keeper) HandleAbortAckExtendErasmus(ctx sdk.Context, studentIndex string) (packetAck types.ExtendErasmusPeriodPacketAck, err error) {
+
+	utilfunc.PrintLogs("HandleAbortAckExtendErasmus", ctx)
+
+	storedStudent, found := k.GetStoredStudent(ctx, studentIndex)
+	if !found {
+		return packetAck, types.ErrStudentNotPresent
+	} else {
+	}
+
+	new_data_info, err := k.CreateAbortOperationStringExtendErasmus(storedStudent)
+	if err != nil {
+		return packetAck, err
+	} else {
+
+		packetAck.ErasmusRestrictedInfo = new_data_info
+		return packetAck, err
 	}
 }

@@ -15,6 +15,8 @@ export interface UniversityInfo {
   deadlineErasmus: string;
   taxesBrackets: string;
   maxErasmusExams: number;
+  fifoHeadOperation: string;
+  fifoTailOperation: string;
 }
 
 const baseUniversityInfo: object = {
@@ -29,6 +31,8 @@ const baseUniversityInfo: object = {
   deadlineErasmus: "",
   taxesBrackets: "",
   maxErasmusExams: 0,
+  fifoHeadOperation: "",
+  fifoTailOperation: "",
 };
 
 export const UniversityInfo = {
@@ -65,6 +69,12 @@ export const UniversityInfo = {
     }
     if (message.maxErasmusExams !== 0) {
       writer.uint32(88).int32(message.maxErasmusExams);
+    }
+    if (message.fifoHeadOperation !== "") {
+      writer.uint32(98).string(message.fifoHeadOperation);
+    }
+    if (message.fifoTailOperation !== "") {
+      writer.uint32(106).string(message.fifoTailOperation);
     }
     return writer;
   },
@@ -108,6 +118,12 @@ export const UniversityInfo = {
           break;
         case 11:
           message.maxErasmusExams = reader.int32();
+          break;
+        case 12:
+          message.fifoHeadOperation = reader.string();
+          break;
+        case 13:
+          message.fifoTailOperation = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -186,6 +202,22 @@ export const UniversityInfo = {
     } else {
       message.maxErasmusExams = 0;
     }
+    if (
+      object.fifoHeadOperation !== undefined &&
+      object.fifoHeadOperation !== null
+    ) {
+      message.fifoHeadOperation = String(object.fifoHeadOperation);
+    } else {
+      message.fifoHeadOperation = "";
+    }
+    if (
+      object.fifoTailOperation !== undefined &&
+      object.fifoTailOperation !== null
+    ) {
+      message.fifoTailOperation = String(object.fifoTailOperation);
+    } else {
+      message.fifoTailOperation = "";
+    }
     return message;
   },
 
@@ -212,6 +244,10 @@ export const UniversityInfo = {
       (obj.taxesBrackets = message.taxesBrackets);
     message.maxErasmusExams !== undefined &&
       (obj.maxErasmusExams = message.maxErasmusExams);
+    message.fifoHeadOperation !== undefined &&
+      (obj.fifoHeadOperation = message.fifoHeadOperation);
+    message.fifoTailOperation !== undefined &&
+      (obj.fifoTailOperation = message.fifoTailOperation);
     return obj;
   },
 
@@ -283,6 +319,22 @@ export const UniversityInfo = {
       message.maxErasmusExams = object.maxErasmusExams;
     } else {
       message.maxErasmusExams = 0;
+    }
+    if (
+      object.fifoHeadOperation !== undefined &&
+      object.fifoHeadOperation !== null
+    ) {
+      message.fifoHeadOperation = object.fifoHeadOperation;
+    } else {
+      message.fifoHeadOperation = "";
+    }
+    if (
+      object.fifoTailOperation !== undefined &&
+      object.fifoTailOperation !== null
+    ) {
+      message.fifoTailOperation = object.fifoTailOperation;
+    } else {
+      message.fifoTailOperation = "";
     }
     return message;
   },

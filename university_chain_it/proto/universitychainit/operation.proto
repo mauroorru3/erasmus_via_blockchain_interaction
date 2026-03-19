@@ -1,0 +1,11 @@
+syntax = "proto3";
+package university_chain_it.universitychainit;
+
+option go_package = "university_chain_it/x/universitychainit/types";
+
+message OperationInfo {
+  string studentOperationDetails = 1; 
+  string previousStudentOperationFifo = 2; 
+  string nextStudentOperationFifo = 3; 
+  
+}

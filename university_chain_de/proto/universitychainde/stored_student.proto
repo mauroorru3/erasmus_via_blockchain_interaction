@@ -9,6 +9,8 @@ import "universitychainde/residence_info.proto";
 import "universitychainde/contact_info.proto"; 
 import "universitychainde/taxes_info.proto"; 
 import "universitychainde/erasmus_info.proto"; 
+import "universitychainde/operation.proto";
+import "universitychainde/counters_info.proto"; 
 
 message StoredStudent {
   string index = 1; 
@@ -19,6 +21,7 @@ message StoredStudent {
   ContactInfo contactData = 6; 
   TaxesInfo taxesData = 7; 
   ErasmusInfo erasmusData = 8; 
-  
+  OperationInfo operationInfo = 9;
+  CountersInfo counters = 10;
 }
 

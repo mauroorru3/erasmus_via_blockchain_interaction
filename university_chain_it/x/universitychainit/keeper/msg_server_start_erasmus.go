@@ -115,9 +115,19 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 														" StartErasmus",
 													)
 													if err != nil {
-														utilfunc.PrintLogs("TransmitErasmusStudentPacket " + err.Error(), ctx)
+														utilfunc.PrintLogs("TransmitErasmusStudentPacket "+err.Error(), ctx)
 														return nil, err
 													} else {
+
+														// The timer for the first packet of the start erasmus operation is created
+
+														err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "1", 1)
+														if err != nil {
+															return &types.MsgStartErasmusResponse{
+																Status: -1,
+															}, err
+														}
+
 														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent", ctx)
 														k.Keeper.SetStoredStudent(ctx, searchedStudent)
 														k.Keeper.SetUniversityInfo(ctx, uniInfo)

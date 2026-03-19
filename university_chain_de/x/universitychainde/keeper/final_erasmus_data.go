@@ -113,6 +113,12 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 			}
 			sizeInt := len(packetAckBytes)
 			utilfunc.GetTransactionStats("OnRecvFinalErasmusDataPacket sending ack", "", ctx, sizeInt, binArray)
+
+			err = k.ClearOperationQueue(ctx, &searchedStudent)
+			if err != nil {
+				return packetAck, nil
+			}
+
 			return packetAck, nil
 		}
 	}

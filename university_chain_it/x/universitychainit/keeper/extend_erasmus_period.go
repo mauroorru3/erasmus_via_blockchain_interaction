@@ -1,7 +1,9 @@
 package keeper
 
 import (
+	"encoding/json"
 	"errors"
+	"time"
 
 	"university_chain_it/x/universitychainit/types"
 	"university_chain_it/x/universitychainit/utilfunc"
@@ -90,39 +92,66 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 		return packetAck, types.ErrStudentNotPresent
 	} else {
 
-		err := utilfunc.ExtendErasmusForeignStudent(ctx, data.DurationInMonths, data.FinalDate, &searchedStudent)
-		if err != nil {
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+err.Error(), ctx)
-			return packetAck, err
-		} else {
-			k.SetStoredStudent(ctx, searchedStudent)
-			utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket ack sent", ctx)
+		current_final_date, _ := utilfunc.GetFinalDateErasmus(searchedStudent)
+		formatted_current_final_date, _ := time.Parse(utilfunc.DeadlineLayout, current_final_date)
+		formatted_new_final_date, _ := time.Parse(utilfunc.DeadlineLayout, data.FinalDate)
 
-			stringIndex, err := utilfunc.GetForeignIndex(searchedStudent)
+		if !utilfunc.GetExtendErasmusOperationStatus() {
+
+			return k.HandleAbortAckExtendErasmus(ctx, searchedStudent.Index)
+		} else {
+
+			if formatted_current_final_date.Before(formatted_new_final_date) {
+
+				err := utilfunc.ExtendErasmusForeignStudent(ctx, data.DurationInMonths, data.FinalDate, &searchedStudent)
+				if err != nil {
+					utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket "+err.Error(), ctx)
+					return packetAck, err
+				} else {
+					k.SetStoredStudent(ctx, searchedStudent)
+
+					stringIndex, err := utilfunc.GetForeignIndex(searchedStudent)
+					if err != nil {
+						return packetAck, err
+					} else {
+						err = utilfunc.GetConsumedGas("OnRecvExtendErasmusPeriodPacket", stringIndex, ctx)
+						if err != nil {
+							return packetAck, err
+						} else {
+							packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+							if err != nil {
+								return packetAck, err
+							}
+
+							sizeInt := len(packetAckBytes)
+							utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket DE sending ack", "", ctx, sizeInt, binArray)
+						}
+					}
+				}
+			}
+
+			// Extend Erasmus success ack
+
+			resAck, err := utilfunc.CreateSuccessPacketExtendErasmus(searchedStudent)
 			if err != nil {
 				return packetAck, err
 			} else {
-				err = utilfunc.GetConsumedGas("OnRecvExtendErasmusPeriodPacket", stringIndex, ctx)
-				if err != nil {
-					return packetAck, err
-				} else {
-					packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
-					if err != nil {
-						return packetAck, err
-					}
-					sizeInt := len(packetAckBytes)
-					utilfunc.GetTransactionStats("OnRecvExtendErasmusPeriodPacket IT sending ack", "", ctx, sizeInt, binArray)
-					return packetAck, err
-				}
 
+				utilfunc.PrintLogs("OnRecvExtendErasmusPeriodPacket Extend Erasmus success ack sent", ctx)
+				packetAck.ErasmusRestrictedInfo = resAck
+				return packetAck, nil
 			}
+
 		}
 	}
+
 }
 
 // OnAcknowledgementExtendErasmusPeriodPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData, ack channeltypes.Acknowledgement) error {
+
+	utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket", ctx)
 
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
@@ -151,8 +180,36 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 			return errors.New("cannot unmarshal acknowledgment")
 		}
 
-		// Successful acknowledgement logic
-		utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket success", ctx)
+		var result map[string]interface{}
+		err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &result)
+		if err != nil {
+			return err
+		}
+
+		packetID, found := result["p_id"].(string)
+		if found {
+
+			switch packetID {
+
+			case "-3": // error in the ack packet
+
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case -3", ctx)
+
+				var abortPacket utilfunc.AbortOperationPacket
+				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &abortPacket)
+				if err != nil {
+					return err
+				} else {
+
+					err := k.RevertExtendErasmus(ctx, data.ForeignIndex)
+					if err != nil {
+						return err
+					}
+
+				}
+
+			}
+		}
 
 		searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
 		if !found {

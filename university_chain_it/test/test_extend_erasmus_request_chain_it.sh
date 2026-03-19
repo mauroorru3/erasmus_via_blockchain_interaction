@@ -17,7 +17,7 @@ Mario_Rossi=$(sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val
 
 echo ""
 echo "Command:"
-echo "sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit end-erasmus-before-deadline "$1" 1 --from $Mario_Rossi --keyring-backend test --gas auto --chain-id university_chain_it --yes --node tcp://val-"$1":26657"
+echo "sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit extend-erasmus "$1" 1 3 --from $Mario_Rossi --keyring-backend test --gas auto --chain-id university_chain_it --yes --node tcp://val-"$1":26657"
 echo ""
 sudo docker run --rm -i -v $(pwd)/university_chain_it/elements/val-"$1":/root/.university_chain_it --network university_chain-prod_net-public university_chain_itd_i tx universitychainit extend-erasmus "$1" 1 3 --from $Mario_Rossi --keyring-backend test --gas auto --chain-id university_chain_it --yes --node "tcp://val-"$1":26657"
 

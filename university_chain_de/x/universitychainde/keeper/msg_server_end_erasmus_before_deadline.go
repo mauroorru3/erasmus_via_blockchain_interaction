@@ -123,6 +123,15 @@ func (k msgServer) EndErasmusBeforeDeadline(goCtx context.Context, msg *types.Ms
 																Status: -1,
 															}, err
 														} else {
+
+															err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "2", 1)
+															if err != nil {
+																return &types.MsgEndErasmusBeforeDeadlineResponse{
+																	Status: -1,
+																}, err
+
+															}
+
 															return &types.MsgEndErasmusBeforeDeadlineResponse{
 																Status: 0,
 															}, nil

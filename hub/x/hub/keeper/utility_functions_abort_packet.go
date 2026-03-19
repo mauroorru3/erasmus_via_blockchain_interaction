@@ -25,8 +25,7 @@ func (k Keeper) CreateAbortOperationString(student_index string, student_foreign
 	abort_op.ForeignIndex = student_foreign_index
 	abort_op.ForeignUniversity = student_foreign_uni
 	abort_op.HomeUniversity = student_home_uni
-	abort_op.OperationID = "1" // Identifies the Start Erasmus operation
-	abort_op.PacketID = "-1"   // Value that identifies the packet related to the abort operation
+	abort_op.PacketID = "-1" // Value that identifies the packet related to the abort operation of the Start Erasmus operation
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {
@@ -247,8 +246,7 @@ func (k Keeper) CreateAbortOperationStringEndErasmus(student_index string, stude
 	abort_op.ForeignIndex = student_foreign_index
 	abort_op.ForeignUniversity = student_foreign_uni
 	abort_op.HomeUniversity = student_home_uni
-	abort_op.OperationID = "2"
-	abort_op.PacketID = "-1"
+	abort_op.PacketID = "-2"
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {
@@ -367,8 +365,7 @@ func (k Keeper) CreateAbortOperationStringExtendErasmus(student_index string, st
 	abort_op.ForeignIndex = student_foreign_index
 	abort_op.ForeignUniversity = student_foreign_uni
 	abort_op.HomeUniversity = student_home_uni
-	abort_op.OperationID = "3"
-	abort_op.PacketID = "-1"
+	abort_op.PacketID = "-3"
 
 	resultByteJSON, err := json.Marshal(abort_op)
 	if err != nil {

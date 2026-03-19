@@ -73,6 +73,7 @@ message ExtendErasmusPeriodPacketData {
 
 // ExtendErasmusPeriodPacketAck defines a struct for the packet acknowledgment
 message ExtendErasmusPeriodPacketAck {
+  string erasmusRestrictedInfo = 1;
 	}
 // ErasmusRestictedDataPacketData defines a struct for the packet payload
 message ErasmusRestictedDataPacketData {

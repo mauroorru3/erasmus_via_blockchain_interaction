@@ -140,7 +140,17 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 		}
 
 		if found { // student already present
-			return packetAck, types.ErrStudentAlreadyPresent
+
+			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 1 - student already present", ctx)
+
+			resAck, err := utilfunc.CreateAnswerJSONPacketFromStudentData(allStudents[i])
+			if err != nil {
+				return packetAck, err
+			} else {
+
+				packetAck.ErasmusRestrictedInfo = resAck
+				return packetAck, nil
+			}
 		} else {
 
 			erasmusData, err := utilfunc.IntializeErasmusStructForeign(homeIndexPacket.HomeUniversity, homeIndexPacket.HomeIndex)
@@ -164,6 +174,11 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 						ErasmusData: &types.ErasmusInfo{
 							ErasmusStudent: "Incoming",
 							Career:         erasmusData,
+						},
+						OperationInfo: &types.OperationInfo{
+							StudentOperationDetails:      "",
+							PreviousStudentOperationFifo: "",
+							NextStudentOperationFifo:     "",
 						},
 					}
 					uniInfo.NextStudentId++
@@ -654,7 +669,6 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 			student.ErasmusData.Career = string(resultByteJSON)
 
 			k.SetStoredStudent(ctx, student)
-			packetAck.ErasmusRestrictedInfo = ""
 
 			stringIndex, err := utilfunc.GetForeignIndex(student)
 			if err != nil {
@@ -668,14 +682,70 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 					if err != nil {
 						return k.ErrorHandlingErasmus(ctx, student.Index)
 					}
+
 					sizeInt := len(packetAckBytes)
 					utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket sending ack", " - case 11", ctx, sizeInt, binArray)
-					return packetAck, nil
+
+					// Start Erasmus success ack
+
+					utilfunc.PrintLogs("OnRecvErasmusStudentPacket sending Start Erasmus success ack", ctx)
+
+					resAck, err := utilfunc.CreateSuccessPacketStartErasmus(student)
+					if err != nil {
+						return packetAck, err
+					} else {
+
+						packetAck.ErasmusRestrictedInfo = resAck
+						return packetAck, nil
+					}
 				}
 
 			}
 		}
-	case "-1":
+
+	case "21": // start erasmus confirm
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 21", ctx)
+		var okPacket utilfunc.SuccessPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &okPacket)
+		if err != nil {
+			return packetAck, err
+		}
+
+		student, found := k.GetStoredStudent(ctx, okPacket.HomeIndex)
+		if !found {
+			return packetAck, types.ErrStudentNotPresent
+		} else {
+
+			// remove the operation deadline
+			err = k.ClearOperationQueue(ctx, &student)
+			if err != nil {
+				return packetAck, err
+			}
+			k.SetStoredStudent(ctx, student)
+		}
+
+	case "22": // extend erasmus confirm
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case 22", ctx)
+		var okPacket utilfunc.SuccessPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &okPacket)
+		if err != nil {
+			return packetAck, err
+		}
+
+		student, found := k.GetStoredStudent(ctx, okPacket.HomeIndex)
+		if !found {
+			return packetAck, types.ErrStudentNotPresent
+		} else {
+
+			// remove the operation deadline
+			err = k.ClearOperationQueue(ctx, &student)
+			if err != nil {
+				return packetAck, err
+			}
+			k.SetStoredStudent(ctx, student)
+		}
+
+	case "-1": // start erasmus abort packet
 
 		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -1", ctx)
 		var abortPacket utilfunc.AbortOperationPacket
@@ -683,35 +753,37 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 		if err != nil {
 			return packetAck, err
 		}
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -1", ctx)
+		err = k.ClearErasmusCareer(ctx, abortPacket.HomeIndex)
+		if err != nil {
+			return k.ErrorHandlingErasmus(ctx, abortPacket.HomeIndex)
+		}
 
-		switch abortPacket.OperationID {
+	case "-2": // end erasmus abort packet
 
-		case "1": // start erasmus
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -2", ctx)
+		var abortPacket utilfunc.AbortOperationPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &abortPacket)
+		if err != nil {
+			return packetAck, err
+		}
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -2", ctx)
+		err = k.RevertEndErasmus(ctx, abortPacket.HomeIndex)
+		if err != nil {
+			return packetAck, err
+		}
 
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -1 - operation 1", ctx)
-			err = k.ClearErasmusCareer(ctx, abortPacket.HomeIndex)
-			if err != nil {
-				return k.ErrorHandlingErasmus(ctx, abortPacket.HomeIndex)
-			}
+	case "-3": // extend erasmus abort packet
 
-		case "2": // end erasmus
-
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -1 - operation 2", ctx)
-			err = k.RevertEndErasmus(ctx, abortPacket.HomeIndex)
-			if err != nil {
-				return packetAck, err
-			}
-
-		case "3": // extend erasmus
-
-			utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -1 - operation 3", ctx)
-			err := k.RevertExtendErasmus(ctx, abortPacket.HomeIndex)
-			if err != nil {
-				return packetAck, err
-			}
-
-		default:
-
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -3", ctx)
+		var abortPacket utilfunc.AbortOperationPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &abortPacket)
+		if err != nil {
+			return packetAck, err
+		}
+		utilfunc.PrintLogs("OnRecvErasmusStudentPacket case -3", ctx)
+		err := k.RevertExtendErasmus(ctx, abortPacket.HomeIndex)
+		if err != nil {
 			return packetAck, err
 		}
 
@@ -820,17 +892,971 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 				}
 
 			}
-		default:
 
-			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket success", ctx)
+		case "-4": // ack error considering packet ids from 2 to 11
 
-			packetHash := utilfunc.Hash(binArray)
-			err = utilfunc.GetConsumedGas("OnAcknowledgementErasmusRestictedDataPacket IT", strconv.FormatInt(int64(packetHash), 10), ctx)
+			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4", ctx)
+
+			var abortPacket utilfunc.AbortOperationPacket
+			err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &abortPacket)
+			if err != nil {
+				return err
+			} else {
+
+				var result map[string]interface{}
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &result)
+				if err != nil {
+					return err
+				}
+
+				packetID, found := result["p_id"].(string)
+				if !found {
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket packetid not found", ctx)
+					return nil
+				}
+
+				switch packetID {
+
+				case "2":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 2", ctx)
+
+					var nameSurnamePacket utilfunc.StudentInfoRestrictedNameSurnamePacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &nameSurnamePacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == nameSurnamePacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[0] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 2",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 2 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[0]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+
+				case "3":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 3", ctx)
+					var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == studentKeyPacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[1] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 3",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 3 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[1]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+				case "4":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 4", ctx)
+					var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == studentKeyPacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[2] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 4",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 4 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[2]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+				case "5":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 5", ctx)
+					var startDatePacket utilfunc.StudentInfoRestrictedStartDatePacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &startDatePacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == startDatePacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[3] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 5",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 5 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[3]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+				case "6":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 6", ctx)
+					var endDatePacket utilfunc.StudentInfoRestrictedEndDatePacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &endDatePacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == endDatePacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[4] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 6",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 6 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[4]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+
+				case "7":
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 7", ctx)
+					var durationPacket utilfunc.StudentInfoRestrictedDurationPacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &durationPacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == durationPacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[5] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 7",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 7 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[5]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+
+				case "8":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 8", ctx)
+					var courseDetailsPacket utilfunc.StudentInfoRestrictedCourseDetailsPacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &courseDetailsPacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == courseDetailsPacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[6] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 8",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 8 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[6]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+				case "9":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 9", ctx)
+					var departmentPacket utilfunc.StudentInfoRestrictedDepartmentPacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &departmentPacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == departmentPacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[7] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 9",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 9 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[7]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+				case "10":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 10", ctx)
+					var erasmusTypePacket utilfunc.StudentInfoRestrictedErasmusTypePacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &erasmusTypePacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == erasmusTypePacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[8] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 10",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 10 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[8]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+				case "11":
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 11", ctx)
+					var examsPacket utilfunc.StudentInfoRestrictedExamsPacket
+					err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &examsPacket)
+					if err != nil {
+						return err
+					}
+
+					allStudents := k.GetAllStoredStudent(ctx)
+					found = false
+					i := 0
+					for i < len(allStudents) && !found {
+						foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+						if err != nil {
+							return err
+						} else {
+							if foreignIndex_uni == examsPacket.ForeignIndex {
+								found = true
+							} else {
+								i++
+							}
+						}
+					}
+
+					if found {
+
+						student := allStudents[i]
+
+						if student.Counters.PacketsRetriesStartErasmus[9] < student.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(student)
+							if err != nil {
+								return err
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainit",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" OnAcknowledgementErasmusRestictedDataPacket case -4 - 11",
+							)
+
+							if err != nil {
+								utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 - 11 "+err.Error(), ctx)
+								return err
+							}
+
+							student.Counters.PacketsRetriesStartErasmus[9]++
+							k.SetStoredStudent(ctx, student)
+
+						}
+
+					}
+
+				}
+			}
+		case "23": // confirmation of the sent packet
+			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 23", ctx)
+
+			var result map[string]interface{}
+			err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &result)
 			if err != nil {
 				return err
 			}
 
-			return nil
+			packetID, found := result["p_id"].(string)
+			if !found {
+				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket packetid not found", ctx)
+				return nil
+			}
+
+			switch packetID {
+
+			case "2":
+				var nameSurnamePacket utilfunc.StudentInfoRestrictedNameSurnamePacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &nameSurnamePacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == nameSurnamePacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+
+			case "3":
+				var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == studentKeyPacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+			case "4":
+				var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == studentKeyPacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+			case "5":
+				var startDatePacket utilfunc.StudentInfoRestrictedStartDatePacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &startDatePacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == startDatePacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+			case "6":
+				var endDatePacket utilfunc.StudentInfoRestrictedEndDatePacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &endDatePacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == endDatePacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+
+			case "7":
+				var durationPacket utilfunc.StudentInfoRestrictedDurationPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &durationPacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == durationPacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+
+			case "8":
+				var courseDetailsPacket utilfunc.StudentInfoRestrictedCourseDetailsPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &courseDetailsPacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == courseDetailsPacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+			case "9":
+				var departmentPacket utilfunc.StudentInfoRestrictedDepartmentPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &departmentPacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == departmentPacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+			case "10":
+				var erasmusTypePacket utilfunc.StudentInfoRestrictedErasmusTypePacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &erasmusTypePacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == erasmusTypePacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+			case "11":
+				var examsPacket utilfunc.StudentInfoRestrictedExamsPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &examsPacket)
+				if err != nil {
+					return err
+				}
+
+				allStudents := k.GetAllStoredStudent(ctx)
+				found = false
+				i := 0
+				for i < len(allStudents) && !found {
+					foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+					if err != nil {
+						return err
+					} else {
+						if foreignIndex_uni == examsPacket.ForeignIndex {
+							found = true
+						} else {
+							i++
+						}
+					}
+				}
+
+				if found {
+
+					student := allStudents[i]
+
+					student.Counters.AcksReceivedStartErasmus++
+					k.SetStoredStudent(ctx, student)
+
+				}
+
+			default:
+
+			}
 		}
 
 	default:
@@ -879,6 +1905,42 @@ func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet chan
 
 		}
 
+	case "-2":
+
+		utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket case -2", ctx)
+
+		var abortPacket utilfunc.AbortOperationPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &abortPacket)
+		if err != nil {
+			return err
+		} else {
+
+			err = k.HandleAbortEndErasmus(ctx, abortPacket.HomeIndex)
+			if err != nil {
+				return err
+
+			}
+
+		}
+
+	case "-3":
+
+		utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket case -3", ctx)
+
+		var abortPacket utilfunc.AbortOperationPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &abortPacket)
+		if err != nil {
+			return err
+		} else {
+
+			err = k.HandleAbortPacketExtendErasmus(ctx, abortPacket.HomeIndex)
+			if err != nil {
+				return err
+
+			}
+
+		}
+
 	case "1":
 
 		utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket case 1", ctx)
@@ -894,25 +1956,22 @@ func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet chan
 			return err
 		}
 
-	default:
-
-		utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket case n", ctx)
-
-		foreign_index, found := result["f_id"].(string)
-		if !found {
-			return sdkerrors.Error{}
+	case "2":
+		var nameSurnamePacket utilfunc.StudentInfoRestrictedNameSurnamePacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &nameSurnamePacket)
+		if err != nil {
+			return err
 		}
 
 		allStudents := k.GetAllStoredStudent(ctx)
 		found = false
-		foreignIndex_uni := ""
 		i := 0
 		for i < len(allStudents) && !found {
-			foreignIndex_uni, err = utilfunc.GetForeignIndex(allStudents[i])
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
 			if err != nil {
 				return err
 			} else {
-				if foreignIndex_uni == foreign_index {
+				if foreignIndex_uni == nameSurnamePacket.ForeignIndex {
 					found = true
 				} else {
 					i++
@@ -924,19 +1983,294 @@ func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet chan
 
 			student := allStudents[i]
 
-			err = k.ClearErasmusCareer(ctx, student.Index)
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+
+	case "3":
+		var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
 			if err != nil {
 				return err
 			} else {
-
-				err = k.HandleAbortPacket(ctx, student.Index)
-				if err != nil {
-					return err
-
+				if foreignIndex_uni == studentKeyPacket.ForeignIndex {
+					found = true
+				} else {
+					i++
 				}
 			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
 
 		}
+	case "4":
+		var studentKeyPacket utilfunc.StudentInfoRestrictedStudentKeyPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &studentKeyPacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == studentKeyPacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+	case "5":
+		var startDatePacket utilfunc.StudentInfoRestrictedStartDatePacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &startDatePacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == startDatePacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+	case "6":
+		var endDatePacket utilfunc.StudentInfoRestrictedEndDatePacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &endDatePacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == endDatePacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+
+	case "7":
+		var durationPacket utilfunc.StudentInfoRestrictedDurationPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &durationPacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == durationPacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+
+	case "8":
+		var courseDetailsPacket utilfunc.StudentInfoRestrictedCourseDetailsPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &courseDetailsPacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == courseDetailsPacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+	case "9":
+		var departmentPacket utilfunc.StudentInfoRestrictedDepartmentPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &departmentPacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == departmentPacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+	case "10":
+		var erasmusTypePacket utilfunc.StudentInfoRestrictedErasmusTypePacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &erasmusTypePacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == erasmusTypePacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+	case "11":
+		var examsPacket utilfunc.StudentInfoRestrictedExamsPacket
+		err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &examsPacket)
+		if err != nil {
+			return err
+		}
+
+		allStudents := k.GetAllStoredStudent(ctx)
+		found = false
+		i := 0
+		for i < len(allStudents) && !found {
+			foreignIndex_uni, err := utilfunc.GetForeignIndex(allStudents[i])
+			if err != nil {
+				return err
+			} else {
+				if foreignIndex_uni == examsPacket.ForeignIndex {
+					found = true
+				} else {
+					i++
+				}
+			}
+		}
+
+		if found {
+
+			student := allStudents[i]
+
+			student.Counters.AcksReceivedStartErasmus++
+			k.SetStoredStudent(ctx, student)
+
+		}
+
 	}
+
 	return err
 }

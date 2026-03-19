@@ -35,6 +35,19 @@ export interface UniversitychaindeContactInfo {
   mobilePhone?: string;
 }
 
+export interface UniversitychaindeCountersInfo {
+  PacketsRetriesStartErasmus?: number[];
+
+  /** @format int32 */
+  AcksReceivedStartErasmus?: number;
+
+  /** @format int32 */
+  retryNumberOperations?: number;
+
+  /** @format int32 */
+  maximumNumberRetries?: number;
+}
+
 export interface UniversitychaindeErasmusInfo {
   erasmusStudent?: string;
 
@@ -139,6 +152,12 @@ export interface UniversitychaindeMsgSendExtendErasmusPeriodResponse {
 export interface UniversitychaindeMsgStartErasmusResponse {
   /** @format int32 */
   status?: number;
+}
+
+export interface UniversitychaindeOperationInfo {
+  studentOperationDetails?: string;
+  previousStudentOperationFifo?: string;
+  nextStudentOperationFifo?: string;
 }
 
 /**
@@ -298,6 +317,8 @@ export interface UniversitychaindeStoredStudent {
   contactData?: UniversitychaindeContactInfo;
   taxesData?: UniversitychaindeTaxesInfo;
   erasmusData?: UniversitychaindeErasmusInfo;
+  operationInfo?: UniversitychaindeOperationInfo;
+  counters?: UniversitychaindeCountersInfo;
 }
 
 export interface UniversitychaindeStudentInfo {
@@ -360,6 +381,8 @@ export interface UniversitychaindeUniversityInfo {
 
   /** @format int32 */
   maxErasmusExams?: number;
+  fifoHeadOperation?: string;
+  fifoTailOperation?: string;
 }
 
 /**

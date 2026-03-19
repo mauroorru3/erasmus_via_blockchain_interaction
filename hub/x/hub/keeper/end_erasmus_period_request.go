@@ -78,13 +78,13 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 	sizeInt := packet.Size()
 	binArray, err := data.GetBytes()
 	if err != nil {
-		return packetAck, err
+		return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 	}
 	utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket", "", ctx, sizeInt, binArray)
 
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
-		return packetAck, err
+		return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 	}
 
 	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket", ctx)
@@ -115,11 +115,11 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 		} else {
 			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
 			if err != nil {
-				return packetAck, err
+				return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 			} else {
 				packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
 				if err != nil {
-					return packetAck, err
+					return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 				}
 				sizeInt := len(packetAckBytes)
 				utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket sending ack", "", ctx, sizeInt, binArray)
@@ -214,10 +214,14 @@ func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet c
 
 	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket", ctx)
 
-	err := k.HandleAbortPacketEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName)
-	if err != nil {
-		return err
-	}
+	/*
+
+		err := k.HandleAbortPacketEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName)
+		if err != nil {
+			return err
+		}
+
+	*/
 
 	return nil
 }

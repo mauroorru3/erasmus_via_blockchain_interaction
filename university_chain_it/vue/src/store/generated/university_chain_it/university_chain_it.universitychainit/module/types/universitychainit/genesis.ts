@@ -12,6 +12,8 @@ import { ForeignUniversities } from "../universitychainit/foreign_universities";
 import { UniversityInfo } from "../universitychainit/university_info";
 import { ProfessorsExams } from "../universitychainit/professors_exams";
 import { StoredStudent } from "../universitychainit/stored_student";
+import { OperationInfo } from "../universitychainit/operation";
+import { CountersInfo } from "../universitychainit/counters_info";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "university_chain_it.universitychainit";
@@ -31,8 +33,10 @@ export interface GenesisState {
   foreignUniversitiesList: ForeignUniversities[];
   universityInfoList: UniversityInfo[];
   professorsExamsList: ProfessorsExams[];
-  /** this line is used by starport scaffolding # genesis/proto/state */
   storedStudentList: StoredStudent[];
+  operationInfo: OperationInfo | undefined;
+  /** this line is used by starport scaffolding # genesis/proto/state */
+  counters: CountersInfo | undefined;
 }
 
 const baseGenesisState: object = { port_id: "" };
@@ -98,6 +102,15 @@ export const GenesisState = {
     }
     for (const v of message.storedStudentList) {
       StoredStudent.encode(v!, writer.uint32(114).fork()).ldelim();
+    }
+    if (message.operationInfo !== undefined) {
+      OperationInfo.encode(
+        message.operationInfo,
+        writer.uint32(122).fork()
+      ).ldelim();
+    }
+    if (message.counters !== undefined) {
+      CountersInfo.encode(message.counters, writer.uint32(130).fork()).ldelim();
     }
     return writer;
   },
@@ -165,6 +178,12 @@ export const GenesisState = {
           message.storedStudentList.push(
             StoredStudent.decode(reader, reader.uint32())
           );
+          break;
+        case 15:
+          message.operationInfo = OperationInfo.decode(reader, reader.uint32());
+          break;
+        case 16:
+          message.counters = CountersInfo.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -267,6 +286,16 @@ export const GenesisState = {
         message.storedStudentList.push(StoredStudent.fromJSON(e));
       }
     }
+    if (object.operationInfo !== undefined && object.operationInfo !== null) {
+      message.operationInfo = OperationInfo.fromJSON(object.operationInfo);
+    } else {
+      message.operationInfo = undefined;
+    }
+    if (object.counters !== undefined && object.counters !== null) {
+      message.counters = CountersInfo.fromJSON(object.counters);
+    } else {
+      message.counters = undefined;
+    }
     return message;
   },
 
@@ -335,6 +364,14 @@ export const GenesisState = {
     } else {
       obj.storedStudentList = [];
     }
+    message.operationInfo !== undefined &&
+      (obj.operationInfo = message.operationInfo
+        ? OperationInfo.toJSON(message.operationInfo)
+        : undefined);
+    message.counters !== undefined &&
+      (obj.counters = message.counters
+        ? CountersInfo.toJSON(message.counters)
+        : undefined);
     return obj;
   },
 
@@ -432,6 +469,16 @@ export const GenesisState = {
       for (const e of object.storedStudentList) {
         message.storedStudentList.push(StoredStudent.fromPartial(e));
       }
+    }
+    if (object.operationInfo !== undefined && object.operationInfo !== null) {
+      message.operationInfo = OperationInfo.fromPartial(object.operationInfo);
+    } else {
+      message.operationInfo = undefined;
+    }
+    if (object.counters !== undefined && object.counters !== null) {
+      message.counters = CountersInfo.fromPartial(object.counters);
+    } else {
+      message.counters = undefined;
     }
     return message;
   },

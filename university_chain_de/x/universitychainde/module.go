@@ -175,5 +175,6 @@ func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}
 // returns no validator updates.
 func (am AppModule) EndBlock(ctx sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate {
 	am.keeper.TerminateExpiredErasmusPeriods(sdk.WrapSDKContext(ctx))
+	am.keeper.TerminateExpiredOperations(sdk.WrapSDKContext(ctx))
 	return []abci.ValidatorUpdate{}
 }

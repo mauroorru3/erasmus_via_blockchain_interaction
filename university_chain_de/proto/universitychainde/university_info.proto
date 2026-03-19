@@ -15,5 +15,7 @@ message UniversityInfo {
   string deadlineErasmus = 9; 
   string taxesBrackets = 10;
   int32 maxErasmusExams = 11;
+  string fifoHeadOperation = 12; 
+  string fifoTailOperation = 13;
 }
 

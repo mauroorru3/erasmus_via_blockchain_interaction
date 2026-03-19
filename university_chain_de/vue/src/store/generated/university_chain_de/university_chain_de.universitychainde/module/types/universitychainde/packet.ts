@@ -72,7 +72,9 @@ export interface ExtendErasmusPeriodPacketData {
 }
 
 /** ExtendErasmusPeriodPacketAck defines a struct for the packet acknowledgment */
-export interface ExtendErasmusPeriodPacketAck {}
+export interface ExtendErasmusPeriodPacketAck {
+  erasmusRestrictedInfo: string;
+}
 
 /** ErasmusRestictedDataPacketData defines a struct for the packet payload */
 export interface ErasmusRestictedDataPacketData {
@@ -1179,13 +1181,16 @@ export const ExtendErasmusPeriodPacketData = {
   },
 };
 
-const baseExtendErasmusPeriodPacketAck: object = {};
+const baseExtendErasmusPeriodPacketAck: object = { erasmusRestrictedInfo: "" };
 
 export const ExtendErasmusPeriodPacketAck = {
   encode(
-    _: ExtendErasmusPeriodPacketAck,
+    message: ExtendErasmusPeriodPacketAck,
     writer: Writer = Writer.create()
   ): Writer {
+    if (message.erasmusRestrictedInfo !== "") {
+      writer.uint32(10).string(message.erasmusRestrictedInfo);
+    }
     return writer;
   },
 
@@ -1201,6 +1206,9 @@ export const ExtendErasmusPeriodPacketAck = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.erasmusRestrictedInfo = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1209,24 +1217,42 @@ export const ExtendErasmusPeriodPacketAck = {
     return message;
   },
 
-  fromJSON(_: any): ExtendErasmusPeriodPacketAck {
+  fromJSON(object: any): ExtendErasmusPeriodPacketAck {
     const message = {
       ...baseExtendErasmusPeriodPacketAck,
     } as ExtendErasmusPeriodPacketAck;
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = String(object.erasmusRestrictedInfo);
+    } else {
+      message.erasmusRestrictedInfo = "";
+    }
     return message;
   },
 
-  toJSON(_: ExtendErasmusPeriodPacketAck): unknown {
+  toJSON(message: ExtendErasmusPeriodPacketAck): unknown {
     const obj: any = {};
+    message.erasmusRestrictedInfo !== undefined &&
+      (obj.erasmusRestrictedInfo = message.erasmusRestrictedInfo);
     return obj;
   },
 
   fromPartial(
-    _: DeepPartial<ExtendErasmusPeriodPacketAck>
+    object: DeepPartial<ExtendErasmusPeriodPacketAck>
   ): ExtendErasmusPeriodPacketAck {
     const message = {
       ...baseExtendErasmusPeriodPacketAck,
     } as ExtendErasmusPeriodPacketAck;
+    if (
+      object.erasmusRestrictedInfo !== undefined &&
+      object.erasmusRestrictedInfo !== null
+    ) {
+      message.erasmusRestrictedInfo = object.erasmusRestrictedInfo;
+    } else {
+      message.erasmusRestrictedInfo = "";
+    }
     return message;
   },
 };

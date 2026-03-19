@@ -6,6 +6,8 @@ import { ResidenceInfo } from "../universitychainit/residence_info";
 import { ContactInfo } from "../universitychainit/contact_info";
 import { TaxesInfo } from "../universitychainit/taxes_info";
 import { ErasmusInfo } from "../universitychainit/erasmus_info";
+import { OperationInfo } from "../universitychainit/operation";
+import { CountersInfo } from "../universitychainit/counters_info";
 import { Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "university_chain_it.universitychainit";
@@ -19,6 +21,8 @@ export interface StoredStudent {
   contactData: ContactInfo | undefined;
   taxesData: TaxesInfo | undefined;
   erasmusData: ErasmusInfo | undefined;
+  operationInfo: OperationInfo | undefined;
+  counters: CountersInfo | undefined;
 }
 
 const baseStoredStudent: object = { index: "" };
@@ -67,6 +71,15 @@ export const StoredStudent = {
         writer.uint32(66).fork()
       ).ldelim();
     }
+    if (message.operationInfo !== undefined) {
+      OperationInfo.encode(
+        message.operationInfo,
+        writer.uint32(74).fork()
+      ).ldelim();
+    }
+    if (message.counters !== undefined) {
+      CountersInfo.encode(message.counters, writer.uint32(82).fork()).ldelim();
+    }
     return writer;
   },
 
@@ -103,6 +116,12 @@ export const StoredStudent = {
           break;
         case 8:
           message.erasmusData = ErasmusInfo.decode(reader, reader.uint32());
+          break;
+        case 9:
+          message.operationInfo = OperationInfo.decode(reader, reader.uint32());
+          break;
+        case 10:
+          message.counters = CountersInfo.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -156,6 +175,16 @@ export const StoredStudent = {
     } else {
       message.erasmusData = undefined;
     }
+    if (object.operationInfo !== undefined && object.operationInfo !== null) {
+      message.operationInfo = OperationInfo.fromJSON(object.operationInfo);
+    } else {
+      message.operationInfo = undefined;
+    }
+    if (object.counters !== undefined && object.counters !== null) {
+      message.counters = CountersInfo.fromJSON(object.counters);
+    } else {
+      message.counters = undefined;
+    }
     return message;
   },
 
@@ -189,6 +218,14 @@ export const StoredStudent = {
     message.erasmusData !== undefined &&
       (obj.erasmusData = message.erasmusData
         ? ErasmusInfo.toJSON(message.erasmusData)
+        : undefined);
+    message.operationInfo !== undefined &&
+      (obj.operationInfo = message.operationInfo
+        ? OperationInfo.toJSON(message.operationInfo)
+        : undefined);
+    message.counters !== undefined &&
+      (obj.counters = message.counters
+        ? CountersInfo.toJSON(message.counters)
         : undefined);
     return obj;
   },
@@ -236,6 +273,16 @@ export const StoredStudent = {
       message.erasmusData = ErasmusInfo.fromPartial(object.erasmusData);
     } else {
       message.erasmusData = undefined;
+    }
+    if (object.operationInfo !== undefined && object.operationInfo !== null) {
+      message.operationInfo = OperationInfo.fromPartial(object.operationInfo);
+    } else {
+      message.operationInfo = undefined;
+    }
+    if (object.counters !== undefined && object.counters !== null) {
+      message.counters = CountersInfo.fromPartial(object.counters);
+    } else {
+      message.counters = undefined;
     }
     return message;
   },

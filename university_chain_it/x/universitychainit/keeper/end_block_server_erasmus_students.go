@@ -54,6 +54,13 @@ func (k Keeper) TerminateExpiredErasmusPeriods(goCtx context.Context) {
 
 					k.SetStoredStudent(ctx, storedStudent)
 
+					// The timer for the end erasmus operation is created
+
+					err = k.AddOperationQueue(ctx, &storedStudent, &uniList[i], "2", 1)
+					if err != nil {
+						panic(err)
+					}
+
 					var packet types.EndErasmusPeriodRequestPacketData
 
 					packet.StartingUniversityName = storedStudent.StudentData.UniversityName

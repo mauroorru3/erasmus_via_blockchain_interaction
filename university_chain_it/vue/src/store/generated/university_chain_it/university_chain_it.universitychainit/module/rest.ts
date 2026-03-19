@@ -20,7 +20,7 @@ export interface RpcStatus {
   details?: ProtobufAny[];
 }
 
-export interface UniversityChainItuniversitychainitChainInfo {
+export interface UniversitychainitChainInfo {
   hubKey?: string;
   chainKey?: string;
   country?: string;
@@ -29,13 +29,26 @@ export interface UniversityChainItuniversitychainitChainInfo {
   chainName?: string;
 }
 
-export interface UniversityChainItuniversitychainitContactInfo {
+export interface UniversitychainitContactInfo {
   contactAddress?: string;
   email?: string;
   mobilePhone?: string;
 }
 
-export interface UniversityChainItuniversitychainitErasmusInfo {
+export interface UniversitychainitCountersInfo {
+  PacketsRetriesStartErasmus?: number[];
+
+  /** @format int32 */
+  AcksReceivedStartErasmus?: number;
+
+  /** @format int32 */
+  retryNumberOperations?: number;
+
+  /** @format int32 */
+  maximumNumberRetries?: number;
+}
+
+export interface UniversitychainitErasmusInfo {
   erasmusStudent?: string;
 
   /** @format int64 */
@@ -60,116 +73,11 @@ export interface UniversityChainItuniversitychainitErasmusInfo {
   nextStudentFifo?: string;
 }
 
-export interface UniversityChainItuniversitychainitForeignUniversities {
+export interface UniversitychainitForeignUniversities {
   universityName?: string;
   chainName?: string;
   foreignUniversitiesKey?: string;
   foreignUniversitiesCountry?: string;
-}
-
-/**
- * Params defines the parameters for the module.
- */
-export type UniversityChainItuniversitychainitParams = object;
-
-export interface UniversityChainItuniversitychainitPersonalInfo {
-  gender?: string;
-  dateOfBirth?: string;
-  primaryNationality?: string;
-  countryOfBirth?: string;
-  provinceOfBirth?: string;
-  townOfBirth?: string;
-  taxCode?: string;
-}
-
-export interface UniversityChainItuniversitychainitProfessorsExams {
-  examName?: string;
-  professorName?: string;
-  professorId?: string;
-  professorKey?: string;
-}
-
-export interface UniversityChainItuniversitychainitResidenceInfo {
-  country?: string;
-  province?: string;
-  town?: string;
-  postCode?: string;
-  address?: string;
-  houseNumber?: string;
-  homePhone?: string;
-}
-
-export interface UniversityChainItuniversitychainitStoredStudent {
-  index?: string;
-  studentData?: UniversityChainItuniversitychainitStudentInfo;
-  transcriptData?: UniversityChainItuniversitychainitTranscriptOfRecords;
-  personalData?: UniversityChainItuniversitychainitPersonalInfo;
-  residenceData?: UniversityChainItuniversitychainitResidenceInfo;
-  contactData?: UniversityChainItuniversitychainitContactInfo;
-  taxesData?: UniversityChainItuniversitychainitTaxesInfo;
-  erasmusData?: UniversityChainItuniversitychainitErasmusInfo;
-}
-
-export interface UniversityChainItuniversitychainitStudentInfo {
-  name?: string;
-  surname?: string;
-  courseType?: string;
-  courseOfStudy?: string;
-  status?: string;
-
-  /** @format int64 */
-  currentYearOfStudy?: number;
-  outOfCourse?: boolean;
-
-  /** @format int64 */
-  numberOfYearsOutOfCourse?: number;
-  studentKey?: string;
-  completeInformation?: number[];
-  universityName?: string;
-  chainName?: string;
-  departmentName?: string;
-}
-
-export interface UniversityChainItuniversitychainitTaxesInfo {
-  status?: boolean;
-
-  /** @format int64 */
-  totalAmount?: number;
-  taxesHistory?: string;
-}
-
-export interface UniversityChainItuniversitychainitTranscriptOfRecords {
-  examsData?: string;
-
-  /** @format int64 */
-  totalExams?: number;
-
-  /** @format int64 */
-  examsPassed?: number;
-
-  /** @format int64 */
-  totalCredits?: number;
-
-  /** @format int64 */
-  achievedCredits?: number;
-}
-
-export interface UniversityChainItuniversitychainitUniversityInfo {
-  universityName?: string;
-
-  /** @format int64 */
-  nextStudentId?: number;
-  secretariatKey?: string;
-  universityKey?: string;
-  caiKey?: string;
-  fifoHeadErasmus?: string;
-  fifoTailErasmus?: string;
-  deadlineTaxes?: string;
-  deadlineErasmus?: string;
-  taxesBrackets?: string;
-
-  /** @format int32 */
-  maxErasmusExams?: number;
 }
 
 export interface UniversitychainitMsgConfigureChainResponse {
@@ -246,8 +154,36 @@ export interface UniversitychainitMsgStartErasmusResponse {
   status?: number;
 }
 
+export interface UniversitychainitOperationInfo {
+  studentOperationDetails?: string;
+  previousStudentOperationFifo?: string;
+  nextStudentOperationFifo?: string;
+}
+
+/**
+ * Params defines the parameters for the module.
+ */
+export type UniversitychainitParams = object;
+
+export interface UniversitychainitPersonalInfo {
+  gender?: string;
+  dateOfBirth?: string;
+  primaryNationality?: string;
+  countryOfBirth?: string;
+  provinceOfBirth?: string;
+  townOfBirth?: string;
+  taxCode?: string;
+}
+
+export interface UniversitychainitProfessorsExams {
+  examName?: string;
+  professorName?: string;
+  professorId?: string;
+  professorKey?: string;
+}
+
 export interface UniversitychainitQueryAllForeignUniversitiesResponse {
-  foreignUniversities?: UniversityChainItuniversitychainitForeignUniversities[];
+  foreignUniversities?: UniversitychainitForeignUniversities[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -262,7 +198,7 @@ export interface UniversitychainitQueryAllForeignUniversitiesResponse {
 }
 
 export interface UniversitychainitQueryAllProfessorsExamsResponse {
-  professorsExams?: UniversityChainItuniversitychainitProfessorsExams[];
+  professorsExams?: UniversitychainitProfessorsExams[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -277,7 +213,7 @@ export interface UniversitychainitQueryAllProfessorsExamsResponse {
 }
 
 export interface UniversitychainitQueryAllStoredStudentResponse {
-  storedStudent?: UniversityChainItuniversitychainitStoredStudent[];
+  storedStudent?: UniversitychainitStoredStudent[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -292,7 +228,7 @@ export interface UniversitychainitQueryAllStoredStudentResponse {
 }
 
 export interface UniversitychainitQueryAllUniversityInfoResponse {
-  universityInfo?: UniversityChainItuniversitychainitUniversityInfo[];
+  universityInfo?: UniversitychainitUniversityInfo[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -307,51 +243,51 @@ export interface UniversitychainitQueryAllUniversityInfoResponse {
 }
 
 export interface UniversitychainitQueryGetChainInfoResponse {
-  ChainInfo?: UniversityChainItuniversitychainitChainInfo;
+  ChainInfo?: UniversitychainitChainInfo;
 }
 
 export interface UniversitychainitQueryGetContactInfoResponse {
-  ContactInfo?: UniversityChainItuniversitychainitContactInfo;
+  ContactInfo?: UniversitychainitContactInfo;
 }
 
 export interface UniversitychainitQueryGetErasmusInfoResponse {
-  ErasmusInfo?: UniversityChainItuniversitychainitErasmusInfo;
+  ErasmusInfo?: UniversitychainitErasmusInfo;
 }
 
 export interface UniversitychainitQueryGetForeignUniversitiesResponse {
-  foreignUniversities?: UniversityChainItuniversitychainitForeignUniversities;
+  foreignUniversities?: UniversitychainitForeignUniversities;
 }
 
 export interface UniversitychainitQueryGetPersonalInfoResponse {
-  PersonalInfo?: UniversityChainItuniversitychainitPersonalInfo;
+  PersonalInfo?: UniversitychainitPersonalInfo;
 }
 
 export interface UniversitychainitQueryGetProfessorsExamsResponse {
-  professorsExams?: UniversityChainItuniversitychainitProfessorsExams;
+  professorsExams?: UniversitychainitProfessorsExams;
 }
 
 export interface UniversitychainitQueryGetResidenceInfoResponse {
-  ResidenceInfo?: UniversityChainItuniversitychainitResidenceInfo;
+  ResidenceInfo?: UniversitychainitResidenceInfo;
 }
 
 export interface UniversitychainitQueryGetStoredStudentResponse {
-  storedStudent?: UniversityChainItuniversitychainitStoredStudent;
+  storedStudent?: UniversitychainitStoredStudent;
 }
 
 export interface UniversitychainitQueryGetStudentInfoResponse {
-  StudentInfo?: UniversityChainItuniversitychainitStudentInfo;
+  StudentInfo?: UniversitychainitStudentInfo;
 }
 
 export interface UniversitychainitQueryGetTaxesInfoResponse {
-  TaxesInfo?: UniversityChainItuniversitychainitTaxesInfo;
+  TaxesInfo?: UniversitychainitTaxesInfo;
 }
 
 export interface UniversitychainitQueryGetTranscriptOfRecordsResponse {
-  TranscriptOfRecords?: UniversityChainItuniversitychainitTranscriptOfRecords;
+  TranscriptOfRecords?: UniversitychainitTranscriptOfRecords;
 }
 
 export interface UniversitychainitQueryGetUniversityInfoResponse {
-  universityInfo?: UniversityChainItuniversitychainitUniversityInfo;
+  universityInfo?: UniversitychainitUniversityInfo;
 }
 
 /**
@@ -359,7 +295,94 @@ export interface UniversitychainitQueryGetUniversityInfoResponse {
  */
 export interface UniversitychainitQueryParamsResponse {
   /** params holds all the parameters of this module. */
-  params?: UniversityChainItuniversitychainitParams;
+  params?: UniversitychainitParams;
+}
+
+export interface UniversitychainitResidenceInfo {
+  country?: string;
+  province?: string;
+  town?: string;
+  postCode?: string;
+  address?: string;
+  houseNumber?: string;
+  homePhone?: string;
+}
+
+export interface UniversitychainitStoredStudent {
+  index?: string;
+  studentData?: UniversitychainitStudentInfo;
+  transcriptData?: UniversitychainitTranscriptOfRecords;
+  personalData?: UniversitychainitPersonalInfo;
+  residenceData?: UniversitychainitResidenceInfo;
+  contactData?: UniversitychainitContactInfo;
+  taxesData?: UniversitychainitTaxesInfo;
+  erasmusData?: UniversitychainitErasmusInfo;
+  operationInfo?: UniversitychainitOperationInfo;
+  counters?: UniversitychainitCountersInfo;
+}
+
+export interface UniversitychainitStudentInfo {
+  name?: string;
+  surname?: string;
+  courseType?: string;
+  courseOfStudy?: string;
+  status?: string;
+
+  /** @format int64 */
+  currentYearOfStudy?: number;
+  outOfCourse?: boolean;
+
+  /** @format int64 */
+  numberOfYearsOutOfCourse?: number;
+  studentKey?: string;
+  completeInformation?: number[];
+  universityName?: string;
+  chainName?: string;
+  departmentName?: string;
+}
+
+export interface UniversitychainitTaxesInfo {
+  status?: boolean;
+
+  /** @format int64 */
+  totalAmount?: number;
+  taxesHistory?: string;
+}
+
+export interface UniversitychainitTranscriptOfRecords {
+  examsData?: string;
+
+  /** @format int64 */
+  totalExams?: number;
+
+  /** @format int64 */
+  examsPassed?: number;
+
+  /** @format int64 */
+  totalCredits?: number;
+
+  /** @format int64 */
+  achievedCredits?: number;
+}
+
+export interface UniversitychainitUniversityInfo {
+  universityName?: string;
+
+  /** @format int64 */
+  nextStudentId?: number;
+  secretariatKey?: string;
+  universityKey?: string;
+  caiKey?: string;
+  fifoHeadErasmus?: string;
+  fifoTailErasmus?: string;
+  deadlineTaxes?: string;
+  deadlineErasmus?: string;
+  taxesBrackets?: string;
+
+  /** @format int32 */
+  maxErasmusExams?: number;
+  fifoHeadOperation?: string;
+  fifoTailOperation?: string;
 }
 
 /**

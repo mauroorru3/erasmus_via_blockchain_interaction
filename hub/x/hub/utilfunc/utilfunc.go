@@ -59,9 +59,19 @@ type ErasmusExamsResultsPacket struct {
 
 // student JSON structure
 
+type StudentInfoRestrictedAnswerPacket struct {
+	PacketID     string `json:"p_id"`
+	ForeignIndex string `json:"f_id"`
+}
+
+type SuccessPacket struct {
+	PacketID       string `json:"p_id"`
+	HomeIndex      string `json:"h_id"`
+	HomeUniversity string `json:"h_uni"`
+}
+
 type AbortOperationPacket struct {
 	PacketID          string `json:"p_id"`
-	OperationID       string `json:"op"`
 	HomeIndex         string `json:"h_id"`
 	ForeignIndex      string `json:"f_id"`
 	HomeUniversity    string `json:"h_uni"`
@@ -70,7 +80,6 @@ type AbortOperationPacket struct {
 
 type StandardAckPacket struct {
 	PacketID          string `json:"p_id"`
-	OperationID       string `json:"op"`
 	HomeIndex         string `json:"h_id"`
 	ForeignIndex      string `json:"f_id"`
 	HomeUniversity    string `json:"h_uni"`
@@ -326,4 +335,38 @@ func GetConsumedGas(functionName string, identifier string, ctx sdk.Context) (er
 	}
 	return nil
 
+}
+
+func CreateSuccessOperationString() (abort_op_JSON string, err error) {
+
+	var success_op SuccessPacket
+
+	success_op.HomeIndex = ""
+	success_op.HomeUniversity = ""
+	success_op.PacketID = "23" // Value that identifies the packet confirmation
+
+	resultByteJSON, err := json.Marshal(success_op)
+	if err != nil {
+		return abort_op_JSON, err
+	}
+
+	abort_op_JSON = string(resultByteJSON)
+
+	return abort_op_JSON, err
+}
+
+// Function that constructs the ack contents and returns the ack related to the abort operation
+
+func HandleSuccessAck(ctx sdk.Context) (packetAck types.ErasmusRestictedDataPacketAck, err error) {
+
+	PrintLogs("HandleSuccessAck", ctx)
+
+	new_data_info, err := CreateSuccessOperationString()
+	if err != nil {
+		return packetAck, err
+	} else {
+
+		packetAck.ErasmusRestrictedInfo = new_data_info
+		return packetAck, err
+	}
 }

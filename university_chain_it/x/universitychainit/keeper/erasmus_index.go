@@ -75,6 +75,8 @@ func (k Keeper) TransmitErasmusIndexPacket(
 // OnRecvErasmusIndexPacket processes packet reception
 func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ErasmusIndexPacketData) (packetAck types.ErasmusIndexPacketAck, err error) {
 
+	utilfunc.PrintLogs("OnRecvErasmusIndexPacket", ctx)
+
 	sizeInt := packet.Size()
 	binArray, err := data.GetBytes()
 	if err != nil {
@@ -108,6 +110,12 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 			if !found {
 				return packetAck, err
 			} else {
+
+				// remove the timer for the first packet of the start erasmus operation
+				err = k.ClearOperationQueue(ctx, &stu)
+				if err != nil {
+					return packetAck, err
+				}
 
 				data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(stu)
 				if err != nil {
@@ -362,9 +370,25 @@ func (k Keeper) OnRecvErasmusIndexPacket(ctx sdk.Context, packet channeltypes.Pa
 															if err != nil {
 																return packetAck, err
 															}
+
 															sizeInt := len(packetAckBytes)
 															//sizeInt := packetAck.Size()
 															utilfunc.GetTransactionStats("OnRecvErasmusIndexPacket sending ack", "", ctx, sizeInt, binArray)
+
+															uniInfo, found := k.GetUniversityInfo(ctx, searchedStudent.StudentData.UniversityName)
+															if !found {
+																return packetAck, err
+															} else {
+																// The timer for the last 10 packets of the start erasmus operation is created
+
+																err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "4", 1)
+																if err != nil {
+																	return packetAck, err
+																}
+
+																utilfunc.PrintLogs("OnRecvErasmusIndexPacket - The timer for the last 10 packets of the start erasmus operation is created", ctx)
+															}
+
 															return packetAck, nil
 
 														}

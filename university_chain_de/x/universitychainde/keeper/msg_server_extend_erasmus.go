@@ -13,6 +13,8 @@ import (
 func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendErasmus) (*types.MsgExtendErasmusResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	utilfunc.PrintLogs("ExtendErasmus", ctx)
+
 	chainInfo, found := k.Keeper.GetChainInfo(ctx)
 	if !found {
 		panic("ChainInfo not found")
@@ -121,7 +123,9 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 																return nil, err
 															} else {
 
-																k.CheckAndInCaseMoveStutent(ctx, &searchedStudent, &uniInfo)
+																utilfunc.PrintLogs("ExtendErasmus packet sent", ctx)
+
+																k.CheckAndInCaseMoveStudent(ctx, &searchedStudent, &uniInfo)
 																k.Keeper.SetStoredStudent(ctx, searchedStudent)
 																k.Keeper.SetUniversityInfo(ctx, uniInfo)
 
@@ -131,6 +135,19 @@ func (k msgServer) ExtendErasmus(goCtx context.Context, msg *types.MsgExtendEras
 																		Status: -1,
 																	}, err
 																} else {
+
+																	// The timer for the extend erasmus operation is created
+
+																	err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "3", 1)
+																	if err != nil {
+																		return &types.MsgExtendErasmusResponse{
+																			Status: -1,
+																		}, err
+
+																	}
+
+																	utilfunc.PrintLogs("ExtendErasmus finish", ctx)
+
 																	return &types.MsgExtendErasmusResponse{
 																		Status: 0,
 																	}, nil
