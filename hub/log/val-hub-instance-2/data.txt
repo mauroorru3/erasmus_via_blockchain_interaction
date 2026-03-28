@@ -1,0 +1,922 @@
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 18:31:29
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 18:53:15
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 19:28:51
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 19:50:57
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-19 19:50:41\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-19 20:00:41\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-19 19:51:40
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 20:13:19
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-19 20:13:03\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-19 20:23:03\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-19 20:14:02
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 20:38:08
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-19 20:37:56\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-19 20:47:56\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-19 20:38:40
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 21:12:02
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-19 21:11:46\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-19 21:21:46\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-19 21:12:45
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-19 21:11:46\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-19 21:21:46\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-19 21:12:50
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-19 21:33:20
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-19 21:33:04\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-19 21:43:04\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-19 21:34:03
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 11:09:19
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 11:09:03\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 11:19:03\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 11:10:01
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 11:38:18
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 11:38:06\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 11:48:06\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 11:38:50
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 12:00:22
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 12:00:06\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 12:10:06\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 12:01:05
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 12:23:15
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 12:23:00\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 12:33:00\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 12:23:52
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 14:32:45
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 14:32:34\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 14:42:34\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 14:33:22
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 14:58:07
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 14:57:51\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 15:07:51\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 14:58:50
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 15:27:58
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 15:27:42\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 15:30:42\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 15:28:41
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 15:44:09
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 15:43:53\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 15:46:53\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 15:44:52
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 16:02:10
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 16:01:53\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 16:04:53\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 16:02:52
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 16:19:41
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 16:19:30\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 16:22:30\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 16:20:24
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 19:02:08
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 19:46:11
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 20:03:17
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 20:23:25
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 20:37:46
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 20:37:30\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 20:47:30\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 20:38:29
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-21 21:01:24
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-21 21:01:08\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-21 21:11:08\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-21 21:02:07
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 09:03:56
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 09:03:40\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 09:13:40\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 09:04:33
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 09:33:58
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 09:33:42\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 09:43:42\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 09:34:40
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 09:51:34
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 10:11:04
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 10:10:53\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 10:20:53\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 10:11:41
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 10:22:23
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 10:22:08\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 10:32:08\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 10:23:01
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 10:34:45
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 10:34:33\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 10:44:33\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 10:35:27
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 13:13:24
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 13:13:07\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 13:23:07\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 13:14:07
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 13:14:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:15:43
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 13:27:19
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-22 13:27:03\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-22 13:30:03\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-22 13:28:02
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-22 13:28:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:30:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:38:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:39:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:39:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:40:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:41:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:41:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:42:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:43:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:44:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:44:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:45:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:46:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:46:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:47:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:48:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:49:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:49:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:50:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:51:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:51:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:52:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:53:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:53:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:54:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:55:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:55:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:56:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:57:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:57:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:58:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:58:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 13:59:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:00:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:00:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:01:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:02:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:02:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:03:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:03:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:04:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:05:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:05:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:06:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:06:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:07:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:07:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:08:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:08:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:09:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:09:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:10:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:11:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:11:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:12:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:12:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:13:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:13:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:14:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:14:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:15:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:15:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:16:22
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:16:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:17:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:17:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:18:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:19:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:19:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:20:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:20:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:21:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:21:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:22:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:22:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:23:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:23:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:24:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:24:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:25:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:25:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:26:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:27:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:27:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:28:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:28:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:29:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:29:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:30:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:30:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:31:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:31:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:32:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:32:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:33:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:33:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:34:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:34:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:35:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:36:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:36:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:37:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:37:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:38:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:38:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:39:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:39:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:40:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:40:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:41:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:41:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:42:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:42:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:43:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:44:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:44:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:45:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:45:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:46:10
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:46:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:47:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:47:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:48:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:48:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:49:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:49:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:50:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:50:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:51:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:52:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:52:33
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:53:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:53:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:54:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:54:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:55:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:55:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:56:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:56:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:57:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:57:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:58:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:58:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 14:59:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:00:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:00:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:01:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:01:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:02:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:02:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:03:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:03:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:04:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:04:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:05:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:05:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:06:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:06:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:07:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:07:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:08:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:09:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:09:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:10:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:10:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:11:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:11:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:12:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:12:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:13:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:13:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:14:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:15:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:15:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:16:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:16:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:17:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:17:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:18:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:19:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:19:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:20:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:20:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:21:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:21:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:22:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:22:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:23:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:23:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:24:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:24:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:25:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:26:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:26:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:27:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:27:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:28:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:28:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:29:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:29:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:30:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:30:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:31:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:31:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:32:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:32:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:33:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:33:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:34:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:35:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:35:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:36:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:36:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:37:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:37:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:38:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:38:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:39:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:39:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:40:22
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:40:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:41:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:41:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:42:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:43:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:43:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:44:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:44:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:45:10
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:45:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:46:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:46:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:47:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:48:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:48:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:49:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:49:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:50:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:50:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:51:33
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:52:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:52:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:53:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:53:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:54:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:54:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:55:22
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:55:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:56:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:57:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:57:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:58:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:58:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:59:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 15:59:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:00:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:00:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:01:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:02:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:02:33
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:03:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:03:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:04:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:04:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:05:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:05:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:06:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:06:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:07:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:07:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:08:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:08:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:09:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:10:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:10:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:11:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:11:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:12:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:12:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:13:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:13:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:14:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:14:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:15:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:15:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:16:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:16:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:17:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:17:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:18:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:19:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:19:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:20:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:20:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:21:10
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:21:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:22:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:22:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:23:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:23:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:24:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:24:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:25:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:25:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:26:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:27:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:27:33
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:28:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:28:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:29:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:29:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:30:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:30:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:31:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:31:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:32:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:32:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:33:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:33:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:34:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:35:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:35:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:36:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:36:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:37:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:37:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:38:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:38:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:39:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:39:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:40:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:40:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:41:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:41:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:42:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:43:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:43:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:44:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:44:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:45:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:45:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:46:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:46:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:47:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:47:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:48:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:48:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:49:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:49:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:50:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:50:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:51:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:52:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:52:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:53:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:53:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:54:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:54:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:55:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:55:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:56:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:56:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:57:22
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:57:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:58:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:58:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 16:59:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:00:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:00:33
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:01:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:01:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:02:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:02:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:03:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:03:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:04:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:04:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:05:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:05:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:06:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:06:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:07:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:08:00
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:08:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:09:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:09:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:10:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:10:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:11:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:11:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:12:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:12:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:13:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:13:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:14:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:14:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:15:27
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:15:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:16:31
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:17:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:17:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:18:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:18:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:19:10
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:19:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:20:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:20:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:21:18
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:21:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:22:22
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:22:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:23:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:23:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:24:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:25:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:25:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:26:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:26:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:27:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:27:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:28:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:28:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:29:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:29:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:30:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:30:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:31:25
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:31:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:32:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:33:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:33:33
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:34:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:34:37
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:35:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:35:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:36:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:36:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:37:16
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:37:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:38:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:39:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:39:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:40:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:40:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:41:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:42:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:42:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:43:08
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:43:39
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:44:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:44:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:45:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:45:53
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:46:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:46:56
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:47:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:48:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:48:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:49:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:49:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:50:29
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:51:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:51:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:52:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:53:04
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:53:41
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:54:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:55:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:55:43
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:56:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:56:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:57:35
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:58:12
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:58:55
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 17:59:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:00:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:00:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:01:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:02:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:02:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:03:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:03:52
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:04:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:05:07
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:05:44
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:06:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:06:59
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:07:36
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:08:13
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:08:50
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:09:28
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:10:05
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:10:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:11:20
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:11:57
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:12:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:13:11
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:13:48
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:14:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:15:03
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:15:40
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:16:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:16:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:17:32
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:18:09
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:18:46
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:19:24
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:20:01
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:20:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:21:15
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:21:47
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:22:19
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:22:51
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:23:23
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:23:54
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:24:26
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:24:58
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:25:30
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:26:02
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:26:34
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:27:06
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:27:38
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:28:10
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:28:42
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:29:14
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:29:45
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:30:17
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:30:49
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:31:21
+OnRecvEndErasmusPeriodRequestPacket startingUniversityName:"unipi" destinationUniversityName:"tum" index:"unipi_1" foreignIndex:"tum_1"  2026-03-22 18:31:53
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 18:42:07
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-22 18:51:11
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-23 08:35:42
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 08:35:31\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 08:38:31\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 08:36:19
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 08:35:31\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 08:38:31\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 08:36:41
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 08:35:31\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 08:38:31\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 08:36:57
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 08:35:31\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 08:38:31\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 08:37:18
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-23 09:43:14
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 09:42:58\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 09:45:58\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 09:43:51
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 09:42:58\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 09:45:58\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 09:44:13
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-23 09:55:56
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-23 09:55:40\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-23 09:58:40\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 09:56:33
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 09:57:48
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 09:58:09
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-23 09:58:30
+erasmusRestrictedInfo:"{\"p_id\":\"1\",\"h_id\":\"unipi_1\",\"h_uni\":\"unipi\",\"f_uni\":\"tum\"}"  2026-03-28 10:12:19
+erasmusRestrictedInfo:"{\"p_id\":\"2\",\"name\":\"Mario\",\"surname\":\"Rossi\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"3\",\"stu_k\":\"cosmos1ga559f4vhx98u0exa5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"4\",\"stu_k\":\"cvtxr4vxnk00tqfc0rlc\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-28 10:12:03\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"6\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"e_date\":\"2026-03-28 10:22:03\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"7\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"duration\":\"6\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"8\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"course\":\"cs\",\"course_t\":\"master\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"9\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"depart\":\"Computer Science\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"10\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"erasmus_t\":\"study\"}"  2026-03-28 10:13:02
+erasmusRestrictedInfo:"{\"p_id\":\"11\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"exams\":[\"Advanced databases\"],\"depar\":\"\"}"  2026-03-28 10:13:02

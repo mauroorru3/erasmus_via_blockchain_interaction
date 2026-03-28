@@ -4,8 +4,10 @@ package university_chain_it.universitychainit;
 option go_package = "university_chain_it/x/universitychainit/types";
 
 message CountersInfo {
-    repeated int32 PacketsRetriesStartErasmus = 1; 
-    int32 AcksReceivedStartErasmus = 2;
+    repeated int32 packetsRetriesStartErasmus = 1; 
+    int32 acksReceivedStartErasmus = 2;
     int32 retryNumberOperations = 3;
     int32 maximumNumberRetries = 4;
+    int32 errorAcksOrTimeoutsReceived = 5;
+    bool revertErasmusCareerCompleted = 6;
 }

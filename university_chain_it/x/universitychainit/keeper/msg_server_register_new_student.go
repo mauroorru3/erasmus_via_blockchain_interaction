@@ -125,10 +125,12 @@ func (k msgServer) RegisterNewStudent(goCtx context.Context, msg *types.MsgRegis
 							NextStudentOperationFifo:     "",
 						},
 						Counters: &types.CountersInfo{
-							PacketsRetriesStartErasmus: []int32{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-							AcksReceivedStartErasmus:   0,
-							RetryNumberOperations:      0,
-							MaximumNumberRetries:       3,
+							PacketsRetriesStartErasmus:   []int32{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+							AcksReceivedStartErasmus:     0,
+							RetryNumberOperations:        0,
+							MaximumNumberRetries:         3,
+							ErrorAcksOrTimeoutsReceived:  0,
+							RevertErasmusCareerCompleted: false,
 						},
 					}
 					returnIndexStudent = strconv.FormatUint(uint64(uniInfo.NextStudentId), 10)

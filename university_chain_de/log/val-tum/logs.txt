@@ -1,0 +1,30 @@
+OnRecvErasmusStudentPacket 2026-03-28 10:12:30
+OnRecvErasmusStudentPacket case 1 2026-03-28 10:12:30
+OnRecvErasmusStudentPacket ack sent 2026-03-28 10:12:30
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 2 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 2 qui 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 3 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 4 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 5 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 5 packet 2026-03-28 10:12:03 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 5 packet 5 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 5 student [{"duration_in_months":0,"start_date":"2026-03-28 10:12:03","end_date":"","erasmus_type":"","total_credits":0,"achieved_credits":0,"total_exams":0,"exams_passed":0,"foreign_university_name":"unipi","foreign_university_country":"Italy","foreign_chain_name ":"university_chain_it","foreign_university_student_id":"unipi_1","status":"","contribution":{"amount":0,"income_bracket":0,"payment_made":false,"date_of_payment":""},"exams_data":""}] 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 5 data erasmusRestrictedInfo:"{\"p_id\":\"5\",\"f_uni\":\"tum\",\"f_id\":\"tum_1\",\"s_date\":\"2026-03-28 10:12:03\"}"  2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 6 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 6 [{"duration_in_months":0,"start_date":"2026-03-28 10:12:03","end_date":"2026-03-28 10:22:03","erasmus_type":"","total_credits":0,"achieved_credits":0,"total_exams":0,"exams_passed":0,"foreign_university_name":"unipi","foreign_university_country":"Italy","foreign_chain_name ":"university_chain_it","foreign_university_student_id":"unipi_1","status":"","contribution":{"amount":0,"income_bracket":0,"payment_made":false,"date_of_payment":""},"exams_data":""}] 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 7 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 8 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 9 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 10 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket case 11 2026-03-28 10:13:12
+OnRecvErasmusStudentPacket sending Start Erasmus success ack 2026-03-28 10:13:12

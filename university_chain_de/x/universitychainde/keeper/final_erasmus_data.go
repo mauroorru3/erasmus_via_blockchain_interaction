@@ -98,18 +98,18 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket "+data.ErasmusRestrictedInfo, ctx)
 		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusRestrictedInfo)
 		if err != nil {
-			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+			return packetAck, err
 		}
 		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish", ctx)
 		k.SetStoredStudent(ctx, searchedStudent)
 
 		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket DE", data.HomeIndex, ctx)
 		if err != nil {
-			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+			return packetAck, err
 		} else {
 			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
 			if err != nil {
-				return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+				return packetAck, err
 			}
 			sizeInt := len(packetAckBytes)
 			utilfunc.GetTransactionStats("OnRecvFinalErasmusDataPacket sending ack", "", ctx, sizeInt, binArray)
@@ -122,7 +122,6 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 			return packetAck, nil
 		}
 	}
-
 }
 
 // OnAcknowledgementFinalErasmusDataPacket responds to the the success or failure of a packet

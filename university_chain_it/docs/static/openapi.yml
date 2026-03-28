@@ -31214,12 +31214,12 @@ paths:
                     counters:
                       type: object
                       properties:
-                        PacketsRetriesStartErasmus:
+                        packetsRetriesStartErasmus:
                           type: array
                           items:
                             type: integer
                             format: int32
-                        AcksReceivedStartErasmus:
+                        acksReceivedStartErasmus:
                           type: integer
                           format: int32
                         retryNumberOperations:
@@ -31228,6 +31228,11 @@ paths:
                         maximumNumberRetries:
                           type: integer
                           format: int32
+                        errorAcksOrTimeoutsReceived:
+                          type: integer
+                          format: int32
+                        revertErasmusCareerCompleted:
+                          type: boolean
               pagination:
                 type: object
                 properties:
@@ -31492,12 +31497,12 @@ paths:
                   counters:
                     type: object
                     properties:
-                      PacketsRetriesStartErasmus:
+                      packetsRetriesStartErasmus:
                         type: array
                         items:
                           type: integer
                           format: int32
-                      AcksReceivedStartErasmus:
+                      acksReceivedStartErasmus:
                         type: integer
                         format: int32
                       retryNumberOperations:
@@ -31506,6 +31511,11 @@ paths:
                       maximumNumberRetries:
                         type: integer
                         format: int32
+                      errorAcksOrTimeoutsReceived:
+                        type: integer
+                        format: int32
+                      revertErasmusCareerCompleted:
+                        type: boolean
         default:
           description: An unexpected error response.
           schema:
@@ -53380,12 +53390,12 @@ definitions:
   university_chain_it.universitychainit.CountersInfo:
     type: object
     properties:
-      PacketsRetriesStartErasmus:
+      packetsRetriesStartErasmus:
         type: array
         items:
           type: integer
           format: int32
-      AcksReceivedStartErasmus:
+      acksReceivedStartErasmus:
         type: integer
         format: int32
       retryNumberOperations:
@@ -53394,6 +53404,11 @@ definitions:
       maximumNumberRetries:
         type: integer
         format: int32
+      errorAcksOrTimeoutsReceived:
+        type: integer
+        format: int32
+      revertErasmusCareerCompleted:
+        type: boolean
   university_chain_it.universitychainit.ErasmusInfo:
     type: object
     properties:
@@ -53800,12 +53815,12 @@ definitions:
             counters:
               type: object
               properties:
-                PacketsRetriesStartErasmus:
+                packetsRetriesStartErasmus:
                   type: array
                   items:
                     type: integer
                     format: int32
-                AcksReceivedStartErasmus:
+                acksReceivedStartErasmus:
                   type: integer
                   format: int32
                 retryNumberOperations:
@@ -53814,6 +53829,11 @@ definitions:
                 maximumNumberRetries:
                   type: integer
                   format: int32
+                errorAcksOrTimeoutsReceived:
+                  type: integer
+                  format: int32
+                revertErasmusCareerCompleted:
+                  type: boolean
       pagination:
         type: object
         properties:
@@ -54183,12 +54203,12 @@ definitions:
           counters:
             type: object
             properties:
-              PacketsRetriesStartErasmus:
+              packetsRetriesStartErasmus:
                 type: array
                 items:
                   type: integer
                   format: int32
-              AcksReceivedStartErasmus:
+              acksReceivedStartErasmus:
                 type: integer
                 format: int32
               retryNumberOperations:
@@ -54197,6 +54217,11 @@ definitions:
               maximumNumberRetries:
                 type: integer
                 format: int32
+              errorAcksOrTimeoutsReceived:
+                type: integer
+                format: int32
+              revertErasmusCareerCompleted:
+                type: boolean
   university_chain_it.universitychainit.QueryGetStudentInfoResponse:
     type: object
     properties:
@@ -54475,12 +54500,12 @@ definitions:
       counters:
         type: object
         properties:
-          PacketsRetriesStartErasmus:
+          packetsRetriesStartErasmus:
             type: array
             items:
               type: integer
               format: int32
-          AcksReceivedStartErasmus:
+          acksReceivedStartErasmus:
             type: integer
             format: int32
           retryNumberOperations:
@@ -54489,6 +54514,11 @@ definitions:
           maximumNumberRetries:
             type: integer
             format: int32
+          errorAcksOrTimeoutsReceived:
+            type: integer
+            format: int32
+          revertErasmusCareerCompleted:
+            type: boolean
   university_chain_it.universitychainit.StudentInfo:
     type: object
     properties:

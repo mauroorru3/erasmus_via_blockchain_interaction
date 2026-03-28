@@ -31228,6 +31228,11 @@ paths:
                         maximumNumberRetries:
                           type: integer
                           format: int32
+                        errorAcksOrTimeoutsReceived:
+                          type: integer
+                          format: int32
+                        revertErasmusCareerCompleted:
+                          type: boolean
               pagination:
                 type: object
                 properties:
@@ -31506,6 +31511,11 @@ paths:
                       maximumNumberRetries:
                         type: integer
                         format: int32
+                      errorAcksOrTimeoutsReceived:
+                        type: integer
+                        format: int32
+                      revertErasmusCareerCompleted:
+                        type: boolean
         default:
           description: An unexpected error response.
           schema:
@@ -53394,6 +53404,11 @@ definitions:
       maximumNumberRetries:
         type: integer
         format: int32
+      errorAcksOrTimeoutsReceived:
+        type: integer
+        format: int32
+      revertErasmusCareerCompleted:
+        type: boolean
   university_chain_de.universitychainde.ErasmusInfo:
     type: object
     properties:
@@ -53814,6 +53829,11 @@ definitions:
                 maximumNumberRetries:
                   type: integer
                   format: int32
+                errorAcksOrTimeoutsReceived:
+                  type: integer
+                  format: int32
+                revertErasmusCareerCompleted:
+                  type: boolean
       pagination:
         type: object
         properties:
@@ -54197,6 +54217,11 @@ definitions:
               maximumNumberRetries:
                 type: integer
                 format: int32
+              errorAcksOrTimeoutsReceived:
+                type: integer
+                format: int32
+              revertErasmusCareerCompleted:
+                type: boolean
   university_chain_de.universitychainde.QueryGetStudentInfoResponse:
     type: object
     properties:
@@ -54489,6 +54514,11 @@ definitions:
           maximumNumberRetries:
             type: integer
             format: int32
+          errorAcksOrTimeoutsReceived:
+            type: integer
+            format: int32
+          revertErasmusCareerCompleted:
+            type: boolean
   university_chain_de.universitychainde.StudentInfo:
     type: object
     properties:

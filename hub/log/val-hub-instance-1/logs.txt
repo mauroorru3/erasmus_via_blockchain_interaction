@@ -1,0 +1,75 @@
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:12:19
+OnRecvErasmusRestictedDataPacket res {"p_id":"1","h_id":"unipi_1","h_uni":"unipi","f_uni":"tum"} 2026-03-28 10:12:19
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"1","h_id":"unipi_1","h_uni":"unipi","f_uni":"tum"} 2026-03-28 10:12:19
+HandleSuccessAckStartErasmus 2026-03-28 10:12:19
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket packetAck.ErasmusRestrictedInfo != nil 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket ack {"p_id":"20","f_id":"tum_1"} 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket previosu packet sent {"p_id":"1","h_id":"unipi_1","h_uni":"unipi","f_uni":"tum"} 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 - 1 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 - 2 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket pre unmarshal data.ErasmusRestrictedInfo 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket pre uni 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 - 1 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 data {"p_id":"1","h_id":"unipi_1","h_uni":"unipi","f_uni":"tum"} 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 packetack {"p_id":"20","f_id":"tum_1"} 2026-03-28 10:12:40
+OnAcknowledgementErasmusRestictedDataPacket case 20 packet sent 2026-03-28 10:12:40
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"2","name":"Mario","surname":"Rossi","f_uni":"tum","f_id":"tum_1"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"2","name":"Mario","surname":"Rossi","f_uni":"tum","f_id":"tum_1"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"3","stu_k":"cosmos1ga559f4vhx98u0exa5","f_uni":"tum","f_id":"tum_1"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"3","stu_k":"cosmos1ga559f4vhx98u0exa5","f_uni":"tum","f_id":"tum_1"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"4","stu_k":"cvtxr4vxnk00tqfc0rlc","f_uni":"tum","f_id":"tum_1"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"4","stu_k":"cvtxr4vxnk00tqfc0rlc","f_uni":"tum","f_id":"tum_1"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"5","f_uni":"tum","f_id":"tum_1","s_date":"2026-03-28 10:12:03"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"5","f_uni":"tum","f_id":"tum_1","s_date":"2026-03-28 10:12:03"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"6","f_uni":"tum","f_id":"tum_1","e_date":"2026-03-28 10:22:03"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"6","f_uni":"tum","f_id":"tum_1","e_date":"2026-03-28 10:22:03"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"7","f_uni":"tum","f_id":"tum_1","duration":"6"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"7","f_uni":"tum","f_id":"tum_1","duration":"6"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"8","f_uni":"tum","f_id":"tum_1","course":"cs","course_t":"master"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"8","f_uni":"tum","f_id":"tum_1","course":"cs","course_t":"master"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"9","f_uni":"tum","f_id":"tum_1","depart":"Computer Science"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"9","f_uni":"tum","f_id":"tum_1","depart":"Computer Science"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"10","f_uni":"tum","f_id":"tum_1","erasmus_t":"study"} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"10","f_uni":"tum","f_id":"tum_1","erasmus_t":"study"} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res {"p_id":"11","f_uni":"tum","f_id":"tum_1","exams":["Advanced databases"],"depar":""} 2026-03-28 10:13:02
+OnRecvErasmusRestictedDataPacket res dentro {"p_id":"11","f_uni":"tum","f_id":"tum_1","exams":["Advanced databases"],"depar":""} 2026-03-28 10:13:02
+HandleSuccessAckStartErasmus 2026-03-28 10:13:02
+OnAcknowledgementErasmusIndexPacket success 2026-03-28 10:13:02
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket packetAck.ErasmusRestrictedInfo != nil 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket ack {"p_id":"21","h_id":"unipi_1","h_uni":"unipi"} 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket previosu packet sent {"p_id":"11","f_uni":"tum","f_id":"tum_1","exams":["Advanced databases"],"depar":""} 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket case 21 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket case 21 data {"p_id":"11","f_uni":"tum","f_id":"tum_1","exams":["Advanced databases"],"depar":""} 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket case 21 packetack {"p_id":"21","h_id":"unipi_1","h_uni":"unipi"} 2026-03-28 10:13:23
+OnAcknowledgementErasmusRestictedDataPacket 2026-03-28 10:13:44

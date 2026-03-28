@@ -911,27 +911,32 @@ func GetErasmusType(student types.StoredStudent) (res string, err error) {
 	return res, err
 }
 
-func SetErasmusType(student *types.StoredStudent, erasmusType string) (err error) {
+func SetErasmusType(student *types.StoredStudent, erasmusType string) (res string, ok bool, err error) {
 
 	var erasmusCareer []ErasmusCareerStruct
 
 	err = json.Unmarshal([]byte(student.ErasmusData.Career), &erasmusCareer)
 	if err != nil {
-		return err
+		return res, ok, err
 	}
 
 	lenCareer := len(erasmusCareer)
 
-	erasmusCareer[lenCareer-1].Erasmus_type = erasmusType
+	if erasmusCareer[lenCareer-1].Erasmus_type != erasmusType {
+		ok = true
+		erasmusCareer[lenCareer-1].Erasmus_type = erasmusType
+	} else {
+		ok = false
+	}
 
 	resultByteJSON, err := json.Marshal(erasmusCareer)
 	if err != nil {
-		return err
+		return res, ok, err
 	}
 
-	student.ErasmusData.Career = string(resultByteJSON)
+	res = string(resultByteJSON)
 
-	return err
+	return res, ok, err
 }
 
 func SetHomeUniversityInfo(student *types.StoredStudent, foreignChainName string, foreignUniCountry string) (err error) {
@@ -1708,7 +1713,36 @@ func CreateSuccessPacketExtendErasmus(student types.StoredStudent) (studentJSON 
 
 // Function that returns the result of the operation in order to test for application error situations
 
-func GetExtendErasmusOperationStatus() (result bool) {
+func TestStartErasmusOperationError(ctx sdk.Context, test bool) (result bool) {
 
-	return false
+	if test {
+		PrintLogs("TestStartErasmusOperationError", ctx)
+		return true
+	} else {
+		return false
+	}
+}
+
+// Function that returns the result of the operation in order to test for application error situations
+
+func TestEndErasmusOperationError(ctx sdk.Context, test bool) (result bool) {
+
+	if test {
+		PrintLogs("TestEndErasmusOperationError", ctx)
+		return true
+	} else {
+		return false
+	}
+}
+
+// Function that returns the result of the operation in order to test for application error situations
+
+func TestExtendErasmusOperationError(ctx sdk.Context, test bool) (result bool) {
+
+	if test {
+		PrintLogs("TestExtendErasmusOperationError", ctx)
+		return true
+	} else {
+		return false
+	}
 }

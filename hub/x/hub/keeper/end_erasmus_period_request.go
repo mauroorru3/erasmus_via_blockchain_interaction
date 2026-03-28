@@ -1,6 +1,7 @@
 package keeper
 
 import (
+	"encoding/json"
 	"errors"
 
 	"hub/x/hub/types"
@@ -89,43 +90,50 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 
 	utilfunc.PrintLogs("OnRecvEndErasmusPeriodRequestPacket", ctx)
 
-	// Packet reception logic
+	if utilfunc.TestAckError(ctx, false) {
 
-	packetAck.ErasmusRestrictedInfo = ""
-
-	uniInfo, found := k.GetUniversities(ctx, data.DestinationUniversityName)
-	if !found {
 		return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
+
 	} else {
 
-		var packet_to_send types.EndErasmusPeriodRequestPacketData = data
-		utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket "+data.String(), ctx)
+		// Packet reception logic
 
-		err := k.TransmitEndErasmusPeriodRequestPacket(
-			ctx,
-			packet_to_send,
-			uniInfo.Port,
-			uniInfo.ChannelID,
-			clienttypes.ZeroHeight(),
-			timeoutTimestamp,
-			"")
+		packetAck.ErasmusRestrictedInfo = ""
 
-		if err != nil {
+		uniInfo, found := k.GetUniversities(ctx, data.DestinationUniversityName)
+		if !found {
 			return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 		} else {
-			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
+
+			var packet_to_send types.EndErasmusPeriodRequestPacketData = data
+			utilfunc.PrintData("OnRecvEndErasmusPeriodRequestPacket "+data.String(), ctx)
+
+			err := k.TransmitEndErasmusPeriodRequestPacket(
+				ctx,
+				packet_to_send,
+				uniInfo.Port,
+				uniInfo.ChannelID,
+				clienttypes.ZeroHeight(),
+				timeoutTimestamp,
+				"")
+
 			if err != nil {
 				return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
 			} else {
-				packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+				err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket Hub", data.Index, ctx)
 				if err != nil {
 					return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
+				} else {
+					packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+					if err != nil {
+						return k.HandleAbortAckEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName, packet)
+					}
+					sizeInt := len(packetAckBytes)
+					utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket sending ack", "", ctx, sizeInt, binArray)
+					return utilfunc.HandleSuccessAckEndErasmus(ctx)
 				}
-				sizeInt := len(packetAckBytes)
-				utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket sending ack", "", ctx, sizeInt, binArray)
-				return packetAck, nil
-			}
 
+			}
 		}
 	}
 }
@@ -139,14 +147,9 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 
 		// Failed acknowledgement logic
 
-		err := k.HandleAbortPacketEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName)
-		if err != nil {
-			return err
-		}
-
 		utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error "+dispatchedAck.Error, ctx)
-
 		return nil
+
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.EndErasmusPeriodRequestPacketAck
@@ -162,6 +165,74 @@ func (k Keeper) OnAcknowledgementEndErasmusPeriodRequestPacket(ctx sdk.Context, 
 			// The counter-party module doesn't implement the correct acknowledgment format
 			utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket error "+err.Error(), ctx)
 			return errors.New("cannot unmarshal acknowledgment")
+		}
+
+		var result map[string]interface{}
+		err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &result)
+		if err != nil {
+			utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket unmarshal packetAck.ErasmusRestrictedInfo", ctx)
+			return err
+		}
+
+		packetID, found := result["p_id"].(string)
+		if found {
+
+			switch packetID {
+
+			case "-2": // error in the end erasmus
+
+				utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket case -2", ctx)
+
+				var abortPacket utilfunc.AbortOperationPacket
+				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &abortPacket)
+				if err != nil {
+					return err
+				}
+
+				uniInfo, found := k.GetUniversities(ctx, abortPacket.HomeUniversity)
+				if !found {
+					utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket case -2 "+types.ErrWrongNameUniversity.Error(), ctx)
+					return types.ErrWrongNameUniversity
+				} else {
+
+					utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket case - 2", ctx)
+					var abortData utilfunc.AbortOperationPacket
+
+					utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket case -2 packetack "+packetAck.ErasmusRestrictedInfo, ctx)
+
+					abortData.PacketID = abortPacket.PacketID
+					abortData.HomeIndex = abortPacket.HomeIndex
+					abortData.HomeUniversity = abortPacket.HomeUniversity
+					abortData.ForeignUniversity = abortPacket.ForeignUniversity
+					abortData.ForeignIndex = abortPacket.ForeignIndex
+
+					resultByteJSON, err := json.Marshal(abortData)
+					if err != nil {
+						return err
+					}
+
+					var packet_to_send types.ErasmusRestictedDataPacketData
+					packet_to_send.ErasmusRestrictedInfo = string(resultByteJSON)
+
+					utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket case -2 packettosend "+packet_to_send.ErasmusRestrictedInfo, ctx)
+
+					err = k.TransmitErasmusRestictedDataPacket(ctx,
+						packet_to_send,
+						uniInfo.Port,
+						uniInfo.ChannelID,
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+						" OnAcknowledgementEndErasmusPeriodRequestPacket case -2")
+
+					if err != nil {
+						utilfunc.PrintLogs("OnAcknowledgementEndErasmusPeriodRequestPacket case -2 error "+err.Error(), ctx)
+						return err
+
+					}
+					return nil
+
+				}
+			}
 		}
 
 		// Successful acknowledgement logic
@@ -213,15 +284,6 @@ func (k Keeper) OnTimeoutEndErasmusPeriodRequestPacket(ctx sdk.Context, packet c
 	// Packet timeout logic
 
 	utilfunc.PrintLogs("OnTimeoutEndErasmusPeriodRequestPacket", ctx)
-
-	/*
-
-		err := k.HandleAbortPacketEndErasmus(ctx, data.Index, data.ForeignIndex, data.StartingUniversityName, data.DestinationUniversityName)
-		if err != nil {
-			return err
-		}
-
-	*/
 
 	return nil
 }
