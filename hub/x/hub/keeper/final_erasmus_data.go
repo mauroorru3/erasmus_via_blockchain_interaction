@@ -114,15 +114,10 @@ func (k Keeper) OnAcknowledgementFinalErasmusDataPacket(ctx sdk.Context, packet 
 	case *channeltypes.Acknowledgement_Error:
 
 		// Failed acknowledgement logic
-		err := k.HandleAbortPacketEndErasmusV2(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
-		if err != nil {
-			return err
-
-		}
 
 		utilfunc.PrintLogs("OnAcknowledgementFinalErasmusDataPacket error "+dispatchedAck.Error, ctx)
-
 		return nil
+
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.FinalErasmusDataPacketAck
@@ -163,15 +158,6 @@ func (k Keeper) OnTimeoutFinalErasmusDataPacket(ctx sdk.Context, packet channelt
 	// Packet timeout logic
 
 	utilfunc.PrintLogs("OnTimeoutFinalErasmusDataPacket", ctx)
-
-	/*
-
-		err := k.HandleAbortPacketEndErasmusV2(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
-		if err != nil {
-			return err
-		}
-
-	*/
 
 	return nil
 }

@@ -49,6 +49,13 @@ type TaxesStruct struct {
 	Date_of_payment string `json:"date_of_payment"`
 }
 
+type StudentInfoRestrictedHomeIndexPacket struct {
+	PacketID          string `json:"p_id"`
+	HomeIndex         string `json:"h_id"`
+	HomeUniversity    string `json:"h_uni"`
+	ForeignUniversity string `json:"f_uni"`
+}
+
 // Exam results packet
 
 type ErasmusExamsResultsPacket struct {
@@ -355,11 +362,11 @@ func CreateSuccessOperationString() (abort_op_JSON string, err error) {
 	return abort_op_JSON, err
 }
 
-// Function that constructs the ack contents and returns the ack related to the abort operation
+// Function that constructs the success ack contents of the start erasmus
 
-func HandleSuccessAck(ctx sdk.Context) (packetAck types.ErasmusRestictedDataPacketAck, err error) {
+func HandleSuccessAckStartErasmus(ctx sdk.Context) (packetAck types.ErasmusRestictedDataPacketAck, err error) {
 
-	PrintLogs("HandleSuccessAck", ctx)
+	PrintLogs("HandleSuccessAckStartErasmus", ctx)
 
 	new_data_info, err := CreateSuccessOperationString()
 	if err != nil {
@@ -368,5 +375,86 @@ func HandleSuccessAck(ctx sdk.Context) (packetAck types.ErasmusRestictedDataPack
 
 		packetAck.ErasmusRestrictedInfo = new_data_info
 		return packetAck, err
+	}
+}
+
+// Function that constructs the success ack contents of the extend erasmus
+
+func HandleSuccessAckExtendErasmus(ctx sdk.Context) (packetAck types.ExtendErasmusPeriodPacketAck, err error) {
+
+	PrintLogs("HandleSuccessAckExtendErasmus", ctx)
+
+	new_data_info, err := CreateSuccessOperationString()
+	if err != nil {
+		return packetAck, err
+	} else {
+
+		packetAck.ErasmusRestrictedInfo = new_data_info
+		return packetAck, err
+	}
+}
+
+// Function that constructs the success ack contents of the end erasmus
+
+func HandleSuccessAckEndErasmus(ctx sdk.Context) (packetAck types.EndErasmusPeriodRequestPacketAck, err error) {
+
+	PrintLogs("HandleSuccessAckEndErasmus", ctx)
+
+	new_data_info, err := CreateSuccessOperationString()
+	if err != nil {
+		return packetAck, err
+	} else {
+
+		packetAck.ErasmusRestrictedInfo = new_data_info
+		return packetAck, err
+	}
+}
+
+// test error ack
+
+func TestAckErrorStartErasmus(ctx sdk.Context, test bool, packetType int, data string) bool {
+
+	if test {
+		var result map[string]interface{}
+		json.Unmarshal([]byte(data), &result)
+		PrintLogs("TestAckErrorStartErasmus res "+data, ctx)
+
+		packetID, _ := result["p_id"].(string)
+
+		if packetType == 0 {
+			if packetID == "1" {
+				PrintLogs("TestAckErrorStartErasmus first packet - start erasmus", ctx)
+				return true
+			} else {
+				return false
+			}
+		} else {
+			pIDs := []string{"2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}
+
+			pIDMap := make(map[string]struct{})
+			for _, id := range pIDs {
+				pIDMap[id] = struct{}{}
+			}
+
+			if _, exists := pIDMap[packetID]; exists {
+				PrintLogs("TestAckErrorStartErasmus last 10 packets - start erasmus", ctx)
+				return true
+			}
+
+		}
+	} else {
+		return false
+	}
+	return false
+
+}
+
+func TestAckError(ctx sdk.Context, test bool) (result bool) {
+
+	if test {
+		PrintLogs("TestAckError", ctx)
+		return true
+	} else {
+		return false
 	}
 }

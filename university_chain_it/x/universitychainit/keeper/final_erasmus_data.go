@@ -98,7 +98,7 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket "+data.ErasmusRestrictedInfo, ctx)
 		err = utilfunc.UpdateErasmusData(&searchedStudent, data.ErasmusRestrictedInfo)
 		if err != nil {
-			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+			return packetAck, err
 		}
 		utilfunc.PrintLogs("OnRecvFinalErasmusDataPacket finish", ctx)
 		k.SetStoredStudent(ctx, searchedStudent)
@@ -106,11 +106,11 @@ func (k Keeper) OnRecvFinalErasmusDataPacket(ctx sdk.Context, packet channeltype
 		err = utilfunc.GetConsumedGas("OnRecvFinalErasmusDataPacket IT", data.HomeIndex, ctx)
 
 		if err != nil {
-			return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+			return packetAck, err
 		} else {
 			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
 			if err != nil {
-				return k.ErrorHandlingEndErasmusAckFinalPacket(ctx, data.HomeIndex, data.ErasmusRestrictedInfo)
+				return packetAck, err
 			}
 			sizeInt := len(packetAckBytes)
 			utilfunc.GetTransactionStats("OnRecvFinalErasmusDataPacket sending ack", "", ctx, sizeInt, binArray)

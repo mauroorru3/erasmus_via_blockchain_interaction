@@ -105,45 +105,55 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 
 													packet.ErasmusRestrictedInfo = data
 
+													finaltimeoutTimestamp := timeoutTimestamp
+
+													ok, timeoutTimestampOnTimeout := utilfunc.TestTriggerOnTimeout(ctx, false)
+
+													if ok {
+
+														finaltimeoutTimestamp = timeoutTimestampOnTimeout
+													}
+
 													err = k.TransmitErasmusRestictedDataPacket(
 														ctx,
 														packet,
 														"universitychainit",
 														"channel-0",
 														clienttypes.ZeroHeight(),
-														timeoutTimestamp,
+														finaltimeoutTimestamp,
 														" StartErasmus",
 													)
 													if err != nil {
 														utilfunc.PrintLogs("TransmitErasmusStudentPacket "+err.Error(), ctx)
 														return nil, err
-													} else {
-
-														// The timer for the first packet of the start erasmus operation is created
-
-														err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "1", 1)
-														if err != nil {
-															return &types.MsgStartErasmusResponse{
-																Status: -1,
-															}, err
-														}
-
-														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent", ctx)
-														k.Keeper.SetStoredStudent(ctx, searchedStudent)
-														k.Keeper.SetUniversityInfo(ctx, uniInfo)
-
-														err = utilfunc.GetConsumedGas("StartErasmus IT", searchedStudent.Index, ctx)
-														if err != nil {
-															return &types.MsgStartErasmusResponse{
-																Status: -1,
-															}, err
-														}
-
-														return &types.MsgStartErasmusResponse{
-															Status: 0,
-														}, nil
-
 													}
+
+													// The timer for the first packet of the start erasmus operation is created
+
+													err = k.AddOperationQueue(ctx, &searchedStudent, &uniInfo, "1", 1)
+													if err != nil {
+														return &types.MsgStartErasmusResponse{
+															Status: -1,
+														}, err
+													}
+
+													searchedStudent.Counters.RevertErasmusCareerCompleted = false
+
+													utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent", ctx)
+													k.Keeper.SetStoredStudent(ctx, searchedStudent)
+													k.Keeper.SetUniversityInfo(ctx, uniInfo)
+
+													err = utilfunc.GetConsumedGas("StartErasmus IT", searchedStudent.Index, ctx)
+													if err != nil {
+														return &types.MsgStartErasmusResponse{
+															Status: -1,
+														}, err
+													}
+
+													return &types.MsgStartErasmusResponse{
+														Status: 0,
+													}, nil
+
 												}
 											}
 										}

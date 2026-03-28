@@ -46,6 +46,10 @@ export interface UniversitychaindeCountersInfo {
 
   /** @format int32 */
   maximumNumberRetries?: number;
+
+  /** @format int32 */
+  errorAcksOrTimeoutsReceived?: number;
+  revertErasmusCareerCompleted?: boolean;
 }
 
 export interface UniversitychaindeErasmusInfo {

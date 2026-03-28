@@ -98,35 +98,41 @@ func (k Keeper) OnRecvEndErasmusPeriodRequestPacket(ctx sdk.Context, packet chan
 		return packetAck, types.ErrStudentNotPresent
 	} else {
 
-		if searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
+		if utilfunc.TestEndErasmusOperationError(ctx, false) {
 
-			searchedStudent.ErasmusData.ErasmusStudent = "Incoming completed"
-			err = utilfunc.ConcludeErasmusFlag(ctx, &searchedStudent)
-			if err != nil {
-				return k.ErrorHandlingEndErasmusAck(ctx, data.ForeignIndex)
-			} else {
-				k.SetStoredStudent(ctx, searchedStudent)
-			}
-		}
-		stringIndex := data.Index
-		data_res, err := utilfunc.GetErasmusExamsResults(searchedStudent)
-		if err != nil {
-			utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
-			return k.ErrorHandlingEndErasmusAck(ctx, data.ForeignIndex)
-		}
-		packetAck.ErasmusRestrictedInfo = data_res
-
-		err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket", stringIndex, ctx)
-		if err != nil {
-			return k.ErrorHandlingEndErasmusAck(ctx, data.ForeignIndex)
+			return k.HandleAbortAckEndErasmus(ctx, searchedStudent.Index)
 		} else {
-			packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
-			if err != nil {
-				return k.ErrorHandlingEndErasmusAck(ctx, data.ForeignIndex)
+
+			if searchedStudent.ErasmusData.ErasmusStudent != "Incoming completed" {
+
+				searchedStudent.ErasmusData.ErasmusStudent = "Incoming completed"
+				err = utilfunc.ConcludeErasmusFlag(ctx, &searchedStudent)
+				if err != nil {
+					return k.HandleAbortAckEndErasmus(ctx, data.ForeignIndex)
+				} else {
+					k.SetStoredStudent(ctx, searchedStudent)
+				}
 			}
-			sizeInt := len(packetAckBytes)
-			utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket DE sending ack", "", ctx, sizeInt, binArray)
-			return packetAck, nil
+			stringIndex := data.Index
+			data_res, err := utilfunc.GetErasmusExamsResults(searchedStudent)
+			if err != nil {
+				utilfunc.PrintLogs("SendErasmusStudent "+err.Error(), ctx)
+				return k.HandleAbortAckEndErasmus(ctx, data.ForeignIndex)
+			}
+			packetAck.ErasmusRestrictedInfo = data_res
+
+			err = utilfunc.GetConsumedGas("OnRecvEndErasmusPeriodRequestPacket", stringIndex, ctx)
+			if err != nil {
+				return k.HandleAbortAckEndErasmus(ctx, data.ForeignIndex)
+			} else {
+				packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+				if err != nil {
+					return k.HandleAbortAckEndErasmus(ctx, data.ForeignIndex)
+				}
+				sizeInt := len(packetAckBytes)
+				utilfunc.GetTransactionStats("OnRecvEndErasmusPeriodRequestPacket DE sending ack", "", ctx, sizeInt, binArray)
+				return packetAck, nil
+			}
 		}
 
 	}

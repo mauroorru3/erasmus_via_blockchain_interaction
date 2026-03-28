@@ -22,12 +22,13 @@ go build -o ./build/hubd ./cmd/hubd/main.go;
 sudo docker build --no-cache -f Dockerfile-hubd . -t hubd_i; 
 cd ..;
 #-----------------------------------------
-#sudo docker image rm hermes_relayer_it_hub; 
-#cd hermes_relayer_it_hub;
-#sudo docker build -f Dockerfile . -t hermes_relayer_it_hub --no-cache;
-#cd ..;
+sudo docker image rm hermes_relayer_it_hub; 
+cd hermes_relayer_it_hub;
+sudo docker build -f Dockerfile . -t hermes_relayer_it_hub;
+cd ..;
 #---------------------------
-#sudo docker image rm hermes_relayer_de_hub; 
-#cd hermes_relayer_de_hub;
-#sudo docker build -f Dockerfile . -t hermes_relayer_de_hub --no-cache;
-#cd ..;
+sudo docker image rm hermes_relayer_de_hub; 
+cd hermes_relayer_de_hub;
+sudo docker build -f Dockerfile . -t hermes_relayer_de_hub;
+cd ..;
+	

@@ -36,16 +36,20 @@ export interface UniversitychainitContactInfo {
 }
 
 export interface UniversitychainitCountersInfo {
-  PacketsRetriesStartErasmus?: number[];
+  packetsRetriesStartErasmus?: number[];
 
   /** @format int32 */
-  AcksReceivedStartErasmus?: number;
+  acksReceivedStartErasmus?: number;
 
   /** @format int32 */
   retryNumberOperations?: number;
 
   /** @format int32 */
   maximumNumberRetries?: number;
+
+  /** @format int32 */
+  errorAcksOrTimeoutsReceived?: number;
+  revertErasmusCareerCompleted?: boolean;
 }
 
 export interface UniversitychainitErasmusInfo {

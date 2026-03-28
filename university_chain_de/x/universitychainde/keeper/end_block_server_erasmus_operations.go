@@ -64,31 +64,31 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 
 						utilfunc.PrintLogs("TerminateExpiredOperations caso 1 - start erasmus", ctx)
 
-						data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(storedStudent)
-						if err != nil {
-							panic(err)
-						}
-
-						var packet types.ErasmusRestictedDataPacketData
-						packet.ErasmusRestrictedInfo = data
-
-						err = k.TransmitErasmusRestictedDataPacket(
-							ctx,
-							packet,
-							"universitychainde",
-							"channel-0",
-							clienttypes.ZeroHeight(),
-							timeoutTimestamp,
-							" StartErasmus",
-						)
-						if err != nil {
-							panic(err)
-						}
-
-						storedStudent.Counters.RetryNumberOperations++
-						k.SetStoredStudent(ctx, storedStudent)
-
 						if storedStudent.Counters.RetryNumberOperations < storedStudent.Counters.MaximumNumberRetries {
+
+							data, err := utilfunc.CreateHomeIndexJSONPacketFromStudentData(storedStudent)
+							if err != nil {
+								panic(err)
+							}
+
+							var packet types.ErasmusRestictedDataPacketData
+							packet.ErasmusRestrictedInfo = data
+
+							err = k.TransmitErasmusRestictedDataPacket(
+								ctx,
+								packet,
+								"universitychainde",
+								"channel-0",
+								clienttypes.ZeroHeight(),
+								timeoutTimestamp,
+								" StartErasmus",
+							)
+							if err != nil {
+								panic(err)
+							}
+
+							storedStudent.Counters.RetryNumberOperations++
+							k.SetStoredStudent(ctx, storedStudent)
 
 							// The timer for the start erasmus operation is created
 
@@ -131,25 +131,26 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 								panic(err)
 							} else {
 
-								packet.ForeignIndex = foreignIndex
-
-								err = k.TransmitEndErasmusPeriodRequestPacket(
-									ctx,
-									packet,
-									"universitychainde",
-									"channel-0",
-									clienttypes.ZeroHeight(),
-									timeoutTimestamp,
-									"EndErasmusBeforeDeadline",
-								)
-								if err != nil {
-									panic(err)
-								}
-
-								storedStudent.Counters.RetryNumberOperations++
-								k.SetStoredStudent(ctx, storedStudent)
-
 								if storedStudent.Counters.RetryNumberOperations < storedStudent.Counters.MaximumNumberRetries {
+
+									packet.ForeignIndex = foreignIndex
+
+									err = k.TransmitEndErasmusPeriodRequestPacket(
+										ctx,
+										packet,
+										"universitychainde",
+										"channel-0",
+										clienttypes.ZeroHeight(),
+										timeoutTimestamp,
+										"EndErasmusBeforeDeadline",
+									)
+									if err != nil {
+										panic(err)
+									}
+
+									storedStudent.Counters.RetryNumberOperations++
+									k.SetStoredStudent(ctx, storedStudent)
+
 									// The timer for the end erasmus operation is created
 
 									err = k.AddOperationQueue(ctx, &storedStudent, &uniList[i], "2", int(storedStudent.Counters.RetryNumberOperations))
@@ -188,29 +189,30 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 								panic(err)
 							} else {
 
-								packet.DestinationUniversityName = foreignUni
-								packet.ForeignIndex = foreignIndex
-								packet.DurationInMonths = 6
-								packet.FinalDate, _ = utilfunc.GetFinalDateErasmus(storedStudent)
-
-								// Transmit the packet
-								err = k.TransmitExtendErasmusPeriodPacket(
-									ctx,
-									packet,
-									"universitychainde",
-									"channel-0",
-									clienttypes.ZeroHeight(),
-									timeoutTimestamp,
-									"ExtendErasmus",
-								)
-								if err != nil {
-									panic(err)
-								}
-
-								storedStudent.Counters.RetryNumberOperations++
-								k.SetStoredStudent(ctx, storedStudent)
-
 								if storedStudent.Counters.RetryNumberOperations < storedStudent.Counters.MaximumNumberRetries {
+
+									packet.DestinationUniversityName = foreignUni
+									packet.ForeignIndex = foreignIndex
+									packet.DurationInMonths = 6
+									packet.FinalDate, _ = utilfunc.GetFinalDateErasmus(storedStudent)
+
+									// Transmit the packet
+									err = k.TransmitExtendErasmusPeriodPacket(
+										ctx,
+										packet,
+										"universitychainde",
+										"channel-0",
+										clienttypes.ZeroHeight(),
+										timeoutTimestamp,
+										"ExtendErasmus",
+									)
+									if err != nil {
+										panic(err)
+									}
+
+									storedStudent.Counters.RetryNumberOperations++
+									k.SetStoredStudent(ctx, storedStudent)
+
 									// The timer for the extend erasmus operation is created
 
 									err = k.AddOperationQueue(ctx, &storedStudent, &uniList[i], "3", int(storedStudent.Counters.RetryNumberOperations))
@@ -235,31 +237,11 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 
 					case "4":
 
-						data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(storedStudent)
-						if err != nil {
-							panic(err)
-						}
+						utilfunc.PrintLogs("TerminateExpiredOperations caso 4 - other 10 packets start Erasmus", ctx)
 
-						var packet types.ErasmusRestictedDataPacketData
-						packet.ErasmusRestrictedInfo = data
+						if storedStudent.Counters.RetryNumberOperations < storedStudent.Counters.MaximumNumberRetries {
 
-						err = k.TransmitErasmusRestictedDataPacket(
-							ctx,
-							packet,
-							"universitychainde",
-							"channel-0",
-							clienttypes.ZeroHeight(),
-							timeoutTimestamp,
-							" TerminateExpiredOperations caso 4",
-						)
-
-						if err != nil {
-							utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
-							panic(err)
-						} else {
-
-							utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateNameSurnameJSONPacketFromStudentData sent", ctx)
-							data, err := utilfunc.CreateStudentKeyPart1JSONPacketFromStudentData(storedStudent)
+							data, err := utilfunc.CreateNameSurnameJSONPacketFromStudentData(storedStudent)
 							if err != nil {
 								panic(err)
 							}
@@ -282,9 +264,8 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 								panic(err)
 							} else {
 
-								utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateStudentKeyPart1JSONPacketFromStudentData sent", ctx)
-
-								data, err := utilfunc.CreateStudentKeyPart2JSONPacketFromStudentData(storedStudent)
+								utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateNameSurnameJSONPacketFromStudentData sent", ctx)
+								data, err := utilfunc.CreateStudentKeyPart1JSONPacketFromStudentData(storedStudent)
 								if err != nil {
 									panic(err)
 								}
@@ -306,9 +287,10 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 									utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 									panic(err)
 								} else {
-									utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateStudentKeyPart2JSONPacketFromStudentData sent", ctx)
 
-									data, err := utilfunc.CreateStartDateJSONPacketFromStudentData(storedStudent)
+									utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateStudentKeyPart1JSONPacketFromStudentData sent", ctx)
+
+									data, err := utilfunc.CreateStudentKeyPart2JSONPacketFromStudentData(storedStudent)
 									if err != nil {
 										panic(err)
 									}
@@ -330,8 +312,9 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 										utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 										panic(err)
 									} else {
-										utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateStartDateJSONPacketFromStudentData sent", ctx)
-										data, err := utilfunc.CreateEndDateJSONPacketFromStudentData(storedStudent)
+										utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateStudentKeyPart2JSONPacketFromStudentData sent", ctx)
+
+										data, err := utilfunc.CreateStartDateJSONPacketFromStudentData(storedStudent)
 										if err != nil {
 											panic(err)
 										}
@@ -353,8 +336,8 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 											utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 											panic(err)
 										} else {
-											utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateEndDateJSONPacketFromStudentData sent", ctx)
-											data, err := utilfunc.CreateDurationJSONPacketFromStudentData(storedStudent)
+											utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateStartDateJSONPacketFromStudentData sent", ctx)
+											data, err := utilfunc.CreateEndDateJSONPacketFromStudentData(storedStudent)
 											if err != nil {
 												panic(err)
 											}
@@ -376,10 +359,9 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 												utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 												panic(err)
 											} else {
-												utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateDurationJSONPacketFromStudentData sent", ctx)
-												data, err := utilfunc.CreateCourseDetailsJSONPacketFromStudentData(storedStudent)
+												utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateEndDateJSONPacketFromStudentData sent", ctx)
+												data, err := utilfunc.CreateDurationJSONPacketFromStudentData(storedStudent)
 												if err != nil {
-													utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 													panic(err)
 												}
 
@@ -400,9 +382,10 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 													utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 													panic(err)
 												} else {
-													utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateCourseDetailsJSONPacketFromStudentData sent", ctx)
-													data, err := utilfunc.CreateDepartmentJSONPacketFromStudentData(storedStudent)
+													utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateDurationJSONPacketFromStudentData sent", ctx)
+													data, err := utilfunc.CreateCourseDetailsJSONPacketFromStudentData(storedStudent)
 													if err != nil {
+														utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 														panic(err)
 													}
 
@@ -416,17 +399,16 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 														"channel-0",
 														clienttypes.ZeroHeight(),
 														timeoutTimestamp,
-														" TerminateExpiredOperations caso 4 - case 9",
+														" TerminateExpiredOperations caso 4",
 													)
 
 													if err != nil {
 														utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 														panic(err)
 													} else {
-														utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateDepartmentJSONPacketFromStudentData sent", ctx)
-														data, err := utilfunc.CreateErasmusTypeJSONPacketFromStudentData(storedStudent)
+														utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateCourseDetailsJSONPacketFromStudentData sent", ctx)
+														data, err := utilfunc.CreateDepartmentJSONPacketFromStudentData(storedStudent)
 														if err != nil {
-															utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 															panic(err)
 														}
 
@@ -440,15 +422,15 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 															"channel-0",
 															clienttypes.ZeroHeight(),
 															timeoutTimestamp,
-															" TerminateExpiredOperations caso 4 - case 10",
+															" TerminateExpiredOperations caso 4 - case 9",
 														)
 
 														if err != nil {
 															utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 															panic(err)
 														} else {
-															utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateErasmusTypeJSONPacketFromStudentData sent", ctx)
-															data, err := utilfunc.CreateExamsJSONPacketFromStudentData(storedStudent)
+															utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateDepartmentJSONPacketFromStudentData sent", ctx)
+															data, err := utilfunc.CreateErasmusTypeJSONPacketFromStudentData(storedStudent)
 															if err != nil {
 																utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 																panic(err)
@@ -464,15 +446,38 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 																"channel-0",
 																clienttypes.ZeroHeight(),
 																timeoutTimestamp,
-																" TerminateExpiredOperations caso 4",
+																" TerminateExpiredOperations caso 4 - case 10",
 															)
 
 															if err != nil {
 																utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
 																panic(err)
 															} else {
+																utilfunc.PrintLogs("TerminateExpiredOperations caso 4 CreateErasmusTypeJSONPacketFromStudentData sent", ctx)
+																data, err := utilfunc.CreateExamsJSONPacketFromStudentData(storedStudent)
+																if err != nil {
+																	utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
+																	panic(err)
+																}
 
-																if storedStudent.Counters.RetryNumberOperations < storedStudent.Counters.MaximumNumberRetries {
+																var packet types.ErasmusRestictedDataPacketData
+																packet.ErasmusRestrictedInfo = data
+
+																err = k.TransmitErasmusRestictedDataPacket(
+																	ctx,
+																	packet,
+																	"universitychainde",
+																	"channel-0",
+																	clienttypes.ZeroHeight(),
+																	timeoutTimestamp,
+																	" TerminateExpiredOperations caso 4",
+																)
+
+																if err != nil {
+																	utilfunc.PrintLogs("TerminateExpiredOperations caso 4 "+err.Error(), ctx)
+																	panic(err)
+																} else {
+
 																	// The timer for the 10 packets of the start erasmus operation is created
 
 																	err = k.AddOperationQueue(ctx, &storedStudent, &uniList[i], "4", int(storedStudent.Counters.RetryNumberOperations))
@@ -480,17 +485,7 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 																		panic(err)
 																	}
 																	utilfunc.PrintLogs("TerminateExpiredOperations caso 4 - start Erasmus - 10 packets sent", ctx)
-																} else {
 
-																	// revert state of the start erasmus operation
-
-																	err = k.ClearErasmusCareer(ctx, storedStudent.Index)
-																	if err != nil {
-																		panic(err)
-																	}
-
-																	storedStudent.Counters.RetryNumberOperations = 0
-																	k.SetStoredStudent(ctx, storedStudent)
 																}
 															}
 														}
@@ -501,6 +496,15 @@ func (k Keeper) TerminateExpiredOperations(goCtx context.Context) {
 									}
 								}
 							}
+						} else {
+
+							// revert state of the start erasmus operation
+
+							err = k.ClearErasmusCareer(ctx, storedStudent.Index)
+							if err != nil {
+								panic(err)
+							}
+							k.SetStoredStudent(ctx, storedStudent)
 						}
 					}
 

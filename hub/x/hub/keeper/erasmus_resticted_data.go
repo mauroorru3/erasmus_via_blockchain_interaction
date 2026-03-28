@@ -80,13 +80,13 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 	sizeInt := packet.Size()
 	binArray, err := data.GetBytes()
 	if err != nil {
-		return packetAck, err
+		return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 	}
 	utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket", "", ctx, sizeInt, binArray)
 
 	// validate packet data upon receiving
 	if err := data.ValidateBasic(); err != nil {
-		return packetAck, err
+		return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 	}
 
 	utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket", ctx)
@@ -96,55 +96,64 @@ func (k Keeper) OnRecvErasmusRestictedDataPacket(ctx sdk.Context, packet channel
 	var result map[string]interface{}
 	err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &result)
 	if err != nil {
-		return k.HandleAbortAck(ctx, data.ErasmusRestrictedInfo, packet)
+		return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 	}
 
 	utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket res "+data.ErasmusRestrictedInfo, ctx)
 
 	uniStr, found := result["f_uni"].(string)
 	if !found {
-		return k.HandleAbortAck(ctx, data.ErasmusRestrictedInfo, packet)
+		return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 	} else {
 
 		uniInfo, found := k.GetUniversities(ctx, uniStr)
 		if !found {
-			return k.HandleAbortAck(ctx, data.ErasmusRestrictedInfo, packet)
+			return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 		} else {
 
 			utilfunc.PrintLogs("OnRecvErasmusRestictedDataPacket res dentro "+data.ErasmusRestrictedInfo, ctx)
 
-			var packet_to_send types.ErasmusRestictedDataPacketData
+			if utilfunc.TestAckErrorStartErasmus(ctx, false, 1, data.ErasmusRestrictedInfo) {
 
-			packet_to_send.ErasmusRestrictedInfo = data.ErasmusRestrictedInfo
+				return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 
-			err := k.TransmitErasmusRestictedDataPacket(
-				ctx,
-				packet_to_send,
-				uniInfo.Port,
-				uniInfo.ChannelID,
-				clienttypes.ZeroHeight(),
-				timeoutTimestamp,
-				"")
-
-			if err != nil {
-				return k.HandleAbortAck(ctx, data.ErasmusRestrictedInfo, packet)
 			} else {
-				packetHash := utilfunc.Hash(binArray)
-				err = utilfunc.GetConsumedGas("OnRecvErasmusRestictedDataPacket Hub", strconv.FormatInt(int64(packetHash), 10), ctx)
+
+				var packet_to_send types.ErasmusRestictedDataPacketData
+
+				packet_to_send.ErasmusRestrictedInfo = data.ErasmusRestrictedInfo
+
+				err := k.TransmitErasmusRestictedDataPacket(
+					ctx,
+					packet_to_send,
+					uniInfo.Port,
+					uniInfo.ChannelID,
+					clienttypes.ZeroHeight(),
+					timeoutTimestamp,
+					"")
+
 				if err != nil {
-					return packetAck, err
+					return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
 				} else {
-					packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+					packetHash := utilfunc.Hash(binArray)
+					err = utilfunc.GetConsumedGas("OnRecvErasmusRestictedDataPacket Hub", strconv.FormatInt(int64(packetHash), 10), ctx)
 					if err != nil {
 						return packetAck, err
+					} else {
+						packetAckBytes, err := types.ModuleCdc.MarshalJSON(&packetAck)
+						if err != nil {
+							return k.HandleAbortAckStartErasmus(ctx, data.ErasmusRestrictedInfo, packet)
+						}
+						sizeInt := len(packetAckBytes)
+						utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket sending ack", "", ctx, sizeInt, binArray)
+
+						return utilfunc.HandleSuccessAckStartErasmus(ctx)
+
 					}
-					sizeInt := len(packetAckBytes)
-					utilfunc.GetTransactionStats("OnRecvErasmusRestictedDataPacket sending ack", "", ctx, sizeInt, binArray)
 
-					return utilfunc.HandleSuccessAck(ctx)
 				}
-
 			}
+
 		}
 
 	}
@@ -162,13 +171,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 		_ = dispatchedAck.Error
 		utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket error "+dispatchedAck.Error, ctx)
 
-		err := k.HandleAbortPacket(ctx, data.ErasmusRestrictedInfo)
-		if err != nil {
-			return err
-
-		}
-
 		return nil
+
 	case *channeltypes.Acknowledgement_Result:
 		// Decode the packet acknowledgment
 		var packetAck types.ErasmusRestictedDataPacketAck
@@ -192,8 +196,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 		if packetAck.ErasmusRestrictedInfo != "" {
 
 			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket packetAck.ErasmusRestrictedInfo != nil", ctx)
-			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket "+packetAck.ErasmusRestrictedInfo, ctx)
-			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket "+data.ErasmusRestrictedInfo, ctx)
+			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket ack "+packetAck.ErasmusRestrictedInfo, ctx)
+			utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket previosu packet sent "+data.ErasmusRestrictedInfo, ctx)
 
 			var result map[string]interface{}
 			err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &result)
@@ -205,10 +209,118 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 			packetID, found := result["p_id"].(string)
 			if !found {
 				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket p_id not found", ctx)
-				return err
+				return errors.New("p_id not found or not a string")
 			}
 
 			switch packetID {
+
+			case "-1": // error in the index packet of the start erasmus
+
+				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -1", ctx)
+
+				var homeIndexPacket utilfunc.StudentInfoRestrictedHomeIndexPacket
+				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &homeIndexPacket)
+				if err != nil {
+					return err
+				}
+
+				uniInfo, found := k.GetUniversities(ctx, homeIndexPacket.HomeUniversity)
+				if !found {
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -1 "+types.ErrWrongNameUniversity.Error(), ctx)
+					//return types.ErrWrongNameUniversity
+				} else {
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case - 1", ctx)
+					var abortData utilfunc.AbortOperationPacket
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -1 data "+data.ErasmusRestrictedInfo, ctx)
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -1 packetack "+packetAck.ErasmusRestrictedInfo, ctx)
+
+					abortData.PacketID = "-1"
+					abortData.HomeIndex = homeIndexPacket.HomeIndex
+					abortData.HomeUniversity = homeIndexPacket.HomeUniversity
+					abortData.ForeignUniversity = homeIndexPacket.ForeignUniversity
+
+					resultByteJSON, err := json.Marshal(abortData)
+					if err != nil {
+						return err
+					}
+
+					var packet_to_send types.ErasmusRestictedDataPacketData
+					packet_to_send.ErasmusRestrictedInfo = string(resultByteJSON)
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -1 packettosend "+packet_to_send.ErasmusRestrictedInfo, ctx)
+
+					err = k.TransmitErasmusRestictedDataPacket(ctx,
+						packet_to_send,
+						uniInfo.Port,
+						uniInfo.ChannelID,
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+						" OnAcknowledgementErasmusRestictedDataPacket case -1")
+
+					if err != nil {
+						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -1 error "+err.Error(), ctx)
+						return err
+
+					}
+					return nil
+				}
+
+			case "-4": // error in the other 10 packets of the start erasmus
+
+				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4", ctx)
+
+				var abortPacket utilfunc.AbortOperationPacket
+				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &abortPacket)
+				if err != nil {
+					return err
+				}
+
+				uniInfo, found := k.GetUniversities(ctx, abortPacket.HomeUniversity)
+				if !found {
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 "+types.ErrWrongNameUniversity.Error(), ctx)
+					return types.ErrWrongNameUniversity
+				} else {
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case - 4", ctx)
+					var abortData utilfunc.AbortOperationPacket
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 data "+data.ErasmusRestrictedInfo, ctx)
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 packetack "+packetAck.ErasmusRestrictedInfo, ctx)
+
+					abortData.PacketID = abortPacket.PacketID
+					abortData.HomeIndex = abortPacket.HomeIndex
+					abortData.HomeUniversity = abortPacket.HomeUniversity
+					abortData.ForeignUniversity = abortPacket.ForeignUniversity
+					abortData.ForeignIndex = abortPacket.ForeignIndex
+
+					resultByteJSON, err := json.Marshal(abortData)
+					if err != nil {
+						return err
+					}
+
+					var packet_to_send types.ErasmusRestictedDataPacketData
+					packet_to_send.ErasmusRestrictedInfo = string(resultByteJSON)
+
+					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 packettosend "+packet_to_send.ErasmusRestrictedInfo, ctx)
+
+					err = k.TransmitErasmusRestictedDataPacket(ctx,
+						packet_to_send,
+						uniInfo.Port,
+						uniInfo.ChannelID,
+						clienttypes.ZeroHeight(),
+						timeoutTimestamp,
+						" OnAcknowledgementErasmusRestictedDataPacket case -4")
+
+					if err != nil {
+						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case -4 error "+err.Error(), ctx)
+						return err
+
+					}
+					return nil
+				}
+
 			case "20": // index packet of the start erasmus
 
 				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 20", ctx)
@@ -219,11 +331,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 20 - 2", ctx)
 				if err != nil {
 					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket err json.Unmarshal", ctx)
-					err := k.HandleAbortPacket(ctx, data.ErasmusRestrictedInfo)
-					if err != nil {
-						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket err HandleAbortPacket", ctx)
-						return err
-					}
+					return err
+
 				}
 
 				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket pre unmarshal data.ErasmusRestrictedInfo", ctx)
@@ -231,10 +340,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 				err = json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &packetSent)
 				if err != nil {
 					utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket err unmarshal data.ErasmusRestrictedInfo", ctx)
-					err := k.HandleAbortPacket(ctx, data.ErasmusRestrictedInfo)
-					if err != nil {
-						return err
-					}
+					return err
+
 				}
 
 				utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket pre uni", ctx)
@@ -265,10 +372,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 					if err != nil {
 						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 20 error "+err.Error(), ctx)
-						err := k.HandleAbortPacket(ctx, data.ErasmusRestrictedInfo)
-						if err != nil {
-							return err
-						}
+						return err
+
 					} else {
 
 						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 20 packet sent", ctx)
@@ -281,9 +386,7 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 							return nil
 						}
-
 					}
-
 				}
 
 			case "21": // start erasmus confirmation
@@ -293,10 +396,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 				var okPacket utilfunc.SuccessPacket
 				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &okPacket)
 				if err != nil {
-					err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
-					if err != nil {
-						return err
-					}
+					return err
+
 				}
 
 				var successData utilfunc.SuccessPacket
@@ -332,11 +433,10 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 					if err != nil {
 						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 21 error "+err.Error(), ctx)
-						err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
-						if err != nil {
-							return err
-						}
+						return err
+
 					}
+					return nil
 				}
 
 			case "22": //extend erasmus confirmation
@@ -346,10 +446,8 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 				var okPacket utilfunc.SuccessPacket
 				err = json.Unmarshal([]byte(packetAck.ErasmusRestrictedInfo), &okPacket)
 				if err != nil {
-					err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
-					if err != nil {
-						return err
-					}
+					return err
+
 				}
 
 				var successData utilfunc.SuccessPacket
@@ -385,11 +483,11 @@ func (k Keeper) OnAcknowledgementErasmusRestictedDataPacket(ctx sdk.Context, pac
 
 					if err != nil {
 						utilfunc.PrintLogs("OnAcknowledgementErasmusRestictedDataPacket case 22 error "+err.Error(), ctx)
-						err := k.HandleAbortPacket(ctx, packetAck.ErasmusRestrictedInfo)
-						if err != nil {
-							return err
-						}
+						return err
+
 					}
+
+					return nil
 				}
 
 			default:
@@ -411,50 +509,6 @@ func (k Keeper) OnTimeoutErasmusRestictedDataPacket(ctx sdk.Context, packet chan
 
 	// Packet timeout logic
 	utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket", ctx)
-
-	/*
-
-		var result map[string]interface{}
-		err := json.Unmarshal([]byte(data.ErasmusRestrictedInfo), &result)
-		if err != nil {
-			return err
-		}
-
-		packetID, found := result["p_id"].(string)
-		if found {
-
-			switch packetID {
-
-			case "-1":
-
-				utilfunc.PrintLogs("OnTimeoutErasmusRestictedDataPacket case -1", ctx)
-
-				err = k.SendAbortPacket(ctx, data.ErasmusRestrictedInfo, packet)
-				if err != nil {
-					return err
-
-				}
-
-			default:
-				{
-					err = k.HandleAbortPacket(ctx, data.ErasmusRestrictedInfo)
-					if err != nil {
-						return err
-
-					}
-				}
-			}
-
-		} else {
-			err = k.HandleAbortPacket(ctx, data.ErasmusRestrictedInfo)
-			if err != nil {
-				return err
-
-			}
-		}
-
-	*/
-
 	return nil
 
 }

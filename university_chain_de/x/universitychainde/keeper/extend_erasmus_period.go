@@ -96,7 +96,7 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 		formatted_current_final_date, _ := time.Parse(utilfunc.DeadlineLayout, current_final_date)
 		formatted_new_final_date, _ := time.Parse(utilfunc.DeadlineLayout, data.FinalDate)
 
-		if !utilfunc.GetExtendErasmusOperationStatus() {
+		if utilfunc.TestExtendErasmusOperationError(ctx, false) {
 
 			return k.HandleAbortAckExtendErasmus(ctx, searchedStudent.Index)
 		} else {
@@ -150,6 +150,8 @@ func (k Keeper) OnRecvExtendErasmusPeriodPacket(ctx sdk.Context, packet channelt
 // OnAcknowledgementExtendErasmusPeriodPacket responds to the the success or failure of a packet
 // acknowledgement written on the receiving chain.
 func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, packet channeltypes.Packet, data types.ExtendErasmusPeriodPacketData, ack channeltypes.Acknowledgement) error {
+
+	utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket", ctx)
 
 	switch dispatchedAck := ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
@@ -205,28 +207,22 @@ func (k Keeper) OnAcknowledgementExtendErasmusPeriodPacket(ctx sdk.Context, pack
 					}
 
 				}
+			case "23": // confirmation of the sent packet
+				utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket case 23", ctx)
+				return nil
 			}
-		}
 
-		searchedStudent, found := k.GetStoredStudent(ctx, data.ForeignIndex)
-		if !found {
-			utilfunc.PrintLogs("OnAcknowledgementExtendErasmusPeriodPacket "+types.ErrStudentNotPresent.Error(), ctx)
-			return types.ErrStudentNotPresent
-		} else {
-			stringIndex, err := utilfunc.GetForeignIndex(searchedStudent)
+			err = utilfunc.GetConsumedGas("OnAcknowledgementExtendErasmusPeriodPacket IT", data.ForeignIndex, ctx)
 			if err != nil {
 				return err
 			} else {
-				err = utilfunc.GetConsumedGas("OnAcknowledgementExtendErasmusPeriodPacket IT", stringIndex, ctx)
-				if err != nil {
-					return err
-				} else {
 
-					return nil
-				}
-
+				return nil
 			}
+
 		}
+		return nil
+
 	default:
 		// The counter-party module doesn't implement the correct acknowledgment format
 		return errors.New("invalid acknowledgment format")

@@ -127,6 +127,9 @@ func (k msgServer) StartErasmus(goCtx context.Context, msg *types.MsgStartErasmu
 																Status: -1,
 															}, err
 														}
+
+														searchedStudent.Counters.RevertErasmusCareerCompleted = false
+
 														utilfunc.PrintLogs("TransmitErasmusStudentPacket packet sent", ctx)
 														k.Keeper.SetStoredStudent(ctx, searchedStudent)
 														k.Keeper.SetUniversityInfo(ctx, uniInfo)

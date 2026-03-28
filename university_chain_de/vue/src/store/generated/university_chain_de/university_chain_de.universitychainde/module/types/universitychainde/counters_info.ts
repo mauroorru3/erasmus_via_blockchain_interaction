@@ -8,6 +8,8 @@ export interface CountersInfo {
   AcksReceivedStartErasmus: number;
   retryNumberOperations: number;
   maximumNumberRetries: number;
+  errorAcksOrTimeoutsReceived: number;
+  revertErasmusCareerCompleted: boolean;
 }
 
 const baseCountersInfo: object = {
@@ -15,6 +17,8 @@ const baseCountersInfo: object = {
   AcksReceivedStartErasmus: 0,
   retryNumberOperations: 0,
   maximumNumberRetries: 0,
+  errorAcksOrTimeoutsReceived: 0,
+  revertErasmusCareerCompleted: false,
 };
 
 export const CountersInfo = {
@@ -32,6 +36,12 @@ export const CountersInfo = {
     }
     if (message.maximumNumberRetries !== 0) {
       writer.uint32(32).int32(message.maximumNumberRetries);
+    }
+    if (message.errorAcksOrTimeoutsReceived !== 0) {
+      writer.uint32(40).int32(message.errorAcksOrTimeoutsReceived);
+    }
+    if (message.revertErasmusCareerCompleted === true) {
+      writer.uint32(48).bool(message.revertErasmusCareerCompleted);
     }
     return writer;
   },
@@ -62,6 +72,12 @@ export const CountersInfo = {
           break;
         case 4:
           message.maximumNumberRetries = reader.int32();
+          break;
+        case 5:
+          message.errorAcksOrTimeoutsReceived = reader.int32();
+          break;
+        case 6:
+          message.revertErasmusCareerCompleted = reader.bool();
           break;
         default:
           reader.skipType(tag & 7);
@@ -108,6 +124,26 @@ export const CountersInfo = {
     } else {
       message.maximumNumberRetries = 0;
     }
+    if (
+      object.errorAcksOrTimeoutsReceived !== undefined &&
+      object.errorAcksOrTimeoutsReceived !== null
+    ) {
+      message.errorAcksOrTimeoutsReceived = Number(
+        object.errorAcksOrTimeoutsReceived
+      );
+    } else {
+      message.errorAcksOrTimeoutsReceived = 0;
+    }
+    if (
+      object.revertErasmusCareerCompleted !== undefined &&
+      object.revertErasmusCareerCompleted !== null
+    ) {
+      message.revertErasmusCareerCompleted = Boolean(
+        object.revertErasmusCareerCompleted
+      );
+    } else {
+      message.revertErasmusCareerCompleted = false;
+    }
     return message;
   },
 
@@ -126,6 +162,10 @@ export const CountersInfo = {
       (obj.retryNumberOperations = message.retryNumberOperations);
     message.maximumNumberRetries !== undefined &&
       (obj.maximumNumberRetries = message.maximumNumberRetries);
+    message.errorAcksOrTimeoutsReceived !== undefined &&
+      (obj.errorAcksOrTimeoutsReceived = message.errorAcksOrTimeoutsReceived);
+    message.revertErasmusCareerCompleted !== undefined &&
+      (obj.revertErasmusCareerCompleted = message.revertErasmusCareerCompleted);
     return obj;
   },
 
@@ -163,6 +203,23 @@ export const CountersInfo = {
       message.maximumNumberRetries = object.maximumNumberRetries;
     } else {
       message.maximumNumberRetries = 0;
+    }
+    if (
+      object.errorAcksOrTimeoutsReceived !== undefined &&
+      object.errorAcksOrTimeoutsReceived !== null
+    ) {
+      message.errorAcksOrTimeoutsReceived = object.errorAcksOrTimeoutsReceived;
+    } else {
+      message.errorAcksOrTimeoutsReceived = 0;
+    }
+    if (
+      object.revertErasmusCareerCompleted !== undefined &&
+      object.revertErasmusCareerCompleted !== null
+    ) {
+      message.revertErasmusCareerCompleted =
+        object.revertErasmusCareerCompleted;
+    } else {
+      message.revertErasmusCareerCompleted = false;
     }
     return message;
   },

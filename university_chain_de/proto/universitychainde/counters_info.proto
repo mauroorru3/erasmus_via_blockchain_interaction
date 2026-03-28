@@ -8,4 +8,6 @@ message CountersInfo {
     int32 AcksReceivedStartErasmus = 2;
     int32 retryNumberOperations = 3;
     int32 maximumNumberRetries = 4;
+    int32 errorAcksOrTimeoutsReceived = 5;
+    bool revertErasmusCareerCompleted = 6;
 }
