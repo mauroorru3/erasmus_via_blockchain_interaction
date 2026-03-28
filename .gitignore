@@ -19,3 +19,19 @@
 
 # Go workspace file
 go.work
+
+stats_times.txt
+university_chain_it/build/
+university_chain_de/build/
+hub/build/
+university_chain_it/elements
+university_chain_de/elements
+hub/elements
+university_chain_it/log/val-unipi/
+university_chain_it/log/val-uniroma1/
+university_chain_de/log/val-humboldt/
+university_chain_de/log/val-tum/
+hub/log/val-hub-instance-1/
+hub/log/val-hub-instance-2/
+statistics/*.txt
+
